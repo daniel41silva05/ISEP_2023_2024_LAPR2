@@ -1,4 +1,4 @@
-# US006 - ...
+# US006 - Register a vehicle
 
 ## 2. Analysis
 
