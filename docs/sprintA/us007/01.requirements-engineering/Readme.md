@@ -1,11 +1,11 @@
-# US006 - Create a Task 
+# US007 - Register Vehicle's Check-up.
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As an FM, I wish to register a vehicle’s check-up.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -17,9 +17,9 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Which attributes will you need for the vehicle's check-up?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** Plate number, Date, KMS at check-up.
 
 > **Question:** Monetary data is expressed in any particular currency?
 >
@@ -40,19 +40,12 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    *  Date
+    * KMS at check-up
+    * Plate number
 	
-* Selected data:
-    * a task category 
-
 **Output Data:**
 
-* List of existing task categories
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)

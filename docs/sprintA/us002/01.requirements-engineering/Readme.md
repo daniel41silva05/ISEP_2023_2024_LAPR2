@@ -1,12 +1,11 @@
-# US006 - Create a Task 
+# US002 - Register a Job
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
-
+As an HRM, I want to register a job that a collaborator need to have.
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
@@ -17,17 +16,17 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Is it necessary to associate a category with the inserted works? 
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** it is not necessary as there are no US's that suggest that this might be necessary;
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** What are the input data for register a job?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** Just the name of the job.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
+* **AC1:** The user is not allowed to enter duplicate jobs.
 * **AC2:** The task reference must have at least 5 alphanumeric characters.
 * **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
 
@@ -40,15 +39,7 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-	
-* Selected data:
-    * a task category 
+    * a name
 
 **Output Data:**
 
