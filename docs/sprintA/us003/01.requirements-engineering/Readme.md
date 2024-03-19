@@ -12,13 +12,13 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 **From the specifications document:**
 
->	...
+>	Each employee is characterized by having a unique name, a date of birth, a date of admission, an adornment, a type of identification document and a number, as well as two contact details (mobile phone and email).
 
 >	...
 
 **From the client clarifications:**
 
-> **Question:** ...
+> **Question:** Can a collaborator have more than one job?
 >
 > **Answer:** ...
 
@@ -29,6 +29,8 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 ### 1.3. Acceptance Criteria
 
 * **AC1:**  name, birthdate, admission date, address, contact info (mobile and email), ID doc type and respective number should be provided by HRM
+* **AC2:** The birthday date and admission date must follow the format DD-MM-YYYY.
+* **AC3** escrever para numero e tipo de identificacao
 
 ### 1.4. Found out Dependencies
 
