@@ -12,15 +12,17 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 **From the specifications document:**
 
->	Each employee is characterized by having a unique name, a date of birth, a date of admission, an adornment, a type of identification document and a number, as well as two contact details (mobile phone and email).
+>   Human resources manager fills in all fields for collaborator registration.
 
->	...
+>	Each collaborator is characterized by having a unique name, a date of birth, a date of admission, an adornment, a type of identification document and a number, as well as two contact details (mobile phone and email).
+
+>	The job will be chosen from the list of jobs registered in US02.
 
 **From the client clarifications:**
 
-> **Question:** Can a collaborator have more than one job?
+> **Question:** Does the HRM select the job from a list that we display?
 >
-> **Answer:** ...
+> **Answer:** displaying or not, It's a matter of UX, the dev team should decide about it, but the valid jobs are the ones created within the US02.
 
 > **Question:** ...
 >
@@ -28,9 +30,19 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:**  name, birthdate, admission date, address, contact info (mobile and email), ID doc type and respective number should be provided by HRM
-* **AC2:** The birthday date and admission date must follow the format DD-MM-YYYY.
-* **AC3** escrever para numero e tipo de identificacao
+* **AC1:**  Name, birthdate, admission date, address, contact info (mobile and email), ID doc type and respective number should be provided by HRM.
+* **AC2:** All mandatory fields must be filled in.
+* **AC3** The name can only contain letters and spaces.
+* **AC4** Birth and submission data can only contain numbers and must follow the format provided.
+* **AC5** Birth date can only be a past date.
+* **AC6** Residence must be written including: house number, street, postal code, city and country.
+* **AC7** Phone number can only have 9 numbers.
+* **AC8** Email cannot contain spaces and must contain "@".
+* **AC9** The user will select an identification document type from a list.
+* **AC10** Email cannot contain spaces and must contain "@".
+* **AC11** Contribution number can only have numbers.
+* **AC12** The user will select a job from the list of jobs registered in US02.
+* **AC13** Collaborator must not have a registered account.
 
 ### 1.4. Found out Dependencies
 
