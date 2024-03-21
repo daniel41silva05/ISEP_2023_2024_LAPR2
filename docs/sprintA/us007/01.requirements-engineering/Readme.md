@@ -11,9 +11,7 @@ As an FM, I wish to register a vehicle’s check-up.
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	No specifications.
 
 **From the client clarifications:**
 
@@ -21,19 +19,18 @@ As an FM, I wish to register a vehicle’s check-up.
 >
 > **Answer:** Plate number, Date, KMS at check-up.
 
-> **Question:** Monetary data is expressed in any particular currency?
->
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
 
 ### 1.3. Acceptance Criteria
 
 * **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC2:** The system should only accept units of measurement in kilometers.
+* **AC3:** Just the FM manager have the permission to register a new vehicle check-up.
+* **AC4:** It's necessary to verify that the car entered by the user exists in the system.
+* **AC5:** If the system detects that the car credentials do not exist, it should send an error message stating that the license plate number is incorrect.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US006 - Register a vehicle" as there it's necessary to verify if the car has already been registered before being able to register the check-up.
 
 ### 1.5 Input and Output Data
 
@@ -46,7 +43,7 @@ As an FM, I wish to register a vehicle’s check-up.
 	
 **Output Data:**
 
-* (In)Success of the operation
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -54,12 +51,12 @@ As an FM, I wish to register a vehicle’s check-up.
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us007-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
+[//]: # (#### Alternative Two)
 
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+[//]: # (![System Sequence Diagram - Alternative Two]&#40;svg/us006-system-sequence-diagram-alternative-two.svg&#41;)
 
-### 1.7 Other Relevant Remarks
+[//]: # (### 1.7 Other Relevant Remarks)
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+[//]: # (* The created task stays in a "not published" state in order to distinguish from "published" tasks.)

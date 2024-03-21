@@ -10,9 +10,9 @@ As an HRM, I want to register a job that a collaborator need to have.
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	Each job must have just one unique name. 
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	The system can't accept duplicates.
 
 **From the client clarifications:**
 
@@ -27,12 +27,12 @@ As an HRM, I want to register a job that a collaborator need to have.
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The user is not allowed to enter duplicate jobs.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC2:** If the user input a wrong username and/or password, the system will print an error message. 
+* **AC3:** When a new job is added and already exists a job with the same name, the system must print an error message.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* No dependencies.
 
 ### 1.5 Input and Output Data
 
@@ -43,8 +43,7 @@ As an HRM, I want to register a job that a collaborator need to have.
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -52,12 +51,12 @@ As an HRM, I want to register a job that a collaborator need to have.
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
+[//]: # (#### Alternative Two[//]: # &#40;![System Sequence Diagram - Alternative Two]&#40;svg/us002-system-sequence-diagram-alternative-two.svg&#41;&#41;)
 
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* If the user enters a job that already exists, the system should notify and request that they enter a different profession.
