@@ -42,7 +42,7 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 * **AC10** Email cannot contain spaces and must contain "@".
 * **AC11** Contribution number can only have numbers.
 * **AC12** The user will select a job from the list of jobs registered in US02.
-* **AC13** Collaborator must not have a registered account.
+* **AC13** Collaborator must not have a registered account
 
 ### 1.4. Found out Dependencies
 
