@@ -14,7 +14,7 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 >   Human resources manager fills in all fields for collaborator registration.
 
->	Each collaborator is characterized by having a unique name, a date of birth, a date of admission, an adornment, a type of identification document and a number, as well as two contact details (mobile phone and email).
+>	Each collaborator is characterized by having a unique name, a birthday, a date of admission, an adornment, a type of identification document and a number, as well as two contact details (mobile phone and email).
 
 >	The job will be chosen from the list of jobs registered in US02.
 
