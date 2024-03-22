@@ -32,16 +32,15 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 * **AC01:** Name, birthdate, admission date, address, contact info (mobile and email), ID doc type and respective number should be provided by HRM.
 * **AC02:** All mandatory fields must be filled in.
-* **AC03:** The name can only contain letters and spaces.
+* **AC03:** Name can only contain letters and spaces.
 * **AC04:** Birthdate and submission data can only contain numbers and must follow the format provided.
 * **AC05:** Birthdate can only be a past date.
 * **AC06:** Residence must be written including: house number, street, postal code, city and country.
 * **AC07:** Mobile number can only have 9 numbers.
 * **AC08:** Email cannot contain spaces and must contain "@".
-* **AC09:** The user will select an identification document type from a list.
-* **AC10:** Email cannot contain spaces and must contain "@".
+* **AC09:** User will select an identification document type from a list.
 * **AC11:** Contribution number can only have numbers.
-* **AC12:** The user will select a job from the list of jobs registered in US02.
+* **AC12:** User will select a job from the list of jobs registered in US02.
 * **AC13:** Collaborator must not have a registered account
 
 ### 1.4. Found out Dependencies
@@ -74,11 +73,11 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us003-system-sequence-diagram-alternative-one.svg)
 
 #### Alternative Two
 
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative Two](svg/us003-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
