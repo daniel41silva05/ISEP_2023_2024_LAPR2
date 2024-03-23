@@ -66,8 +66,8 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 **Output Data:**
 
-* All data of the new registered employee
 * (In)Success of the operation
+* All data of the new registered employee
 
 ### 1.6. System Sequence Diagram (SSD)
 

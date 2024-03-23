@@ -30,7 +30,7 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate.
+* **AC1:** Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number.
 * **AC2:** All mandatory fields must be filled in.
 * **AC3:** Identity of the registered vehicle must be the plate id.
 * **AC4:** Different cars cannot have the same plate id.
@@ -47,22 +47,25 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
+Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number.
 * Typed data:
-  * ...
-  * ...
-  * ...
-  * ...
-  * ...
-  * ...
+  * Brand
+  * Model
+  * Tare
+  * Gross Weight
+  * Current Km
+  * Register Date
+  * Acquisition Date
+  * Maintenance/Check-up Frequency
+  * Plate Number
 
 * Selected data:
-  * ...
+  * Type
 
 **Output Data:**
 
-* ...
-* ...
+* (In)Success of the operation
+* All data of the new registered vehicle 
 
 ### 1.6. System Sequence Diagram (SSD)
 

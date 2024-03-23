@@ -15,7 +15,7 @@ activate FM
     FM -> System : asks to register a new vehicle
     activate System
 
-        System --> FM : requests data (i.e. Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate)
+        System --> FM : requests data (i.e. Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number)
     deactivate System
 
     FM -> System : types requested data
