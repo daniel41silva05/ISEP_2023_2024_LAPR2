@@ -24,24 +24,28 @@ class Organization {
     email
 }
 
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
+class Collaborator {
+    name
+    birthday
+    admission date
+    address
+    mobile number
+    email
+    ID doc type
+    contribution number
+    job
 }
 
 class Category {
     description
 }
 
-class Employee {
+class HRM {
     name
     email
     position
     phone
+    job
 }
 
 'class User {

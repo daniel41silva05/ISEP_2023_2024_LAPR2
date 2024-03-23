@@ -24,24 +24,28 @@ class Organization {
     email
 }
 
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
+class Vehicle {
+    brand
+    model
+    type
+    tare
+    gross weight
+    current km
+    register date
+    acquisition date
+    maintenance/check-up frequency
+    plate number
 }
 
 class Category {
     description
 }
 
-class Employee {
+class FM {
     name
     email
     position
-    phone
+    job
 }
 
 'class User {
