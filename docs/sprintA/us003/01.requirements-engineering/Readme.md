@@ -45,27 +45,29 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 ### 1.4. Found out Dependencies
 
-* ...
+* There is a dependency on "US002 - Register a Job" as there must be at least one job to assign the employee to be registered.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
+ ID doc type
 * Typed data:
-  * ...
-  * ...
-  * ...
-  * ...
-  * ...
-  * ...
+  * Name
+  * Birthday
+  * Admission Date
+  * Address
+  * Mobile Number
+  * Email
+  * Contribution Number
 
 * Selected data:
-  * ...
+  * List of ID doc Types
+  * List of Jobs
 
 **Output Data:**
 
-* ...
-* ...
+* All data of the new registered employee
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
