@@ -13,6 +13,11 @@ left to right direction
 
 rectangle "System Actors" as actors {
     actor Freelancer
+    actor Collaborator
+    actor "Green\nSpaces\nManager" as GSM
+    actor "Green\nSpaces\nUser" as GSU
+    actor "Human\nResources\nManager" as HRM
+    actor "Fleet Manager" as FM
     actor "Organization\nEmployee" as Employee
 }
 
