@@ -17,13 +17,13 @@ As an HRM, I want to assign one or more skills to a collaborator.
 
 **From the client clarifications:**
 
-> **Question:** ...
+> **Question:** Can any skill be registered to any collaborator/job? Or should they be associated in categories in association with a specific job
 >
-> **Answer:** ...
+> **Answer:** There is no association, it totally depends of the CV of the collaborator.
 
-> **Question:** ...
+> **Question:** There is a minimum and maximum number of skills?
 >
-> **Answer:** ...
+> **Answer:** No
 
 ### 1.3. Acceptance Criteria
 
