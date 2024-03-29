@@ -24,7 +24,7 @@ activate HRM
         System --> HRM : requests data (i.e. Name, Birthday, Admission Date, Address, Contact Info (Mobile, Email), ID Doc (Type, Number))
     deactivate System
 
-    HRM -> System : types requested data
+    HRM -> System : types/selects requested data
     activate System
 
         System --> HRM : shows all data and requests confirmation

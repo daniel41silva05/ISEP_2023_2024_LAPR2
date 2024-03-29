@@ -54,7 +54,9 @@ class Job {
 }
 
 class IDDocType {
-    name
+    taxpayer number
+    citizen card
+    passport
 }
 
 'class User {

@@ -28,6 +28,10 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 >
 > **Answer:** By plate id.
 
+> **Question:** When a vehicle is registered, are there specific requirements for accepting the brand? For example, does the system need to check if the brand is on a predetermined list? Does this also apply to the model or any other characteristics?
+>
+> **Answer:** no; one can consider a list os brands and a list of models previsously inserted in the system, no need to go through validations.
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number.
@@ -42,7 +46,7 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 
 ### 1.4. Found out Dependencies
 
-* ...
+* There is no dependencies.
 
 ### 1.5 Input and Output Data
 
@@ -74,10 +78,6 @@ Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition D
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
