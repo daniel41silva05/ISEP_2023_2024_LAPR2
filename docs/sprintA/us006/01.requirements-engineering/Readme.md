@@ -16,7 +16,7 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 
 >	Fleet manager fills in all the fields for vehicle registration.
 
->   Each vehicle is characterized by having a brand, model, type, tare, gross weight, current km, registration date, acquisition date, maintenance/check-up frequency (in Kms) and plate.
+>   Each vehicle is characterized by having a brand, model, type, tare, gross weight, current km, registration date, acquisition date, maintenance/check-up frequency and plate.
 
 **From the client clarifications:**
 
@@ -64,8 +64,8 @@ Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition D
 
 **Output Data:**
 
-* (In)Success of the operation
 * All data of the new registered vehicle 
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 

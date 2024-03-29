@@ -58,7 +58,7 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
   * Address
   * Mobile Number
   * Email
-  * Contribution Number
+  * ID Number
 
 * Selected data:
   * List of ID doc Types
@@ -66,8 +66,8 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 
 **Output Data:**
 
-* (In)Success of the operation
 * All data of the new registered employee
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 

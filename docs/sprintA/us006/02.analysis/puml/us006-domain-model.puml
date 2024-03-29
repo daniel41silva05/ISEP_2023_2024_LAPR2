@@ -48,6 +48,12 @@ class FM {
     job
 }
 
+class Type {
+    Passengers or Mixed
+    Light or Heavy
+    Open Box or Closed Vans or Trucks
+}
+
 'class User {
 '    name
 '    email

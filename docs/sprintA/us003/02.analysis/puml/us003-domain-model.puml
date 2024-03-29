@@ -32,7 +32,7 @@ class Collaborator {
     mobile number
     email
     ID doc type
-    contribution number
+    ID number
     job
 }
 
@@ -46,6 +46,15 @@ class HRM {
     position
     phone
     job
+}
+
+class Job {
+    name
+    description
+}
+
+class IDDocType {
+    name
 }
 
 'class User {
