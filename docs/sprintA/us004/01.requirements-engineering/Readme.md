@@ -1,29 +1,29 @@
-# US006 - Create a Task 
+# US004 - Assign Skills 
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As an HRM, I want to assign one or more skills to a collaborator.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	Every task is defined by a distinct reference assigned within the organization, accompanied by a designation, both informal and technical descriptions, estimated duration and cost, and a designated task category. 
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	Access to the task is restricted solely to employees of the respective organization until it is published.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Can any skill be registered to any collaborator/job? Or should they be associated in categories in association with a specific job
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** There is no association, it totally depends of the CV of the collaborator.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** There is a minimum and maximum number of skills?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** No
 
 ### 1.3. Acceptance Criteria
 
