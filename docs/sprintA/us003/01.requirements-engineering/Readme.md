@@ -52,7 +52,7 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
 * **AC04:** Birthdate and submission data can only contain numbers and must follow the format provided.
 * **AC05:** Birthdate must be 18 years older than the current date.
 * **AC06:** Residence must be written including: street, zipcode (must contain numbers and respect the format "xxxx-xxx") and city.
-* **AC07:** Mobile number must have "+" followed by 3 numbers and then 9 numbers or just 9 numbers.
+* **AC07:** Phone number must have "+" followed by 3 numbers and then 9 numbers or just 9 numbers.
 * **AC08:** Email cannot contain spaces and must contain "@".
 * **AC09:** User will select an identification document type from a list.
 * **AC11:** ID doc number can only -------
@@ -72,7 +72,7 @@ As an HRM, I want to register a collaborator with a job and fundamental characte
   * Birthday
   * Admission Date
   * Address
-  * Mobile Number
+  * Phone Number
   * Email
   * ID Number
 

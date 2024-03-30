@@ -49,9 +49,9 @@ class FM {
 }
 
 class Type {
-    Passengers or Mixed
-    Light or Heavy
-    Open Box or Closed Vans or Trucks
+    Passengers / Mixed
+    Light / Heavy
+    Open Box / Closed Vans or Trucks
 }
 
 'class User {

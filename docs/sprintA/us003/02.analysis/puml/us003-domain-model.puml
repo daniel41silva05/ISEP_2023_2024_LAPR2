@@ -10,12 +10,6 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
-
 class Organization {
     name
     vatNumber
@@ -29,15 +23,11 @@ class Collaborator {
     birthday
     admission date
     address
-    mobile number
+    phoneNumber
     email
     ID doc type
     ID number
     job
-}
-
-class Category {
-    description
 }
 
 class HRM {
@@ -54,23 +44,15 @@ class Job {
 }
 
 class IDDocType {
-    taxpayer number
-    citizen card
-    passport
+    taxpayer number / citizen card / passport
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
+Organization "1" - "1" HRM : has >
+Organization "*" - "0..*" Job : owns >
+HRM "1" - "1" Job : selects  >
+HRM "1" - "0..*" Collaborator : register >
+Collaborator "1..*" - "1" IDDocType : owns >
+Job "1" - "0..*" Collaborator : assigned to >
+Collaborator "0..*" - "1" Job : has >
 
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
 @enduml
