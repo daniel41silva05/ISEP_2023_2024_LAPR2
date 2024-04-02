@@ -1,10 +1,23 @@
 # Supplementary Specification (FURPS+)
 
 ## Functionality
+1. Collaborator Management:
+    - Ability to register skills that a collaborator possesses.
+    - Functionality to register job positions required by collaborators.
+    - Capability to register collaborators with essential personal and job-related details, such as name, birthdate, admission date, address, contact information, and ID documentation.
 
-* The application supports the English language for global accessibility.
-* Employee registration includes personal details and agency assignment, while branch registration includes location and local manager designation 
-* Once a customer accepts an offer, it is automatically scheduled in the system.
+2. Skill Assignment:
+    - Feature to assign one or more skills to a collaborator, facilitating skill management and matching.
+
+3. Team Proposal Generation:
+    - Automation of team proposal generation based on specified criteria, such as maximum team size and required skills.
+
+4. Vehicle Registration:
+    - Functionality to register vehicles with detailed specifications, including brand, model, type, weight, mileage, registration and acquisition dates, and maintenance/checkup frequency.
+
+5. Vehicle Maintenance:
+    - Ability to register vehicle check-ups, ensuring proper maintenance scheduling and tracking.
+    - Feature to list vehicles requiring maintenance or check-ups, aiding in fleet management and maintenance planning.
 
 
 
