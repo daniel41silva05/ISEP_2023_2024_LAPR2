@@ -2,19 +2,22 @@
 
 ## Functionality
 
-_Specifies functionalities that:  
-&nbsp; &nbsp; (i) are common across several US/UC;  
-&nbsp; &nbsp; (ii) are not related to US/UC, namely: Audit, Reporting and Security._
+* The application supports the English language for global accessibility.
+* Employee registration includes personal details and agency assignment, while branch registration includes location and local manager designation 
+* Once a customer accepts an offer, it is automatically scheduled in the system.
 
-(fill in here)
+
 
 ## Usability
 
-_Evaluates the user interface. It has several subcategories,
-among them: error prevention; interface aesthetics and design; help and
-documentation; consistency and standards._
+* Ensure all images and figures created during software development are saved in SVG format.
+* Utilize Java language for application development, utilizing IntelliJ IDE or NetBeans.
+* Develop the application's graphical interface using JavaFX 11.
+* Design a user interface (UI) that is intuitive and easy to navigate, ensuring that users can quickly find the features they need without confusion.
+* Incorporate mechanisms to prevent user errors whenever possible, such as validation checks on user inputs and clear error messages to guide users in resolving issues.
+* Utilize Javadoc to generate comprehensive documentation for Java code.
+* Require all users to authenticate with a password containing seven alphanumeric characters, including three uppercase letters and two digits.
 
-(fill in here )
 
 ## Reliability
 
