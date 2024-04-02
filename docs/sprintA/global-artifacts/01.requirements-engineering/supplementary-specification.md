@@ -1,20 +1,36 @@
 # Supplementary Specification (FURPS+)
 
 ## Functionality
+1. Collaborator Management:
+    - Ability to register skills that a collaborator possesses.
+    - Functionality to register job positions required by collaborators.
+    - Capability to register collaborators with essential personal and job-related details, such as name, birthdate, admission date, address, contact information, and ID documentation.
 
-_Specifies functionalities that:  
-&nbsp; &nbsp; (i) are common across several US/UC;  
-&nbsp; &nbsp; (ii) are not related to US/UC, namely: Audit, Reporting and Security._
+2. Skill Assignment:
+    - Feature to assign one or more skills to a collaborator, facilitating skill management and matching.
 
-(fill in here)
+3. Team Proposal Generation:
+    - Automation of team proposal generation based on specified criteria, such as maximum team size and required skills.
+
+4. Vehicle Registration:
+    - Functionality to register vehicles with detailed specifications, including brand, model, type, weight, mileage, registration and acquisition dates, and maintenance/checkup frequency.
+
+5. Vehicle Maintenance:
+    - Ability to register vehicle check-ups, ensuring proper maintenance scheduling and tracking.
+    - Feature to list vehicles requiring maintenance or check-ups, aiding in fleet management and maintenance planning.
+
+
 
 ## Usability
 
-_Evaluates the user interface. It has several subcategories,
-among them: error prevention; interface aesthetics and design; help and
-documentation; consistency and standards._
+* Ensure all images and figures created during software development are saved in SVG format.
+* Utilize Java language for application development, utilizing IntelliJ IDE or NetBeans.
+* Develop the application's graphical interface using JavaFX 11.
+* Design a user interface (UI) that is intuitive and easy to navigate, ensuring that users can quickly find the features they need without confusion.
+* Incorporate mechanisms to prevent user errors whenever possible, such as validation checks on user inputs and clear error messages to guide users in resolving issues.
+* Utilize Javadoc to generate comprehensive documentation for Java code.
+* Require all users to authenticate with a password containing seven alphanumeric characters, including three uppercase letters and two digits.
 
-(fill in here )
 
 ## Reliability
 
