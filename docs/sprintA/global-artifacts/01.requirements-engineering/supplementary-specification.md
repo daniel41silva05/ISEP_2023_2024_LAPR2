@@ -22,8 +22,9 @@
 
 
 ## Usability
-* Ensure all images and figures created during software development are saved in SVG format.
+* The application’s graphical interface is to be developed in JavaFX 11.
 * Utilize Java language for application development, utilizing IntelliJ IDE or NetBeans.
+* Ensure all images and figures created during software development are saved in SVG format.
 * Design a user interface (UI) that is intuitive and easy to navigate, ensuring that users can quickly find the features they need without confusion.
 * Incorporate mechanisms to prevent user errors whenever possible, such as validation checks on user inputs and clear error messages to guide users in resolving issues.
 * Utilize Javadoc to generate comprehensive documentation for Java code.
