@@ -37,7 +37,7 @@ rectangle "Use Cases" as usecases{
     FM --> UC6
     usecase "UC7 - Register Vehicle's Check-up" as UC7
     FM --> UC7
-    usecase "UC8 - ..." as UC8
+    usecase "UC8 - List the vehicles needing the check-up" as UC8
     FM --> UC8
 }
 

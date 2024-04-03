@@ -21,4 +21,4 @@ However, be aware, this is a pedagogical simplification. On further projects and
 | US005 | [...](../../us005/Readme.md)                                                            |
 | US006 | [Register a vehicle](../../us006/Readme.md)                                             |
 | US007 | [Register Vehicle's Check-up](../../us007/Readme.md)                                    |
-| US008 | [...](../../us008/Readme.md)                                                            |
+| US008 | [List the vehicles needing the check-up](../../us008/Readme.md)                                                            |
