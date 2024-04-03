@@ -31,13 +31,13 @@ As an VFM. I want to list the vehicles needing the check-up.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** ...
-* **AC2:** ...
-* **AC3:** ...
+* **AC1:** At least one car must undergo a check-up before presenting this list.
+* **AC2:** The list must include all vehicles that have either exceeded the required number of kilometers for inspection or are approaching it (with a difference of less than 5% from the check-up frequency).
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US006" - ...
+* There is a dependency on "US007" - ...
 
 ### 1.5 Input and Output Data
 
