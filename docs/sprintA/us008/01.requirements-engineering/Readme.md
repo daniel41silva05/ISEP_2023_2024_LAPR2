@@ -1,35 +1,39 @@
-# US006 - Create a Task 
+# US008 - List the vehicles needing the check-up
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As an VFM. I want to list the vehicles needing the check-up.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>Vehicles are required for executing the tasks assigned to the teams and for transporting machinery and equipment. These vehicles may vary in type, including passenger-only or mixed, light or heavy, vans or lorries with open or closed boxes. All vehicles must undergo inspection, which will occur when they reach the specified number of kilometers according to the check-up frequency.	 
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+> ...
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Can the vehicles get placed automatically on a list or the one listing has to be the FM?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** The list of vehicles is automatically created but the creation is triggered by the FM.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** What information will appear on the final list regarding the vehicle,besides the needing for check-up?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** Data that allow to identify the vehicle like Plate, brand and modle, as well as, the data that allowed to select/insert te vehicle in the list, number of kms, frequecny of checkup and the last checkup.
+
+> **Question:** I'm not sure if I understood everything about US08. In this US we should only list the vehicles that need a check up (surpass the check up frequency in KM) or that will shortly need a check up (5% to the check up frequency *already said in another post*), correct? If so, the information about the checkup frequency for each vehicle should be asked in US07?
+>
+> **Answer:** No; the Maintenance/Check-up Frequency (in km) is registered in US06.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** ...
+* **AC2:** ...
+* **AC3:** ...
 
 ### 1.4. Found out Dependencies
 
