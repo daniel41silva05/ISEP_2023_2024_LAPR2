@@ -12,24 +12,33 @@ skinparam rectangle{
 left to right direction
 
 rectangle "System Actors" as actors {
-    actor Freelancer
-    actor "Organization\nEmployee" as Employee
+    actor Collaborator
+    actor "Green\nSpaces\nManager" as GSM
+    actor "Green\nSpaces\nUser" as GSU
+    actor "Human\nResources\nManager" as HRM
+    actor "Fleet Manager" as FM
 }
-
-
-note right of Freelancer
-    Actor identified but still
-    no concrete use cases
-end note
 
 rectangle "Use Cases" as usecases{
-    usecase "UC6 - Create a Task" as UC6
-    Employee --> UC6
+    usecase "UC1 - Register Skills of a Collaborator" as UC1
+    HRM --> UC1
+    UC1 --> Collaborator
+    usecase "UC2 - Register a Job" as UC2
+    HRM --> UC2
+    usecase "UC3 - Register collaborator with job and fundamental characteristics" as UC3
+    HRM --> UC3
+    UC3 --> Collaborator
+    usecase "UC4 - Assign Skills" as UC4
+    HRM --> UC4
+    UC4 --> Collaborator
+    usecase "UC5 - ..." as UC5
+    HRM --> UC5
+    usecase "UC6 - Register a vehicle" as UC6
+    FM --> UC6
+    usecase "UC7 - Register Vehicle's Check-up" as UC7
+    FM --> UC7
+    usecase "UC8 - List the vehicles needing the check-up" as UC8
+    FM --> UC8
 }
-note right of actors
-    Rectangles and Titles are for
-    demonstration purposes only.
-    Omitt on your diagrams.
-end note
 
 @enduml

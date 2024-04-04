@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+class Organization {
+}
+
+class Collaborator {
+    name
+    birthday
+    admissionDate
+    address
+    phoneNumber
+    email
+    IDDocType
+    IDNumber
+    job
+}
+
+class HRM {
+}
+
+class Job {
+    name
+}
+
+class IDDocType {
+    taxpayer number / citizen card / passport
+}
+
+Organization "1" - "1" HRM : has >
+Organization "*" - "0..*" Job : owns >
+HRM "1" - "1" Job : selects  >
+HRM "1" - "0..*" Collaborator : register >
+Collaborator "1..*" - "1" IDDocType : owns >
+Job "1" - "0..*" Collaborator : assigned to >
+Collaborator "0..*" - "1" Job : has >
+
+@enduml

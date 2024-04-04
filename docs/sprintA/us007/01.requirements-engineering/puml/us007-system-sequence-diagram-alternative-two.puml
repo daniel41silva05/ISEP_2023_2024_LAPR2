@@ -12,20 +12,21 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to create a new task
+    Employee -> System : asks to insert a new vehicle check-up.
     activate System
 
-        System --> Employee : shows task category list and asks to select one
+        System --> Employee : shows all vehicles already \nentered in the system and asks you to select one
     deactivate System
-
-    Employee -> System : selects a task category
+'
+    Employee -> System : selects an existent vehicle
     activate System
 
-        System --> Employee : requests data (i.e. reference, designation, informal\ndescription, technical description, duration, cost)
+        System --> Employee : requests data (i.e. plate number, KMS, date)
     deactivate System
 
     Employee -> System : types requested data
     activate System
+
 
         System --> Employee : shows all data and requests confirmation
     deactivate System

@@ -22,7 +22,9 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-* 
+* Equipment
+* Machine
+* Vehicles
 
 ---
 
@@ -34,13 +36,17 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Roles of People or Organizations**
 
-* 
+* Collaborator
+* FleetManager
+* HumanResourcesManager
+* GreenSpacesManager 
+* GreenSpacesUser
 
 ---
 
 **Places**
 
-* 
+* GreenSpace
 
 ---
 
@@ -52,13 +58,16 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Physical Objects**
 
-* 
+* Equipment
+* Machine
+* Vehicle
 
 ---
 
 **Descriptions of Things**
 
-* 
+* Skill
+* Job
 
 ---
 
@@ -82,7 +91,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Organizations**
 
-* 
+* GreenSpace
 
 ---
 

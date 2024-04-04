@@ -1,59 +1,58 @@
-# US006 - Create a Task 
+# US004 - Assign Skills 
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As an HRM, I want to assign one or more skills to a collaborator.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	Every task is defined by a distinct reference assigned within the organization, accompanied by a designation, both informal and technical descriptions, estimated duration and cost, and a designated task category. 
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	Access to the task is restricted solely to employees of the respective organization until it is published.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Can any skill be registered to any collaborator/job? Or should they be associated in categories in association with a specific job
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** There is no association, it totally depends of the CV of the collaborator.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** There is a minimum and maximum number of skills?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** No
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** Employee registration is mandatory.
+* **AC2:** The system must enable the HRM to choose one or more skills from a predefined list.
+* **AC3:** The system must offer a method to update or delete assigned skills as required.
+* **AC4:** The system must guarantee that only authorized HR Managers have the authority to assign skills.
+* **AC5:** In case of any errors encountered during the skill registration process, the system should present informative error messages to the HR Manager, guiding them on resolving the issue.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US001 - Registering Skills for Collaborators" is required since at least one skill needs to be created.
+* There is a dependency on "US003 - Register a collaborator" is necessary to have an employee to add new skills.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
+   
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-	
+    * Number of skills.
 * Selected data:
-    * a task category 
+    * Diferents skills.
+    * The employee.
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List and confirmation skills.
+* List of current employees.
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -69,4 +68,4 @@ As an organization employee, I want to create a new task in order to be further 
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* ...

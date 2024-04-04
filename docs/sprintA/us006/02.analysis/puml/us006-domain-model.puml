@@ -10,52 +10,34 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
-
 class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
-    email
 }
 
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
+class Vehicle {
+    brand
+    model
+    type
+    tare
+    gross weight
+    current km
+    register date
+    acquisition date
+    maintenance/check-up frequency
+    plate number
 }
 
-class Category {
-    description
+class FM {
 }
 
-class Employee {
-    name
-    email
-    position
-    phone
+class Type {
+    Passengers / Mixed
+    Light / Heavy
+    Open Box / Closed Vans or Trucks
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
+Organization "1" - "1" FM : has >
+Organization "1" - "0..*" Vehicle : owns >
+FM "1" - "0..*" Vehicle : register >
+Vehicle "0..*" - "1" Type : cataloged as >
 
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
 @enduml
