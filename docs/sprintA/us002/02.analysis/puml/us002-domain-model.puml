@@ -16,13 +16,13 @@ hide methods
 '  -description
 '}
 
-class Organization\nHRM {
-    number
+class Organization {
+
 }
 
 class Job {
     name
-
+    description
 
 }
 
@@ -30,13 +30,10 @@ class Job {
 '    description
 '}
 
-class Colaborator {
+class HRM {
     name
-    birthdate
-    admission date
-    address
-    contact info
-    ID doc type
+    email
+    phone
 }
 
 'class User {
@@ -45,12 +42,12 @@ class Colaborator {
 '    password
 '}
 
-'Platform "1" -- "*" Organization : has registered >
 'Platform "1" -- "*" Category : defines >
-Organization\nHRM "1" - "0..*" Colaborator : has >
-Organization\nHRM "1" - "0..*" Job: creates >
+'Organization "1" - "0..*" HRM : has >
+Organization "1" - "0..*" Job: has >
+Job "1" -- "*" System : has registered >
 'Task "*" -- "1" Employee: created by >
-Colaborator "1" -- "*" Job : select >
+HRM "1" -- "*" Job : creates   >
 'Employee "0..1" -- "1" User: acts as >
 'Job "*" - "1" Category: cataloged as >
 @enduml
