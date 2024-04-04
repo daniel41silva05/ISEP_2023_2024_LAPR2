@@ -16,7 +16,7 @@ This user manual provides a comprehensive overview of the Integrative Project So
     - Task Scheduling and Assignment
     - Interaction through Green Spaces User Portal
 4. **Non-functional Requirements**
-
+ 
 ---
 
 ## Introduction
