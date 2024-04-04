@@ -62,20 +62,18 @@ collaborator may have.
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * HRM's username and password
+    * Skill name
+    * Skill category
 	
 * Selected data:
-    * a task category 
+    * None
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List of existing skills
+* Success of the operation
+* Error messages
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -84,10 +82,6 @@ collaborator may have.
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
