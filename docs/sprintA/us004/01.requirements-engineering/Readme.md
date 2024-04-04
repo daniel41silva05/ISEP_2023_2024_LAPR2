@@ -27,34 +27,32 @@ As an HRM, I want to assign one or more skills to a collaborator.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** Select an employee from the provided list.
-* **AC2:** When the HRM is inputting the number of skills to be added, it must be a non-negative integer.
-* **AC3:** The HRM needs to select numbers from the list.
+* **AC1:** Employee registration is mandatory.
+* **AC2:** The system must enable the HRM to choose one or more skills from a predefined list.
+* **AC3:** The system must offer a method to update or delete assigned skills as required.
+* **AC4:** The system must guarantee that only authorized HR Managers have the authority to assign skills.
+* **AC5:** In case of any errors encountered during the skill registration process, the system should present informative error messages to the HR Manager, guiding them on resolving the issue.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US001" - ...
-* There is a dependency on "US003" - ...
+* There is a dependency on "US001 - Registering Skills for Collaborators" is required since at least one skill needs to be created.
+* There is a dependency on "US003 - Register a collaborator" is necessary to have an employee to add new skills.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
+   
 * Typed data:
-    * ...
-    * ... 
-    * ...
-    * ...
-    * ...
-    * ...
-	
+    * Number of skills.
 * Selected data:
-    * ...
+    * Diferents skills.
+    * The employee.
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List and confirmation skills.
+* List of current employees.
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -70,4 +68,4 @@ As an HRM, I want to assign one or more skills to a collaborator.
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* ...
