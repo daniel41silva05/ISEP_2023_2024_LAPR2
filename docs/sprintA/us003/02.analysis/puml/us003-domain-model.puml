@@ -12,7 +12,6 @@ hide methods
 
 class Organization {
     name
-    vatNumber
     website
     phoneNumber
     email
@@ -33,9 +32,7 @@ class Collaborator {
 class HRM {
     name
     email
-    position
-    phone
-    job
+    phoneNumber
 }
 
 class Job {

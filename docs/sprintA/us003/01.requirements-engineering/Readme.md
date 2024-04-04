@@ -56,15 +56,17 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 * **AC01:** Full Name, birthdate, admission date, address, contact info (mobile and email), ID doc type and respective number should be provided by HRM.
 * **AC02:** All mandatory fields must be filled in.
 * **AC03:** Full name can only contain 6 words, consisting only of letters and spaces between each one.
-* **AC04:** Birthdate and submission data can only contain numbers and must follow the format provided.
+* **AC04:** Birthdate and admission data can only contain numbers and follow the format xx/xx/xxxx
 * **AC05:** Birthdate must be 18 years older than the current date.
 * **AC06:** Residence must be written including: street, zipcode (must contain numbers and respect the format "xxxx-xxx") and city.
 * **AC07:** Phone number must have "+" followed by 3 numbers and then 9 numbers or just 9 numbers.
 * **AC08:** The email must contain a prefix to the left of the @ symbol and a domain to its right.
-* **AC09:** User will select an identification document type from a list.
-* **AC11:** ID doc number can only -------
-* **AC12:** User will select a job from the list of jobs registered in US02.
-* **AC13:** Collaborator must not have a registered account
+* **AC09:** User will select an identification document type from a list (taxpayer number/citizen card/passport)
+* **AC11:** Taxpayer number must contain 9 numbers.
+* **AC12:** Citizen Card must contain 8 numbers.
+* **AC13:** Passport must contain a letter followed by 6 numbers.
+* **AC14:** User will select a job from the list of jobs registered in US02.
+* **AC15:** Collaborator must not have a registered account
 
 ### 1.4. Found out Dependencies
 
@@ -89,7 +91,7 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 
 **Output Data:**
 
-* All data of the new registered employee
+* All data of the new registered collaborator
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
