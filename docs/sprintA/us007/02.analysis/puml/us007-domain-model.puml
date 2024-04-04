@@ -50,9 +50,9 @@ class Vehicle {
 'Platform "1" -- "*" Organization : has registered >
 'Platform "1" -- "*" Category : defines >
 FM "1" - "0..*" Vehicle : has >
-FM "1" - "0..*" Checkup : owns >
+FM "1" - "0..*" Checkup : creates >
 'Task "*" -- "1" Employee: created by >
-Vehicle "1" -- "*" Checkup : creates >
+Vehicle "1" -- "*" Checkup : owns >
 'Employee "0..1" -- "1" User: acts as >
 'Checkup "*" - "1" Category: cataloged as >
 @enduml

@@ -26,9 +26,9 @@ class Job {
 
 }
 
-class Category {
-    description
-}
+'class Category {
+'    description
+'}
 
 class Colaborator {
     name
@@ -48,9 +48,9 @@ class Colaborator {
 'Platform "1" -- "*" Organization : has registered >
 'Platform "1" -- "*" Category : defines >
 Organization\nHRM "1" - "0..*" Colaborator : has >
-Organization\nHRM "1" - "0..*" Job: owns >
+Organization\nHRM "1" - "0..*" Job: creates >
 'Task "*" -- "1" Employee: created by >
-Colaborator "1" -- "*" Job : creates >
+Colaborator "1" -- "*" Job : select >
 'Employee "0..1" -- "1" User: acts as >
-Job "*" - "1" Category: cataloged as >
+'Job "*" - "1" Category: cataloged as >
 @enduml
