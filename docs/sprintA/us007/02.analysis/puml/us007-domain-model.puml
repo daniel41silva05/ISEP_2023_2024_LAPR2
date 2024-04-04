@@ -1,4 +1,4 @@
-@startuml
+    @startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
@@ -18,9 +18,12 @@ hide methods
 
 class FM {
     name
+    email
+    phone
 }
 
 class Checkup {
+    ID
     plate number
      KMS
      date
@@ -31,7 +34,9 @@ class Checkup {
 '}
 
 class Vehicle {
-    Brand, Model
+    ID
+    Brand
+    Model
     Type
     Tare
     Gross Weight
@@ -49,10 +54,12 @@ class Vehicle {
 
 'Platform "1" -- "*" Organization : has registered >
 'Platform "1" -- "*" Category : defines >
-FM "1" - "0..*" Vehicle : has >
+'FM "1" - "0..*" Vehicle : has >
 FM "1" - "0..*" Checkup : creates >
 'Task "*" -- "1" Employee: created by >
 Vehicle "1" -- "*" Checkup : owns >
 'Employee "0..1" -- "1" User: acts as >
+Checkup "1" -- "*" System : has registered >
+
 'Checkup "*" - "1" Category: cataloged as >
 @enduml
