@@ -14,12 +14,7 @@ hide methods
 '  -description
 '}
 
-class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
-    email
+class GreenSpace {
 }
 
 class Task {
@@ -56,29 +51,39 @@ class FeatureTS{
     mandatory
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
 class PostalAddress{
     street
     zipCode
     city
 }
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
+
+class Job {
+}
+
+class Skill {
+}
+
+class Vehicle {
+}
+
+class Collaborator {
+}
+
+class FM {
+}
+
+class HRM {
+}
+
+GreenSpace "1" - "0..*" Employee : has >
+GreenSpace "1" - "0..*" Task: owns >
 Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
 Task "*" - "1" Category: cataloged as >
 TechnicalSkill "*" - "1" ActivityArea: regarding an >
 
 Category "*" - "*" TechnicalSkill :  : requires >
 (Category, TechnicalSkill) . FeatureTS
 
-Organization "1" -left "1" PostalAddress : located At >
+GreenSpace "1" -left "1" PostalAddress : located At >
 
 @enduml

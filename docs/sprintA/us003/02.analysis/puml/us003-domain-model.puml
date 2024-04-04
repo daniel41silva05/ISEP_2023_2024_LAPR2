@@ -11,33 +11,25 @@ hide circle
 hide methods
 
 class Organization {
-    name
-    website
-    phoneNumber
-    email
 }
 
 class Collaborator {
     name
     birthday
-    admission date
+    admissionDate
     address
     phoneNumber
     email
-    ID doc type
-    ID number
+    IDDocType
+    IDNumber
     job
 }
 
 class HRM {
-    name
-    email
-    phoneNumber
 }
 
 class Job {
     name
-    description
 }
 
 class IDDocType {

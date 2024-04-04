@@ -11,10 +11,6 @@ hide circle
 hide methods
 
 class Organization {
-    name
-    website
-    phoneNumber
-    email
 }
 
 class Vehicle {
@@ -31,9 +27,6 @@ class Vehicle {
 }
 
 class FM {
-    name
-    email
-    phoneNumber
 }
 
 class Type {
