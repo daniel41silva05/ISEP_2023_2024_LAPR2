@@ -36,28 +36,24 @@ As an VFM. I want to list the vehicles needing the check-up.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006" - ...
-* There is a dependency on "US007" - ...
+* There is a dependency on "US006 - Register a vehicle"  is required as there must be at least one vehicle registered for there to be a list of vehicles in need of a check-up.
+* There is a dependency on "US007 - Register a vehicle's overhaul" is necessary as it provides access to the last overhaul, enabling determination of when a specific vehicle should be included in this list. Additionally, it is one of the pieces of information displayed about the vehicle when the list is requested.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * Range of kilometers for overhaul.
+    * The number of kilometers remaining before reaching the review limit that FM wants to be informed about.
 	
 * Selected data:
-    * a task category 
+    * Vehicles category.
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List of vehicles nedeed check-up.
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
