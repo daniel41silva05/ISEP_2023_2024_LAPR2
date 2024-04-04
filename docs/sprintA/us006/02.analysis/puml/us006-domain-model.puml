@@ -12,7 +12,6 @@ hide methods
 
 class Organization {
     name
-    vatNumber
     website
     phoneNumber
     email
@@ -34,8 +33,7 @@ class Vehicle {
 class FM {
     name
     email
-    position
-    job
+    phoneNumber
 }
 
 class Type {
