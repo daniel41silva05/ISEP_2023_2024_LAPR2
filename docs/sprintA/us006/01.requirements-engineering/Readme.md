@@ -34,15 +34,16 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number.
-* **AC2:** All mandatory fields must be filled in.
-* **AC3:** Identity of the registered vehicle must be the plate id.
-* **AC4:** Different cars cannot have the same plate id.
-* **AC5:** Type of vehicle can be only for passengers or mixed, light or heavy, open box or closed vans or trucks.
-* **AC6:** Tare, Gross Weight and Current Km can only contain numbers that are not negative and their respective unit of measurement.
-* **AC7:** Register and Acquisition Date can only contain numbers and must follow the format provided.
-* **AC8:** Maintenance/Check-up Frequency must be in Kms.
-* **AC9:** System must ensure that only FM registers vehicles.
+* **AC01:** Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number.
+* **AC02:** All mandatory fields must be filled in.
+* **AC03:** Identity of the registered vehicle must be the plate id.
+* **AC04:** Different cars cannot have the same plate id.
+* **AC05:** Type of vehicle can be only for passengers or mixed, light or heavy, open box or closed vans or trucks.
+* **AC06:** Tare, Gross Weight and Current Km can only contain numbers that are not negative and their respective unit of measurement.
+* **AC07:** Register and Acquisition Date can only contain numbers and must follow the format provided.
+* **AC08:** Maintenance/Check-up Frequency must be in Kms.
+* **AC09:** Collaborator must not have a registered account ...
+* **AC10:** System must ensure that only FM registers vehicles.
 
 ### 1.4. Found out Dependencies
 
@@ -81,4 +82,4 @@ Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition D
 
 ### 1.7 Other Relevant Remarks
 
-* ...
+* n/a

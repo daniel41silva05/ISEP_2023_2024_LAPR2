@@ -66,7 +66,8 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 * **AC12:** Citizen Card must contain 8 numbers.
 * **AC13:** Passport must contain a letter followed by 6 numbers.
 * **AC14:** User will select a job from the list of jobs registered in US02.
-* **AC15:** Collaborator must not have a registered account
+* **AC15:** Collaborator must not already have a registered account.
+* **AC16:** System must ensure that only HRM registers collaborators.
 
 ### 1.4. Found out Dependencies
 
@@ -108,4 +109,4 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 
 ### 1.7 Other Relevant Remarks
 
-* ...
+* n/a
