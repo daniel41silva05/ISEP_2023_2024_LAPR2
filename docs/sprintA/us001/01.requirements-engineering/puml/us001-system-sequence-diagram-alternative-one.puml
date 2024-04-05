@@ -18,12 +18,6 @@ activate Employee
         System --> Employee : Shows interface
     deactivate System
 
-    Employee -> System : Types username and password
-    activate System
-
-        System --> Employee : Grants access
-    deactivate System
-
     Employee -> System : Add/remove/edit/view/search skills
     activate System
 

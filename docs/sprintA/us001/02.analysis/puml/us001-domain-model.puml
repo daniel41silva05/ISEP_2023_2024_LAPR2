@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+'title Domain Model
+
+'class Platform {
+'  -description
+'}
+
+class HRM {
+    name
+}
+
+class Skill {
+    ID
+    description
+}
+
+class Colaborator {
+    name
+    job
+    skills
+}
+
+HRM "1" - Skill : creates >
+Colaborator "1" - Skill : has >
+@enduml

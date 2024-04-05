@@ -62,7 +62,6 @@ collaborator may have.
 **Input Data:**
 
 * Typed data:
-    * HRM's username and password
     * Skill name
     * Skill category
 	
@@ -81,7 +80,7 @@ collaborator may have.
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us001-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
