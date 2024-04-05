@@ -14,11 +14,11 @@ However, be aware, this is a pedagogical simplification. On further projects and
 
 | UC/US | Description                                                                             |                   
 |:------|:----------------------------------------------------------------------------------------|
-| US001 | [Register Skills of a Collaborator](../../us001/Readme.md)                              |
+| US001 | [Register Skills of a Collaborator](../../us01/Readme.md)                              |
 | US002 | [Register a Job](../../us002/Readme.md)                                                 |
 | US003 | [Register collaborator with job and fundamental characteristics](../../us003/Readme.md) |
 | US004 | [Assign Skills](../../us004/Readme.md)                                                  |
-| US005 | [...](../../us005/Readme.md)                                                            |
+| US005 | [...](../../us05/Readme.md)                                                            |
 | US006 | [Register a vehicle](../../us006/Readme.md)                                             |
 | US007 | [Register Vehicle's Check-up](../../us007/Readme.md)                                    |
 | US008 | [List the vehicles needing the check-up](../../us008/Readme.md)                                                            |

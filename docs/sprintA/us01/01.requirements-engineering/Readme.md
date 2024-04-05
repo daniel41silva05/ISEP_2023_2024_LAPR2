@@ -80,7 +80,7 @@ collaborator may have.
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us001-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us01-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
