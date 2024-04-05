@@ -11,9 +11,7 @@ As an VFM. I want to list the vehicles needing the check-up.
 
 **From the specifications document:**
 
->Vehicles are required for executing the tasks assigned to the teams and for transporting machinery and equipment. These vehicles may vary in type, including passenger-only or mixed, light or heavy, vans or lorries with open or closed boxes. All vehicles must undergo inspection, which will occur when they reach the specified number of kilometers according to the check-up frequency.	 
-
-> ...
+>Vehicles are required for executing the tasks assigned to the teams and for transporting machinery and equipment. These vehicles may vary in type, including passenger-only or mixed, light or heavy, vans or lorries with open or closed boxes. All vehicles must undergo inspection, which will occur when they reach the specified number of kilometers according to the check-up frequency.
 
 **From the client clarifications:**
 
@@ -52,21 +50,13 @@ As an VFM. I want to list the vehicles needing the check-up.
 
 **Output Data:**
 
-* List of vehicles nedeed check-up.
+* List of vehicles needed check-up.
 * (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
 **_Other alternatives might exist._**
 
-#### Alternative One
+![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram-alternative-one.svg)
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
-
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
