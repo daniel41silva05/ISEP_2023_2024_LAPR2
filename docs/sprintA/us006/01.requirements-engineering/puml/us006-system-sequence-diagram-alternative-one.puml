@@ -18,7 +18,7 @@ activate FM
         System --> FM : requests data (i.e. Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number)
     deactivate System
 
-    FM -> System : types requested data
+    FM -> System : types/selects requested data
     activate System
 
         System --> FM : shows all data and requests confirmation

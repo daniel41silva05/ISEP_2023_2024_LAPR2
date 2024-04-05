@@ -42,7 +42,7 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 * **AC06:** Tare, Gross Weight and Current Km can only contain numbers that are not negative and their respective unit of measurement.
 * **AC07:** Register and Acquisition Date can only contain numbers and must follow the format provided.
 * **AC08:** Maintenance/Check-up Frequency must be in Kms.
-* **AC09:** Collaborator must not have a registered account ...
+* **AC09:** Vehicle must not already registered.
 * **AC10:** System must ensure that only FM registers vehicles.
 
 ### 1.4. Found out Dependencies
@@ -52,7 +52,7 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 ### 1.5 Input and Output Data
 
 **Input Data:**
-Brand, Model, Type, Tare, Gross Weight, Current Km, Register Date, Acquisition Date, Maintenance/Check-up Frequency, Plate Number.
+
 * Typed data:
   * Brand
   * Model

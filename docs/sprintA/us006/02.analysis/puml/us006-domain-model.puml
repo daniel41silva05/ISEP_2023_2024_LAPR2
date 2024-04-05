@@ -16,28 +16,28 @@ class Organization {
 class Vehicle {
     brand
     model
-    type
     tare
-    gross weight
-    current km
-    register date
-    acquisition date
-    maintenance/check-up frequency
-    plate number
+    grossWeight
+    currentKm
+    registerDate
+    acquisitionDate
+    maintenanceCheckUpFrequency
+    plateNumber
+    type
 }
 
 class FM {
 }
 
 class Type {
-    Passengers / Mixed
-    Light / Heavy
-    Open Box / Closed Vans or Trucks
+    passengersOrMixed
+    lightOrHeavy
+    openBoxOrClosedVansOrTrucks
 }
 
-Organization "1" - "1" FM : has >
-Organization "1" - "0..*" Vehicle : owns >
-FM "1" - "0..*" Vehicle : register >
-Vehicle "0..*" - "1" Type : cataloged as >
+Organization "1" -- "1" FM : has >
+Organization "1" -- "1..*" Vehicle : owns >
+FM "1" -- "0..*" Vehicle : register >
+Vehicle "0..*" -- "1" Type : cataloged as >
 
 @enduml

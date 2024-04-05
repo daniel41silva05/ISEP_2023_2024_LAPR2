@@ -76,7 +76,7 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 ### 1.5 Input and Output Data
 
 **Input Data:**
- ID doc type
+
 * Typed data:
   * Name
   * Birthday
