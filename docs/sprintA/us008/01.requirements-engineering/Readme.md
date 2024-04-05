@@ -57,10 +57,6 @@ As an VFM. I want to list the vehicles needing the check-up.
 
 **_Other alternatives might exist._**
 
-#### Alternative One
-
 ![System Sequence Diagram - Alternative One](svg/us008-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
 
-![System Sequence Diagram - Alternative Two](svg/us008-system-sequence-diagram-alternative-two.svg)

@@ -12,27 +12,23 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : ...
+    Employee -> System : ask to list vehicles needing check-up
     activate System
 
-        System --> Employee : ...
+        System --> Employee : requests data about the vehicle (such as check-up frequency, current kms, ...)
+
     deactivate System
 
-    Employee -> System : ...
+    Employee -> System : inputs data about the vehicle
     activate System
 
-        System --> Employee : ...
+    System --> Employee : displays whether the vehicle needs a check-up or not
+        alt Check-up Required
+            System --> Employee : displays that the vehicle needs a check-up
+            System --> Employee : sends reason for check-up and vehicle characteristics (such as license plate, brand, model, color, ...)
+        end
+        System --> Employee : displays operation success
+
     deactivate System
-
-    Employee -> System : ...
-    activate System
-
-        System --> Employee : ...
-    deactivate System
-
-    Employee -> System : ...
-    activate System
-
-        System --> Employee : ...
 
 @enduml
