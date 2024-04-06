@@ -9,84 +9,107 @@ hide methods
 
 title Domain Model
 
-class Job {
-    name
-    description
+class MusgoSublime {
+}
+class MediumSizedPark {
+}
+class LargeSizedPark {
+}
+class Garden {
+}
+class GreenSpace {
 }
 
-class Skill {
-    name
-    description
-    category
+class Organization {
 }
 
+class FleetManager {
+}
+class HumanResourcesManager {
+}
+class GreenSpaceManager {
+}
+class GreenSpaceUser {
+}
+
+class Equipment {
+}
+class Machine {
+}
 class Vehicle {
-    ID
-    Brand
-    Model
-    Type
-    TareWeight
-    GrossWeight
-    CurrentKMS
-    RegisterDate
-    AcquisitionDate
-    MaintenanceFrequency
+    brand
+    model
+    tare
+    grossWeight
+    currentKm
+    registerDate
+    acquisitionDate
+    maintenanceCheckUpFrequency
+    plateNumber
+    type
 }
-
-
 class CheckUp {
     CurrentKMS
     ID
     CheckUpDate
 }
 
+class Job {
+    name
+}
 class Collaborator {
     name
+    birthday
+    admissionDate
+    address
+    phoneNumber
     email
-    skill
-
+    IDDocType
+    IDNumber
+}
+class Skill {
+    name
+}
+class Team {
+    maxSize
+    numberOfCollaborators
+    skillsNeeded
 }
 
-class FleetManager {
-   name
-   email
-   phone
+class Agenda {
+}
+class Task {
 }
 
-class HumanResourcesManager {
-   name
-   email
-   phone
-}
-
-MusgoSublime "0..*" -- "1" Organization : is a >
-MusgoSublime "0..*" -- "1" GreenSpace : manages >
-MediumSizedPark "0..*" -- "1" GreenSpace : is a >
-Garden "0..*" -- "1" GreenSpace : is a >
-LargeSizedPark "0..*" -- "1" GreenSpace : is a >
+MusgoSublime "1" ---- "1" Organization : is a >
+MusgoSublime "1" -- "1..*" GreenSpace : manages >
+MediumSizedPark "1" -- "1" GreenSpace : is a >
+Garden "1" -- "1" GreenSpace : is a >
+LargeSizedPark "1" -- "1" GreenSpace : is a >
+Organization "1" -- "1" FleetManager : has >
+Organization "1" -- "1" HumanResourcesManager : has >
+Organization "1" -- "1" GreenSpaceManager : has >
+Organization "1" -- "1" GreenSpaceUser : has >
+Organization "1" --- "1" Agenda : owns >
 Collaborator "0..*" -- "1" Job : has >
-Collaborator "0..*" -- "1" Skill : has >
-FleetManager "1" -- "1" Organization : manages >
-HumanResourcesManager "1" -- "1" Organization : manages >
-GreenSpaceManager "1" -- "1" Organization : manages >
-GreenSpaceUser "1" -- "1" Organization : manages >
+Collaborator "0..*" -- "1..*" Skill : has >
 HumanResourcesManager "1" -- "1" Job : selects  >
-HumanResourcesManager "1" -- "1" Skill : selects  >
-HumanResourcesManager "1" -- "1" Job : register  >
+HumanResourcesManager "1" -- "1..*" Skill : selects  >
+HumanResourcesManager "1" -- "0..*" Job : register  >
 Job "1" -- "0..*" Collaborator : assigned to >
-Skill "1" -- "0..*" Collaborator : assigned to >
+Skill "1..*" -- "0..*" Collaborator : assigned to >
 HumanResourcesManager "1" -- "0..*" Collaborator : register >
 HumanResourcesManager "1" -- "0..*" Skill : register >
-HumanResourcesManager "1" -- "1" Team : generates >
+HumanResourcesManager "1" -- "1..*" Team : generates >
 FleetManager "1" -- "0..*" Vehicle : register >
 FleetManager "1" -- "0..*" Equipment : manages >
 FleetManager "1" -- "0..*" Machine : manages >
 FleetManager "1" - "0..*" CheckUp : register >
-Vehicle "1" -- "*" CheckUp : owns >
-Team "1" -- "*" Collaborator : owns >
-Task "1" -- "*" Skill : need >
-Agenda "1" -- "*" Task : has >
-Task "1" -- "*" Team : assigned to >
+Vehicle "0..*" -- "1" CheckUp : owns >
+Team "1" -- "2..*" Collaborator : owns >
+Task "1" -- "1..*" Skill : need >
+Agenda "1" -- "0..*" Task : has >
+Task "1" -- "1" Team : assigned to >
 
 @enduml
 

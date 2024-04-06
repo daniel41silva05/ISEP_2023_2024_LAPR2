@@ -10,18 +10,17 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
-* Skills 
-* Jobs 
-* Tasks 
-* Team proposal generation 
-* Vehicles/Machines/Equipment Maintenance
-* VER MELHOR
+* Task
+* Team
+* CheckUp
+* Job
+* Skill
 
 ---
 
 **Transaction Line Itemss**
 
-* VER MELHOR
+* Agenda
 
 ---
 
@@ -30,13 +29,12 @@ To identify domain conceptual classes, start by making a list of candidate conce
 * Equipment
 * Machine
 * Vehicle
-* VER MELHOR
 
 ---
 
 **Transaction Records**
 
-* VER MELHOR
+* n/a
 
 ---  
 
@@ -53,16 +51,16 @@ To identify domain conceptual classes, start by making a list of candidate conce
 **Places**
 
 * Organization
-* GreenSpaces
+* GreenSpace
 * Garden
-* Medium-sized park
-* Large-sized park
+* MediumSizedPark
+* LargeSizedPark
 
 ---
 
 **Noteworthy Events**
 
-* VER MELHOR
+* Task
 
 ---
 
@@ -83,54 +81,57 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Catalogs**
 
-* Vehicles
-* Equipments
-* Machines
-* Jobs
-* Skills
+* Vehicle
+* Equipment
+* Machine
+* Job
+* Skill
 
 ---
 
 **Containers**
 
 * Team
+* Agenda
+* CheckUp
 
 ---
 
 **Elements of Containers**
 
 * Collaborator
+* Task
+* Vehicle
 
 ---
 
 **Organizations**
 
-* Musgo Sublime
+* MusgoSublime
 
 ---
 
 **Other External/Collaborating Systems**
 
-* User Portal
+* UserPortal
 
 ---
 
 **Records of finance, work, contracts, legal matters**
 
-* Work Records
-* Maintenance Records
+* n/a
 
 ---
 
 **Financial Instruments**
 
-* 
+* n/a
 
 ---
 
 **Documents mentioned/used to perform some work/**
 
-* 
+* n/a
 
 ---
 
@@ -146,22 +147,23 @@ An association is a relationship between instances of objects that indicates a r
 - **_FleetManager_** creates **_CheckUp_**
 - **_FleetManager_** manages **_Machine_**
 - **_FleetManager_** manages **_Equipment_**
-- **_FleetManager_** manages **_Organization_**
 - **_Garden_** is a **_GreenSpace_**
-- **_GreenSpaceManager_** manages **_Organization_**
-- **_GreenSpaceUser_** manages **_Organization_**
 - **_HumanResourcesManager_** register **_Collaborator_**
 - **_HumanResourcesManager_** register **_Skill_**
 - **_HumanResourcesManager_** selects **_Job_**
 - **_HumanResourcesManager_** register **_Job_**
 - **_HumanResourcesManager_** selects **_Skill_**
 - **_HumanResourcesManager_** generates **_Team_**
-- **_HumanResourcesManager_** manages **_Organization_**
 - **_Job_** assigned to **_Collaborator_**
 - **_LargeSizedPark_** is a **_GreenSpace_**
 - **_MediumSizedPark_** is a **_GreenSpace_**
 - **_MusgoSublime_** is a **_Organization_**
 - **_MusgoSublime_** manages **_GreenSpace_**
+- **_Organization_** owns **_Agenda_**
+- **_Organization_** has **_GreenSpaceManager_**
+- **_Organization_** has **_GreenSpaceUser_**
+- **_Organization_** has **_HumanResourcesManager_**
+- **_Organization_** has **_FleetManager_**
 - **_Skill_** assigned to **_Collaborator_**
 - **_Task_** need **_Skill_**
 - **_Task_** assigned to **_Team_**
@@ -177,22 +179,23 @@ An association is a relationship between instances of objects that indicates a r
 | FleetManager          |     creates     |      CheckUp |
 | FleetManager          |     manages     |      Machine |
 | FleetManager          |     manages     |    Equipment |
-| FleetManager          |     manages     | Organization |
 | Garden                |       is        |   GreenSpace |
-| GreenSpaceManager     |     manages     | Organization |
-| GreenSpaceUser        |     manages     | Organization |
 | HumanResourcesManager |    register     | Collaborator |
 | HumanResourcesManager |    register     |        Skill |
 | HumanResourcesManager |     selects     |          Job |
 | HumanResourcesManager |    register     |          Job |
 | HumanResourcesManager |     selects     |        Skill |
 | HumanResourcesManager |    generates    |         Team |
-| HumanResourcesManager |     manages     | Organization |
 | Job                   |   assigned to   | Collaborator |
 | LargeSizedPark        |      is a       |   GreenSpace |
 | MediumSizedPark       |      is a       |   GreenSpace |
 | MusgoSublime          |      is a       | Organization |
 | MusgoSublime          |     manages     |   GreenSpace |
+| Organization          |      owns       |       Agenda |
+| Organization          |       has       | FleetManager |
+| Organization          |       has       |   HumanResourcesManager |
+| Organization          |       has       |   GreenSpaceManager |
+| Organization          |       has       |   GreenSpaceUser |
 | Skill                 |   assigned to   | Collaborator |
 | Task                  |      need       |        Skill |
 | Task                  |   assigned to   |         Team |

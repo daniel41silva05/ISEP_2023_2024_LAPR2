@@ -22,7 +22,6 @@ class Collaborator {
     email
     IDDocType
     IDNumber
-    job
 }
 
 class HRM {
