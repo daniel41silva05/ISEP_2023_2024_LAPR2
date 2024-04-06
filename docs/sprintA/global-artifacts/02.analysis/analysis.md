@@ -10,13 +10,18 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
-* 
+* Skills 
+* Jobs 
+* Tasks 
+* Team proposal generation 
+* Vehicles/Machines/Equipment Maintenance
+* VER MELHOR
 
 ---
 
 **Transaction Line Itemss**
 
-* 
+* VER MELHOR
 
 ---
 
@@ -24,13 +29,14 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 * Equipment
 * Machine
-* Vehicles
+* Vehicle
+* VER MELHOR
 
 ---
 
 **Transaction Records**
 
-* 
+* VER MELHOR
 
 ---  
 
@@ -46,13 +52,15 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Places**
 
-* GreenSpace
+* Garden
+* Medium-sized park
+* Large-sized park
 
 ---
 
 **Noteworthy Events**
 
-* 
+* VER MELHOR
 
 ---
 
@@ -73,37 +81,42 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Catalogs**
 
-* 
+* Vehicles
+* Equipments
+* Machines
+* Jobs
+* Skills
 
 ---
 
 **Containers**
 
-* 
+* Team
 
 ---
 
 **Elements of Containers**
 
-* 
+* Collaborator
 
 ---
 
 **Organizations**
 
-* GreenSpace
+* Musgo Sublime (MS)
 
 ---
 
 **Other External/Collaborating Systems**
 
-* 
+* User Portal
 
 ---
 
 **Records of finance, work, contracts, legal matters**
 
-* 
+* Work Records
+* Maintenance Records
 
 ---
 
