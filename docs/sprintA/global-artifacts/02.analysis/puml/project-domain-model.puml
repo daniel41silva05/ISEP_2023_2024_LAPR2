@@ -2,54 +2,17 @@
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
-'skinparam linetype ortho
-'left to right direction
+
 skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
 title Domain Model
 
-class Vehicle{
-    ID
-    Brand
-    Model
-    Type
-    TareWeight
-    GrossWeight
-    CurrentKMS
-    RegisterDate
-    AcquisitionDate
-    MaintenanceFrequency
-}
-
-class CheckUp {
-    CurrentKMS
-    ID
-    CheckUpDate
-}
-
-class Job {
-    name
-    description
-}
-
-
-class Collaborator {
-    name
-    email
-    position
-    phone
-}
-
-
 class Job {
 }
 
 class Skill {
-    name
-    description
-    category
 }
 
 class Vehicle {
@@ -58,27 +21,30 @@ class Vehicle {
 class Collaborator {
 }
 
-class FM {
-    name
-    email
-    phone
+class FleetManager {
 }
 
-class HRM {
-   name
-   email
-   phone
+class HumanResourcesManager {
 }
 
-'GreenSpace "1" - "0..*" Employee : has >
-'GreenSpace "1" - "0..*" Task: owns >
-'Employee "1" -- "*" Task : creates >
-'Task "*" - "1" Category: catalogedas >
-'TechnicalSkill "*" - "1" ActivityArea: regarding an >
-
-'Category "*" - "*" TechnicalSkill :  : requires >
-'(Category, TechnicalSkill) . FeatureTS
-'
-'GreenSpace "1" -left "1" PostalAddress : located At >
+MusgoSublime "0..*" -- "1" GreenSpace : manage >
+MediumSizedPark "0..*" -- "1" GreenSpace : is a >
+Garden "0..*" -- "1" GreenSpace : is a >
+LargeSizedPark "0..*" -- "1" GreenSpace : is a >
+Collaborator "0..*" -- "1" Job : has >
+Collaborator "0..*" -- "1" Skill : has >
+HumanResourcesManager "1" -- "1" Job : selects  >
+HumanResourcesManager "1" -- "1" Skill : selects  >
+HumanResourcesManager "1" -- "1" Job : register  >
+Job "1" -- "0..*" Collaborator : assigned to >
+Skill "1" -- "0..*" Collaborator : assigned to >
+HumanResourcesManager "1" -- "0..*" Collaborator : register >
+HumanResourcesManager "1" -- "0..*" Skill : register >
+HumanResourcesManager "1" -- "1" Team : generates >
+FleetManager "1" -- "0..*" Vehicle : register >
+FleetManager "1" -- "0..*" Equipment : manages >
+FleetManager "1" -- "0..*" Machine : manages >
+FleetManager "1" - "0..*" Checkup : register >
+Vehicle "1" -- "*" Checkup : owns >
 
 @enduml

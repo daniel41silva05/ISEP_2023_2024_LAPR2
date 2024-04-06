@@ -52,6 +52,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Places**
 
+* Green Space
 * Garden
 * Medium-sized park
 * Large-sized park
@@ -103,7 +104,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Organizations**
 
-* Musgo Sublime (MS)
+* Musgo Sublime
 
 ---
 
@@ -143,8 +144,25 @@ An association is a relationship between instances of objects that indicates a r
 - **_A_** known/logged/recorded/reported/captured in **_B_**
 - **_A_** uses or manages or owns **_B_**
 - **_A_** is related with a transaction (item) of **_B_**
-- etc.
-
+- **_Collaborator_** has **_Skill_**
+- **_Collaborator_** has **_Job_**
+- **_FleetManager_** register **_Vehicle_**
+- **_FleetManager_** creates **_CheckUp_**
+- **_FleetManager_** manages **_Machine_**
+- **_FleetManager_** manages **_Equipment_**
+- **_Garden_** is a **_GreenSpace_**
+- **_HumanResourcesManager_** register **_Collaborator_**
+- **_HumanResourcesManager_** register **_Skill_**
+- **_HumanResourcesManager_** selects **_Job_**
+- **_HumanResourcesManager_** register **_Job_**
+- **_HumanResourcesManager_** selects **_Skill_**
+- **_HumanResourcesManager_** generates **_Team_**
+- **_Job_** assigned to **_Collaborator_**
+- **_LargeSizedPark_** is a **_GreenSpace_**
+- **_MediumSizedPark_** is a **_GreenSpace_**
+- **_MusgoSublime_** manage **_GreenSpace_**
+- **_Skill_** assigned to **_Collaborator_**
+- **_Vehicle_** owns **_CheckUp_**
 
 | Concept (A) 		|  Association   	|  Concept (B) |
 |----------	   		|:-------------:		|------:       |
