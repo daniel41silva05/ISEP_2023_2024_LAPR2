@@ -8,59 +8,48 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
+title Domain Model
 
-'class Platform {
-'  -description
-'}
-
-class GreenSpace {
+class Vehicle{
+    ID
+    Brand
+    Model
+    Type
+    TareWeight
+    GrossWeight
+    CurrentKMS
+    RegisterDate
+    AcquisitionDate
+    MaintenanceFrequency
 }
 
-class Task {
-    reference
+class CheckUp {
+    CurrentKMS
+    ID
+    CheckUpDate
+}
+
+class Job {
+    name
     description
-    informalDesc
-    technicalDesc
-    duration
-    cost
 }
 
-class Category {
-    description
-}
 
-class Employee {
+class Collaborator {
     name
     email
     position
     phone
 }
 
-class TechnicalSkill{
-    shortDescription
-    fullDescription
-}
-
-class ActivityArea{
-    shortDescription
-    fullDescription
-}
-
-class FeatureTS{
-    mandatory
-}
-
-class PostalAddress{
-    street
-    zipCode
-    city
-}
 
 class Job {
 }
 
 class Skill {
+    name
+    description
+    category
 }
 
 class Vehicle {
@@ -70,20 +59,26 @@ class Collaborator {
 }
 
 class FM {
+    name
+    email
+    phone
 }
 
 class HRM {
+   name
+   email
+   phone
 }
 
-GreenSpace "1" - "0..*" Employee : has >
-GreenSpace "1" - "0..*" Task: owns >
-Employee "1" -- "*" Task : creates >
-Task "*" - "1" Category: cataloged as >
-TechnicalSkill "*" - "1" ActivityArea: regarding an >
+'GreenSpace "1" - "0..*" Employee : has >
+'GreenSpace "1" - "0..*" Task: owns >
+'Employee "1" -- "*" Task : creates >
+'Task "*" - "1" Category: catalogedas >
+'TechnicalSkill "*" - "1" ActivityArea: regarding an >
 
-Category "*" - "*" TechnicalSkill :  : requires >
-(Category, TechnicalSkill) . FeatureTS
-
-GreenSpace "1" -left "1" PostalAddress : located At >
+'Category "*" - "*" TechnicalSkill :  : requires >
+'(Category, TechnicalSkill) . FeatureTS
+'
+'GreenSpace "1" -left "1" PostalAddress : located At >
 
 @enduml
