@@ -66,6 +66,10 @@ Garden "0..*" -- "1" GreenSpace : is a >
 LargeSizedPark "0..*" -- "1" GreenSpace : is a >
 Collaborator "0..*" -- "1" Job : has >
 Collaborator "0..*" -- "1" Skill : has >
+FleetManager "1" -- "1" Organization : manages >
+HumanResourcesManager "1" -- "1" Organization : manages >
+GreenSpaceManager "1" -- "1" Organization : manages >
+GreenSpaceUser "1" -- "1" Organization : manages >
 HumanResourcesManager "1" -- "1" Job : selects  >
 HumanResourcesManager "1" -- "1" Skill : selects  >
 HumanResourcesManager "1" -- "1" Job : register  >
@@ -79,6 +83,10 @@ FleetManager "1" -- "0..*" Equipment : manages >
 FleetManager "1" -- "0..*" Machine : manages >
 FleetManager "1" - "0..*" CheckUp : register >
 Vehicle "1" -- "*" CheckUp : owns >
+Team "1" -- "*" Collaborator : owns >
+Task "1" -- "*" Skill : need >
+Agenda "1" -- "*" Task : has >
+Task "1" -- "*" Team : assigned to >
 
 @enduml
 
