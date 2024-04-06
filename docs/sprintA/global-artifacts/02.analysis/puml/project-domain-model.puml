@@ -10,21 +10,53 @@ hide methods
 title Domain Model
 
 class Job {
+    name
+    description
 }
 
 class Skill {
+    name
+    description
+    category
 }
 
 class Vehicle {
+    ID
+    Brand
+    Model
+    Type
+    TareWeight
+    GrossWeight
+    CurrentKMS
+    RegisterDate
+    AcquisitionDate
+    MaintenanceFrequency
+}
+
+
+class CheckUp {
+    CurrentKMS
+    ID
+    CheckUpDate
 }
 
 class Collaborator {
+    name
+    email
+    skill
+
 }
 
 class FleetManager {
+   name
+   email
+   phone
 }
 
 class HumanResourcesManager {
+   name
+   email
+   phone
 }
 
 MusgoSublime "0..*" -- "1" GreenSpace : manage >
@@ -44,7 +76,9 @@ HumanResourcesManager "1" -- "1" Team : generates >
 FleetManager "1" -- "0..*" Vehicle : register >
 FleetManager "1" -- "0..*" Equipment : manages >
 FleetManager "1" -- "0..*" Machine : manages >
-FleetManager "1" - "0..*" Checkup : register >
-Vehicle "1" -- "*" Checkup : owns >
+FleetManager "1" - "0..*" CheckUp : register >
+Vehicle "1" -- "*" CheckUp : owns >
 
 @enduml
+
+
