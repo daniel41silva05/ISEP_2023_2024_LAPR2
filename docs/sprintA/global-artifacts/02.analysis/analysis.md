@@ -52,7 +52,8 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Places**
 
-* Green Space
+* Organization
+* GreenSpaces
 * Garden
 * Medium-sized park
 * Large-sized park
@@ -138,12 +139,6 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 An association is a relationship between instances of objects that indicates a relevant connection and that is worth of remembering, or it is derivable from the List of Common Associations:
 
-- **_A_** is physically or logically part of **_B_**
-- **_A_** is physically or logically contained in/on **_B_**
-- **_A_** is a description for **_B_**
-- **_A_** known/logged/recorded/reported/captured in **_B_**
-- **_A_** uses or manages or owns **_B_**
-- **_A_** is related with a transaction (item) of **_B_**
 - **_Collaborator_** has **_Skill_**
 - **_Collaborator_** has **_Job_**
 - **_FleetManager_** register **_Vehicle_**
@@ -160,14 +155,36 @@ An association is a relationship between instances of objects that indicates a r
 - **_Job_** assigned to **_Collaborator_**
 - **_LargeSizedPark_** is a **_GreenSpace_**
 - **_MediumSizedPark_** is a **_GreenSpace_**
-- **_MusgoSublime_** manage **_GreenSpace_**
+- **_MusgoSublime_** is a **_Organization_**
+- **_MusgoSublime_** manages **_GreenSpace_**
 - **_Skill_** assigned to **_Collaborator_**
 - **_Vehicle_** owns **_CheckUp_**
 
-| Concept (A) 		|  Association   	|  Concept (B) |
-|----------	   		|:-------------:		|------:       |
-| C1  	| verb1    		 	| C2  |
-| ...  	| ...    		 	| ...  |
+| Concept (A) 		        | Association   	 |  Concept (B) |
+|-----------------------|:---------------:|-------------:|
+| Collaborator          |       has       |        Skill |
+| Collaborator          |       has       |          Job |
+| FleetManager          |    register     |      Vehicle |
+| FleetManager          |     creates     |      CheckUp |
+| FleetManager          |     manages     |      Machine |
+| FleetManager          |     manages     |    Equipment |
+| Garden                |       is        |   GreenSpace |
+| HumanResourcesManager |    register     | Collaborator |
+| HumanResourcesManager |    register     |        Skill |
+| HumanResourcesManager |     selects     |          Job |
+| HumanResourcesManager |    register     |          Job |
+| HumanResourcesManager |     selects     |        Skill |
+| HumanResourcesManager |    generates    |         Team |
+| Job                   |   assigned to   | Collaborator |
+| LargeSizedPark        |      is a       |   GreenSpace |
+| MediumSizedPark       |      is a       |   GreenSpace |
+| MusgoSublime          |      is a       | Organization |
+| MusgoSublime          |     manages     |   GreenSpace |
+| Skill                 |   assigned to   | Collaborator |
+| Vehicle               |      owns       |      CheckUp |
+
+
+
 
 
 

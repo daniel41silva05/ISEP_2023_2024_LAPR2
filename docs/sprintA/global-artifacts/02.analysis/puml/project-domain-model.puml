@@ -59,7 +59,8 @@ class HumanResourcesManager {
    phone
 }
 
-MusgoSublime "0..*" -- "1" GreenSpace : manage >
+MusgoSublime "0..*" -- "1" Organization : is a >
+MusgoSublime "0..*" -- "1" GreenSpace : manages >
 MediumSizedPark "0..*" -- "1" GreenSpace : is a >
 Garden "0..*" -- "1" GreenSpace : is a >
 LargeSizedPark "0..*" -- "1" GreenSpace : is a >
