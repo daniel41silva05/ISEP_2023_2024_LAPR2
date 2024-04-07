@@ -24,13 +24,16 @@ class Organization {
 }
 
 class FleetManager {
+    name
 }
 class HumanResourcesManager {
     name
 }
 class GreenSpaceManager {
+    name
 }
 class GreenSpaceUser {
+    name
 }
 
 class Equipment {
