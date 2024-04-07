@@ -113,8 +113,8 @@ HumanResourcesManager "1" -- "1..*" Team : generates >
 FleetManager "1" -- "1..*" Vehicle : register >
 FleetManager "1" -- "1..*" Equipment : manages >
 FleetManager "1" -- "1..*" Machine : manages >
-FleetManager "1" - "0..*" CheckUp : register >
-Vehicle "0..*" -- "1" CheckUp : owns >
+FleetManager "1" - "1..*" CheckUp : register >
+Vehicle "0..*" -- "1" CheckUp : need >
 Vehicle "0..*" -- "1" Type : cataloged as >
 Team "1" -- "2..*" Collaborator : has >
 Task "1" -- "1..*" Skill : need >
