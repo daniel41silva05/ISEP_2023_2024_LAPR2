@@ -12,21 +12,25 @@ hide methods
 
 title Domain Model
 
-class HRM {
+class HumanResourcesManager {
     name
 }
 
 class Skill {
-    ID
-    description
-}
-
-class Colaborator {
     name
-    job
-    skills
 }
 
-HRM "1" - Skill : creates >
-Colaborator "1" - Skill : has >
+class Collaborator {
+    name
+    birthday
+    admissionDate
+    address
+    phoneNumber
+    email
+    IDDocType
+    IDNumber
+}
+
+HumanResourcesManager "1" - Skill : creates >
+Collaborator "1" - Skill : has >
 @enduml

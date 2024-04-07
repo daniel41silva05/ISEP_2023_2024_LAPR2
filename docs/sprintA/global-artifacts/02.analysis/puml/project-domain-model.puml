@@ -26,6 +26,7 @@ class Organization {
 class FleetManager {
 }
 class HumanResourcesManager {
+    name
 }
 class GreenSpaceManager {
 }
@@ -112,7 +113,7 @@ FleetManager "1" -- "0..*" Machine : manages >
 FleetManager "1" - "0..*" CheckUp : register >
 Vehicle "0..*" -- "1" CheckUp : owns >
 Vehicle "0..*" -- "1" Type : cataloged as >
-Team "1" -- "2..*" Collaborator : owns >
+Team "1" -- "2..*" Collaborator : has >
 Task "1" -- "1..*" Skill : need >
 Agenda "1" -- "0..*" Task : has >
 Task "1" -- "1" Team : assigned to >
