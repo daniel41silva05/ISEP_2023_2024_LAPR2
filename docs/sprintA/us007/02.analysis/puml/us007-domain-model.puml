@@ -10,11 +10,7 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
+title Domain Model
 
 class FM {
     name
@@ -29,10 +25,6 @@ class Checkup {
      date
 }
 
-'class Category {
-'    description
-'}
-
 class Vehicle {
     ID
     Brand
@@ -46,20 +38,8 @@ class Vehicle {
     Maintenance
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
-
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-'FM "1" - "0..*" Vehicle : has >
 FM "1" - "0..*" Checkup : creates >
-'Task "*" -- "1" Employee: created by >
 Vehicle "1" -- "*" Checkup : owns >
-'Employee "0..1" -- "1" User: acts as >
 Checkup "1" -- "*" System : has registered >
 
-'Checkup "*" - "1" Category: cataloged as >
 @enduml

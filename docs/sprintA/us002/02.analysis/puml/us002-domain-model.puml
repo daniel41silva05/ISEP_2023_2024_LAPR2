@@ -10,11 +10,7 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
+title Domain Model
 
 class Organization {
 
@@ -25,10 +21,6 @@ class Job {
     description
 
 }
-
-'class Category {
-'    description
-'}
 
 class HRM {
     name
@@ -43,13 +35,9 @@ class Collaborator {
     skills
 }
 
-'Platform "1" -- "*" Category : defines >
-'Organization "1" - "0..*" HRM : has >
 Organization "1" - "0..*" Job: has >
 Job "1" -- "*" System : has registered >
-'Task "*" -- "1" Employee: created by >
 HRM "1" -- "*" Job : creates   >
 Collaborator "*" -- "*" Job : assign to >
-'Employee "0..1" -- "1" User: acts as >
-'Job "*" - "1" Category: cataloged as >
+
 @enduml
