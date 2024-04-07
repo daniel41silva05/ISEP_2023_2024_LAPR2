@@ -120,7 +120,6 @@ Team "1" -- "2..*" Collaborator : has >
 Task "1" -- "1..*" Skill : need >
 Agenda "1" -- "0..*" Task : has >
 Task "1" -- "1" Team : assigned to >
-'a
 
 @enduml
 
