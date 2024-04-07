@@ -31,7 +31,7 @@ class Collaborator {
     IDNumber
 }
 
-HumanResourcesManager "1" - "1..*" Skill : creates >
-Collaborator "1" - "1..*" Skill : has >
+HumanResourcesManager "1" - "1..*" Skill : register >
+Collaborator "0..*" - "1..*" Skill : has >
 
 @enduml
