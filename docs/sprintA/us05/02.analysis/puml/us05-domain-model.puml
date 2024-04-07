@@ -40,7 +40,7 @@ class Skill {
 HumanResourcesManager "1" - "1..*" Team : generate >
 HumanResourcesManager "1" - "1..*" Collaborator : register >
 Team "1" - "2..*" Collaborator : has >
-Collaborator "1" - "1..*" Skill : has >
+Collaborator "0..*" - "1..*" Skill : has >
 HumanResourcesManager "1" - "1..*" Skill : register >
 
 @enduml
