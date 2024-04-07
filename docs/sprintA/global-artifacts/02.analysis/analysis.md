@@ -94,6 +94,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 * Team
 * Agenda
 * CheckUp
+* TypeVehicle
 
 ---
 
@@ -168,39 +169,41 @@ An association is a relationship between instances of objects that indicates a r
 - **_Task_** need **_Skill_**
 - **_Task_** assigned to **_Team_**
 - **_Team_** owns **_Collaborator_**
+- **_Vehicle_** cataloged as **_TypeVehicle_**
 - **_Vehicle_** owns **_CheckUp_**
 
-| Concept (A) 		        | Association   	 |  Concept (B) |
-|-----------------------|:---------------:|-------------:|
-| Agenda                |       has       |         Task |
-| Collaborator          |       has       |        Skill |
-| Collaborator          |       has       |          Job |
-| FleetManager          |    register     |      Vehicle |
-| FleetManager          |     creates     |      CheckUp |
-| FleetManager          |     manages     |      Machine |
-| FleetManager          |     manages     |    Equipment |
-| Garden                |       is        |   GreenSpace |
-| HumanResourcesManager |    register     | Collaborator |
-| HumanResourcesManager |    register     |        Skill |
-| HumanResourcesManager |     selects     |          Job |
-| HumanResourcesManager |    register     |          Job |
-| HumanResourcesManager |     selects     |        Skill |
-| HumanResourcesManager |    generates    |         Team |
-| Job                   |   assigned to   | Collaborator |
-| LargeSizedPark        |      is a       |   GreenSpace |
-| MediumSizedPark       |      is a       |   GreenSpace |
-| MusgoSublime          |      is a       | Organization |
-| MusgoSublime          |     manages     |   GreenSpace |
-| Organization          |      owns       |       Agenda |
-| Organization          |       has       | FleetManager |
-| Organization          |       has       |   HumanResourcesManager |
-| Organization          |       has       |   GreenSpaceManager |
-| Organization          |       has       |   GreenSpaceUser |
-| Skill                 |   assigned to   | Collaborator |
-| Task                  |      need       |        Skill |
-| Task                  |   assigned to   |         Team |
-| Team                  |      owns       | Collaborator |
-| Vehicle               |      owns       |      CheckUp |
+| Concept (A) 		        |    Association   	     |             Concept (B) |
+|-----------------------|:----------------------:|------------------------:|
+| Agenda                |          has           |                    Task |
+| Collaborator          |          has           |                   Skill |
+| Collaborator          |          has           |                     Job |
+| FleetManager          |        register        |                 Vehicle |
+| FleetManager          |        creates         |                 CheckUp |
+| FleetManager          |        manages         |                 Machine |
+| FleetManager          |        manages         |               Equipment |
+| Garden                |           is           |              GreenSpace |
+| HumanResourcesManager |        register        |            Collaborator |
+| HumanResourcesManager |        register        |                   Skill |
+| HumanResourcesManager |        selects         |                     Job |
+| HumanResourcesManager |        register        |                     Job |
+| HumanResourcesManager |        selects         |                   Skill |
+| HumanResourcesManager |       generates        |                    Team |
+| Job                   |      assigned to       |            Collaborator |
+| LargeSizedPark        |          is a          |              GreenSpace |
+| MediumSizedPark       |          is a          |              GreenSpace |
+| MusgoSublime          |          is a          |            Organization |
+| MusgoSublime          |        manages         |              GreenSpace |
+| Organization          |          owns          |                  Agenda |
+| Organization          |          has           |            FleetManager |
+| Organization          |          has           |   HumanResourcesManager |
+| Organization          |          has           |       GreenSpaceManager |
+| Organization          |          has           |          GreenSpaceUser |
+| Skill                 |      assigned to       |            Collaborator |
+| Task                  |          need          |                   Skill |
+| Task                  |      assigned to       |                    Team |
+| Team                  |          owns          |            Collaborator |
+| Vehicle               |      cataloged as      |             TypeVehicle |
+| Vehicle               |          owns          |                 CheckUp |
 
 
 ## Domain Model
