@@ -98,14 +98,14 @@ Organization "1" -- "1" GreenSpaceManager : has >
 Organization "1" -- "1" GreenSpaceUser : has >
 Organization "1" --- "1" Agenda : owns >
 Collaborator "0..*" -- "1" Job : has >
-Collaborator "0..*" -- "1..*" Skill : has >
+Collaborator "1" -- "1..*" Skill : has >
 HumanResourcesManager "1" -- "1" Job : selects  >
 HumanResourcesManager "1" -- "1..*" Skill : selects  >
-HumanResourcesManager "1" -- "0..*" Job : register  >
+HumanResourcesManager "1" -- "1..*" Job : register  >
 Job "1" -- "0..*" Collaborator : assigned to >
-Skill "1..*" -- "0..*" Collaborator : assigned to >
-HumanResourcesManager "1" -- "0..*" Collaborator : register >
-HumanResourcesManager "1" -- "0..*" Skill : register >
+Skill "1" -- "0..*" Collaborator : assigned to >
+HumanResourcesManager "1" -- "1..*" Collaborator : register >
+HumanResourcesManager "1" -- "1..*" Skill : register >
 HumanResourcesManager "1" -- "1..*" Team : generates >
 FleetManager "1" -- "0..*" Vehicle : register >
 FleetManager "1" -- "0..*" Equipment : manages >
