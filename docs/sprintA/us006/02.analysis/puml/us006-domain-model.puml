@@ -26,7 +26,7 @@ class Vehicle {
     type
 }
 
-class FM {
+class FleetManager {
     name
 }
 
@@ -36,9 +36,9 @@ class Type {
     openBoxOrClosedVansOrTrucks
 }
 
-Organization "1" -- "1" FM : has >
+Organization "1" -- "1" FleetManager : has >
 Organization "1" -- "1..*" Vehicle : owns >
-FM "1" -- "0..*" Vehicle : register >
+FleetManager "1" -- "1..*" Vehicle : register >
 Vehicle "0..*" -- "1" Type : cataloged as >
 
 @enduml

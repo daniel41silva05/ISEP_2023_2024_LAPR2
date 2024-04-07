@@ -24,7 +24,7 @@ class Collaborator {
     IDNumber
 }
 
-class HRM {
+class HumanResourcesManager {
     name
 }
 
@@ -36,12 +36,12 @@ class IDDocType {
     document
 }
 
-Organization "1" -- "1" HRM : has >
+Organization "1" -- "1" HumanResourcesManager : has >
 Organization "1" -- "1..*" Collaborator : has >
 Organization "1" -- "1..*" Job : owns >
-HRM "1" -- "1" Job : selects  >
+HumanResourcesManager "1" -- "1" Job : selects  >
 Job "1" -- "0..*" Collaborator : assigned to >
-HRM "1" -- "0..*" Collaborator : register >
+HumanResourcesManager "1" -- "1..*" Collaborator : register >
 Collaborator "0..*" -- "1" IDDocType : owns >
 Collaborator "0..*" -- "1" Job : has >
 
