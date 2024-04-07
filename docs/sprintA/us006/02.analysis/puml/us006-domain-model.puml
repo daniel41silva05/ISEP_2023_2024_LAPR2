@@ -27,6 +27,7 @@ class Vehicle {
 }
 
 class FM {
+    name
 }
 
 class Type {
