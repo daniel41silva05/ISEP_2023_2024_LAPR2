@@ -29,16 +29,8 @@ class HRM {
     phone
 }
 
-class Collaborator {
-    name
-    email
-    phone
-    skills
-}
 
 Organization "1" - "0..*" HRM: has >
 HRM "1" -- "*" Job : register   >
-Collaborator "*" -- "*" Job : has >
-Job "*" -- "*" Collaborator: assigned to >
 
 @enduml
