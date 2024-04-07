@@ -38,7 +38,6 @@ class Collaborator {
 
 Organization "1" - "0..*" HRM: has >
 HRM "1" -- "*" Job : register   >
-HRM "1" -- "*" Job : selects   >
 Collaborator "*" -- "*" Job : has >
 Job "*" -- "*" Collaborator: assigned to >
 
