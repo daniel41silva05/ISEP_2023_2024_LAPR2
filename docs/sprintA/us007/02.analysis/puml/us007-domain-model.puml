@@ -38,8 +38,8 @@ class Vehicle {
     Maintenance
 }
 
-FM "1" - "0..*" Checkup : creates >
-Vehicle "1" -- "*" Checkup : owns >
-Checkup "1" -- "*" System : has registered >
+Organization "1" - "0..*" FM : has >
+FM "1" - "0..*" Vehicle : register >
+Vehicle "1" -- "*" Checkup : needs >
 
 @enduml

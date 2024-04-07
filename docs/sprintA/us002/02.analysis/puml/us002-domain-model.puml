@@ -35,9 +35,10 @@ class Collaborator {
     skills
 }
 
-Organization "1" - "0..*" Job: has >
-Job "1" -- "*" System : has registered >
-HRM "1" -- "*" Job : creates   >
-Collaborator "*" -- "*" Job : assign to >
+Organization "1" - "0..*" HRM: has >
+HRM "1" -- "*" Job : register   >
+HRM "1" -- "*" Job : selects   >
+Collaborator "*" -- "*" Job : has >
+Job "*" -- "*" Collaborator: assigned to >
 
 @enduml
