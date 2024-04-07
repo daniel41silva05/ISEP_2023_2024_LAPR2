@@ -33,4 +33,6 @@ class Collaborator {
 
 HumanResourcesManager "1" - "1..*" Skill : creates >
 Collaborator "1" - "1..*" Skill : has >
+'a
+
 @enduml
