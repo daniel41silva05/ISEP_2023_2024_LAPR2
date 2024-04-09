@@ -5,15 +5,15 @@
 
 ### 1.1. User Story Description
 
-As a GSM, I want to know which piece(s) of equipment is/are used in each day so that I can understand the users’ preferences.
+As a GSM, I want to be able to collect data from the user portal about the use of the park, so that I may understand the use of the park by different age groups.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Consider that the park has the following equipment: walking paths, children’s playground, picnic area, and exercise machines (gymnastics equipment).
+>	...
 
->	 At the park exit there is an electronic device with a list of all the equipment, in which the user(s) must indicate the equipment they used that day.
+>	...
 
 **From the client clarifications:**
 
