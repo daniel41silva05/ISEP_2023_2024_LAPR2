@@ -42,7 +42,12 @@
 ---
 
 ## Introduction
-This manual aims to provide comprehensive guidance on how to effectively utilize the software solution designed to support the planning and maintenance of green spaces for collective use.
+This manual aims to provide comprehensive guidance on how to effectively use the software solution developed to support the planning and maintenance of communal green spaces, with the aim of helping any user to use this product efficiently. Therefore, it contains guidance on how anyone can understand and operate this application used to maintain green spaces through its features and functions.
+
+This manual contains specifications for using the tools that the application makes available, through, but not limited to, diagrams and images designed to assist the user, managers and administrators of green spaces.
+
+Therefore, the manual is aimed at the Human Resources Manager, Vehicle and Equipment Fleet Manager, Green Space Manager, Green Space User, among others responsible for maintaining green spaces.
+
 
 ## Problem Statement: Description
 
