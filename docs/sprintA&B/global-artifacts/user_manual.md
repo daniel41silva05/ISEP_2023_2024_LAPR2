@@ -104,7 +104,25 @@ This application provides tools for the formation and management of multidiscipl
 ### Intelligent Team Allocation
 Using advanced algorithms, the software facilitates efficient allocation of teams in different green spaces, considering variables such as size, complexity, and specific needs of each area.
 
-### 
+### Fleet and Equipment Management
+An integrated feature allows for the management of the fleet of vehicles and equipment, ensuring proper maintenance, availability, and efficient utilization.
+
+### Production of Statistical Indicators
+The solution generates relevant statistical indicators to measure the performance of green space management activities, providing valuable insights for strategic decision-making.
+
+### Benefits
+* Improvement in urban quality of life through efficient maintenance of green spaces.
+Optimization of resources and reduction of operational costs.
+* Contribution to environmental sustainability through intelligent management of natural resources.
+* Facilitation of compliance with legal requirements related to the management of green spaces in urban contexts.
+* The application is an essential tool for organizations responsible for managing green spaces, providing an integrated and effective approach to addressing the challenges of urban growth and ensuring the preservation and enhancement of these important natural resources.
+
+
+
+
+
+
+
 
 ---
 # Features
