@@ -88,12 +88,25 @@ Users can access the portal to view information about green spaces, post comment
 ## Non-functional Requirements
 The software adheres to various non-functional requirements, including business rules validation, code maintainability, authentication protocols, documentation standards, testing practices, image format standards, and data persistence mechanisms.
 
+---
 # System Overview
 
-...
+## Product Description
+The application is a comprehensive digital solution developed to support the effective management of collective green spaces in urban contexts. This software aims to simplify and optimize the planning and maintenance activities of gardens and parks, meeting the growing demands of the population for quality green spaces.
+
+## Key Features
+### Main Functionalities
+It is intended for the responsible administrators and managers who handle everything from resource allocation to task management. However, there is also a user portal aimed at receiving feedback. It also provides functionalities for data analysis.
+
+### Multidisciplinary Team Management
+This application provides tools for the formation and management of multidisciplinary teams, considering technical skills, knowledge in botany, landscaping, and resource management.
+
+### Intelligent Team Allocation
+Using advanced algorithms, the software facilitates efficient allocation of teams in different green spaces, considering variables such as size, complexity, and specific needs of each area.
+
+### 
 
 ---
-
 # Features
 
 **1. Register Skills of a Collaborator | Human Resources Manager**
