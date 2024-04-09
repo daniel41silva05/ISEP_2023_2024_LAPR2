@@ -26,9 +26,9 @@ As an HRM, I want to register a job that a collaborator need to have.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** The user is not allowed to enter duplicate jobs.
+* **AC1:** The user is not allowed to enter duplicate jobs, otherwise  the system must print an error message.
 * **AC2:** If the user input a wrong username and/or password, the system will print an error message. 
-* **AC3:** When a new job is added and already exists a job with the same name, the system must print an error message.
+* **AC3:** A job name can’t have special characters or digits.
 
 ### 1.4. Found out Dependencies
 
