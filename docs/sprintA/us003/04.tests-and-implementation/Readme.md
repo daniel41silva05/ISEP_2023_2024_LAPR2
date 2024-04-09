@@ -1,4 +1,4 @@
-# US011 - ... 
+# US003 - Register collaborator with job and fundamental characteristics
 
 ## 4. Tests 
 
