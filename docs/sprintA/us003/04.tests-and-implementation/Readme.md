@@ -1,4 +1,4 @@
-# US006 - Register a vehicle 
+# US003 - Register collaborator with job and fundamental characteristics
 
 ## 4. Tests 
 
