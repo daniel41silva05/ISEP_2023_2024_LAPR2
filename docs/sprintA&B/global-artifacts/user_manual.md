@@ -48,53 +48,13 @@ This manual contains specifications for using the tools that the application mak
 
 Therefore, the manual is aimed at the Human Resources Manager, Vehicle and Equipment Fleet Manager, Green Space Manager, Green Space User, among others responsible for maintaining green spaces.
 
-## Problem Statement: Description
-
-### Green Spaces for Collective Use
-The software solution addresses the management of green spaces, such as gardens and parks, which are vital for urban communities' quality of life.
-
-### Collaborators, Tasks, and Teams
-The software manages a diverse range of employees, tasks, and teams involved in designing, constructing, and maintaining green spaces. It allows HR managers to register employees, assign skills and tasks, and generate team proposals automatically.
-
-### Vehicles, Machines, and Equipment
-The solution facilitates the management of vehicles, machines, and equipment required for tasks in green spaces, including registration, maintenance, and task assignment.
-
-### Agenda
-The Agenda feature assists in planning and scheduling tasks for teams in various green spaces, providing a comprehensive overview of work progress and pending tasks.
-
-### Green Spaces User Portal
-Users can interact with the system through a portal, where they can post comments, report faults, and provide feedback on green spaces.
-
-### System Users
-Different user roles, including HR managers, fleet managers, collaborators, green spaces managers, and green spaces users, interact with the system, each with specific permissions and functionalities.
-
-## Application 
-
-### User Registration and Authentication
-Users need to register with the system using their credentials. Authentication is ensured through a password-based mechanism, adhering to specified complexity requirements.
-
-### HR Management
-HR managers can register employees, assign job roles, skills, and tasks to collaborators. They can also generate team proposals based on specified criteria such as skillset and team size.
-
-### Fleet Management
-Fleet managers can register vehicles, machines, and equipment, track their usage, schedule maintenance, and assign them to tasks as needed.
-
-### Task Scheduling and Assignment
-HR managers can schedule tasks for teams in various green spaces using the Agenda feature. Tasks are assigned to teams based on their skills and availability.
-
-### Interaction through Green Spaces User Portal
-Users can access the portal to view information about green spaces, post comments, report faults, and provide feedback. This enhances user engagement and facilitates communication between the organization and green space users.
-
-## Non-functional Requirements
-The software adheres to various non-functional requirements, including business rules validation, code maintainability, authentication protocols, documentation standards, testing practices, image format standards, and data persistence mechanisms.
-
 ---
 # System Overview
 
 ## Product Description
 The application is a comprehensive digital solution developed to support the effective management of collective green spaces in urban contexts. This software aims to simplify and optimize the planning and maintenance activities of gardens and parks, meeting the growing demands of the population for quality green spaces.
 
-## Key Features
+## Main Features
 ### Main Functionalities
 It is intended for the responsible administrators and managers who handle everything from resource allocation to task management. However, there is also a user portal aimed at receiving feedback. It also provides functionalities for data analysis.
 
@@ -115,47 +75,43 @@ The solution generates relevant statistical indicators to measure the performanc
 Optimization of resources and reduction of operational costs.
 * Contribution to environmental sustainability through intelligent management of natural resources.
 * Facilitation of compliance with legal requirements related to the management of green spaces in urban contexts.
-* The application is an essential tool for organizations responsible for managing green spaces, providing an integrated and effective approach to addressing the challenges of urban growth and ensuring the preservation and enhancement of these important natural resources.
 
 
-
-
-
-
-
+**The application is an essential tool for organizations responsible for managing green spaces, providing an integrated and effective approach to addressing the challenges of urban growth and ensuring the preservation and enhancement of these important natural resources.**
 
 ---
 # Features
 
 **1. Register Skills of a Collaborator | Human Resources Manager**
 
-> **Description** - This feature allows the HRM to register the skills that a collaborator may have.
+> The feature allows the HRM to register the skills that a collaborator may have.
 >
 > **Instructions** :
 > 
-> - Access the application interface.
+> - Enable the HRM role.
 > - View/add/remove/edit skills in the Skill Registation Section.
 > - Confirm the entered data.
 > - After confirmation, the system provides a success message.
 
 **2. Register a Job | Human Resources Manager**
 
-> **Description** - This feature allows the HRM to register a job that a collaborator may have.
+> The feature allows the HRM to register a job that a collaborator may have.
 > 
 > **Instructions** : 
 >
 > - Enable the HRM role.
-> - Choose the option to add a new job from the application interface.
+> - Choose the option to add a new job
 > - Enter the name of the job.
 > - Verify the entered information.
 > - After submission, the system will confirm the successful addition of the job.
 
 **3. Register collaborator with job and fundamental characteristics | Human Resources Manager**
 
-> **Description** - This feature allows the HRM to register a collaborator with essential details and assign them a specific job.
+> The feature allows the HRM to register a collaborator with essential details and assign them a specific job.
 > 
 > **Instructions** :
 > 
+> - Enable the HRM role.
 > - Initiate a request for new collaborator registration.
 > - Input the necessary information, including name, birthday, admission date, address, phone number, email, ID doc type and ID number.
 > - Choose the suitable job for the collaborator from the provided list.
@@ -164,55 +120,66 @@ Optimization of resources and reduction of operational costs.
 
 **4. Assign Skills | Human Resources Manager**
 
-> **Description** - This feature allows the HRM to assign one or more skills to a collaborator.
+> The feature allows the HRM to assign one or more skills to a collaborator.
 > 
 > **Instructions** :
 > 
+> - Enable the HRM role.
 > - Navigate to the Skills Assignment page within the application.
 > - Pick the collaborator you wish to assign skill(s) to.
 > - Select the appropriate skill(s) from the available list.
 > - Confirm your selection to save the assignment.
+> - After confirmation, the system provides a success message.
 
 **5. Generate a team proposal automatically | Human Resources Manager**
 
-> **Description** - This feature allows the HRM to automatically generate a proposal for a team based on specific criteria.
+> The feature allows the HRM to automatically generate a proposal for a team based on specific criteria.
 > 
 > **Instructions** :
 > 
+> - Enable the HRM role.
 > - Access the Team Proposal Generator tool within the application.
-> - Define the minimum and maximum team size, along with the necessary set of skills.
-> - Click the "Generate Proposal" button to generate a team proposal.
+> - Define the team size, along with the necessary set of skills.
+> - Click the button to generate a team proposal.
+> - Edit or confirm the team generated.
+> - After confirmation, the system provides a success message.
 
 **6. Register a vehicle | Fleet Manager**
 
-> **Description** - This feature allows the FM to register a new vehicle along with its details such as (meter as cenas q temos no veiculo).
+> The feature allows the FM to register a new vehicle along with its details such as (meter as cenas q temos no veiculo).
 > 
 > **Instructions** :
 > 
-> - Access the Vehicle Registration section within the application.
-> - Input the necessary vehicle details, including brand, model, tare, gross weight, current km, register date, acquisition date, maintenance check up frequency, plate number and type.
-> - Save the vehicle information.
+> - Enable the FM role.
+> - Access the Vehicle Registration section.
+> - Input the necessary vehicle details, including brand, model, tare, gross weight, current km, register date, acquisition date, maintenance check up frequency, plate number.
+> - Select the available types from the types list.
+> - Verify the entered data and type selection.
+> - After confirmation, the system provides a success message.
 
 **7. Register Vehicle's Check-up | Fleet Manager**
 
-> **Description** - This feature allows the FM to register a check-up for a vehicle.
+> The feature allows the FM to register a check-up for a vehicle.
 > 
 > **Instructions** :
 > 
-> - Navigate to the Vehicle Check-Up Registration page within the application.
+> - Enable the FM role.
+> - Navigate to the Vehicle Check-Up Registration page.
 > - Choose the vehicle for which you wish to register a check-up.
 > - Input the details of the check-up, including current kms, ID and check-up date.
-> - Save the check-up record.
+> - Verify the entered data.
+> - After confirmation, the system provides a success message.
 
 **8. List the vehicles needing the check-up | Fleet Manager**
 
-> **Description** - This feature allows the FM to view a list of vehicles that require a check-up.
+> The feature allows the FM to view a list of vehicles that require a check-up.
 > 
 > **Instructions** :
 > 
-> - Access the Check-Up Status page within the application.
+> - Enable the FM role.
+> - Access the Check-Up Status page.
 > - Review the list of vehicles scheduled for a check-up, along with their respective details.
-
+> - The system provides a success message.
 
 ---
 
