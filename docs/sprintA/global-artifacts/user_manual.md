@@ -84,5 +84,36 @@ Users can access the portal to view information about green spaces, post comment
 ## Non-functional Requirements
 The software adheres to various non-functional requirements, including business rules validation, code maintainability, authentication protocols, documentation standards, testing practices, image format standards, and data persistence mechanisms.
 
+# System Overview
+
 ---
+
+# Features
+
+**1. Register Skills of a Collaborator | Human Resources Manager**
+
+
+**2. Register a Job | Human Resources Manager**
+
+
+**3. Register collaborator with job and fundamental characteristics | Human Resources Manager**
+
+
+**4. Assign Skills | Human Resources Manager**
+
+
+**5. Generate a team proposal automatically | Human Resources Manager**
+
+
+**6. Register a vehicle | Fleet Manager**
+
+
+**7. Register Vehicle's Check-up | Fleet Manager**
+
+
+**8. List the vehicles needing the check-up | Fleet Manager**
+
+
+---
+
 
