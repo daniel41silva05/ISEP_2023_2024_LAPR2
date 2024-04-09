@@ -1,11 +1,12 @@
-# US006 - Create a Task 
+# US010 - Managment of Pieces of Equipments 
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a GSM, I want to know which piece(s) of equipment is/are
+used in each day so that I can understand the users’ preferences.
 
 ### 1.2. Customer Specifications and Clarifications 
 

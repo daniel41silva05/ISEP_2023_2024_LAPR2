@@ -1,11 +1,13 @@
-# US006 - Create a Task 
+# US009 - Managment of Water Consumption
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a GSM, I want to know the exact costs referring to water
+consumption of specific green space so that I may manage these ex-
+penses efficiently.
 
 ### 1.2. Customer Specifications and Clarifications 
 
