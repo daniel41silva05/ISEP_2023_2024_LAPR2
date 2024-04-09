@@ -98,26 +98,89 @@ The software adheres to various non-functional requirements, including business 
 
 **1. Register Skills of a Collaborator | Human Resources Manager**
 
+> **Description** - This feature allows the HRM to register the skills that a collaborator may have.
+>
+> **Instructions** :
+> 
+> - Access the application interface.
+> - View/add/remove/edit skills in the Skill Registation Section.
+> - Confirm the entered data.
+> - After confirmation, the system provides a success message.
 
 **2. Register a Job | Human Resources Manager**
 
+> **Description** - This feature allows the HRM to register a job that a collaborator may have.
+> 
+> **Instructions** : 
+> 
+> - Activate the HRM role.
+> - Select the option to add a new job within the application interface.
+> - Provide the name.
+> - Confirm the entered data.
+> - Upon submission, the system confirms the successful addition of the job.
 
 **3. Register collaborator with job and fundamental characteristics | Human Resources Manager**
 
+> **Description** - This feature allows the HRM to register a collaborator with essential details and assign them a specific job.
+> 
+> **Instructions** :
+> 
+> - Request to register a new collaborator  within the application.
+> - Provide the required information, including (meter as cenas q temos na classe colaborador).
+> - Select the appropriate job for the collaborator from the list.
+> - Confirm the data and job selecion.
+> - After confirmation, the system provides a success message.
 
 **4. Assign Skills | Human Resources Manager**
 
+> **Description** - This feature allows the HRM to assign one or more skills to a collaborator.
+> 
+> **Instructions** :
+> 
+> - Access the SKills Assignment page within the application.
+> - Select the collaborator you want to assign the skill(s).
+> - Choose the relevant skill(s) from the list.
+> - Confirm the selection to save the assignment.
 
 **5. Generate a team proposal automatically | Human Resources Manager**
 
+> **Description** - This feature allows the HRM to automatically generate a proposal for a team based on specific criteria.
+> 
+> **Instructions** :
+> 
+> - Navigate to the Team Proposal Generator tool within the application.
+> - Specify the minimum and maximum team size and the required set of skills.
+> - CLick on the "Generate Proposal" button to create a team proposal.
 
 **6. Register a vehicle | Fleet Manager**
 
+> **Description** - This feature allows the FM to register a new vehicle along with its details such as (meter as cenas q temos no veiculo).
+> 
+> **Instructions** :
+> 
+> - Go to the Vehicle Registration section within the application.
+> - Enter the required vehicle details, including (cenas do veiculo).
+> - Save the vehicle information.
 
 **7. Register Vehicle's Check-up | Fleet Manager**
 
+> **Description** - This feature allows the FM to register a check-up for a vehicle.
+> 
+> **Instructions** :
+> 
+> - Go to the Vehicle Check-Up Registration page within the application.
+> - Select the vehicle for which you want to register a check-up.
+> - Enter the details of the check-up, such as (cenas do check-up).
+> - Save the check-up record.
 
 **8. List the vehicles needing the check-up | Fleet Manager**
+
+> **Description** - This feature allows the FM to view a list of vehicles that require a check-up.
+> 
+> **Instructions** :
+> 
+> - Navigate to the Check-Up Status page within the application.
+>   - View the list of vehicles due for a check-up, along with their details.
 
 
 ---
