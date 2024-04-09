@@ -48,7 +48,6 @@ This manual contains specifications for using the tools that the application mak
 
 Therefore, the manual is aimed at the Human Resources Manager, Vehicle and Equipment Fleet Manager, Green Space Manager, Green Space User, among others responsible for maintaining green spaces.
 
-
 ## Problem Statement: Description
 
 ### Green Spaces for Collective Use
@@ -90,6 +89,8 @@ Users can access the portal to view information about green spaces, post comment
 The software adheres to various non-functional requirements, including business rules validation, code maintainability, authentication protocols, documentation standards, testing practices, image format standards, and data persistence mechanisms.
 
 # System Overview
+
+...
 
 ---
 
