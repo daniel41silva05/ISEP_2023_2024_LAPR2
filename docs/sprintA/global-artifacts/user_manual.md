@@ -112,12 +112,12 @@ The software adheres to various non-functional requirements, including business 
 > **Description** - This feature allows the HRM to register a job that a collaborator may have.
 > 
 > **Instructions** : 
-> 
-> - Activate the HRM role.
-> - Select the option to add a new job within the application interface.
-> - Provide the name.
-> - Confirm the entered data.
-> - Upon submission, the system confirms the successful addition of the job.
+>
+> - Enable the HRM role.
+> - Choose the option to add a new job from the application interface.
+> - Enter the name of the job.
+> - Verify the entered information.
+> - After submission, the system will confirm the successful addition of the job.
 
 **3. Register collaborator with job and fundamental characteristics | Human Resources Manager**
 
@@ -125,11 +125,11 @@ The software adheres to various non-functional requirements, including business 
 > 
 > **Instructions** :
 > 
-> - Request to register a new collaborator  within the application.
-> - Provide the required information, including (meter as cenas q temos na classe colaborador).
-> - Select the appropriate job for the collaborator from the list.
-> - Confirm the data and job selecion.
-> - After confirmation, the system provides a success message.
+> - Initiate a request for new collaborator registration.
+> - Input the necessary information, including name, birthday, admission date, address, phone number, email, ID doc type and ID number.
+> - Choose the suitable job for the collaborator from the provided list.
+> - Verify the entered data and job selection.
+> - Upon confirmation, the system will display a success message.
 
 **4. Assign Skills | Human Resources Manager**
 
@@ -137,10 +137,10 @@ The software adheres to various non-functional requirements, including business 
 > 
 > **Instructions** :
 > 
-> - Access the SKills Assignment page within the application.
-> - Select the collaborator you want to assign the skill(s).
-> - Choose the relevant skill(s) from the list.
-> - Confirm the selection to save the assignment.
+> - Navigate to the Skills Assignment page within the application.
+> - Pick the collaborator you wish to assign skill(s) to.
+> - Select the appropriate skill(s) from the available list.
+> - Confirm your selection to save the assignment.
 
 **5. Generate a team proposal automatically | Human Resources Manager**
 
@@ -148,9 +148,9 @@ The software adheres to various non-functional requirements, including business 
 > 
 > **Instructions** :
 > 
-> - Navigate to the Team Proposal Generator tool within the application.
-> - Specify the minimum and maximum team size and the required set of skills.
-> - CLick on the "Generate Proposal" button to create a team proposal.
+> - Access the Team Proposal Generator tool within the application.
+> - Define the minimum and maximum team size, along with the necessary set of skills.
+> - Click the "Generate Proposal" button to generate a team proposal.
 
 **6. Register a vehicle | Fleet Manager**
 
@@ -158,8 +158,8 @@ The software adheres to various non-functional requirements, including business 
 > 
 > **Instructions** :
 > 
-> - Go to the Vehicle Registration section within the application.
-> - Enter the required vehicle details, including (cenas do veiculo).
+> - Access the Vehicle Registration section within the application.
+> - Input the necessary vehicle details, including brand, model, tare, gross weight, current km, register date, acquisition date, maintenance check up frequency, plate number and type.
 > - Save the vehicle information.
 
 **7. Register Vehicle's Check-up | Fleet Manager**
@@ -168,9 +168,9 @@ The software adheres to various non-functional requirements, including business 
 > 
 > **Instructions** :
 > 
-> - Go to the Vehicle Check-Up Registration page within the application.
-> - Select the vehicle for which you want to register a check-up.
-> - Enter the details of the check-up, such as (cenas do check-up).
+> - Navigate to the Vehicle Check-Up Registration page within the application.
+> - Choose the vehicle for which you wish to register a check-up.
+> - Input the details of the check-up, including current kms, ID and check-up date.
 > - Save the check-up record.
 
 **8. List the vehicles needing the check-up | Fleet Manager**
@@ -179,8 +179,8 @@ The software adheres to various non-functional requirements, including business 
 > 
 > **Instructions** :
 > 
-> - Navigate to the Check-Up Status page within the application.
->   - View the list of vehicles due for a check-up, along with their details.
+> - Access the Check-Up Status page within the application.
+> - Review the list of vehicles scheduled for a check-up, along with their respective details.
 
 
 ---
