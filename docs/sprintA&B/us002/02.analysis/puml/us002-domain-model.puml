@@ -25,12 +25,11 @@ class Job {
 
 class HRM {
     name
-    email
-    phone
+
 }
 
 
-Organization "1" - "0..*" HRM: has >
-HRM "1" -- "*" Job : register   >
+Organization "1" - "1" HRM: has >
+HRM "1" -- "1..*" Job : register   >
 
 @enduml
