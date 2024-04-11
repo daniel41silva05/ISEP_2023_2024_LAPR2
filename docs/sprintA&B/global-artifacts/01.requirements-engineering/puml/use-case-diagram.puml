@@ -7,7 +7,7 @@ skinparam rectangle{
     BorderColor yellow
 }
 
-'title Use Case Diagram Example
+title Use Case Diagram
 
 left to right direction
 
@@ -17,28 +17,41 @@ rectangle "System Actors" as actors {
     actor "Green\nSpaces\nUser" as GSU
     actor "Human\nResources\nManager" as HRM
     actor "Fleet Manager" as FM
+    actor "Software Quality Assessment Team Manager" as QAM
 }
 
 rectangle "Use Cases" as usecases{
-    usecase "UC1 - Register Skills of a Collaborator" as UC1
-    HRM --> UC1
-    UC1 --> Collaborator
-    usecase "UC2 - Register a Job" as UC2
-    HRM --> UC2
-    usecase "UC3 - Register collaborator with job and fundamental characteristics" as UC3
-    HRM --> UC3
-    UC3 --> Collaborator
-    usecase "UC4 - Assign Skills" as UC4
-    HRM --> UC4
-    UC4 --> Collaborator
-    usecase "UC5 - Generate a team proposal automatically " as UC5
-    HRM --> UC5
-    usecase "UC6 - Register a vehicle" as UC6
-    FM --> UC6
-    usecase "UC7 - Register Vehicle's Check-up" as UC7
-    FM --> UC7
-    usecase "UC8 - List the vehicles needing the check-up" as UC8
-    FM --> UC8
+    usecase "UC01 - Register Skills of a Collaborator" as UC01
+    HRM --> UC01
+    UC01 --> Collaborator
+    usecase "UC02 - Register a Job" as UC02
+    HRM --> UC02
+    usecase "UC03 - Register collaborator with job and fundamental characteristics" as UC03
+    HRM --> UC03
+    UC03 --> Collaborator
+    usecase "UC04 - Assign Skills" as UC04
+    HRM --> UC04
+    UC04 --> Collaborator
+    usecase "UC05 - Generate a team proposal automatically " as UC05
+    HRM --> UC05
+    usecase "UC06 - Register a vehicle" as UC06
+    FM --> UC06
+    usecase "UC07 - Register Vehicle's Check-up" as UC07
+    FM --> UC07
+    usecase "UC08 - List the vehicles needing the check-up" as UC08
+    FM --> UC08
+    usecase "UC09 - ..." as UC09
+    GSM --> UC09
+    usecase "UC10 - ..." as UC10
+    GSM --> UC10
+    usecase "UC11 - ..." as UC11
+    GSM --> UC11
+    usecase "UC12 - ..." as UC12
+    GSM --> UC12
+    usecase "UC13 - ..." as UC13
+    GSM --> UC13
+    usecase "UC14 - ..." as UC14
+    QAM --> UC14
 }
 
 @enduml
