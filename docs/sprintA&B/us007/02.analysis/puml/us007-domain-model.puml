@@ -15,8 +15,7 @@ title Domain Model
 
 class FM {
     name
-    email
-    phone
+
 }
 
 class Checkup {
@@ -39,8 +38,9 @@ class Vehicle {
     Maintenance
 }
 
-Organization "1" - "0..*" FM : has >
-FM "1" - "0..*" Vehicle : register >
-Vehicle "1" -- "*" Checkup : needs >
+Organization "1" - "1" FM : has >
+FM "1" - "1..*" Vehicle : register >
+FM "1" - "1..*" Checkup : register >
+Vehicle "0..*" -- "1" Checkup : needs >
 
 @enduml

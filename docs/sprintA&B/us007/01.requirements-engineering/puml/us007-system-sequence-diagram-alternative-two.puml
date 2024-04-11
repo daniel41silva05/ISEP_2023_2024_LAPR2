@@ -7,33 +7,33 @@ title System Sequence Diagram (SSD) - Alternative Two
 
 autonumber
 
-actor "Organization\nEmployee" as Employee
+actor "FM" as FM
 participant ":System" as System
 
-activate Employee
+activate FM
 
-    Employee -> System : asks to insert a new vehicle check-up.
+    FM -> System : asks to insert a new vehicle check-up.
     activate System
 
-        System --> Employee : shows all vehicles already \nentered in the system and asks you to select one
+        System --> FM : shows all vehicles already \nentered in the system and asks you to select one
     deactivate System
 '
-    Employee -> System : selects an existent vehicle
+    FM -> System : selects an existent vehicle
     activate System
 
-        System --> Employee : requests data (i.e. plate number, KMS, date)
+        System --> FM : requests data (i.e. plate number, KMS, date)
     deactivate System
 
-    Employee -> System : types requested data
+    FM -> System : types requested data
     activate System
 
 
-        System --> Employee : shows all data and requests confirmation
+        System --> FM : shows all data and requests confirmation
     deactivate System
 
-    Employee -> System : confirms data
+    FM -> System : confirms data
     activate System
 
-        System --> Employee : displays operation success
+        System --> FM : displays operation success
     deactivate System
 @enduml
