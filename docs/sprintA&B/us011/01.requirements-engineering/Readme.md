@@ -27,23 +27,24 @@ As a GSM, I want to be able to collect data from the user portal about the use o
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** ...
-* **AC2:** ...
+* **AC1:** Number of times you visit the park per month must be zero or a positive number.
+* **AC2:** Age must be zero or a positive number.
 * **AC3:** ...
 
 ### 1.4. Found out Dependencies
 
-* ...
+* There is no dependencies.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * ...
+    * Age
+    * Number of times visited the park per month
 	
 * Selected data:
-    * ...
+    * "Y" or "N"
 
 **Output Data:**
 
