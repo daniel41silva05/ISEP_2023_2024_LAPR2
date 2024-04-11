@@ -27,20 +27,20 @@ As a GSM, I want to import a .csv file containing lines with: *Water Point X, Wa
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** ...
+* **AC1:** System must ensure that only GSM imports .csv files.
 * **AC2:** ...
 * **AC3:** ...
 
 ### 1.4. Found out Dependencies
 
-* ...
+* There is no dependencies.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * ...
+    * .csv file
 	
 * Selected data:
     * ...
@@ -48,7 +48,6 @@ As a GSM, I want to import a .csv file containing lines with: *Water Point X, Wa
 **Output Data:**
 
 * ...
-* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
