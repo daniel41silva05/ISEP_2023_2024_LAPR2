@@ -1,4 +1,4 @@
-# US010 - Create a Task 
+# US010 - Managment of Pieces of Equipments
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
