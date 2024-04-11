@@ -23,12 +23,14 @@ levels.
 
 
 > **Question:** 
-> 
+> The file ”WaterUsed.csv” should be given by the user?
 > **Answer:** 
+> Yes, the .csv file will be available in the next few days.
 
 > **Question:** 
->
+>When the user enters the park identification, should this be by name or through an ID?
 > **Answer:** 
+> Users will answer the survey but anonymously.
 
 ### 1.3. Acceptance Criteria
 
@@ -57,9 +59,9 @@ levels.
 
 **Output Data:**
 
+* (In)Success of the operation.
 * Barplot representing monthly water consumption.
-* analyze and compare statistical indicators between the park with the highest and lowest water consumption.
-* (In)Success of the operation
+* Statistical analysis and comparison between the park with the highest and lowest water consumption.
 
 ### 1.6. System Sequence Diagram (SSD)
 
