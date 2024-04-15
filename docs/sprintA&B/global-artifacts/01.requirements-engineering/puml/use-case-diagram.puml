@@ -17,7 +17,6 @@ rectangle "System Actors" as actors {
     actor "Green\nSpaces\nUser" as GSU
     actor "Human\nResources\nManager" as HRM
     actor "Fleet Manager" as FM
-    actor "Software Quality Assessment Team Manager" as QAM
 }
 
 rectangle "Use Cases" as usecases{
@@ -40,18 +39,6 @@ rectangle "Use Cases" as usecases{
     FM --> UC07
     usecase "UC08 - List the vehicles needing the check-up" as UC08
     FM --> UC08
-    usecase "UC09 - ..." as UC09
-    GSM --> UC09
-    usecase "UC10 - ..." as UC10
-    GSM --> UC10
-    usecase "UC11 - ..." as UC11
-    GSM --> UC11
-    usecase "UC12 - ..." as UC12
-    GSM --> UC12
-    usecase "UC13 - ..." as UC13
-    GSM --> UC13
-    usecase "UC14 - ..." as UC14
-    QAM --> UC14
 }
 
 @enduml
