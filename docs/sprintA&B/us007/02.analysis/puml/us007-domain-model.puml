@@ -38,7 +38,7 @@ class Vehicle {
     Maintenance
 }
 
-Organization "1" - "1" FM : has >
+'Organization "1" - "1" FM : has >
 FM "1" - "1..*" Vehicle : register >
 FM "1" - "1..*" Checkup : register >
 Vehicle "0..*" -- "1" Checkup : needs >
