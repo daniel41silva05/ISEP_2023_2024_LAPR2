@@ -8,14 +8,14 @@ _**Note that SSD - Alternative One is adopted.**_
 
 | Interaction ID | Question: Which class is responsible for...  | Answer              | Justification (with patterns)                                         |
 |:---------------|:---------------------------------------------|:--------------------|:----------------------------------------------------------------------|
-| Step 1  		     | 	... interacting with the HRM?               | CreatJobUI          | Pure Fabrication: Low coupling                                        |
+| Step 1  		     | 	... interacting with the HRM?               | CreateJobUI         | Pure Fabrication: Low coupling                                        |
 | 			  		        | 	... coordinating the US?                    | CreateJobController | Controller                                                            |
 | 			  		        | 	... instantiating a new Job?                | CreateJob           | Creator: Responsible for creating an object is the constructor method |
 | 			  		        | ... knowing the user using the system?       | UserSession         | IE: cf. A&A component documentation.                                  |
 | Step 2  		     | 	...saving the inputted data?						          | CreateJob           | IE: object created in step 1 has its own data.                        |
-| Step 3  		     | ... validating all data (local validation)?  | JobList             | IE: owns its data.                                                    |
+| Step 3  		     | ... validating all data (local validation)?  | CreateJob           | IE: owns its data.                                                    |
 |                | ... validating all data (global validation)? | Organization        | IE: knows all its jobs.                                               |
-| Step 4  		     | ... saving the created job? 							          | Organization                    |IE: owns all its tasks.                                                                         |              
+| Step 4  		     | ... saving the created job? 							          | Organization        |IE: owns all its tasks.                                                                         |              
 | Step 5  		     | ... informing operation success? 	           | CreateJobUI         |IE: is responsible for user interactions.                                                                         | 
 
 ### Systematization ##
@@ -23,17 +23,17 @@ _**Note that SSD - Alternative One is adopted.**_
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
 * Organization
-* Task
+* CreateJob
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateTaskUI  
+* CreateJobUI  
 * CreateTaskController
 
 
 ## 3.2. Sequence Diagram (SD)
 
-_**Note that SSD - Alternative Two is adopted.**_
+[//]: # (_**Note that SSD - Alternative Two is adopted.**_)
 
 ### Full Diagram
 

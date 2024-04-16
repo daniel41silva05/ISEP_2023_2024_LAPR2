@@ -15,7 +15,7 @@ activate HRM
     HRM -> System : asks to register a new job
     activate System
 
-        System --> HRM : requests data (i.e. name)
+        System --> HRM : requests data (i.e. name and description)
     deactivate System
 
     HRM -> System : types requested data
