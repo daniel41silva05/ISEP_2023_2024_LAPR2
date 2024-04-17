@@ -21,7 +21,7 @@ activate HRM
     HRM -> System : selects an option
     activate System
 
-        System --> HRM : requests data (i.e. name)
+        System --> HRM : requests data (i.e. name and description)
     deactivate System
 
     HRM -> System : types requested data
@@ -33,6 +33,13 @@ activate HRM
     HRM -> System : confirms data
     activate System
 
-        System --> HRM : displays operation success
+        System --> HRM : asks if the user wants to add another job
     deactivate System
+
+
+    HRM -> System : answer yes or no
+    activate System
+
+            System --> HRM : If the user answers yes the operation restarts,\nif the user answers no the program is closed
+        deactivate System
 @enduml
