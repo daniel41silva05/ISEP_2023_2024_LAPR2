@@ -11,9 +11,8 @@ participant ":RegisterCollaboratorUI" as UI
 participant ":RegisterCollaboratorControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant "collaboratorRepository:\ncollaboratorRepository" as collaboratorRepository
 participant "jobRepository:\njobRepository" as jobRepository
-participant "organization:\nOrganization" as organization
+participant "collaboratorRepository:\ncollaboratorRepository" as collaboratorRepository
 participant "collaborator\n:Collaborator" as COLLABORATOR
 
 activate HRM
@@ -72,25 +71,31 @@ activate HRM
             REP --> CTRL: repositories
             deactivate REP
 
-            CTRL -> organization: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
-            activate organization
+            CTRL -> REPS: getCollaboratorRepository()
+            activate REPS
 
-                organization -> COLLABORATOR** : create(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
+            REPS --> CTRL: collaboratorRepository
+            deactivate REPS
 
-                organization -> organization: addCollaborator (colaborator)
-                activate organization
+            CTRL -> collaboratorRepository: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
+            activate collaboratorRepository
 
-                organization -> organization: validateCollaborator (colaborator)
-                activate organization
+                collaboratorRepository -> COLLABORATOR** : register(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
 
-                organization -> organization
-                deactivate organization
+                collaboratorRepository -> collaboratorRepository: addCollaborator (colaborator)
+                activate collaboratorRepository
 
-                organization -> organization
-                deactivate organization
+                collaboratorRepository -> collaboratorRepository: validateCollaborator (colaborator)
+                activate collaboratorRepository
 
-            organization --> CTRL: collaborator
-            deactivate organization
+                collaboratorRepository -> collaboratorRepository
+                deactivate collaboratorRepository
+
+                collaboratorRepository -> collaboratorRepository
+                deactivate collaboratorRepository
+
+            collaboratorRepository --> CTRL: collaborator
+            deactivate collaboratorRepository
 
         CTRL --> UI: collaborator
         deactivate CTRL
