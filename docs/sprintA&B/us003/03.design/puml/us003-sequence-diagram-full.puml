@@ -20,13 +20,15 @@ activate HRM
     HRM -> UI : asks to register a new collaborator
     activate UI
 
+        UI -> CTRL** : create
+
     UI --> HRM : requests data
     deactivate UI
 
     HRM -> UI : types/selects requested data
     activate UI
 
-        UI --> CTRL : getJobs()
+        UI -> CTRL : getJobs()
         activate CTRL
 
             CTRL -> REP : getInstance()
@@ -88,10 +90,10 @@ activate HRM
                 collaboratorRepository -> collaboratorRepository: validateCollaborator (colaborator)
                 activate collaboratorRepository
 
-                collaboratorRepository -> collaboratorRepository
+                collaboratorRepository --> collaboratorRepository
                 deactivate collaboratorRepository
 
-                collaboratorRepository -> collaboratorRepository
+                collaboratorRepository --> collaboratorRepository
                 deactivate collaboratorRepository
 
             collaboratorRepository --> CTRL: collaborator
