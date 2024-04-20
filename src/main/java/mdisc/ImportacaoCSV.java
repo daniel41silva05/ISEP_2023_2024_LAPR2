@@ -11,13 +11,11 @@ public class ImportacaoCSV {
         List<Rota> rotas = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) {
             String linha;
-            // Ignorando cabeçalho
-            br.readLine();
             while ((linha = br.readLine()) != null) {
-                String[] dados = linha.split(",");
-                String pontoX = dados[0].trim();
-                String pontoY = dados[1].trim();
-                double distancia = Double.parseDouble(dados[2].trim());
+                String[] dados = linha.split(";");
+                int pontoX = Integer.parseInt(dados[0].trim());
+                int pontoY = Integer.parseInt(dados[1].trim());
+                int distancia = Integer.parseInt(dados[2].trim());
                 rotas.add(new Rota(pontoX, pontoY, distancia));
             }
         } catch (IOException e) {
