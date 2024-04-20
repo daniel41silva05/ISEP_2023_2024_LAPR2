@@ -13,8 +13,8 @@ public class ImportacaoCSV {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(";");
-                int pontoX = Integer.parseInt(dados[0].trim());
-                int pontoY = Integer.parseInt(dados[1].trim());
+                String pontoX = dados[0].trim();
+                String pontoY = dados[1].trim();
                 int distancia = Integer.parseInt(dados[2].trim());
                 rotas.add(new Rota(pontoX, pontoY, distancia));
             }

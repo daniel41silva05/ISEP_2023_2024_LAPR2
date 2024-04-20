@@ -1,11 +1,11 @@
 package mdisc;
 
 public class Rota {
-    private int pontoX;
-    private int pontoY;
+    private String pontoX;
+    private String pontoY;
     private int distancia;
 
-    public Rota(int pontoX, int pontoY, int distancia) {
+    public Rota(String pontoX, String pontoY, int distancia) {
         this.pontoX = pontoX;
         this.pontoY = pontoY;
         this.distancia = distancia;
@@ -17,19 +17,19 @@ public class Rota {
     }
 
     // Getters e Setters (opcional)
-    public int getPontoX() {
+    public String getPontoX() {
         return pontoX;
     }
 
-    public void setPontoX(int pontoX) {
+    public void setPontoX(String pontoX) {
         this.pontoX = pontoX;
     }
 
-    public int getPontoY() {
+    public String getPontoY() {
         return pontoY;
     }
 
-    public void setPontoY(int pontoY) {
+    public void setPontoY(String pontoY) {
         this.pontoY = pontoY;
     }
 
