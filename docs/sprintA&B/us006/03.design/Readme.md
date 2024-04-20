@@ -33,7 +33,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-_**Note that SSD - Alternative Two is adopted.**_
+_**Note that SSD - Alternative One is adopted.**_
 
 ### Full Diagram
 

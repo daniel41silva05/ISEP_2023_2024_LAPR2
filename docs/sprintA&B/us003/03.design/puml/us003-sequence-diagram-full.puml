@@ -64,7 +64,7 @@ activate HRM
     HRM -> UI : confirms data
     activate UI
 
-        UI -> CTRL: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
+        UI -> CTRL: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
         activate CTRL
 
             CTRL -> REP: getInstance()
@@ -79,10 +79,10 @@ activate HRM
             REPS --> CTRL: collaboratorRepository
             deactivate REPS
 
-            CTRL -> collaboratorRepository: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
+            CTRL -> collaboratorRepository: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
             activate collaboratorRepository
 
-                collaboratorRepository -> COLLABORATOR** : register(job, name, birthday, admissionDate, address, phoneNumber, email, idNumber)
+                collaboratorRepository -> COLLABORATOR** : register(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
 
                 collaboratorRepository -> collaboratorRepository: addCollaborator (colaborator)
                 activate collaboratorRepository

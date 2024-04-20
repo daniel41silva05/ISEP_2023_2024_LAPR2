@@ -10,38 +10,62 @@ skinparam classAttributeIconSize 0
 'left to right direction
 
 class RegisterCollaboratorUI {
-
 }
 
-class RegisterCollaboratorControlller {
-
+class RegisterCollaboratorController {
+    +RegisterCollaboratorController()
+    +getJobsList()
+    +registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
 }
 
 class CollaboratorRepository {
-
+    -addCollaborator(collaborator)
+    -validateCollaborator(collaborator)
+    +registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
 }
 
 class Collaborator {
+    -String name
+    -String birthday
+    -String admissionDate
+    -String address
+    -int phoneNumber
+    -String email
+    -String idDocType
+    -int idNumber
+    +Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
 
 }
 
 class JobRepository {
+    +getJobsList()
+}
 
+class Job {
+    -String name
+    +Job(name)
 }
 
 class HRM {
-
+    - name
 }
 
 class Repositories {
-
+    - Repositories()
+    + getInstance() : Repositories
+    + getJobRepository()
+    + getCollaboratorRepository()
 }
 
-RegisterCollaboratorUI ..> RegisterCollaboratorControlller
-RegisterCollaboratorControlller ..> Repositories
-RegisterCollaboratorControlller ..> CollaboratorRepository
+RegisterCollaboratorUI ..> RegisterCollaboratorController
+RegisterCollaboratorController ..> Repositories
+RegisterCollaboratorController ..> CollaboratorRepository
+RegisterCollaboratorController ..> JobRepository
 CollaboratorRepository --> Collaborator
+JobRepository --> Job
 HRM --> Collaborator
+HRM --> Job
+Collaborator --> Job
 Repositories --> CollaboratorRepository
 Repositories --> JobRepository
 
