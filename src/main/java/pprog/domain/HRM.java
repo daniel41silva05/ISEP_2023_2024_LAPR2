@@ -2,6 +2,7 @@ package pprog.domain;
 
 import pprog.repository.CollaboratorRepository;
 import pprog.repository.JobRepository;
+import pprog.repository.Repositories;
 
 public class HRM {
 
@@ -9,10 +10,11 @@ public class HRM {
     private CollaboratorRepository collaboratorRepository;
     private JobRepository jobRepository;
 
-    public HRM (String name, CollaboratorRepository collaboratorRepository, JobRepository jobRepository) {
+    public HRM (String name) {
         this.name = name;
-        this.collaboratorRepository = collaboratorRepository;
-        this.jobRepository = jobRepository;
+        Repositories repositories = Repositories.getInstance();
+        collaboratorRepository = repositories.getCollaboratorRepository();
+        jobRepository = repositories.getJobRepository();
     }
 
     public String getName() {

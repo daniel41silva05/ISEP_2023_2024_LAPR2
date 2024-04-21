@@ -12,7 +12,7 @@ public class MainParaTestar {
         CollaboratorRepository collaboratorRepository = new CollaboratorRepository();
         JobRepository jobRepository = new JobRepository();
 
-        HRM hrm = new HRM("Daniel", collaboratorRepository, jobRepository);
+        HRM hrm = new HRM("Daniel");
 
         Job job = new Job("Desenvolvedor");
         Collaborator collaborator = new Collaborator("João", "hh", "aa", "ola", 77, "ada", "asd", 56, job);
