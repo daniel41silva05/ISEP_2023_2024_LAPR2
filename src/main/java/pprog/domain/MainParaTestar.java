@@ -7,6 +7,8 @@ import java.util.List;
 public class MainParaTestar {
     public static void main(String[] args) {
 
+        // TESTAR US3:
+
         CollaboratorRepository collaboratorRepository = new CollaboratorRepository();
         JobRepository jobRepository = new JobRepository();
 
@@ -22,6 +24,9 @@ public class MainParaTestar {
         for (Collaborator c : collaborators) {
             System.out.println(c);
         }
+
+        // TESTAR - US6:
+
 
     }
 }
