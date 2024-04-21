@@ -4,10 +4,12 @@ public class Repositories {
     private static Repositories instance;
     private CollaboratorRepository collaboratorRepository;
     private JobRepository jobRepository;
+    private VehicleRepository vehicleRepository;
 
     private Repositories() {
         collaboratorRepository = new CollaboratorRepository();
         jobRepository = new JobRepository();
+        vehicleRepository = new VehicleRepository();
     }
 
     public static Repositories getInstance() {
@@ -23,6 +25,10 @@ public class Repositories {
 
     public JobRepository getJobRepository() {
         return jobRepository;
+    }
+
+    public VehicleRepository getVehicleRepository() {
+        return vehicleRepository;
     }
 }
 

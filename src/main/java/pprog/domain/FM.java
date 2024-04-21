@@ -1,5 +1,6 @@
 package pprog.domain;
 
+import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;
 
 public class FM {
@@ -7,9 +8,10 @@ public class FM {
     private String name;
     private VehicleRepository vehicleRepository;
 
-    public FM (String name, VehicleRepository vehicleRepository) {
+    public FM (String name) {
         this.name = name;
-        this.vehicleRepository = vehicleRepository;
+        Repositories repositories = Repositories.getInstance();
+        vehicleRepository = repositories.getVehicleRepository();
     }
 
     public String getName() {
