@@ -38,6 +38,13 @@ class Vehicle {
 
 }
 
+class VehicleType {
+    -String passengersOrMixed
+    -String lightOrHeavy
+    -String openBoxOrClosedVansOrTrucks
+    +VehicleType(passengersOrMixed, lightOrHeavy, openBoxOrClosedVansOrTrucks)
+}
+
 class FM {
     - name
 }
@@ -49,10 +56,12 @@ class Repositories {
 }
 
 RegisterVehicleUI ..> RegisterVehicleControlller
-RegisterVehicleControlller ..> Repositories
-RegisterVehicleControlller ..> VehicleRepository
-VehicleRepository --> Vehicle
+RegisterVehicleControlller ..> Repositories: repositories
+RegisterVehicleControlller ..> VehicleRepository: VehicleRepository
+Repositories --> Repositories: instance
+Repositories --> "1" VehicleRepository
+VehicleRepository --> "*" Vehicle
+Vehicle --> "1" VehicleType
 FM --> Vehicle
-Repositories --> VehicleRepository
 
 @enduml
