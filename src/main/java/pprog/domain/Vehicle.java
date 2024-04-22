@@ -11,9 +11,9 @@ public class Vehicle {
     private String acquisitionDate;
     private int maintenanceCheckUpFrequency;
     private String plateNumber;
-    private String type;
+    private VehicleType type;
 
-    public Vehicle(String brand, String model, int tare, int grossWeight, int currentKm, String registerDate, String acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, String type) {
+    public Vehicle(String brand, String model, int tare, int grossWeight, int currentKm, String registerDate, String acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
         this.brand = brand;
         this.model = model;
         this.tare = tare;
@@ -98,11 +98,11 @@ public class Vehicle {
         this.plateNumber = plateNumber;
     }
 
-    public String getType() {
+    public VehicleType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(VehicleType type) {
         this.type = type;
     }
 
