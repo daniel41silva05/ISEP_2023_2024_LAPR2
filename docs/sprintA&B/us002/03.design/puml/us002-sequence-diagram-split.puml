@@ -6,59 +6,64 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
-participant "organization\n:Organization" as ORG
+actor "HRM" as HRM
+participant ":CreateJobUI" as UI
+participant ":CreateJobController" as CTRL
+participant "hrm\n:HRM" as HRM
+participant "jobList" as LIST
 
-activate ADM
+activate HRM
 
-    ADM -> UI : asks to create a new task
+    HRM -> UI : asks to create a new job
 
     activate UI
 
         UI -> CTRL** : create
-        UI -> CTRL : getTaskCategories()
+        UI -> CTRL : getJobList()
         ref over CTRL
-            Get Task Category List
+            Get Job List
 
         end ref
 
         activate CTRL
 
-            CTRL --> UI : taskCategoryList
+            CTRL --> UI : jobList
         deactivate CTRL
 
-        UI --> ADM : shows task category list and asks to sleect one
+        UI --> HRM : shows the list of all jobs inserted so far
     deactivate UI
 
-    ADM -> UI : selects a task category
+    HRM -> UI : selects an option
     activate UI
 
-        UI --> ADM : requests data
+    alt HRM decides not to create a new job
+        UI --> HRM : display operation success
+    end
+
+        UI --> HRM : requests data
     deactivate UI
 
-    ADM -> UI : types requested data (reference, description,\ninformal description, technical description,\nduration, cost)
+    HRM -> UI : types requested data (name, description)
     activate UI
 
-        UI --> ADM : shows selected category and requested data
+        UI --> HRM : shows inserted data and ask to confirm
     deactivate UI
 
-    ADM -> UI : submits data
+    HRM -> UI : confirm data
     activate UI
 
-        UI -> CTRL : createTask(reference, description, informalDescription,\ntechnicalDescription,duration, cost, taskCategoryDescription)
+        UI -> CTRL : createJob(name, description,reference)
         activate CTRL
 
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
+'            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
             activate CTRL
 
                 ref over CTRL
-                    Get Task Category Object
+                    Get Job List
 
                 end ref
 
-                CTRL --> CTRL : taskCategory
+                CTRL --> CTRL : jobList
             deactivate CTRL
 
             CTRL -> CTRL : getEmployeeFromSession()
@@ -71,22 +76,25 @@ activate ADM
                 CTRL -> CTRL : employee
             deactivate CTRL
 
-            CTRL -> ORG: createTask(reference, description, informalDescription,\ntechnicalDescription, duration, cost, taskCategory, employee)
-            activate ORG
+            CTRL -> HRM: createJob(name, description,reference,jobList,hrm)
 
-                ref over ORG
-                    Create Task
+            CTRL -> LIST : saveJob
+
+            activate HRM
+
+                ref over HRM
+                    Create Job
 
                 end
 
-                ORG --> CTRL : task
-            deactivate ORG
+                HRM --> CTRL : job
+            deactivate HRM
 
-            CTRL --> UI: task
+            CTRL --> UI: job
             deactivate CTRL
-            UI --> ADM: displays operation success
+            UI --> HRM: displays operation success
     deactivate UI
 
-deactivate ADM
+deactivate HRM
 
 @enduml

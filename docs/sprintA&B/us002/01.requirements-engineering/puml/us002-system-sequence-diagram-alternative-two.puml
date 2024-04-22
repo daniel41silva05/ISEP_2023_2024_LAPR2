@@ -15,7 +15,7 @@ activate HRM
     HRM -> System : asks to create a new job
     activate System
 
-        System --> HRM : shows all jobs category existing to date or asks to create one
+        System --> HRM : shows all job names existing to date or asks to create one
     deactivate System
 
     HRM -> System : selects an option
