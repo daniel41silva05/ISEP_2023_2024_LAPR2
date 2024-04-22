@@ -58,15 +58,16 @@ class Repositories {
 }
 
 RegisterCollaboratorUI ..> RegisterCollaboratorController
-RegisterCollaboratorController ..> Repositories
-RegisterCollaboratorController ..> CollaboratorRepository
-RegisterCollaboratorController ..> JobRepository
-CollaboratorRepository --> Collaborator
-JobRepository --> Job
+RegisterCollaboratorController ..> Repositories: repositories
+RegisterCollaboratorController ..> CollaboratorRepository: CollaboratorRepository
+RegisterCollaboratorController ..> JobRepository: JobRepository
+Repositories --> Repositories: instance
+Repositories --> "1" CollaboratorRepository
+Repositories --> "1" JobRepository
+CollaboratorRepository --> "*" Collaborator
+JobRepository --> "*" Job
+Collaborator --> "1" Job
 HRM --> Collaborator
 HRM --> Job
-Collaborator --> Job
-Repositories --> CollaboratorRepository
-Repositories --> JobRepository
 
 @enduml

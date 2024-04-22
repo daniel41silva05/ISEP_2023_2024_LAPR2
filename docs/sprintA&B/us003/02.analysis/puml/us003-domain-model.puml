@@ -32,17 +32,12 @@ class Job {
     name
 }
 
-class IDDocType {
-    document
-}
-
 Organization "1" -- "1" HumanResourcesManager : has >
 Organization "1" -- "1..*" Collaborator : has >
 Organization "1" -- "1..*" Job : owns >
 HumanResourcesManager "1" -- "1" Job : selects  >
 Job "1" -- "0..*" Collaborator : assigned to >
 HumanResourcesManager "1" -- "1..*" Collaborator : register >
-Collaborator "0..*" -- "1" IDDocType : owns >
 Collaborator "0..*" -- "1" Job : has >
 
 @enduml
