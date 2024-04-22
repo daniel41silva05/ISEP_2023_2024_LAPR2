@@ -3,32 +3,32 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "hrm\n:HRM" as HRM
+participant "job\n:Job" as JOB
 
 autonumber 16
--> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
+-> HRM: createJob(name, description,reference, hrm )
 
 autonumber 16.1
-activate ORG
-    group Create Task
+activate HRM
+    group Create Job
 
-        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-        ORG -> ORG: addTask (task)
+        HRM -> JOB**: create(name, description,reference, hrm)
+        HRM -> HRM: addJob (job)
 
-        activate ORG
-            ORG -> ORG: validateTask(task)
-            activate ORG
-                ORG --> ORG
-            deactivate ORG
+        activate HRM
+            HRM -> HRM: validateTask(task)
+            activate HRM
+                HRM --> HRM
+            deactivate HRM
 
-            ORG --> ORG
-        deactivate ORG
+            HRM --> HRM
+        deactivate HRM
     end
 
     autonumber 17
-    <-- ORG : task
-deactivate ORG
+    <-- HRM : task
+deactivate HRM
 
 
 @enduml
