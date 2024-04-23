@@ -1,18 +1,21 @@
 package pprog.domain;
 
 public class Collaborator {
-
+    
+    public enum IdDocType {
+        taxpayerNumber, citizenCard, passport
+    }
     private String name;
     private String birthday;
     private String admissionDate;
     private String address;
     private int phoneNumber;
     private String email;
-    private String idDocType;
+    private IdDocType idDocType;
     private int idNumber;
     private Job job;
 
-    public Collaborator (String name, String birthday, String admissionDate, String address, int phoneNumber, String email, String idDocType, int idNumber, Job job) {
+    public Collaborator (String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
@@ -72,11 +75,11 @@ public class Collaborator {
         this.email = email;
     }
 
-    public String getIdDocType() {
+    public IdDocType getIdDocType() {
         return idDocType;
     }
 
-    public void setIdDocType(String idDocType) {
+    public void setIdDocType(IdDocType idDocType) {
         this.idDocType = idDocType;
     }
 

@@ -15,9 +15,7 @@ public class MainParaTestar {
         HRM hrm = new HRM("Daniel");
 
         Job job = new Job("Desenvolvedor");
-        Collaborator collaborator = new Collaborator("João", "hh", "aa", "ola", 77, "ada", "asd", 56, job);
-
-        hrm.registerCollaborator(collaborator, job);
+        Collaborator collaborator = new Collaborator("João", "hh", "aa", "ola", 77, "ada", Collaborator.IdDocType.citizenCard, 56, job);
 
         List<Collaborator> collaborators = collaboratorRepository.getAllCollaborators();
 
