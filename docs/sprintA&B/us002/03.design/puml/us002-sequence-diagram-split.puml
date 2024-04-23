@@ -66,15 +66,15 @@ activate HRM
                 CTRL --> CTRL : jobList
             deactivate CTRL
 
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
+'            CTRL -> CTRL : getEmployeeFromSession()
+'            activate CTRL
 
-                ref over CTRL
-                    Get Employee
+'                ref over CTRL
+'                    Get Employee
 
-                end ref
-                CTRL -> CTRL : employee
-            deactivate CTRL
+'                end ref
+'                CTRL -> CTRL : employee
+'            deactivate CTRL
 
             CTRL -> HRM: createJob(name, description,reference,jobList,hrm)
 

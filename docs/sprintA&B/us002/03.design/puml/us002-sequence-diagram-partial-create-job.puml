@@ -18,12 +18,12 @@ activate HRM
 
         activate HRM
             HRM -> HRM: validateTask(task)
-            activate HRM
-                HRM --> HRM
-            deactivate HRM
+'            activate HRM
+'                HRM --> HRM
+'            deactivate HRM
 
-            HRM --> HRM
-        deactivate HRM
+'            HRM --> HRM
+'        deactivate HRM
     end
 
     autonumber 17
