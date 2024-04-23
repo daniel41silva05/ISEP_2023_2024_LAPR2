@@ -7,18 +7,12 @@ skinparam linetype polyline
 
 skinparam classAttributeIconSize 0
 
-'left to right direction
+class CheckUpRepository{
+   -addCheckUp()
+   -validateCheckUp()
 
-'class ApplicationSession
-'{
-'    + static getInstance()
-'    + getCurrentSession()
-'}
-
-'class UserSession
-'{
-'    + getUserEmail()
-'}
+   + RegisterCheckUp
+}
 
 class FM {
     - name
@@ -32,93 +26,33 @@ class CheckUp {
     + CheckUp(plate number, KMS, date)
 }
 
-'class TaskCategory {
-'    - String description
-'
-'    + TaskCategory(description)
-'}
-
-'class Organization {
-'    - String name
-'    - String vatNumber
-'    - String website
-'    - String phone
-'    - String email
-'
-'    - addTask(task)
-'    - validateTask(task)
-'    + anyEmployeeHasEmail(email)
-'    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-'    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-'    - getEmployeeByEmail(email)
-'
-''  +saveTask(task)
-'}
-
-'class TaskCategoryRepository {
-'    + getTaskCategoryByDescription(description)
-'}
-
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
-}
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
     + getCheckUpRepository()
-    + getOrganizationRepository()
 }
 
-class CreateCheckUpController {
-    + CreateCheckUpController(organizationRepository, taskCategoryRepository)
-'    + getTaskCategories()
-    + createCheckUp(plate number, KMS, date)
-'    - getTaskCategoryByDescription(taskCategoryDescription)
-'    - getEmployeeFromSession()
+class RegisterCheckUpController {
+    + RegisterCheckUpController()
+    + registerCheckUp(plate number, KMS, date)
 }
 
-'note right of CreateTaskController
-'    - userEmail is obtained
-'    from the user session
-'    - categoryDescription
-'    is retrieved from selected data
-'end note
-
-'note bottom of TaskCategoryRepository
-'    - used for displaying
-'    the category list
-'end note
-
-class CreateCheckUpUI {
+class RegisterCheckUpUI {
 }
 
 Repositories -> Repositories : instance
-'ApplicationSession -> ApplicationSession : instance
 
-CreateCheckUpUI .> CreateCheckUpController
+RegisterCheckUpUI .> RegisterCheckUpController
 
-CreateCheckUpController .> Repositories : repositories
+RegisterCheckUpController .> Repositories : repositories
 
 Repositories -> "1" CheckUpRepository
 
-'CreateCheckUpController ..> TaskCategory
-CreateCheckUpController ..> OrganizationRepository : organizationRepository
-CreateCheckUpController ..> CheckUpRepository : CheckUpRepository
+CheckUpRepository -> CheckUp
+RegisterCheckUpController ..> CheckUpRepository : CheckUpRepository
 
-Repositories --> "1" OrganizationRepository
-
-OrganizationRepository --> "*" Organization
-'ApplicationSession --> "1" UserSession : userSession
-
-'CreateCheckUpController ..> "1" Organization : organization
-'CreateCheckUpController ..> ApplicationSession
-'CreateCheckUpController ..> UserSession
-'CheckUp "*" --> "1" TaskCategory : taskCategory
-'CheckUpRepository "1" --> "*" TaskCategory : taskCategory
-Organization "1" --> "*" CheckUp : checkUp
 CheckUp --> FM : createdBy
 
-'Organization --> "*" FM : employs
 
 @enduml
