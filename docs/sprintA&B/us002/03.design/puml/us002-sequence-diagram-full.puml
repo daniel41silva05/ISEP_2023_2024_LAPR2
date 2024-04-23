@@ -14,9 +14,9 @@ participant ":CreateJobController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 'participant "jobCategoryRepository:\nJobCategoryRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
+'participant ":ApplicationSession" as _APP
+'participant "appSession\n:ApplicationSession" as APP
+'participant "currentSession\n:UserSession" as SESSAO
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
 participant "hrm\n:HRM" as HRM
 participant "job\n:Job" as JOB
@@ -112,23 +112,23 @@ activate HRM
             CTRL -> CTRL : getEmployeeFromSession()
             activate CTRL
 
-                CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
+'                CTRL -> _APP: getInstance()
+'                activate _APP
+'                    _APP -> CTRL: appSession
+'                deactivate _APP
 
 
-                CTRL -> APP: getCurrentSession()
-                activate APP
+'                CTRL -> APP: getCurrentSession()
+'                activate APP
 
-                    APP --> CTRL: currentSession
-                deactivate APP
+'                    APP --> CTRL: currentSession
+'                deactivate APP
 
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
+'                CTRL -> SESSAO: email = getUserEmail()
+'                activate SESSAO
 
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
+'                    SESSAO --> CTRL: email
+'                deactivate SESSAO
 
 
                 CTRL -> PLAT: getOrganizationRepository(email)
@@ -138,43 +138,43 @@ activate HRM
                 deactivate PLAT
 
 
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
+'                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
+'                activate OrganizationRepository
 
-                    loop [for each organization
-                        OrganizationRepository -> HRM : anyEmployeeHasEmail(email)
-                        activate HRM
+'                    loop [for each organization
+'                        OrganizationRepository -> HRM : anyEmployeeHasEmail(email)
+'                        activate HRM
+'
+'                             HRM --> OrganizationRepository : true/false
+'                        deactivate HRM
+'                    end
+'                    OrganizationRepository --> CTRL : organization
+'                deactivate OrganizationRepository
 
-                             HRM --> OrganizationRepository : true/false
-                        deactivate HRM
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
-
-                CTRL -> HRM: getEmployeeByEmail(email)
-                activate HRM
-
-                    HRM --> CTRL : employee
-                deactivate HRM
-
-                CTRL --> CTRL : employee
-            deactivate CTRL
+'                CTRL -> HRM: getEmployeeByEmail(email)
+'                activate HRM
+'
+'                    HRM --> CTRL : employee
+'                deactivate HRM
+'
+'                CTRL --> CTRL : employee
+'            deactivate CTRL
 
             |||
             CTRL -> HRM: createJob(name, description,reference ,  hrm)
             activate HRM
 
-                HRM -> JOB**: create(employee, reference, description,  hrm)
+                HRM -> JOB**: create(name, reference, description,  hrm)
                 HRM -> HRM: addJob (job)
 
 
                 activate HRM
                     HRM -> HRM: validateJob(job)
                     activate HRM
-                        HRM --> HRM
+'                        HRM --> HRM
                     deactivate HRM
 
-                    HRM --> HRM
+'                    HRM --> HRM
                 deactivate HRM
 
                 HRM --> CTRL : job

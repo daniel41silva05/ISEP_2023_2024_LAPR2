@@ -18,6 +18,8 @@ class HRM {
 }
 
 class SkillRepository {
+    - addSkill(skill)
+    - validateSkill(skill)
     + registerSkill(name)
 }
 

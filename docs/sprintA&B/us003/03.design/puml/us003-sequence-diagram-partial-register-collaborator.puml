@@ -17,17 +17,8 @@ activate collaboratorRepository
                 collaboratorRepository -> COLLABORATOR** : register(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
 
                 collaboratorRepository -> collaboratorRepository: addCollaborator (colaborator)
-                activate collaboratorRepository
 
                 collaboratorRepository -> collaboratorRepository: validateCollaborator (colaborator)
-                activate collaboratorRepository
-
-                collaboratorRepository --> collaboratorRepository
-                deactivate collaboratorRepository
-
-                collaboratorRepository --> collaboratorRepository
-                deactivate collaboratorRepository
-
     end group
 
     autonumber 17

@@ -12,13 +12,13 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : Access interface
+    Employee -> System : Asks to register a new skill
     activate System
 
-        System --> Employee : Shows interface
+        System --> Employee : Requests data ( name )
     deactivate System
 
-    Employee -> System : Add/remove/edit/view/search skills
+    Employee -> System : Types requested data
     activate System
 
         System --> Employee : Shows all data and requests confirmation for the operation
