@@ -8,18 +8,28 @@ import java.util.List;
 
 public class VehicleRepository {
 
-    private List<Vehicle> vehicles;
+    private List<Vehicle> vehiclesList;
 
     public VehicleRepository() {
-        this.vehicles = new ArrayList<>();
+        this.vehiclesList = new ArrayList<>();
     }
 
-    public void save(Vehicle vehicle) {
-        vehicles.add(vehicle);
+    private void addVehicle (Vehicle vehicle) {
+        this.vehiclesList.add(vehicle);
+    }
+    private boolean validateVehicle (Vehicle vehicle) {
+        // falta me implementar as validações
+        return true;
     }
 
-    public List<Vehicle> getAllVehicle() {
-        return vehicles;
+    public void registerVehicle (Vehicle vehicle) {
+        if (validateVehicle(vehicle)) {
+            addVehicle(vehicle);
+        }
+    }
+
+    public List<Vehicle> getVehiclesList() {
+        return vehiclesList;
     }
 
 }
