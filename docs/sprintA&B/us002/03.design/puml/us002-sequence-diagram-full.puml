@@ -12,7 +12,8 @@ actor "HRM" as HRM
 participant ":RegisterJobUI" as UI
 participant ":RegisterJobController" as CTRL
 participant ":JobRepository" as JOBS
-participant "repositories\n:Repositories" as PLAT
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
 participant "job\n:Job" as JOB
 
 activate HRM
@@ -51,11 +52,11 @@ activate HRM
 '            CTRL -> CTRL : getJobCategoryByDescription(taskCategoryDescription)
 '            activate CTRL
 
-                CTRL -> PLAT : getInstance()
-                activate PLAT
+                CTRL -> REP : getInstance()
+                activate REP
 
-                    PLAT --> CTRL: repositories
-                deactivate PLAT
+                    REP --> CTRL: repositories
+                deactivate REP
 
 '
             deactivate CTRL

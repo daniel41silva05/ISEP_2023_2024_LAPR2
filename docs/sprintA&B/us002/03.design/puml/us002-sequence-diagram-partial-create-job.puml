@@ -6,10 +6,10 @@ skinparam shadowing false
 participant "JobRepository" as JOBS
 participant "job\n:Job" as JOB
 
-autonumber 16
+autonumber 13
 -> JOBS: registerJob(name, description)
 
-autonumber 16.1
+autonumber 13.1
 activate JOBS
     group Register Job
 
@@ -21,7 +21,7 @@ activate JOBS
 '
     end
 
-    autonumber 17
+    autonumber 13
     <-- JOBS : job
 deactivate JOBS
 
