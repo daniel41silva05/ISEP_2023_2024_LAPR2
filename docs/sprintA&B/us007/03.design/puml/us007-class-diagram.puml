@@ -22,8 +22,6 @@ skinparam classAttributeIconSize 0
 
 class FM {
     - name
-    - email
-    - phone
 }
 
 class CheckUp {
