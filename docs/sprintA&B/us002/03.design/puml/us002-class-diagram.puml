@@ -20,9 +20,13 @@ left to right direction
 '    + getUserEmail()
 '}
 
-class JobList{
-    -String reference
+class JobRepository{
+    -addJob(job)
+    -validateJob(job)
+
+    + CreateJob(name, description)
 }
+
 class HRM {
     - String name
 }
@@ -30,9 +34,8 @@ class HRM {
 class Job {
     - String name
     - String description
-    - String reference
 
-    + Job(name, description, reference)
+    + Job(name, description)
 }
 
 'class TaskCategory {
@@ -113,14 +116,14 @@ CreateJobController .> Repositories : repositories
 
 'CreateJobController ..> "1" Organization : organization
 'CreateJobController ..> ApplicationSession
-CreateJobController ..> JobList : JobList
-Repositories --> "1" JobList
+CreateJobController ..> JobRepository : JobRepository
+Repositories --> "1" JobRepository
 
 'Task "*" --> "1" TaskCategory : taskCategory
 'TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
 'Organization "1" --> "*" Task : tasks
 Job --> HRM : createdBy
-JobList --> "*" Job
+JobRepository --> "*" Job
 
 'HRM --> "*" Organization : belongs to
 

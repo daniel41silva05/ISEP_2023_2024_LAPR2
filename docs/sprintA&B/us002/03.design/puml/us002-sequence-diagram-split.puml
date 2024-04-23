@@ -56,15 +56,15 @@ activate HRM
         activate CTRL
 
 '            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
-            activate CTRL
+'            activate CTRL
 
-                ref over CTRL
-                    Get Job List
+'                ref over CTRL
+'                    Get Job List
+'
+'                end ref
 
-                end ref
-
-                CTRL --> CTRL : jobList
-            deactivate CTRL
+'                CTRL --> CTRL : jobList
+'            deactivate CTRL
 
 '            CTRL -> CTRL : getEmployeeFromSession()
 '            activate CTRL
