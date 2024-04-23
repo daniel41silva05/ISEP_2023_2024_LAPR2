@@ -38,93 +38,32 @@ class Job {
     + Job(name, description)
 }
 
-'class TaskCategory {
-'    - String description
-'
-'    + TaskCategory(description)
-'}
-'
-'class Organization {
-'    - String name
-'    - String vatNumber
-'    - String website
-'    - String phone
-'    - String email
-'
-'    - addJob(job)
-'    - validateJob(job)
-'    + anyHRMHasEmail(email)
-'    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-'    + createJob(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, )
-'    - getHRMByEmail(email)
-'
-''  +saveTask(task)
-'}
-
-'class TaskCategoryRepository {
-'    + getTaskCategoryByDescription(description)
-'}
-
-'class OrganizationRepository {
-'    + getOrganizationByHRMEmail(email)
-'}
-
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
-'    + getTaskCategoryRepository()
-    + getJobList()
+    + getJobRepository()
 }
 
-class CreateJobController {
-    + CreateJobController()
-    + createJob(name, description)
+class RegisterJobController {
+    + RegisterJobController()
+    + RegisterJob(name, description)
 
 }
-'
-'note right of CreateJobController
-'    - userEmail is obtained
-'    from the user session
-'    - categoryDescription
-'    is retrieved from selected data
-'end note
-'
-'note bottom of TaskCategoryRepository
-'    - used for displaying
-'    the category list
-'end note
 
-class CreateJobUI {
+class RegisterJobUI {
 }
 
 Repositories -> Repositories : instance
 
-CreateJobUI .> CreateJobController
+RegisterJobUI .> RegisterJobController
 
-CreateJobController .> Repositories : repositories
+RegisterJobController .> Repositories : repositories
 
-'Repositories -> "1" TaskCategoryRepository
-
-'CreateTaskController ..> TaskCategory
-'CreateJobController ..> OrganizationRepository : organizationRepository
-'CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
-
-'Repositories --> "1" OrganizationRepository
-
-'OrganizationRepository --> "*" Organization
-'ApplicationSession --> "1" UserSession : userSession
-
-'CreateJobController ..> "1" Organization : organization
-'CreateJobController ..> ApplicationSession
-CreateJobController ..> JobRepository : JobRepository
+RegisterJobController ..> JobRepository : JobRepository
 Repositories --> "1" JobRepository
 
-'Task "*" --> "1" TaskCategory : taskCategory
-'TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
-'Organization "1" --> "*" Task : tasks
 Job --> HRM : createdBy
 JobRepository --> "*" Job
 
-'HRM --> "*" Organization : belongs to
 
 @enduml
