@@ -6,18 +6,14 @@ import java.util.List;
 
 public class JobRepository {
 
-    private List<Job> jobs;
+    private List<Job> jobsList;
 
     public JobRepository() {
-        this.jobs = new ArrayList<>();
+        this.jobsList = new ArrayList<>();
     }
 
-    public void save(Job job) {
-        jobs.add(job);
-    }
-
-    public List<Job> getAllJobs() {
-        return jobs;
+    public List<Job> getJobsList() {
+        return jobsList;
     }
 
 }

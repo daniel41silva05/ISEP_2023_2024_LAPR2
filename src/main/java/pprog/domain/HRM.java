@@ -7,14 +7,9 @@ import pprog.repository.Repositories;
 public class HRM {
 
     private String name;
-    private CollaboratorRepository collaboratorRepository;
-    private JobRepository jobRepository;
 
     public HRM (String name) {
         this.name = name;
-        Repositories repositories = Repositories.getInstance();
-        collaboratorRepository = repositories.getCollaboratorRepository();
-        jobRepository = repositories.getJobRepository();
     }
 
     public String getName() {
@@ -23,10 +18,6 @@ public class HRM {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void registerCollaborator (Collaborator collaborator, Job job) {
-        collaboratorRepository.save(collaborator);
     }
 
     @Override

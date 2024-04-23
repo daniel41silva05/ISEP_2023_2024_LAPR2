@@ -1,0 +1,58 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+class CheckUpRepository{
+   -addCheckUp()
+   -validateCheckUp()
+
+   + RegisterCheckUp
+}
+
+class FM {
+    - name
+}
+
+class CheckUp {
+    - Integer date
+    - Double plate
+    - Double KMS
+
+    + CheckUp(plate number, KMS, date)
+}
+
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getCheckUpRepository()
+}
+
+class RegisterCheckUpController {
+    + RegisterCheckUpController()
+    + registerCheckUp(plate number, KMS, date)
+}
+
+class RegisterCheckUpUI {
+}
+
+Repositories -> Repositories : instance
+
+RegisterCheckUpUI .> RegisterCheckUpController
+
+RegisterCheckUpController .> Repositories : repositories
+
+Repositories -> "1" CheckUpRepository
+
+CheckUpRepository -> CheckUp
+RegisterCheckUpController ..> CheckUpRepository : CheckUpRepository
+
+CheckUp --> FM : createdBy
+
+
+@enduml
