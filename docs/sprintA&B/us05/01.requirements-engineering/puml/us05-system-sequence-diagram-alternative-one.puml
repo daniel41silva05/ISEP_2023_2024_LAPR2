@@ -15,16 +15,22 @@ activate Employee
     Employee -> System : Initiates a team proposal generation
     activate System
 
-        System --> Employee : Requests data (i.e. team size and skills needed)
+        System --> Employee : Requests to choose a skill
     deactivate System
 
-    Employee -> System : Types requested data / Selects team requirements
+    Employee -> System : Chooses skill
     activate System
 
-        System --> Employee : Generates and displays team proposal
+        System --> Employee : Types requested data (min and max team size)
     deactivate System
 
-    Employee -> System : Edit or confirm the team generated
+    Employee -> System : Types requested data
+    activate System
+
+        System --> Employee : Generate and displays team proposal
+        deactivate System
+
+    Employee -> System : Confirm the team generated
     activate System
 
         System --> Employee : Displays operation success

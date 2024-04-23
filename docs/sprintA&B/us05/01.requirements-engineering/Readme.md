@@ -46,7 +46,7 @@ As a HRM, I want to generate a team proposal automatically.
     * skills assigned to collaborators
 	
 * Selected data:
-    * skills required 
+    * skills list 
 
 **Output Data:**
 
