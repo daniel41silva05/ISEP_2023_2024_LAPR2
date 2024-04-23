@@ -57,7 +57,7 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 **Get Task Category List Partial SD**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us007-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial - Get Task Category List](svg/us007-sequence-diagram-partial-get-checkup-repository.svg)
 
 **Get Task Category Object**
 
@@ -69,7 +69,7 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 **Create Task**
 
-![Sequence Diagram - Partial - Create Task](svg/us007-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Create Task](svg/us007-sequence-diagram-partial-create-checkup.svg)
 
 ## 3.3. Class Diagram (CD)
 
