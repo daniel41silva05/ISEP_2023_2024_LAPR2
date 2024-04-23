@@ -26,6 +26,7 @@ activate SkillREP
     autonumber 13
     <-- SkillREP  : skill
 deactivate SkillREP
+'a
 
 
 @enduml
