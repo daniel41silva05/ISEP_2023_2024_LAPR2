@@ -26,6 +26,8 @@ class SkillsRepository {
 }
 
 class GenerateTeamRepository {
+    - addTeam()
+    - validateTeam()
     + generateTeam(minSize, maxSize, skill)
 }
 
