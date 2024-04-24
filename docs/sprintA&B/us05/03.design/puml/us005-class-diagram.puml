@@ -44,7 +44,7 @@ class HRM {
 class GenerateTeamController {
     + GenerateTeamController()
     + getSkillsList()
-    + generateTeam(minSize, maxSize)
+    + generateTeam(minSize, maxSize, skill)
 }
 
 class GenerateTeamUI {
@@ -60,6 +60,7 @@ HRM --> GenerateTeam
 HRM --> Skill
 GenerateTeamRepository --> GenerateTeam
 SkillsRepository --> Skill
+GenerateTeam --> Skill
 
 
 
