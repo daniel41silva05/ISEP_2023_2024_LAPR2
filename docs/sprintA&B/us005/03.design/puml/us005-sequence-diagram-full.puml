@@ -11,8 +11,8 @@ participant ":GenerateTeamUI" as UI
 participant ":GenerateTeamController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant ":SkillRepository" as SREP
-participant "GenerateTeamRepository:\nTaskCategoryRepository" as GTREP
+participant "skillRepository\n:SkillRepository" as SREP
+participant "generateTeamRepository:\nGenerateTeamRepository" as GTREP
 participant "team\n:Team" as T
 
 
@@ -89,10 +89,10 @@ activate HRM
 
                 GTREP -> GTREP: validateTeam(team)
 
-            GTREP --> CTRL: collaborator
+            GTREP --> CTRL: team
             deactivate GTREP
 
-        CTRL --> UI: collaborator
+        CTRL --> UI: team
         deactivate CTRL
 
     UI --> HRM: displays operation success
