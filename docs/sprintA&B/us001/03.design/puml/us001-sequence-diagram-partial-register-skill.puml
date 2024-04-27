@@ -7,12 +7,12 @@ autonumber
 
 'hide footbox
 
-participant "SkillRepository:\nSkillRepository" as SkillREP
-participant "Skill:\nSKill" as SKILL
+participant "skillRepository:\nSkillRepository" as SkillREP
+participant "skill:\nSkill" as SKILL
 
 autonumber 12
 
- -> SkillREP : getTaskCategories()
+ -> SkillREP : registerSkill()
 autonumber 12.1
 activate SkillREP
     group register Skill

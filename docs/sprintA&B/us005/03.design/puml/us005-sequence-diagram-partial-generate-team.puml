@@ -7,42 +7,26 @@ autonumber
 
 'hide footbox
 
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant "generateTeamRepository:\nGenerateTeamRepository" as GTREP
+participant "skill:\nSkill" as SKILL
 
-autonumber 3
+autonumber 16
 
- -> CTRL : getTaskCategories()
-autonumber 3.1
-activate CTRL
-    group Get Task Category List
+ -> GTREP : generateTeam
+autonumber 16.1
+activate GTREP
+    group Generate Team
 
+        GTREP -> SKILL** : generate(minSize, maxSize, skill)
 
-            CTRL -> RepositorySingleton : getInstance()
-            activate RepositorySingleton
+        GTREP -> GTREP: addTeam(team)
 
-                RepositorySingleton --> CTRL: repositories
-            deactivate RepositorySingleton
-
-            CTRL -> PLAT : getTaskCategoryRepository()
-            activate PLAT
-
-                PLAT --> CTRL: taskCategoryRepository
-            deactivate PLAT
-
-            CTRL -> TaskCategoryRepository : getTaskCategories()
-            activate TaskCategoryRepository
-
-                TaskCategoryRepository --> CTRL : taskCategoryList
-            deactivate TaskCategoryRepository
-
+        GTREP -> GTREP: validateTeam(team)
 
     end
-    autonumber 4
-    <-- CTRL  : taskCategoryList
-deactivate CTRL
+    autonumber 17
+    <-- GTREP  : team
+deactivate GTREP
 
 
 @enduml
