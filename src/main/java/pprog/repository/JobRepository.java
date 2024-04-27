@@ -1,19 +1,35 @@
 package pprog.repository;
 
 import pprog.domain.Job;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class JobRepository {
 
-    private List<Job> jobsList;
+    private final List<Job> jobsList;
 
-    public JobRepository() {
-        this.jobsList = new ArrayList<>();
+    public JobRepository() { jobsList = new ArrayList<>();}
+
+    public Job getJobByName (String jobName) {
+        Job newJob = new Job(jobName);
+        Job job = null;
+        if (jobsList.contains(newJob)) {
+            job = jobsList.get(jobsList.indexOf(newJob));
+        }
+        if (job == null) {
+            throw new IllegalArgumentException(
+                    "Job requested for [" + jobName + "] does not exist.");
+        }
+        return job;
     }
 
     public List<Job> getJobsList() {
         return jobsList;
     }
 
+    @Override
+    public String toString() {
+        return "Jobs=" + jobsList + '}';
+    }
 }

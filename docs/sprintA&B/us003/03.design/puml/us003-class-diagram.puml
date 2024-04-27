@@ -38,7 +38,7 @@ class Collaborator {
 }
 
 class JobRepository {
-    +getJobsList()
+    +getJobsByName()
 }
 
 class Job {

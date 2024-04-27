@@ -6,7 +6,7 @@
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
+		Vehicle instance = new Vehicle(null, null, null, null, null, null, null, null, null, null);
 	}
 	
 
@@ -24,7 +24,7 @@ _It is also recommended to organize this content by subsections._
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class RegisterVehicleController 
 
 ```java
 public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
@@ -42,7 +42,7 @@ public Task createTask(String reference, String description, String informalDesc
 }
 ```
 
-### Class Organization
+### Class VehicleRepository
 
 ```java
 public Optional<Task> createTask(String reference, String description, String informalDescription,
