@@ -1,15 +1,11 @@
 package pprog.controller;
 
-
 import pprog.domain.Collaborator;
 import pprog.domain.IdDocType;
 import pprog.domain.Job;
 import pprog.repository.CollaboratorRepository;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.domain.Organization;
-import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
-import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +18,11 @@ public class RegisterCollaboratorController {
     public RegisterCollaboratorController() {
         getCollaboratorRepository();
         getJobRepository();
+    }
+
+    public RegisterCollaboratorController(CollaboratorRepository collaboratorRepository, JobRepository jobRepository) {
+        this.collaboratorRepository = collaboratorRepository;
+        this.jobRepository = jobRepository;
     }
 
     private CollaboratorRepository getCollaboratorRepository() {

@@ -28,7 +28,7 @@ activate HRM
     HRM -> UI : types/selects requested data
     activate UI
 
-        UI -> CTRL : getJobs()
+        UI -> CTRL : getJobsList()
         activate CTRL
 
             CTRL -> REP : getInstance()
@@ -64,8 +64,32 @@ activate HRM
     HRM -> UI : confirms data
     activate UI
 
-        UI -> CTRL: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
+        UI -> CTRL: registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, jobName)
         activate CTRL
+
+            CTRL -> CTRL: getJobsByName(jobName)
+            activate CTRL
+
+            CTRL -> REP: getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS: getJobRepository()
+            activate REPS
+
+            REPS --> CTRL: jobRepository
+            deactivate REPS
+
+            CTRL -> jobRepository: getJobsByName(jobName)
+            activate jobRepository
+
+            jobRepository --> CTRL: job
+            deactivate jobRepository
+
+            CTRL --> CTRL: job
+            deactivate CTRL
 
             CTRL -> REP: getInstance()
             activate REP
@@ -79,15 +103,22 @@ activate HRM
             REPS --> CTRL: collaboratorRepository
             deactivate REPS
 
-            CTRL -> collaboratorRepository: registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
+            CTRL -> collaboratorRepository: registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
             activate collaboratorRepository
 
-                collaboratorRepository -> COLLABORATOR** : register(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
+                collaboratorRepository -> COLLABORATOR** : register(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
 
                 collaboratorRepository -> collaboratorRepository: addCollaborator (colaborator)
+                activate collaboratorRepository
 
                 collaboratorRepository -> collaboratorRepository: validateCollaborator (colaborator)
+                activate collaboratorRepository
 
+                collaboratorRepository --> collaboratorRepository
+                deactivate collaboratorRepository
+
+                collaboratorRepository --> collaboratorRepository
+                deactivate collaboratorRepository
 
             collaboratorRepository --> CTRL: collaborator
             deactivate collaboratorRepository

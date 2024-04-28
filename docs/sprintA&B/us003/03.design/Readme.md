@@ -54,6 +54,10 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - Partial - Get Jobs List](svg/us003-sequence-diagram-partial-get-jobs-list.svg)
 
+**Get Job Object**
+
+![Sequence Diagram - Partial - Get Job Object](svg/us003-sequence-diagram-partial-get-job-object.svg)
+
 **Register Collaborator**
 
 ![Sequence Diagram - Partial - Get Register Collaborator](svg/us003-sequence-diagram-partial-register-collaborator.svg)

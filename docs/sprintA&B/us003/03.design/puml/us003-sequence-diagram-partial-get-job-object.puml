@@ -12,12 +12,12 @@ participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "jobRepository:\njobRepository" as jobRepository
 
-autonumber 5
+autonumber 12
 
- -> CTRL : getJobsList()
-autonumber 5.1
+ -> CTRL : getJobsByName(jobName)
+autonumber 12.1
 activate CTRL
-    group Get Jobs List
+    group Get Job Object
 
             CTRL -> REP : getInstance()
             activate REP
@@ -31,15 +31,15 @@ activate CTRL
             REPS --> CTRL: JobRepository
             deactivate REPS
 
-            CTRL -> jobRepository: getJobsList()
+            CTRL -> jobRepository: getJobsByName(jobName)
             activate jobRepository
 
-            jobRepository --> CTRL : JobsList
+            jobRepository --> CTRL : job
             deactivate jobRepository
 
     end
-    autonumber 6
-    <-- CTRL  : JobsList
+    autonumber 13
+    <-- CTRL  : job
 deactivate CTRL
 
 @enduml
