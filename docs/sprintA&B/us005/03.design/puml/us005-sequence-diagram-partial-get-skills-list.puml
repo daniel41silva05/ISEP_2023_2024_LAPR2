@@ -3,40 +3,40 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant ":GenerateTeamController" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "skillRepositoryRepository:\nSkillRepositoryRepository" as SREP
 
-autonumber 12
--> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
+autonumber 5
+-> CTRL : getSkillsList()
 
-autonumber 12.1
+autonumber 5.1
 
 activate CTRL
-    group Get Task Category
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
+    group Get Skills List
+        CTRL -> REP : getInstance()
+        activate REP
 
-            RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
+            REP --> CTRL: repositories
+        deactivate REP
 
-        CTRL -> PLAT : getTaskCategoryRepository()
-        activate PLAT
+        CTRL -> REPS : getSkillRepository()
+        activate REPS
 
-            PLAT -> CTRL : taskCategoryRepository
-        deactivate PLAT
+            REPS -> CTRL : SkillRepository
+        deactivate REPS
 
-        CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-        activate TaskCategoryRepository
+        CTRL -> SREP : getSkillsList()
+        activate SREP
 
-            TaskCategoryRepository --> CTRL : taskCategory
-        deactivate TaskCategoryRepository
+            SREP --> CTRL : SkillsList
+        deactivate SREP
 
     end group
 
-    autonumber 13
-    <-- CTRL : taskCategory
+    autonumber 6
+    <-- CTRL : SkillsList
 
 deactivate CTRL
 

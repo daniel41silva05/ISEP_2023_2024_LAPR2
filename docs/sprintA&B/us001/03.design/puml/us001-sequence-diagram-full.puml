@@ -11,8 +11,8 @@ participant ":CreateSkillUI" as UI
 participant ":CreateSkillController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant "SkillRepository:\nSkillRepository" as SkillREP
-participant "Skill:\nSKill" as SKILL
+participant "skillRepository:\nSkillRepository" as SkillREP
+participant "skill:\nSkill" as SKILL
 
 activate HRM
 
@@ -33,7 +33,7 @@ activate HRM
     HRM -> UI :Confirms data
     activate UI
 
-        UI -> CTRL : register skill (name)
+        UI -> CTRL : registerSkill (name)
         activate CTRL
 
             CTRL -> REP : getInstance()
@@ -48,7 +48,7 @@ activate HRM
             REPS --> CTRL : Skill Repository
             deactivate REPS
 
-            CTRL -> SkillREP : register skill (name)
+            CTRL -> SkillREP : registerSkill (name)
             activate SkillREP
 
             SkillREP -> SKILL** : register (name)
