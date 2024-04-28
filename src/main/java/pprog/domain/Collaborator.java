@@ -1,7 +1,8 @@
 package pprog.domain;
 
+import java.util.Objects;
+
 public class Collaborator {
-    
     public enum IdDocType {
         taxpayerNumber, citizenCard, passport
     }
@@ -25,6 +26,23 @@ public class Collaborator {
         this.idDocType = idDocType;
         this.idNumber = idNumber;
         this.job = job;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Collaborator)) {
+            return false;
+        }
+        Collaborator that = (Collaborator) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName() {
@@ -97,6 +115,10 @@ public class Collaborator {
 
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    public Collaborator clone() {
+        return new Collaborator(this.name, this.birthday, this.admissionDate, this.address, this.phoneNumber, this.email, this.idDocType, this.idNumber, this.job);
     }
 
     @Override

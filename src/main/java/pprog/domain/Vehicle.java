@@ -1,5 +1,7 @@
 package pprog.domain;
 
+import java.util.Objects;
+
 public class Vehicle {
 
     private String brand;
@@ -24,6 +26,23 @@ public class Vehicle {
         this.maintenanceCheckUpFrequency = maintenanceCheckUpFrequency;
         this.plateNumber = plateNumber;
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Vehicle)) {
+            return false;
+        }
+        Vehicle that = (Vehicle) o;
+        return plateNumber.equals(that.plateNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(plateNumber);
     }
 
     public String getBrand() {
@@ -104,6 +123,10 @@ public class Vehicle {
 
     public void setType(VehicleType type) {
         this.type = type;
+    }
+
+    public Vehicle clone() {
+        return new Vehicle(this.brand, this.model, this.tare, this.grossWeight, this.currentKm, this.registerDate, this.acquisitionDate, this.maintenanceCheckUpFrequency, this.plateNumber, this.type);
     }
 
     @Override

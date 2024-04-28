@@ -1,35 +1,48 @@
 package pprog.repository;
 
-import pprog.domain.Collaborator;
 import pprog.domain.Vehicle;
+import pprog.domain.VehicleType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VehicleRepository {
 
-    private List<Vehicle> vehiclesList;
+    private final List<Vehicle> vehiclesList;
 
     public VehicleRepository() {
-        this.vehiclesList = new ArrayList<>();
+        vehiclesList = new ArrayList<>();
     }
 
-    private void addVehicle (Vehicle vehicle) {
-        this.vehiclesList.add(vehicle);
-    }
-    private boolean validateVehicle (Vehicle vehicle) {
-        // falta me implementar as validações
-        return true;
-    }
-
-    public void registerVehicle (Vehicle vehicle) {
-        if (validateVehicle(vehicle)) {
-            addVehicle(vehicle);
+    public Optional<Vehicle> registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, String registerDate, String acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
+        Optional<Vehicle> newVehicle = Optional.empty();
+        Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitonDate, maintenanceCheckUpFrequency, idNumber, type);
+        if (addVehicle(vehicle)) {
+            newVehicle = Optional.of(vehicle);
         }
+        return newVehicle;
+    }
+
+    private boolean addVehicle (Vehicle vehicle) {
+        boolean success = false;
+        if (validateVehicle(vehicle)) {
+            success = vehiclesList.add(vehicle.clone());
+        }
+        return success;
+    }
+
+    private boolean validateVehicle (Vehicle vehicle) {
+        boolean isValid = !vehiclesList.contains(vehicle);
+        return isValid;
     }
 
     public List<Vehicle> getVehiclesList() {
         return vehiclesList;
     }
 
+    @Override
+    public String toString() {
+        return "Vehicles=" + vehiclesList + '}';
+    }
 }

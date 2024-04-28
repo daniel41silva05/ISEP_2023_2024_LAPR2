@@ -2,9 +2,9 @@ package pprog.repository;
 
 public class Repositories {
     private static Repositories instance;
-    private CollaboratorRepository collaboratorRepository;
-    private JobRepository jobRepository;
-    private VehicleRepository vehicleRepository;
+    private final CollaboratorRepository collaboratorRepository;
+    private final JobRepository jobRepository;
+    private final VehicleRepository vehicleRepository;
 
     private Repositories() {
         collaboratorRepository = new CollaboratorRepository();
