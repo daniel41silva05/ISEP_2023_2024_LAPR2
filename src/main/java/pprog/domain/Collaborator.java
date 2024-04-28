@@ -3,9 +3,7 @@ package pprog.domain;
 import java.util.Objects;
 
 public class Collaborator {
-    public enum IdDocType {
-        taxpayerNumber, citizenCard, passport
-    }
+
     private String name;
     private String birthday;
     private String admissionDate;
