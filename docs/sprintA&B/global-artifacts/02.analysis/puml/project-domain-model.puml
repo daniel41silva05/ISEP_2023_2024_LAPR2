@@ -9,8 +9,6 @@ hide methods
 
 title Domain Model
 
-class MusgoSublime {
-}
 class MediumSizedPark {
 }
 class LargeSizedPark {
@@ -50,17 +48,16 @@ class Vehicle {
     acquisitionDate
     maintenanceCheckUpFrequency
     plateNumber
-    type
 }
 class CheckUp {
     CurrentKMS
     ID
     CheckUpDate
 }
-class Type {
-    passengersOrMixed
-    lightOrHeavy
-    openBoxOrClosedVansOrTrucks
+class VehicleType {
+    typeTransport
+    packageWeight
+    transport
 }
 
 class Job {
@@ -90,16 +87,14 @@ class Agenda {
 class Task {
 }
 
-MusgoSublime "1" ---- "1" Organization : is a >
-MusgoSublime "1" -- "1..*" GreenSpace : manages >
+Organization "1" -- "1..*" GreenSpace : manages >
 MediumSizedPark "1" -- "1" GreenSpace : is a >
 Garden "1" -- "1" GreenSpace : is a >
 LargeSizedPark "1" -- "1" GreenSpace : is a >
-Organization "1" -- "1" FleetManager : has >
-Organization "1" -- "1" HumanResourcesManager : has >
+Organization "1" -- "1..*" FleetManager : has >
+Organization "1" -- "1..*" HumanResourcesManager : has >
 Organization "1" -- "1" GreenSpaceManager : has >
-Organization "1" -- "1" GreenSpaceUser : has >
-Organization "1" --- "1" Agenda : owns >
+Organization "1" -- "1..*" GreenSpaceUser : has >
 Collaborator "0..*" -- "1" Job : has >
 Collaborator "0..*" -- "1..*" Skill : has >
 HumanResourcesManager "1" -- "1" Job : selects  >
@@ -115,11 +110,11 @@ FleetManager "1" -- "1..*" Equipment : manages >
 FleetManager "1" -- "1..*" Machine : manages >
 FleetManager "1" - "1..*" CheckUp : register >
 Vehicle "0..*" -- "1" CheckUp : need >
-Vehicle "0..*" -- "1" Type : cataloged as >
+Vehicle "0..*" -- "1" VehicleType : cataloged as >
 Team "1" -- "2..*" Collaborator : has >
 Task "1" -- "1..*" Skill : need >
-Agenda "1" -- "0..*" Task : has >
-Task "1" -- "1" Team : assigned to >
+Organization "1" -- "0..*" Task : has >
+Task "1..*" -- "1" Team : assigned to >
 
 @enduml
 

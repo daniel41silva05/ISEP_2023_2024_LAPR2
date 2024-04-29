@@ -108,7 +108,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Organizations**
 
-* MusgoSublime
+* Organization
 
 ---
 
@@ -141,7 +141,6 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 An association is a relationship between instances of objects that indicates a relevant connection and that is worth of remembering, or it is derivable from the List of Common Associations:
 
-- **_Agenda_** has **_Task_**
 - **_Collaborator_** has **_Skill_**
 - **_Collaborator_** has **_Job_**
 - **_FleetManager_** register **_Vehicle_**
@@ -158,52 +157,49 @@ An association is a relationship between instances of objects that indicates a r
 - **_Job_** assigned to **_Collaborator_**
 - **_LargeSizedPark_** is a **_GreenSpace_**
 - **_MediumSizedPark_** is a **_GreenSpace_**
-- **_MusgoSublime_** is a **_Organization_**
-- **_MusgoSublime_** manages **_GreenSpace_**
-- **_Organization_** owns **_Agenda_**
+- **_Organization_** manages **_GreenSpace_**
 - **_Organization_** has **_GreenSpaceManager_**
 - **_Organization_** has **_GreenSpaceUser_**
 - **_Organization_** has **_HumanResourcesManager_**
 - **_Organization_** has **_FleetManager_**
+- **_Organization_** has **_Task_**
 - **_Skill_** assigned to **_Collaborator_**
 - **_Task_** need **_Skill_**
 - **_Task_** assigned to **_Team_**
-- **_Team_** owns **_Collaborator_**
+- **_Team_** has **_Collaborator_**
 - **_Vehicle_** cataloged as **_TypeVehicle_**
-- **_Vehicle_** owns **_CheckUp_**
+- **_Vehicle_** need **_CheckUp_**
 
-| Concept (A) 		        |    Association   	     |             Concept (B) |
-|-----------------------|:----------------------:|------------------------:|
-| Agenda                |          has           |                    Task |
-| Collaborator          |          has           |                   Skill |
-| Collaborator          |          has           |                     Job |
-| FleetManager          |        register        |                 Vehicle |
-| FleetManager          |        creates         |                 CheckUp |
-| FleetManager          |        manages         |                 Machine |
-| FleetManager          |        manages         |               Equipment |
-| Garden                |           is           |              GreenSpace |
-| HumanResourcesManager |        register        |            Collaborator |
-| HumanResourcesManager |        register        |                   Skill |
-| HumanResourcesManager |        selects         |                     Job |
-| HumanResourcesManager |        register        |                     Job |
-| HumanResourcesManager |        selects         |                   Skill |
-| HumanResourcesManager |       generates        |                    Team |
-| Job                   |      assigned to       |            Collaborator |
-| LargeSizedPark        |          is a          |              GreenSpace |
-| MediumSizedPark       |          is a          |              GreenSpace |
-| MusgoSublime          |          is a          |            Organization |
-| MusgoSublime          |        manages         |              GreenSpace |
-| Organization          |          owns          |                  Agenda |
-| Organization          |          has           |            FleetManager |
-| Organization          |          has           |   HumanResourcesManager |
-| Organization          |          has           |       GreenSpaceManager |
-| Organization          |          has           |          GreenSpaceUser |
-| Skill                 |      assigned to       |            Collaborator |
-| Task                  |          need          |                   Skill |
-| Task                  |      assigned to       |                    Team |
-| Team                  |          owns          |            Collaborator |
-| Vehicle               |      cataloged as      |             TypeVehicle |
-| Vehicle               |          owns          |                 CheckUp |
+| Concept (A) 		        | Association   	 |           Concept (B) |
+|-----------------------|:---------------:|----------------------:|
+| Collaborator          |       has       |                 Skill |
+| Collaborator          |       has       |                   Job |
+| FleetManager          |    register     |               Vehicle |
+| FleetManager          |     creates     |               CheckUp |
+| FleetManager          |     manages     |               Machine |
+| FleetManager          |     manages     |             Equipment |
+| Garden                |       is        |            GreenSpace |
+| HumanResourcesManager |    register     |          Collaborator |
+| HumanResourcesManager |    register     |                 Skill |
+| HumanResourcesManager |     selects     |                   Job |
+| HumanResourcesManager |    register     |                   Job |
+| HumanResourcesManager |     selects     |                 Skill |
+| HumanResourcesManager |    generates    |                  Team |
+| Job                   |   assigned to   |          Collaborator |
+| LargeSizedPark        |      is a       |            GreenSpace |
+| MediumSizedPark       |      is a       |            GreenSpace |
+| Organization          |     manages     |            GreenSpace |
+| Organization          |       has       |                  Task |
+| Organization          |       has       |          FleetManager |
+| Organization          |       has       | HumanResourcesManager |
+| Organization          |       has       |     GreenSpaceManager |
+| Organization          |       has       |        GreenSpaceUser |
+| Skill                 |   assigned to   |          Collaborator |
+| Task                  |      need       |                 Skill |
+| Task                  |   assigned to   |                  Team |
+| Team                  |       has       |          Collaborator |
+| Vehicle               |  cataloged as   |           TypeVehicle |
+| Vehicle               |      need       |               CheckUp |
 
 
 ## Domain Model
