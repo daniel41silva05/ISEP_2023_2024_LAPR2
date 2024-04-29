@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Collaborator {
 
     private String name;
-    private String birthday;
-    private String admissionDate;
+    private Date birthday;
+    private Date admissionDate;
     private String address;
     private int phoneNumber;
     private String email;
@@ -14,7 +14,7 @@ public class Collaborator {
     private int idNumber;
     private Job job;
 
-    public Collaborator (String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator (String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
@@ -51,19 +51,19 @@ public class Collaborator {
         this.name = name;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
-    public String getAdmissionDate() {
+    public Date getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(String admissionDate) {
+    public void setAdmissionDate(Date admissionDate) {
         this.admissionDate = admissionDate;
     }
 

@@ -30,8 +30,8 @@ class Vehicle {
     -int tare
     -int grossWeight
     -int currentKm
-    -String registerDate
-    -String acquisitionDate
+    -Date registerDate
+    -Date acquisitionDate
     -int maintenanceCheckUpFrequency
     -String plateNumber
     +Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type)

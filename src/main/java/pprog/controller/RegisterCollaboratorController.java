@@ -1,6 +1,7 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
+import pprog.domain.Date;
 import pprog.domain.IdDocType;
 import pprog.domain.Job;
 import pprog.repository.CollaboratorRepository;
@@ -41,7 +42,7 @@ public class RegisterCollaboratorController {
         return getJobRepository();
     }
 
-    public Optional<Collaborator> registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
+    public Optional<Collaborator> registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
 
         Job job = getJobByName(jobName);
 

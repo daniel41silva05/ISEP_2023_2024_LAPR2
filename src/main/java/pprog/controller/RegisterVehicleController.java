@@ -1,5 +1,6 @@
 package pprog.controller;
 
+import pprog.domain.Date;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 import pprog.repository.Repositories;
@@ -27,7 +28,7 @@ public class RegisterVehicleController {
         return getVehicleRepository();
     }
 
-    public Optional<Vehicle> registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, String registerDate, String acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
+    public Optional<Vehicle> registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
 
         Optional<Vehicle> newVehicle = Optional.empty();
         Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);

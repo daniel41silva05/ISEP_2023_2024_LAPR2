@@ -1,5 +1,6 @@
 package pprog.repository;
 
+import pprog.domain.Date;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 
@@ -15,7 +16,7 @@ public class VehicleRepository {
         vehiclesList = new ArrayList<>();
     }
 
-    public Optional<Vehicle> registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, String registerDate, String acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
+    public Optional<Vehicle> registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
         Optional<Vehicle> newVehicle = Optional.empty();
         Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitonDate, maintenanceCheckUpFrequency, idNumber, type);
         if (addVehicle(vehicle)) {

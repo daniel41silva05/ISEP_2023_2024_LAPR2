@@ -9,13 +9,13 @@ public class Vehicle {
     private int tare;
     private int grossWeight;
     private int currentKm;
-    private String registerDate;
-    private String acquisitionDate;
+    private Date registerDate;
+    private Date acquisitionDate;
     private int maintenanceCheckUpFrequency;
     private String plateNumber;
     private VehicleType type;
 
-    public Vehicle(String brand, String model, int tare, int grossWeight, int currentKm, String registerDate, String acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
+    public Vehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
         this.brand = brand;
         this.model = model;
         this.tare = tare;
@@ -85,19 +85,19 @@ public class Vehicle {
         this.currentKm = currentKm;
     }
 
-    public String getRegisterDate() {
+    public Date getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(String registerDate) {
+    public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
     }
 
-    public String getAcquisitionDate() {
+    public Date getAcquisitionDate() {
         return acquisitionDate;
     }
 
-    public void setAcquisitionDate(String acquisitionDate) {
+    public void setAcquisitionDate(Date acquisitionDate) {
         this.acquisitionDate = acquisitionDate;
     }
 
