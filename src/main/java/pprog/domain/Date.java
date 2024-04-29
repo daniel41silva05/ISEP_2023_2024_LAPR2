@@ -46,4 +46,9 @@ public class Date {
             throw new IllegalArgumentException("Invalid year");
         }
     }
+
+    @Override
+    public String toString(){
+        return day + "/" + month + "/" + year;
+    }
 }

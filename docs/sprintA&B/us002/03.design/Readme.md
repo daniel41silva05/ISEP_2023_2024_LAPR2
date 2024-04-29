@@ -6,30 +6,29 @@
 
 _**Note that SSD - Alternative One is adopted.**_
 
-| Interaction ID | Question: Which class is responsible for...  | Answer              | Justification (with patterns)                                         |
-|:---------------|:---------------------------------------------|:--------------------|:----------------------------------------------------------------------|
-| Step 1  		     | 	... interacting with the HRM?               | CreateJobUI         | Pure Fabrication: Low coupling                                        |
-| 			  		        | 	... coordinating the US?                    | CreateJobController | Controller                                                            |
-| 			  		        | 	... instantiating a new Job?                | CreateJob           | Creator: Responsible for creating an object is the constructor method |
-| 			  		        | ... knowing the user using the system?       | UserSession         | IE: cf. A&A component documentation.                                  |
-| Step 2  		     | 	...saving the inputted data?						          | CreateJob           | IE: object created in step 1 has its own data.                        |
-| Step 3  		     | ... validating all data (local validation)?  | CreateJob           | IE: owns its data.                                                    |
-|                | ... validating all data (global validation)? | Organization        | IE: knows all its jobs.                                               |
-| Step 4  		     | ... saving the created job? 							          | Organization        |IE: owns all its tasks.                                                                         |              
-| Step 5  		     | ... informing operation success? 	           | CreateJobUI         |IE: is responsible for user interactions.                                                                         | 
+| Interaction ID | Question: Which class is responsible for...  | Answer                | Justification (with patterns)                                         |
+|:---------------|:---------------------------------------------|:----------------------|:----------------------------------------------------------------------|
+| Step 1  		     | 	... interacting with the HRM?               | RegisterJobUI         | Pure Fabrication: Low coupling                                        |
+| 			  		        | 	... coordinating the US?                    | RegisterJobController | Controller                                                            |
+| 			  		        | 	... instantiating a new Job?                | RegisterJob           | Creator: Responsible for creating an object is the constructor method |
+| 			  		        | ...      | ...                   | ...                                                                   |
+| Step 2  		     | 	...saving the inputted data?						          | Job                   | IE: object created in step 1 has its own data.                        |
+| Step 3  		     | ... validating all data (local validation)?  | RegisterJob           | IE: owns its data.                                                    |
+|                | ... validating all data (global validation)? | JobRepository         | IE: knows all its jobs.                                               |
+| Step 4  		     | ... saving the created job? 							          | JobRepository         | IE: owns all its tasks.                                               |              
+| Step 5  		     | ... informing operation success? 	           | RegisterJobUI         | IE: is responsible for user interactions.                             | 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* Organization
-* CreateJob
-* JobList
+* RegisterJob
+* JobRepository
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateJobUI  
-* CreateTaskController
+* RegisterJobUI  
+* RegisterJobController
 
 
 ## 3.2. Sequence Diagram (SD)
@@ -50,19 +49,8 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - split](svg/us002-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us002-sequence-diagram-partial-get-job-list.svg)
-
-**Get Task Category Object**
-
-![Sequence Diagram - Partial - Get Task Category Object](svg/us002-sequence-diagram-partial-get-task-category.svg)
-
-**Get Employee**
-
-![Sequence Diagram - Partial - Get Employee](svg/us002-sequence-diagram-partial-get-employee.svg)
-
-**Create Task**
+**Register Job**
 
 ![Sequence Diagram - Partial - Create Task](svg/us002-sequence-diagram-partial-create-job.svg)
 

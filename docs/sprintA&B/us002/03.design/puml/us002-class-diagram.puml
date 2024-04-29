@@ -62,7 +62,7 @@ RegisterJobController .> Repositories : repositories
 RegisterJobController ..> JobRepository : JobRepository
 Repositories --> "1" JobRepository
 
-Job --> HRM : createdBy
+HRM --> Job
 JobRepository --> "*" Job
 
 

@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US002 - Register a Job 
 
 ## 4. Tests 
 
@@ -16,7 +16,7 @@
 		public void ensureReferenceMeetsAC2() {
 		Category cat = new Category(10, "Category 10");
 		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
+		Task instance = new Task("A[svg](..%2F03.design%2Fsvg)b1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
 	}
 
 _It is also recommended to organize this content by subsections._ 
