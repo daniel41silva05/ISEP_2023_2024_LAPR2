@@ -11,6 +11,10 @@ public class JobRepository {
 
     public JobRepository() { jobsList = new ArrayList<>();}
 
+    public void addJob(Job job){
+        jobsList.add(job);
+    }
+
     public Job getJobByName (String jobName) {
         Job newJob = new Job(jobName);
         Job job = null;
