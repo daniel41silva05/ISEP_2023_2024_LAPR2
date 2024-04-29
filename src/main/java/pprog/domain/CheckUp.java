@@ -18,9 +18,11 @@ public class CheckUp {
     public int getDate() {
         return date;
     }
+
     public double getPlate() {
         return plate;
     }
+
     public void setDate(int date) {
         this.date = date;
     }
@@ -32,5 +34,6 @@ public class CheckUp {
     public void setPlate(double plate) {
         this.plate = plate;
     }
+
 
 }

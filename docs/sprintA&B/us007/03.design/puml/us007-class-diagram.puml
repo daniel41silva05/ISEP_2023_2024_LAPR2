@@ -15,7 +15,7 @@ class CheckUpRepository{
 }
 
 class FM {
-    - name
+    -String name
 }
 
 class CheckUp {
@@ -41,7 +41,6 @@ class RegisterCheckUpController {
 class RegisterCheckUpUI {
 }
 
-Repositories -> Repositories : instance
 
 RegisterCheckUpUI .> RegisterCheckUpController
 
@@ -49,10 +48,11 @@ RegisterCheckUpController .> Repositories : repositories
 
 Repositories -> "1" CheckUpRepository
 
-CheckUpRepository -> CheckUp
+CheckUpRepository -> CheckUp: *
 RegisterCheckUpController ..> CheckUpRepository : CheckUpRepository
 
-CheckUp --> FM : createdBy
+FM --> CheckUp
 
+Repositories -> Repositories : instance
 
 @enduml
