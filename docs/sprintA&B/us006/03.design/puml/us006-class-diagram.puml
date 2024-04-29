@@ -14,7 +14,7 @@ class RegisterVehicleUI {
 }
 
 class RegisterVehicleControlller {
-    +RegisterVehicleController()
+    +RegisterVehicleController(vehicleRepository)
     +registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type)
 }
 
@@ -39,14 +39,18 @@ class Vehicle {
 }
 
 class VehicleType {
-    -String passengersOrMixed
-    -String lightOrHeavy
-    -String openBoxOrClosedVansOrTrucks
-    +VehicleType(passengersOrMixed, lightOrHeavy, openBoxOrClosedVansOrTrucks)
+    +TypeTransport {PASSENGERS, MIXED}
+    +PackageWeight {LIGHT, HEAVY}
+    +Transport {OPEN_BOX, CLOSED_VANS, TRUCKS}
+    -TypeTransport typeTransport
+    -PackageWeight packageWeight
+    -Transport transport
+    +VehicleType(typeTransport, packageWeight, transport)
 }
 
 class FM {
     - name
+    + FM(name)
 }
 
 class Repositories {
@@ -62,6 +66,5 @@ Repositories --> Repositories: instance
 Repositories --> "1" VehicleRepository
 VehicleRepository --> "*" Vehicle
 Vehicle --> "1" VehicleType
-FM --> Vehicle
 
 @enduml
