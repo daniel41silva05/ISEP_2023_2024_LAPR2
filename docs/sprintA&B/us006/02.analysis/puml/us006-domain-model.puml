@@ -23,22 +23,21 @@ class Vehicle {
     acquisitionDate
     maintenanceCheckUpFrequency
     plateNumber
-    type
 }
 
 class FleetManager {
     name
 }
 
-class Type {
-    passengersOrMixed
-    lightOrHeavy
-    openBoxOrClosedVansOrTrucks
+class VehicleType {
+    typeTransport
+    packageWeight
+    transport
 }
 
-Organization "1" -- "1" FleetManager : has >
-Organization "1" -- "1..*" Vehicle : owns >
+Organization "1" -- "1..*" FleetManager : has >
+Organization "1" -- "1..*" Vehicle : has >
 FleetManager "1" -- "1..*" Vehicle : register >
-Vehicle "0..*" -- "1" Type : cataloged as >
+Vehicle "0..*" -- "1" VehicleType : cataloged as >
 
 @enduml

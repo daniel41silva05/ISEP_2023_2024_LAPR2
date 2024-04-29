@@ -1,25 +1,49 @@
 package pprog.repository;
 
-import pprog.domain.Collaborator;
+import pprog.domain.Date;
 import pprog.domain.Vehicle;
+import pprog.domain.VehicleType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VehicleRepository {
 
-    private List<Vehicle> vehicles;
+    private final List<Vehicle> vehiclesList;
 
     public VehicleRepository() {
-        this.vehicles = new ArrayList<>();
+        vehiclesList = new ArrayList<>();
     }
 
-    public void save(Vehicle vehicle) {
-        vehicles.add(vehicle);
+    public Optional<Vehicle> registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
+        Optional<Vehicle> newVehicle = Optional.empty();
+        Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitonDate, maintenanceCheckUpFrequency, idNumber, type);
+        if (addVehicle(vehicle)) {
+            newVehicle = Optional.of(vehicle);
+        }
+        return newVehicle;
     }
 
-    public List<Vehicle> getAllVehicle() {
-        return vehicles;
+    private boolean addVehicle (Vehicle vehicle) {
+        boolean success = false;
+        if (validateVehicle(vehicle)) {
+            success = vehiclesList.add(vehicle.clone());
+        }
+        return success;
     }
 
+    private boolean validateVehicle (Vehicle vehicle) {
+        boolean isValid = !vehiclesList.contains(vehicle);
+        return isValid;
+    }
+
+    public List<Vehicle> getVehiclesList() {
+        return vehiclesList;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicles=" + vehiclesList + '}';
+    }
 }

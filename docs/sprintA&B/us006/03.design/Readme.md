@@ -6,29 +6,28 @@
 
 _**Note that SSD - Alternative One is adopted.**_
 
-| Interaction ID | Question: Which class is responsible for... | Answer                     | Justification (with patterns)                                                                                 |
-|:---------------|:--------------------- |:---------------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		     | 	... interacting with the actor?              | RegisterVehicleUI          | ...                           |
-| 		             | 	... coordinating the US?                     | RegisterVehicleControlller | Controller                    |
-| Step 2 		      | 	...                                          | ...                        | ...                           |
-| Step 3 		      | 	... saving the inputted data?                | Vehicle                    | ...                           |
-| Step 4 		      | 	...                                          | ...                        | ...                           |
-| Step 5 		      | 	... validating all data (local validation)?  | ...                        | ...                           |
-| 		             | 	... validating all data (global validation)? | ...                        | ...                           |
-| 		             | 	... saving the registered collaborator?      | ...                        | ...                           |
-| Step 6 		      | 	... informing operation success?             | RegisterCollaboratorUI     | ...                           | 
+| Interaction ID | Question: Which class is responsible for...   | Answer                     | Justification (with patterns)                                                                                                                                     |
+|:---------------|:----------------------------------------------|:---------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Step 1  		     | 	... interacting with the actor?              | RegisterVehicleUI          | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model                                                      |
+| 		             | 	... coordinating the US?                     | RegisterVehicleControlller | Controller                                                                                                                                                        |
+| Step 2 		      | 	                                             |                            |                                                                                                                                                                   |
+| Step 3 		      | 	... saving the inputted data?                | Vehicle                    | Information Expert: object created in step 1 has its own data                                                                                                     |
+| Step 4 		      | 	                                             |                            |                                                                                                                                                                   |
+| Step 5 		      | 	... validating all data (local validation)?  | Vehicle                    | Information Expert: owns its data                                                                                                                                 |
+| 		             | 	... validating all data (global validation)? | VehicleRepository          | Information Expert: knows all vehicles                                                                                                                            |
+| 		             | 	... saving the registered vehicle?           | VehicleRepository                        | Information Expert: owns all vehicles                                                                                                                             |
+| Step 6 		      | 	... informing operation success?             | RegisterVehicleUI     | Information Expert: is responsible for user interactions                                                                                                          | 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* ...
 * Vehicle
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
 * RegisterVehicleUI  
-* RegisterCollaboratorUI
+* RegisterVehicleController
 
 
 ## 3.2. Sequence Diagram (SD)

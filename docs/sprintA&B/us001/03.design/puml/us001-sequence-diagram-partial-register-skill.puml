@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+participant "skillRepository:\nSkillRepository" as SkillREP
+participant "skill:\nSkill" as SKILL
+
+autonumber 12
+
+ -> SkillREP : registerSkill()
+autonumber 12.1
+activate SkillREP
+    group register Skill
+
+            SkillREP -> SKILL** : register (name)
+
+            SkillREP -> SkillREP : addSkill (skill)
+
+            SkillREP -> SkillREP : validateSkill (skill)
+    end
+    autonumber 13
+    <-- SkillREP  : skill
+deactivate SkillREP
+
+
+
+@enduml

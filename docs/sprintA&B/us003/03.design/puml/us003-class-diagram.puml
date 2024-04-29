@@ -13,9 +13,10 @@ class RegisterCollaboratorUI {
 }
 
 class RegisterCollaboratorController {
-    +RegisterCollaboratorController()
+    +RegisterCollaboratorController(collaboratorRepository, jobRepository)
+    +registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, jobName)
+    -getJobByName(jobName)
     +getJobsList()
-    +registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
 }
 
 class CollaboratorRepository {
@@ -26,19 +27,17 @@ class CollaboratorRepository {
 
 class Collaborator {
     -String name
-    -String birthday
-    -String admissionDate
+    -Date birthday
+    -Date admissionDate
     -String address
     -int phoneNumber
     -String email
-    -String idDocType
     -int idNumber
     +Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
-
 }
 
 class JobRepository {
-    +getJobsList()
+    +getJobsByName(jobName)
 }
 
 class Job {
@@ -46,8 +45,9 @@ class Job {
     +Job(name)
 }
 
-class HRM {
+class HumanResourcesManager {
     - name
+    +HumanResourcesManager(name)
 }
 
 class Repositories {
@@ -55,6 +55,12 @@ class Repositories {
     + getInstance() : Repositories
     + getJobRepository()
     + getCollaboratorRepository()
+}
+
+enum IdDocType {
+    + TAXPAYER_NUMBER
+    + CITIZEN_CARD
+    + PASSPORT
 }
 
 RegisterCollaboratorUI ..> RegisterCollaboratorController
@@ -67,7 +73,6 @@ Repositories --> "1" JobRepository
 CollaboratorRepository --> "*" Collaborator
 JobRepository --> "*" Job
 Collaborator --> "1" Job
-HRM --> Collaborator
-HRM --> Job
+Collaborator --> "1" IdDocType
 
 @enduml

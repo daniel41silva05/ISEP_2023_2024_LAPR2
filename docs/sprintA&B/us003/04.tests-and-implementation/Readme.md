@@ -2,11 +2,11 @@
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Collaborator class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
+		Collaborator instance = new Collaborator(null, null, null, null, null, null, null, null, null);
 	}
 	
 
@@ -24,7 +24,7 @@ _It is also recommended to organize this content by subsections._
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class RegisterVehicleController 
 
 ```java
 public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
@@ -42,7 +42,7 @@ public Task createTask(String reference, String description, String informalDesc
 }
 ```
 
-### Class Organization
+### Class CollaboratorRepository
 
 ```java
 public Optional<Task> createTask(String reference, String description, String informalDescription,

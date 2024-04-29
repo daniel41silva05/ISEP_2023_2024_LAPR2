@@ -2,54 +2,66 @@ package pprog.domain;
 
 public class VehicleType {
 
-    public enum PassengersOrMixed {
-        PASSENGERS, MIXED
+    public enum TypeTransport {
+        PASSENGERS, MIXED;
+        @Override
+        public String toString() {
+            return name().charAt(0) + name().substring(1).toLowerCase().replace('_', ' ');
+        }
     }
-    public enum LightOrHeavy {
-        LIGHT, HEAVY
+    public enum PackageWeight {
+        LIGHT, HEAVY;
+        @Override
+        public String toString() {
+            return name().charAt(0) + name().substring(1).toLowerCase().replace('_', ' ');
+        }
     }
-    public enum OpenBoxOrClosedVansOrTrucks {
-        OPEN_BOX, CLOSED_VANS, TRUCKS
-    }
-
-    private PassengersOrMixed passengersOrMixed;
-    private LightOrHeavy lightOrHeavy;
-    private OpenBoxOrClosedVansOrTrucks openBoxOrClosedVansOrTrucks;
-
-    public VehicleType(PassengersOrMixed passengersOrMixed, LightOrHeavy lightOrHeavy, OpenBoxOrClosedVansOrTrucks openBoxOrClosedVansOrTrucks) {
-        this.passengersOrMixed = passengersOrMixed;
-        this.lightOrHeavy = lightOrHeavy;
-        this.openBoxOrClosedVansOrTrucks = openBoxOrClosedVansOrTrucks;
-    }
-
-    public PassengersOrMixed getPassengersOrMixed() {
-        return passengersOrMixed;
+    public enum Transport {
+        OPEN_BOX, CLOSED_VANS, TRUCKS;
+        @Override
+        public String toString() {
+            return name().charAt(0) + name().substring(1).toLowerCase().replace('_', ' ');
+        }
     }
 
-    public void setPassengersOrMixed(PassengersOrMixed passengersOrMixed) {
-        this.passengersOrMixed = passengersOrMixed;
+    private TypeTransport typeTransport;
+    private PackageWeight packageWeight;
+    private Transport transport;
+
+    public VehicleType(TypeTransport typeTransport, PackageWeight packageWeight, Transport transport) {
+        this.typeTransport = typeTransport;
+        this.packageWeight = packageWeight;
+        this.transport = transport;
     }
 
-    public LightOrHeavy getLightOrHeavy() {
-        return lightOrHeavy;
+    public TypeTransport getTypeTransport() {
+        return typeTransport;
     }
 
-    public void setLightOrHeavy(LightOrHeavy lightOrHeavy) {
-        this.lightOrHeavy = lightOrHeavy;
+    public void setTypeTransport(TypeTransport typeTransport) {
+        this.typeTransport = typeTransport;
     }
 
-    public OpenBoxOrClosedVansOrTrucks getOpenBoxOrClosedVansOrTrucks() {
-        return openBoxOrClosedVansOrTrucks;
+    public PackageWeight getPackageWeight() {
+        return packageWeight;
     }
 
-    public void setOpenBoxOrClosedVansOrTrucks(OpenBoxOrClosedVansOrTrucks openBoxOrClosedVansOrTrucks) {
-        this.openBoxOrClosedVansOrTrucks = openBoxOrClosedVansOrTrucks;
+    public void setPackageWeight(PackageWeight packageWeight) {
+        this.packageWeight = packageWeight;
+    }
+
+    public Transport getTransport() {
+        return transport;
+    }
+
+    public void setTransport(Transport transport) {
+        this.transport = transport;
     }
 
     @Override
     public String toString() {
-        return String.format("Passengers/Mixed: %s\nLight/Heavy: %s\nOpenBox/ClosedVans/Trucks: %s",
-                passengersOrMixed, lightOrHeavy, openBoxOrClosedVansOrTrucks);
+        return String.format("Type Transport: %s\nPackage Weight: %s\nTransport: %s",
+                typeTransport, packageWeight, transport);
     }
 }
 

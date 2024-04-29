@@ -1,13 +1,12 @@
 package pprog.domain;
 
+import java.util.Objects;
+
 public class Collaborator {
-    
-    public enum IdDocType {
-        taxpayerNumber, citizenCard, passport
-    }
+
     private String name;
-    private String birthday;
-    private String admissionDate;
+    private Date birthday;
+    private Date admissionDate;
     private String address;
     private int phoneNumber;
     private String email;
@@ -15,7 +14,7 @@ public class Collaborator {
     private int idNumber;
     private Job job;
 
-    public Collaborator (String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator (String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
@@ -27,6 +26,23 @@ public class Collaborator {
         this.job = job;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Collaborator)) {
+            return false;
+        }
+        Collaborator that = (Collaborator) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
     public String getName() {
         return name;
     }
@@ -35,19 +51,19 @@ public class Collaborator {
         this.name = name;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
-    public String getAdmissionDate() {
+    public Date getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(String admissionDate) {
+    public void setAdmissionDate(Date admissionDate) {
         this.admissionDate = admissionDate;
     }
 
@@ -97,6 +113,10 @@ public class Collaborator {
 
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    public Collaborator clone() {
+        return new Collaborator(this.name, this.birthday, this.admissionDate, this.address, this.phoneNumber, this.email, this.idDocType, this.idNumber, this.job);
     }
 
     @Override

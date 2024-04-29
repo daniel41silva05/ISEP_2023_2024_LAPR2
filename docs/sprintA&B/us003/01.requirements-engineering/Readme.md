@@ -59,7 +59,7 @@ For example, in the address example@mail.com, "example" is the email prefix, and
 * **AC04:** Birthdate and admission data can only contain numbers and follow the format xx/xx/xxxx
 * **AC05:** Birthdate must be 18 years older than the current date.
 * **AC06:** Residence must be written including: street, zipcode (must contain numbers and respect the format "xxxx-xxx") and city.
-* **AC07:** Phone number must have "+" followed by 3 numbers and then 9 numbers or just 9 numbers.
+* **AC07:** Phone number must have just 9 numbers.
 * **AC08:** The email must contain a prefix to the left of the @ symbol and a domain to its right.
 * **AC09:** User will select an identification document type from a list (taxpayer number/citizen card/passport)
 * **AC11:** Taxpayer number must contain 9 numbers.

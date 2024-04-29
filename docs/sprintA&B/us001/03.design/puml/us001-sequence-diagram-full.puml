@@ -1,0 +1,72 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Human Resources\nManager" as HRM
+participant ":CreateSkillUI" as UI
+participant ":CreateSkillController" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "skillRepository:\nSkillRepository" as SkillREP
+participant "skill:\nSkill" as SKILL
+
+activate HRM
+
+    HRM -> UI : asks to create a skill
+    activate UI
+
+        UI -> CTRL** : create
+
+    UI --> HRM : requests data
+    deactivate UI
+
+    HRM -> UI : types requested data
+    activate UI
+
+    UI --> HRM:Shows all data and requests confirmation for the operation
+    deactivate UI
+
+    HRM -> UI :Confirms data
+    activate UI
+
+        UI -> CTRL : registerSkill (name)
+        activate CTRL
+
+            CTRL -> REP : getInstance()
+            activate REP
+
+            REP --> CTRL : repository
+            deactivate REP
+
+            CTRL -> REPS : getSkillRepository
+            activate REPS
+
+            REPS --> CTRL : Skill Repository
+            deactivate REPS
+
+            CTRL -> SkillREP : registerSkill (name)
+            activate SkillREP
+
+            SkillREP -> SKILL** : register (name)
+
+                SkillREP -> SkillREP : addSkill (skill)
+
+                SkillREP -> SkillREP : validateSkill (skill)
+
+            SkillREP --> CTRL : skill
+            deactivate SkillREP
+
+        CTRL --> UI : skill
+        deactivate CTRL
+
+    UI --> HRM :Displays operation success
+    deactivate UI
+
+deactivate HRM
+
+
+@enduml

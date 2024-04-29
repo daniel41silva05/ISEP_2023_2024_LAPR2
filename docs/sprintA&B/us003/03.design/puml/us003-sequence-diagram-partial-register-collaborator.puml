@@ -6,22 +6,29 @@ skinparam shadowing false
 participant "collaboratorRepository:\ncollaboratorRepository" as collaboratorRepository
 participant "collaborator\n:Collaborator" as COLLABORATOR
 
-autonumber 16
--> collaboratorRepository : registerCollaborator(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
+autonumber 18
+-> collaboratorRepository : registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
 
-autonumber 16.1
+autonumber 18.1
 
 activate collaboratorRepository
     group Register Collaborator
-
-                collaboratorRepository -> COLLABORATOR** : register(job, name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber)
+                collaboratorRepository -> COLLABORATOR** : register(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
 
                 collaboratorRepository -> collaboratorRepository: addCollaborator (colaborator)
+                activate collaboratorRepository
 
                 collaboratorRepository -> collaboratorRepository: validateCollaborator (colaborator)
+                activate collaboratorRepository
+
+                collaboratorRepository --> collaboratorRepository
+                deactivate collaboratorRepository
+
+                collaboratorRepository --> collaboratorRepository
+                deactivate collaboratorRepository
     end group
 
-    autonumber 17
+    autonumber 19
     <-- collaboratorRepository : collaborator
 deactivate collaboratorRepository
 

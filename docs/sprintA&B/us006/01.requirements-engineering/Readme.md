@@ -40,7 +40,7 @@ As an FM, I wish to register a vehicle including Brand, Model, Type, Tare, Gross
 * **AC04:** Different cars cannot have the same plate id.
 * **AC05:** Type of vehicle can be only for passengers or mixed, light or heavy, open box or closed vans or trucks.
 * **AC06:** Tare, Gross Weight and Current Km can only contain numbers that are not negative and their respective unit of measurement.
-* **AC07:** Register and Acquisition Date can only contain numbers and must follow the format provided.
+* **AC07:** Register and Acquisition Date can only contain numbers and follow the format xx/xx/xxxx.
 * **AC08:** Maintenance/Check-up Frequency must be in Kms.
 * **AC09:** Vehicle must not already registered.
 * **AC10:** System must ensure that only FM registers vehicles.
