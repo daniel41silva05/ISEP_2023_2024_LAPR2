@@ -1,11 +1,17 @@
 package pprog.domain;
 
+import pprog.domain.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CheckUp {
 
-    private int date;
-    private double plate, KMS;
+    private String plate;
+    private Date date;
+    private double KMS;
 
-    public CheckUp(int date, double plate, double KMS) {
+    public CheckUp(Date date, String plate, double KMS) {
         this.date = date;
         this.plate = plate;
         this.KMS = KMS;
@@ -16,11 +22,11 @@ public class CheckUp {
     }
 
     public int getDate() {
-        return date;
+        return date.toString();
     }
 
     public double getPlate() {
-        return plate;
+        String plate;
     }
 
     public void setDate(int date) {
@@ -31,9 +37,10 @@ public class CheckUp {
         this.KMS = KMS;
     }
 
-    public void setPlate(double plate) {
+    public void setPlate(String plate) {
         this.plate = plate;
     }
 
-
+    @Override
+    public String toString(){ return date + " " + plate + " " + KMS; }
 }
