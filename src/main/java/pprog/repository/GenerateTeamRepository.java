@@ -45,7 +45,7 @@ public class GenerateTeamRepository {
         }
 
         GenerateTeamRepository outraTeam = (GenerateTeamRepository) outroObjeto;
-        if (!(this.teamList.size() == outraTeam.teamList.size()) {
+        if (!(this.teamList.size() == outraTeam.teamList.size())) {
             return false;
         }
 
