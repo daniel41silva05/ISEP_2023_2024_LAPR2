@@ -45,9 +45,9 @@ class Job {
     +Job(name)
 }
 
-class HRM {
+class HumanResourcesManager {
     - name
-    +HRM(name)
+    +HumanResourcesManager(name)
 }
 
 class Repositories {

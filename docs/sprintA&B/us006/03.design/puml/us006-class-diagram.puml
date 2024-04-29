@@ -48,9 +48,9 @@ class VehicleType {
     +VehicleType(typeTransport, packageWeight, transport)
 }
 
-class FM {
+class FleetManager {
     - name
-    + FM(name)
+    + FleetManager(name)
 }
 
 class Repositories {

@@ -1,13 +1,14 @@
 package pprog.domain;
 
+import pprog.repository.CollaboratorRepository;
+import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
-import pprog.repository.VehicleRepository;
 
-public class FM {
+public class HumanResourcesManager {
 
     private String name;
 
-    public FM (String name) {
+    public HumanResourcesManager (String name) {
         this.name = name;
     }
 
@@ -21,6 +22,7 @@ public class FM {
 
     @Override
     public String toString() {
-        return String.format("Fleet Manager: %s\n", name);
+        return String.format("Human Resources Manager: %s\n", name);
     }
+
 }

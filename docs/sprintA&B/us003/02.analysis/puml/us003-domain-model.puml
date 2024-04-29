@@ -32,7 +32,7 @@ class Job {
     name
 }
 
-enum IDDocType {
+enum IdDocType {
     type
 }
 
@@ -43,6 +43,6 @@ HumanResourcesManager "1" -- "1" Job : selects  >
 Job "1" -- "0..*" Collaborator : assigned to >
 HumanResourcesManager "1" -- "1..*" Collaborator : register >
 Collaborator "0..*" -- "1" Job : has >
-Collaborator "0..*" -- "1" IDDocType : has >
+Collaborator "0..*" -- "1" IdDocType : has >
 
 @enduml
