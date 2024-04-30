@@ -14,8 +14,9 @@ class Skill {
     + validateSkill(skill)
 }
 
-class HRM {
+class HumanResourcesManager {
     - name
+    + HumanResourcesManager(name)
 }
 
 class SkillRepository {
@@ -43,7 +44,7 @@ RegisterSkillController ..> Repositories
 RegisterSkillController ..> SkillRepository
 RegisterSkillController ..> Skill
 Repositories --> SkillRepository
-HRM --> Skill
+HumanResourcesManager --> Skill
 SkillRepository --> Skill
 
 
