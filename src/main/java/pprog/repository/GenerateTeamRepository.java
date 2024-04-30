@@ -57,4 +57,6 @@ public class GenerateTeamRepository {
 
         return teamListTemp.equals(outraTeamListTemp);
     }
+
+
 }

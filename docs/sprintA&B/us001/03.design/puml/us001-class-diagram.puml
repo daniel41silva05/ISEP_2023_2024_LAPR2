@@ -11,15 +11,17 @@ class Skill {
     - String name
 
     + Skill(name)
+    + validateSkill(skill)
 }
 
-class HRM {
+class HumanResourcesManager {
     - name
+    + HumanResourcesManager(name)
 }
 
 class SkillRepository {
     - addSkill(skill)
-    - validateSkill(skill)
+    - isSkillInList(skill)
     + registerSkill(name)
 }
 
@@ -42,7 +44,7 @@ RegisterSkillController ..> Repositories
 RegisterSkillController ..> SkillRepository
 RegisterSkillController ..> Skill
 Repositories --> SkillRepository
-HRM --> Skill
+HumanResourcesManager --> Skill
 SkillRepository --> Skill
 
 
