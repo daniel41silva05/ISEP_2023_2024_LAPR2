@@ -4,19 +4,50 @@ import pprog.domain.Job;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
+/**
+ * Controller class responsible for registering jobs.
+ */
 public class RegisterJobController {
 
+    /**
+     * The repository where the job data is stored.
+     */
     private JobRepository jobRepository;
 
-    // Método para registrar um novo cargo
-    public void registerJob(String name, String description) {
-        // Obter instância do repositório de cargos
-        jobRepository = Repositories.getInstance().getJobRepository();
+    /**
+     * Default constructor. Retrieves the job repository instance.
+     */
+    public RegisterJobController() {
+        getJobRepository();
+    }
 
-        // Criar um novo objeto de cargo
-        Job job = new Job(name, description);
+    /**
+     * Constructor to set a specific job repository.
+     * @param jobRepository The job repository to be set.
+     */
+    public RegisterJobController(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
 
-        // Adicionar o cargo ao repositório
-        jobRepository.addJob(job);
+    /**
+     * Retrieves the job repository instance if not already set.
+     * @return The job repository instance.
+     */
+    private JobRepository getJobRepository() {
+        if (jobRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            jobRepository = repositories.getJobRepository();
+        }
+        return jobRepository;
+    }
+
+    /**
+     * Registers a new job.
+     * @param name The name of the job.
+     * @param description The description of the job.
+     * @return The registered job object.
+     */
+    public Job registerJob(String name, String description) {
+        return jobRepository.registerJob(name, description);
     }
 }
