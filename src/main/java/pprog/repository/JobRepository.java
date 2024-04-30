@@ -23,8 +23,27 @@ public class JobRepository {
     }
 
     /**
+     * Registers a new job in the repository.
+     *
+     * @param name                   The name of the job.
+     * @param description            The description of the job.
+     * @return                       The newly registered job, or null if registration fails.
+     */
+    public Job registerJob(String name, String description) {
+        Job newJob = null;
+        Job job = new Job(name, description);
+
+        if (addJob(job)){
+            newJob = job;
+        }
+        return newJob;
+    }
+
+    /**
      * Adds a job to the repository.
-     * @param job The job to be added.
+     *
+     * @param job       The job to be added.
+     * @return          True if the vehicle is successfully added, false otherwise.
      */
     public boolean addJob(Job job){
         boolean success = false;
@@ -76,13 +95,4 @@ public class JobRepository {
         return "Jobs=" + jobsList + '}';
     }
 
-    public Job registerJob(String name, String description) {
-        Job newJob = null;
-        Job job = new Job(name, description);
-
-        if (addJob(job)){
-            newJob = job;
-        }
-        return newJob;
-    }
 }
