@@ -66,35 +66,6 @@ public class SkillRepository {
     }
 
     /**
-     * Indicates whether some other object is "equal to" this one.
-     *
-     * @param outroObjeto the reference object with which to compare
-     * @return true if this object is the same as the obj argument; false otherwise
-     */
-    @Override
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
-            return true;
-        }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
-            return false;
-        }
-
-        SkillRepository outraSkillsList = (SkillRepository) outroObjeto;
-        if (!(this.skillsList.size() == outraSkillsList.skillsList.size())) {
-            return false;
-        }
-
-        List<Skill> skillsListTemp = new ArrayList<>(this.skillsList);
-        List<Skill> outraSkillsListTemp = new ArrayList<>(outraSkillsList.skillsList);
-
-        Collections.sort(skillsListTemp);
-        Collections.sort(outraSkillsListTemp);
-
-        return skillsListTemp.equals(outraSkillsListTemp);
-    }
-
-    /**
      * Adds a skill to the repository.
      *
      * @param s the skill to add

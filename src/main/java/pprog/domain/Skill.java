@@ -3,7 +3,7 @@ package pprog.domain;
 /**
  * Represents a skill.
  */
-public class Skill implements Comparable<Skill> {
+public class Skill {
 
     /**
      * The skill value.
@@ -75,17 +75,6 @@ public class Skill implements Comparable<Skill> {
         }
         Skill outraSkill = (Skill) outroObjeto;
         return skill.equalsIgnoreCase(outraSkill.skill);
-    }
-
-    /**
-     * Compares this skill with the specified skill for order.
-     *
-     * @param s the skill to be compared
-     * @return a negative integer, zero, or a positive integer as this skill is less than, equal to, or greater than the specified skill
-     */
-    @Override
-    public int compareTo(Skill s) {
-        return this.skill.compareTo(s.skill);
     }
 
     /**
