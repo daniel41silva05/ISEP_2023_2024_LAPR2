@@ -26,7 +26,7 @@ public class JobRepository {
      * @param job The job to be added.
      */
     public void addJobList(Job job){
-
+        jobsList.add(job);
     }
 
     /**
@@ -60,7 +60,4 @@ public class JobRepository {
         return "Jobs=" + jobsList + '}';
     }
 
-    public Job registerJob(String name, String description) {
-        jobsList.add(job);
-    }
 }
