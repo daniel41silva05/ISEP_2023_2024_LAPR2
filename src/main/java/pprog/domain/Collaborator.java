@@ -1,5 +1,10 @@
 package pprog.domain;
 
+import pprog.repository.SkillRepository;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,6 +39,8 @@ public class Collaborator {
     /** The job of the collaborator. */
     private Job job;
 
+    private List<Skill> skillAssign;
+
     /**
      * Constructs a new Collaborator object with the specified attributes.
      *
@@ -57,34 +64,7 @@ public class Collaborator {
         this.idDocType = idDocType;
         this.idNumber = idNumber;
         this.job = job;
-    }
-
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     *
-     * @param o The reference object with which to compare.
-     * @return true if this object is the same as the obj argument; false otherwise.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Collaborator)) {
-            return false;
-        }
-        Collaborator that = (Collaborator) o;
-        return name.equals(that.name);
-    }
-
-    /**
-     * Returns a hash code value for the object.
-     *
-     * @return A hash code value for this object.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+        this.skillAssign = new ArrayList<>();
     }
 
     /**
@@ -249,6 +229,19 @@ public class Collaborator {
         this.job = job;
     }
 
+
+    public List<Skill> getSkillAssign() {
+        return skillAssign;
+    }
+
+    public void setSkillAssign(List<Skill> skillAssign) {
+        this.skillAssign = skillAssign;
+    }
+
+    public void assignSkill (Skill skill) {
+        skillAssign.add(skill);
+    }
+
     /**
      * Creates and returns a copy of this collaborator.
      *
@@ -268,5 +261,26 @@ public class Collaborator {
         return String.format("Collaborator\nName: %s\nBirthday: %s\nAdmission Date: %s\nAddress: %s\nPhone Number: %d\nEmail: %s\nID Document Type: %s\nID Number: %d\nJob: %s\n",
                 name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
     }
+
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Collaborator outroCollaborator = (Collaborator) outroObjeto;
+        return name.equalsIgnoreCase(outroCollaborator.name) &&
+                birthday.equals(outroCollaborator.birthday) &&
+                admissionDate.equals(outroCollaborator.admissionDate) &&
+                address.equalsIgnoreCase(outroCollaborator.address) &&
+                phoneNumber == outroCollaborator.phoneNumber &&
+                email.equalsIgnoreCase(outroCollaborator.email) &&
+                idDocType.equals(outroCollaborator.idDocType) &&
+                idNumber == outroCollaborator.idNumber &&
+                job.equals(outroCollaborator.job);
+    }
+
 
 }

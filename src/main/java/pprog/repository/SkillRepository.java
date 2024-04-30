@@ -1,5 +1,6 @@
 package pprog.repository;
 
+import pprog.domain.Job;
 import pprog.domain.Skill;
 
 import java.util.ArrayList;
@@ -37,6 +38,14 @@ public class SkillRepository {
      *
      * @return the list of skills
      */
+    public Skill getSkillByName(String skillName) {
+        for (Skill skill : skillsList) {
+            if (skill.getSkill().equals(skillName)) {
+                return skill;
+            }
+        }
+        return null;
+    }
     public List<Skill> getSkillsList() {
         return skillsList;
     }
