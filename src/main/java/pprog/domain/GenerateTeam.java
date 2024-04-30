@@ -1,23 +1,26 @@
 package pprog.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GenerateTeam implements Comparable<GenerateTeam> {
 
     private int minSize;
     private int maxSize;
-    private Skill skill;
+    private List<Skill> skillsList;
     private static final int MIN_SIZE_POR_OMISSAO = 2;
     private static final int MAX_SIZE_POR_OMISSAO = 10000;
 
     public GenerateTeam() {
         minSize = MIN_SIZE_POR_OMISSAO;
         maxSize = MAX_SIZE_POR_OMISSAO;
-        skill = new Skill();
+        skillsList = new ArrayList<>();
     }
 
-    public GenerateTeam(int minSize, int maxSize, Skill skill) {
+    public GenerateTeam(int minSize, int maxSize, List<Skill> skillsList) {
         this.minSize = minSize;
         this.maxSize = maxSize;
-        this.skill = skill;
+        this.skillsList = skillsList;
     }
 
     public int getMinSize() {
@@ -28,8 +31,8 @@ public class GenerateTeam implements Comparable<GenerateTeam> {
         return maxSize;
     }
 
-    public Skill getSkill() {
-        return skill;
+    public List<Skill> getSkillsList() {
+        return skillsList;
     }
 
     public void setMinSize(int minSize) {
@@ -40,13 +43,13 @@ public class GenerateTeam implements Comparable<GenerateTeam> {
         this.maxSize = maxSize;
     }
 
-    public void setSkill(Skill skill) {
-        this.skill = skill;
+    public void setSkillsList(List<Skill> skillsList) {
+        this.skillsList = skillsList;
     }
 
     @Override
     public String toString() {
-        return String.format("Min Size: %d\nMax Size: %d\nSkill: %s", minSize, maxSize, skill);
+        return String.format("Min Size: %d\nMax Size: %d\nSkill: %s", minSize, maxSize, skillsList);
     }
 
     @Override
@@ -60,7 +63,7 @@ public class GenerateTeam implements Comparable<GenerateTeam> {
         GenerateTeam outraGenerateTeam = (GenerateTeam) outroObjeto;
         return minSize == outraGenerateTeam.minSize &&
                 maxSize == outraGenerateTeam.maxSize &&
-                skill.equals(outraGenerateTeam.skill);
+                skillsList.equals(outraGenerateTeam.skillsList);
     }
 
     @Override
@@ -75,7 +78,20 @@ public class GenerateTeam implements Comparable<GenerateTeam> {
             return maxSizeComparison;
         }
 
-        return this.skill.compareTo(gt.skill);
+        int skillsListSizeComparison = Integer.compare(this.skillsList.size(), gt.skillsList.size());
+        if (skillsListSizeComparison != 0) {
+            return skillsListSizeComparison;
+        }
+
+        for (int i = 0; i < this.skillsList.size(); i++) {
+            int skillComparison = this.skillsList.get(i).compareTo(gt.skillsList.get(i));
+            if (skillComparison != 0) {
+                return skillComparison;
+            }
+        }
+
+        return 0;
     }
+
 
 }
