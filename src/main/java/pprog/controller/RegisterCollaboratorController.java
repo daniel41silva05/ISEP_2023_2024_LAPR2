@@ -85,7 +85,7 @@ public class RegisterCollaboratorController {
      * @param jobName       the job name of the collaborator
      * @return the registered collaborator
      */
-    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
+    public Collaborator registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
         Job job = getJobByName(jobName);
         return collaboratorRepository.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
     }
