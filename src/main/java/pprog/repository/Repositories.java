@@ -19,6 +19,9 @@ public class Repositories {
     /** The repository for skills. */
     private final SkillRepository skillRepository;
 
+    /** The repository for check-ups. */
+    private final CheckUpRepository checkUpRepository;
+
     /**
      * Constructs a new Repositories object, initializing all repositories.
      */
@@ -27,6 +30,7 @@ public class Repositories {
         jobRepository = new JobRepository();
         vehicleRepository = new VehicleRepository();
         skillRepository = new SkillRepository();
+        checkUpRepository = new CheckUpRepository();
     }
 
     /**
@@ -75,5 +79,11 @@ public class Repositories {
     public SkillRepository getSkillRepository() {
         return skillRepository;
     }
+
+    /**
+     * Gets the repository for check-up.
+     * @return The CheckUpRepository.
+     */
+    public CheckUpRepository getCheckUpRepository(){ return checkUpRepository; }
 }
 
