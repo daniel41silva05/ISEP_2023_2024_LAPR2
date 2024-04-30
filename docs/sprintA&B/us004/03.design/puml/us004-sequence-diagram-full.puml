@@ -7,17 +7,13 @@ autonumber
 
 'hide footbox
 actor "Human Resources\n Manager" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant ":RegisterCollaboratorUI" as UI
+participant ":RegisterCollaboratorControlller" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "SkillsRepository:\nSkillsRepository" as SkillsRepository
+participant "collaboratorRepository:\ncollaboratorRepository" as collaboratorRepository
+participant "collaborator\n:Collaborator" as COLLABORATOR
 
 activate ADM
 
@@ -27,37 +23,36 @@ activate ADM
 
 '            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
             'create CTRL
-            UI -> CTRL** : create
-
-            UI -> CTRL : getTaskCategories()
-            activate CTRL
-
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: taskCategoryRepository
-                deactivate PLAT
-
-                CTRL -> TaskCategoryRepository : getTaskCategories()
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : taskCategoryList
-                deactivate TaskCategoryRepository
-
-                CTRL --> UI : taskCategoryList
-            deactivate CTRL
 
             UI --> ADM : displays list of collaborators and asks to select one
         deactivate UI
 
     ADM -> UI : selects the collaborator
     activate UI
+
+    UI -> CTRL : getSkillsList()
+        activate CTRL
+
+            CTRL -> REP : getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS : getSkillsRepository()
+            activate REPS
+
+            REPS --> CTRL: SkillsRepository
+            deactivate REPS
+
+            CTRL -> jobRepository: getSkillsList()
+            activate jobRepository
+
+            jobRepository --> CTRL : SkillsList
+            deactivate jobRepository
+
+            CTRL --> UI : SkillsList
+            deactivate CTRL
 
         UI --> ADM : displays list of skills
     deactivate UI
