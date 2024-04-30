@@ -36,27 +36,5 @@ public class GenerateTeamRepository {
         return s.toString();
     }
 
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
-            return true;
-        }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
-            return false;
-        }
-
-        GenerateTeamRepository outraTeam = (GenerateTeamRepository) outroObjeto;
-        if (!(this.teamList.size() == outraTeam.teamList.size())) {
-            return false;
-        }
-
-        List<GenerateTeam> teamListTemp = new ArrayList<>(this.teamList);
-        List<GenerateTeam> outraTeamListTemp = new ArrayList<>(outraTeam.teamList);
-
-        Collections.sort(teamListTemp);
-        Collections.sort(outraTeamListTemp);
-
-        return teamListTemp.equals(outraTeamListTemp);
-    }
-
 
 }
