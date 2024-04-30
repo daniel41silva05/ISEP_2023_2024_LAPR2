@@ -25,7 +25,7 @@ public class RegisterSkillController {
     }
 
     public Skill registerSkill(String s) {
-        return new Skill(s);
+        return skillRepository.registerSkill(s);
     }
 
 }
