@@ -59,33 +59,6 @@ public class Collaborator {
         this.job = job;
     }
 
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     *
-     * @param o The reference object with which to compare.
-     * @return true if this object is the same as the obj argument; false otherwise.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Collaborator)) {
-            return false;
-        }
-        Collaborator that = (Collaborator) o;
-        return name.equals(that.name);
-    }
-
-    /**
-     * Returns a hash code value for the object.
-     *
-     * @return A hash code value for this object.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 
     /**
      * Gets the name of the collaborator.
