@@ -2,6 +2,7 @@ package pprog.domain;
 
 import java.util.Objects;
 
+
 /**
  * Represents a job with a name and description.
  */
@@ -21,32 +22,6 @@ public class Job {
     public Job(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    /**
-     * Checks whether this job is equal to another object.
-     * @param o The object to compare with.
-     * @return True if the objects are equal, false otherwise.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Job)) {
-            return false;
-        }
-        Job that = (Job) o;
-        return name.equals(that.name);
-    }
-
-    /**
-     * Generates a hash code for this job.
-     * @return The hash code.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
     }
 
     /**

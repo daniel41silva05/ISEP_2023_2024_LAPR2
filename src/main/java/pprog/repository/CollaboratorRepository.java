@@ -37,7 +37,7 @@ public class CollaboratorRepository {
      * @param job           The job of the collaborator.
      * @return The newly registered collaborator, or null if registration fails.
      */
-    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         Collaborator newCollaborator = null;
         Collaborator collaborator = new Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
 

@@ -2,6 +2,7 @@ package pprog.repository;
 
 import pprog.domain.Collaborator;
 import pprog.domain.Job;
+import pprog.domain.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,34 @@ public class JobRepository {
     }
 
     /**
-     * Adds a job to the repository.
-     * @param job The job to be added.
+     * Registers a new job in the repository.
+     *
+     * @param name                   The name of the job.
+     * @param description            The description of the job.
+     * @return                       The newly registered job, or null if registration fails.
      */
-    public void addJob(Job job){
-        jobsList.add(job);
+    public Job registerJob(String name, String description) {
+        Job newJob = null;
+        Job job = new Job(name, description);
+
+        if (addJob(job)){
+            newJob = job;
+        }
+        return newJob;
+    }
+
+    /**
+     * Adds a job to the repository.
+     *
+     * @param job       The job to be added.
+     * @return          True if the vehicle is successfully added, false otherwise.
+     */
+    public boolean addJob(Job job){
+        boolean success = false;
+        if (validateJob(job)) {
+            success = jobsList.add(job.clone());
+        }
+        return success;
     }
 
     /**
@@ -41,6 +65,17 @@ public class JobRepository {
             }
         }
         return null;
+    }
+
+    /**
+     * Validates a job before adding it to the repository.
+     *
+     * @param job       The job to be validated.
+     * @return          True if the job is valid (not already in the repository), false otherwise.
+     */
+    private boolean validateJob (Job job) {
+        boolean isValid = !jobsList.contains(job);
+        return isValid;
     }
 
     /**

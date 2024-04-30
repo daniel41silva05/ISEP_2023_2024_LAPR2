@@ -1,6 +1,9 @@
 package pprog.controller;
 
-import pprog.domain.*;
+import pprog.domain.Collaborator;
+import pprog.domain.Date;
+import pprog.domain.IdDocType;
+import pprog.domain.Job;
 import pprog.repository.CollaboratorRepository;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;

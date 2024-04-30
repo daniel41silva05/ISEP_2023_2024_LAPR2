@@ -84,35 +84,6 @@ public class Vehicle {
     }
 
     /**
-     * Checks if another object is equal to this vehicle.
-     * Two vehicles are considered equal if they have the same plate number.
-     * @param o The object to compare.
-     * @return true if the vehicles are equal, false otherwise.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Vehicle)) {
-            return false;
-        }
-        Vehicle that = (Vehicle) o;
-        return plateNumber.equals(that.plateNumber);
-    }
-
-    /**
-     * Returns a hash code value for the vehicle.
-     * This method is used to optimize searching in data structures like HashMap.
-     * The hash code is calculated based on the vehicle's plate number.
-     * @return A hash code value for this vehicle.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(plateNumber);
-    }
-
-    /**
      * Gets the brand of the vehicle.
      * @return The brand of the vehicle.
      */
