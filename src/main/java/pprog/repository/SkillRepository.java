@@ -59,7 +59,7 @@ public class SkillRepository {
         return skillsListTemp.equals(outraSkillsListTemp);
     }
 
-    public boolean addSKill(Skill s) {
+    public boolean addSkill(Skill s) {
         if (s.validateSkill()) {
             return skillsList.add(s);
         } else {
@@ -74,7 +74,7 @@ public class SkillRepository {
     public Skill registerSkill(String s) {
         Skill newSkill = null;
         Skill skill = new Skill(s);
-        if (addSKill(skill)) {
+        if (addSkill(skill)) {
             newSkill = skill;
         }
         return newSkill;
