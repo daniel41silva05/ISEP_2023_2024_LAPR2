@@ -11,6 +11,7 @@ class Skill {
     - String name
 
     + Skill(name)
+    + validateSkill(skill)
 }
 
 class HRM {
@@ -19,7 +20,7 @@ class HRM {
 
 class SkillRepository {
     - addSkill(skill)
-    - validateSkill(skill)
+    - isSkillInList(skill)
     + registerSkill(name)
 }
 
