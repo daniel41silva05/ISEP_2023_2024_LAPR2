@@ -1,7 +1,6 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
-import pprog.domain.Date;
 import pprog.domain.IdDocType;
 import pprog.domain.Job;
 import pprog.repository.CollaboratorRepository;
@@ -9,7 +8,6 @@ import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Controller responsible for registering collaborators.
@@ -85,7 +83,7 @@ public class RegisterCollaboratorController {
      * @param jobName       the job name of the collaborator
      * @return the registered collaborator
      */
-    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
+    public Collaborator registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
         Job job = getJobByName(jobName);
         return collaboratorRepository.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
     }
@@ -109,6 +107,11 @@ public class RegisterCollaboratorController {
     public List<Job> getJobsList() {
         JobRepository jobRepository = getJobRepository();
         return jobRepository.getJobsList();
+    }
+
+    public List<Collaborator> getCollaboratorsList() {
+        CollaboratorRepository collaboratorRepository = getCollaboratorRepository();
+        return collaboratorRepository.getCollaboratorsList();
     }
 
 }

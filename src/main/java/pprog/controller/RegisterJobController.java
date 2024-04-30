@@ -4,6 +4,8 @@ import pprog.domain.Job;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
+import java.util.List;
+
 /**
  * Controller class responsible for registering jobs.
  */
@@ -49,5 +51,10 @@ public class RegisterJobController {
      */
     public Job registerJob(String name, String description) {
         return jobRepository.registerJob(name, description);
+    }
+
+    public List<Job> getJobsList() {
+        JobRepository jobRepository = getJobRepository();
+        return jobRepository.getJobsList();
     }
 }

@@ -1,7 +1,5 @@
 package pprog.domain;
 
-import java.util.Objects;
-
 /**
  * Represents a collaborator.
  */
@@ -11,10 +9,10 @@ public class Collaborator {
     private String name;
 
     /** The birthday of the collaborator. */
-    private Date birthday;
+    private String birthday;
 
     /** The admission date of the collaborator. */
-    private Date admissionDate;
+    private String admissionDate;
 
     /** The address of the collaborator. */
     private String address;
@@ -47,7 +45,7 @@ public class Collaborator {
      * @param idNumber      The identification number of the collaborator.
      * @param job           The job of the collaborator.
      */
-    public Collaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
@@ -83,7 +81,7 @@ public class Collaborator {
      *
      * @return The birthday of the collaborator.
      */
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -92,7 +90,7 @@ public class Collaborator {
      *
      * @param birthday The new birthday of the collaborator.
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -101,7 +99,7 @@ public class Collaborator {
      *
      * @return The admission date of the collaborator.
      */
-    public Date getAdmissionDate() {
+    public String getAdmissionDate() {
         return admissionDate;
     }
 
@@ -110,7 +108,7 @@ public class Collaborator {
      *
      * @param admissionDate The new admission date of the collaborator.
      */
-    public void setAdmissionDate(Date admissionDate) {
+    public void setAdmissionDate(String admissionDate) {
         this.admissionDate = admissionDate;
     }
 
