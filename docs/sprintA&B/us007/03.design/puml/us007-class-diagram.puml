@@ -44,18 +44,18 @@ class RegisterCheckUpController {
 class RegisterCheckUpUI{
 }
 
-RegisterCheckUpUI - RegisterCheckUpController
+RegisterCheckUpUI --> RegisterCheckUpController
 
-RegisterCheckUpController - Repositories
-RegisterCheckUpController - CheckUpRepository
-RegisterCheckUpController - VehicleRepository
+RegisterCheckUpController --> Repositories
+RegisterCheckUpController --> CheckUpRepository
+RegisterCheckUpController --> VehicleRepository
 
-Repositories - CheckUpRepository
-Repositories - VehicleRepository
-Repositories - Repositories
+Repositories --> "1" CheckUpRepository
+Repositories --> "1" VehicleRepository
+Repositories --> "instance" Repositories
 
-CheckUpRepository - CheckUp
-VehicleRepository - Vehicle
-CheckUp - Vehicle
+CheckUpRepository --> "*" CheckUp
+VehicleRepository --> "*" Vehicle
+CheckUp --> "1" Vehicle
 
 @enduml
