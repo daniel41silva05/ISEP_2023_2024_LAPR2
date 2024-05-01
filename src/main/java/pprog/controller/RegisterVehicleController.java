@@ -6,6 +6,7 @@ import pprog.domain.VehicleType;
 import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -61,5 +62,10 @@ public class RegisterVehicleController {
      */
     public Vehicle registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
         return vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+    }
+
+    public List<Vehicle> getVehiclesList() {
+        VehicleRepository vehicleRepository = getVehicleRepository();
+        return vehicleRepository.getVehiclesList();
     }
 }

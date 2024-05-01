@@ -111,4 +111,9 @@ public class RegisterCollaboratorController {
         return jobRepository.getJobsList();
     }
 
+    public List<Collaborator> getCollaboratorsList() {
+        CollaboratorRepository collaboratorRepository = getCollaboratorRepository();
+        return collaboratorRepository.getCollaboratorsList();
+    }
+
 }

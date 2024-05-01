@@ -1,6 +1,7 @@
 package pprog.repository;
 
 import pprog.domain.Date;
+import pprog.domain.Job;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 
@@ -72,6 +73,15 @@ public class VehicleRepository {
     private boolean validateVehicle (Vehicle vehicle) {
         boolean isValid = !vehiclesList.contains(vehicle);
         return isValid;
+    }
+
+    public Vehicle getVehicleByPlateNumber(String plateNumber) {
+        for (Vehicle vehicle : vehiclesList) {
+            if (vehicle.getPlateNumber().equals(plateNumber)) {
+                return vehicle;
+            }
+        }
+        return null;
     }
 
     /**
