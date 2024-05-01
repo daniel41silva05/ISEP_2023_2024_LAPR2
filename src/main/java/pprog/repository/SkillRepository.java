@@ -74,19 +74,19 @@ public class SkillRepository {
         return s.toString();
     }
 
-    /**
-     * Adds a skill to the repository.
-     *
-     * @param s the skill to add
-     * @return true if the skill is added successfully; false otherwise
-     */
-    public boolean addSkill(Skill s) {
-        if (s.validateSkill()) {
-            return skillsList.add(s);
-        } else {
-            return false;
-        }
-    }
+//    /**
+//     * Adds a skill to the repository.
+//     *
+//     * @param s the skill to add
+//     * @return true if the skill is added successfully; false otherwise
+//     */
+//    public boolean addSkill(Skill s) {
+//        if (s.validateSkill()) {
+//            return skillsList.add(s);
+//        } else {
+//            return false;
+//        }
+//    }
 
     /**
      * Checks if a skill is in the repository.
@@ -94,8 +94,8 @@ public class SkillRepository {
      * @param s the skill to check
      * @return true if the skill is in the repository; false otherwise
      */
-    public boolean isSkillInList(Skill s) {
-        return skillsList.contains(s);
+    public boolean isSkillInList(Skill skill) {
+        return skillsList.contains(skill);
     }
 
     /**
@@ -104,13 +104,14 @@ public class SkillRepository {
      * @param s the skill to register
      * @return the newly registered skill, or null if registration fails
      */
-    public Skill registerSkill(String s) {
-        Skill newSkill = null;
-        Skill skill = new Skill(s);
-        if (addSkill(skill)) {
-            newSkill = skill;
+    public boolean registerSkill(Skill skill) {
+        if (isSkillInList(skill)) {
+            throw new IllegalArgumentException("Skill already exists in the repository");
         }
-        return newSkill;
+        if (!skill.validateSkill()) {
+            throw new IllegalArgumentException("Invalid skill name");
+        }
+        return skillsList.add(skill);
     }
 
 }

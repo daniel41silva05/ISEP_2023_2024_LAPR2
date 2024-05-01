@@ -50,8 +50,12 @@ public class RegisterSkillController {
      * @param s the skill to register
      * @return the newly registered skill, or null if registration fails
      */
-    public Skill registerSkill(String s) {
-        return skillRepository.registerSkill(s);
+    public boolean registerSkill(String skillName) {
+        if (skillName == null || skillName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Skill name cannot be null or empty");
+        }
+        Skill skill = new Skill(skillName);
+        return skillRepository.registerSkill(skill);
     }
 
 }

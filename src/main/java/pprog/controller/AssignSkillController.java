@@ -21,6 +21,7 @@ public class AssignSkillController {
         this.skillRepository = skillRepository;
         this.collaboratorRepository = collaboratorRepository;
     }
+
     public AssignSkillController() {
         getSkillRepository();
         getCollaboratorRepository();
@@ -45,6 +46,7 @@ public class AssignSkillController {
         }
         return collaboratorRepository;
     }
+
     public void setSkillsToAssign(List<Skill> skillsToAssign) {
         this.skillsToAssign = skillsToAssign;
     }
@@ -73,5 +75,5 @@ public class AssignSkillController {
     public void assignSkillToCollaborator(String collaboratorName, List<Skill> skillsToAssign) {
 
     }
-}
 
+}

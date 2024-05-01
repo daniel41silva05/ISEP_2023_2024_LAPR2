@@ -1,9 +1,9 @@
 package pprog.repository;
 
 import pprog.domain.GenerateTeam;
+import pprog.domain.Skill;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GenerateTeamRepository {
@@ -26,6 +26,10 @@ public class GenerateTeamRepository {
         this.teamList = teamList;
     }
 
+    public GenerateTeam generateTeam(int maxSize, int minSize, List<Skill> skillsNeeded) {
+        return generateTeam(maxSize, minSize, skillsNeeded);
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
@@ -36,5 +40,8 @@ public class GenerateTeamRepository {
         return s.toString();
     }
 
+    public boolean addTeam(GenerateTeam team) {
+        return teamList.add(team);
+    }
 
 }
