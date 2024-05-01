@@ -9,92 +9,58 @@ skinparam classAttributeIconSize 0
 
 'left to right direction
 
-class ApplicationSession
+class AssignSkillController
 {
-    + static getInstance()
-    + getCurrentSession()
+    +AssignSkillController(collaboratorRepository, skillRepository)
+    -getSkillByName(skillName)
+    -getCollaboratorByName(collaboratorName)
+    +getSkillList()
+    +getCollaboratorsList()
 }
 
-class UserSession
+class ...
 {
-    + getUserEmail()
+    ...
 }
 
-class Employee {
-    - name
-    - email
-    - position
-    - phone
+class ... {
+    ...
 }
 
 class Task {
-    - String reference
-    - String description
-    - String informalDescription
-    - String technicalDescription
-    - Integer duration
-    - Double cost
+    ...
 
-    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
 }
 
-class TaskCategory {
-    - String description
+class ... {
+    ...
 
-    + TaskCategory(description)
 }
 
-class Organization {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
+class ... {
+    ...
 
-    - addTask(task)
-    - validateTask(task)
-    + anyEmployeeHasEmail(email)
-    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-    - getEmployeeByEmail(email)
-
-'  +saveTask(task)
 }
 
-class TaskCategoryRepository {
-    + getTaskCategoryByDescription(description)
+class ... {
+   ...
+
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
+class ... {
+    ...
+
 }
 
-class Repositories {
-    - Repositories()
-    + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+class ... {
+    ...
+
 }
 
-class CreateTaskController {
-    + CreateTaskController(organizationRepository, taskCategoryRepository)
-    + getTaskCategories()
-    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-    - getTaskCategoryByDescription(taskCategoryDescription)
-    - getEmployeeFromSession()
+class ... {
+    ...
+
 }
-
-note right of CreateTaskController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
-
-note bottom of TaskCategoryRepository
-    - used for displaying
-    the category list
-end note
 
 class CreateTaskUI {
 }
