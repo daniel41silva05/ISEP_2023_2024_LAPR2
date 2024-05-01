@@ -6,6 +6,7 @@ import pprog.domain.Date;
 import pprog.domain.VehicleType;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Class responsible for testing the CheckUp class.
  */
