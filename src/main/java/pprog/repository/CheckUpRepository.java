@@ -1,9 +1,9 @@
 package pprog.repository;
 
-import pprog.domain.CheckUp;
+import pprog.domain.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import pprog.domain.Date;
 
 
 /**
@@ -23,31 +23,30 @@ public class CheckUpRepository {
         checkUpList = new ArrayList<>();
     }
 
-    /**
-     * Registers a new check-up in the repository.
-     *
-     * @param plate The plate number of the vehicle.
-     * @param date  The date of the check-up.
-     * @param KMS   The kilometers covered by the vehicle.
-     * @return The newly registered check-up, or null if registration fails.
-     */
-    public CheckUp registerCheckUp(Date date,String plate,  double KMS) {
-        CheckUp newCheckUp = new CheckUp(date, plate, KMS);
-        if (addCheckUp(newCheckUp)) {
-            return newCheckUp;
-        } else {
-            return null;
+    public CheckUp registerCheckUp(Date date, Vehicle vehicle, int KMS) {
+        CheckUp newCheckUp = null;
+        CheckUp checkUp = new CheckUp(date, vehicle, KMS);
+
+        if (addCheckUp(checkUp)) {
+            newCheckUp = checkUp;
         }
+        return newCheckUp;
     }
 
-    /**
-     * Adds a check-up to the repository.
-     *
-     * @param checkUp The check-up to be added.
-     * @return True if the check-up is successfully added, false otherwise.
-     */
     private boolean addCheckUp(CheckUp checkUp) {
-        return checkUpList.add(checkUp);
+        boolean success = false;
+        if (validateCheckUp(checkUp)) {
+            success = checkUpList.add(checkUp.clone());
+        }
+        return success;
+    }
+
+    private boolean validateCheckUp(CheckUp checkUp) {
+        return !checkUpList.contains(checkUp);
+    }
+
+    public List<CheckUp> getCheckUpList() {
+        return checkUpList;
     }
 
     /**
@@ -57,6 +56,6 @@ public class CheckUpRepository {
      */
     @Override
     public String toString() {
-        return "Check-ups=" + checkUpList + '}';
+        return "Check-ups=" + checkUpList+'}';
     }
 }

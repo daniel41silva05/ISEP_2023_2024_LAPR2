@@ -7,20 +7,13 @@ import java.util.Objects;
  */
 public class CheckUp {
 
-    private String plate; // The plate number of the vehicle
+    private Vehicle vehicle;
     private Date date; // The date of the check-up
-    private double KMS; // The kilometers covered by the vehicle at the time of the check-up
+    private int KMS; // The kilometers covered by the vehicle at the time of the check-up
 
-    /**
-     * Constructs a CheckUp object with the specified date, plate number, and kilometers.
-     *
-     * @param date The date of the check-up
-     * @param plate The plate number of the vehicle
-     * @param KMS The kilometers covered by the vehicle
-     */
-    public CheckUp(Date date, String plate, double KMS) {
+    public CheckUp(Date date, Vehicle vehicle, int KMS) {
         this.date = date;
-        this.plate = plate;
+        this.vehicle = vehicle;
         this.KMS = KMS;
     }
 
@@ -29,7 +22,7 @@ public class CheckUp {
      *
      * @return The kilometers covered
      */
-    public double getKMS() {
+    public int getKMS() {
         return KMS;
     }
 
@@ -42,13 +35,8 @@ public class CheckUp {
         return date.toString();
     }
 
-    /**
-     * Gets the plate number of the vehicle.
-     *
-     * @return The plate number
-     */
-    public String getPlate() {
-        return plate.toString();
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
     /**
@@ -65,17 +53,12 @@ public class CheckUp {
      *
      * @param KMS The kilometers covered
      */
-    public void setKMS(double KMS) {
+    public void setKMS(int KMS) {
         this.KMS = KMS;
     }
 
-    /**
-     * Sets the plate number of the vehicle.
-     *
-     * @param plate The plate number
-     */
-    public void setPlate(String plate) {
-        this.plate = plate;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     /**
@@ -84,7 +67,7 @@ public class CheckUp {
      * @return A string representation of the object
      */
     @Override
-    public String toString(){ return date + " " + plate + " " + KMS; }
+    public String toString(){ return date + " " + vehicle + " " + KMS; }
 
     /**
      * Indicates whether some other object is "equal to" this one.
@@ -97,7 +80,7 @@ public class CheckUp {
         if (this == o) return true;
         if (o == null || (! ( o instanceof CheckUp))) return false;
         CheckUp checkUp = (CheckUp) o;
-        return Double.compare(KMS, checkUp.KMS) == 0 && Objects.equals(plate, checkUp.plate) && Objects.equals(date, checkUp.date);
+        return Double.compare(KMS, checkUp.KMS) == 0 && Objects.equals(vehicle, checkUp.vehicle) && Objects.equals(date, checkUp.date);
     }
 
     /**
@@ -107,6 +90,10 @@ public class CheckUp {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(plate, date, KMS);
+        return Objects.hash(date, vehicle, KMS);
+    }
+
+    public CheckUp clone() {
+        return new CheckUp(this.date, this.vehicle, this.KMS);
     }
 }

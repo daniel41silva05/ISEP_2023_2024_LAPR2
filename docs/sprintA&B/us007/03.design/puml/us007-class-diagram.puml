@@ -1,58 +1,61 @@
 @startuml
-'skinparam monochrome true
+
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-'skinparam linetype orto
 
 skinparam classAttributeIconSize 0
-
 class CheckUpRepository{
-   -addCheckUp()
-   -validateCheckUp()
-
-   + RegisterCheckUp
+    -addCheckUp(checkUp)
+    -validateCheckUp(checkUp)
+    +registerCheckUp(plateNumber, kms, date)
 }
 
-class FM {
-    -String name
+class VehicleRepository {
+    +getVehicleByPlateNumber(vehiclePlateNumber)
 }
 
 class CheckUp {
-    - Integer date
-    - Double plate
-    - Double KMS
-
-    + CheckUp(plate number, KMS, date)
+    - int kms
+    - Date date
+    + CheckUp(vehicle, kms, date)
 }
 
+class Vehicle {
+    - String plateNumber
+
+}
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
     + getCheckUpRepository()
+    + getVehicleRepository()
 }
 
 class RegisterCheckUpController {
-    + RegisterCheckUpController()
-    + registerCheckUp(plate number, KMS, date)
+    +RegisterCheckUpController(CheckUpRepository, VehicleRepository)
+    +registerCheckUp(plateNumber, kms, date)
+    -getVehiclesByPlateNumber(vehiclePlateNumber)
+    +getVehiclesList()
+
 }
 
-class RegisterCheckUpUI {
+class RegisterCheckUpUI{
 }
 
+RegisterCheckUpUI - RegisterCheckUpController
 
-RegisterCheckUpUI .> RegisterCheckUpController
+RegisterCheckUpController - Repositories
+RegisterCheckUpController - CheckUpRepository
+RegisterCheckUpController - VehicleRepository
 
-RegisterCheckUpController .> Repositories : repositories
+Repositories - CheckUpRepository
+Repositories - VehicleRepository
+Repositories - Repositories
 
-Repositories -> "1" CheckUpRepository
-
-CheckUpRepository -> CheckUp: *
-RegisterCheckUpController ..> CheckUpRepository : CheckUpRepository
-
-FM --> CheckUp
-
-Repositories -> Repositories : instance
+CheckUpRepository - CheckUp
+VehicleRepository - Vehicle
+CheckUp - Vehicle
 
 @enduml

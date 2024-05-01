@@ -1,9 +1,11 @@
 package pprog.controller;
 
 import pprog.domain.CheckUp;
-import pprog.repository.CheckUpRepository;
-import pprog.repository.Repositories;
+import pprog.domain.Vehicle;
+import pprog.repository.*;
 import pprog.domain.Date;
+
+import java.util.List;
 
 
 /**
@@ -16,19 +18,23 @@ public class RegisterCheckUpController {
      */
     private CheckUpRepository checkUpRepository;
 
+    private VehicleRepository vehicleRepository;
+
     /**
      * Default constructor. Retrieves the check-up repository instance.
      */
     public RegisterCheckUpController() {
         getCheckUpRepository();
+        getVehicleRepository();
     }
 
     /**
      * Constructor to set a specific check-up repository.
      * @param checkUpRepository The check-up repository to be set.
      */
-    public RegisterCheckUpController(CheckUpRepository checkUpRepository) {
+    public RegisterCheckUpController(CheckUpRepository checkUpRepository, VehicleRepository vehicleRepository) {
         this.checkUpRepository = checkUpRepository;
+        this.vehicleRepository = vehicleRepository;
     }
 
     /**
@@ -43,14 +49,26 @@ public class RegisterCheckUpController {
         return checkUpRepository;
     }
 
-    /**
-     * Registers a new check-up.
-     * @param plate The plate number of the vehicle.
-     * @param date The date of the check-up.
-     * @param KMS The kilometers covered by the vehicle.
-     * @return The registered check-up object.
-     */
-    public CheckUp registerCheckUp(String plate, Date date, double KMS) {
-        return checkUpRepository.registerCheckUp( date, plate, KMS);
+    private VehicleRepository getVehicleRepository () {
+        if (vehicleRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            vehicleRepository = repositories.getVehicleRepository();
+        }
+        return vehicleRepository;
+    }
+
+    public CheckUp registerCheckUp(String vehiclePlateNumber, Date date, int KMS) {
+        Vehicle vehicle = getVehicleByPlateNumber(vehiclePlateNumber);
+        return checkUpRepository.registerCheckUp(date, vehicle, KMS);
+    }
+
+    private Vehicle getVehicleByPlateNumber (String vehiclePlateNumber) {
+        VehicleRepository vehicleRepository = getVehicleRepository();
+        return vehicleRepository.getVehicleByPlateNumber(vehiclePlateNumber);
+    }
+
+    public List<CheckUp> getCheckUpList() {
+        CheckUpRepository checkUpRepository = getCheckUpRepository();
+        return checkUpRepository.getCheckUpList();
     }
 }
