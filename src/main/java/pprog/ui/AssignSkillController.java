@@ -21,5 +21,56 @@ import java.util.List;
             this.skillRepository = skillRepository;
             this.collaboratorRepository = collaboratorRepository;
         }
+        public AssignSkillController() {
+            getSkillRepository();
+            getCollaboratorRepository();
+        }
 
+        public List<Skill> getSkillsToAssign() {
+            return skillsToAssign;
+        }
+
+        public SkillRepository getSkillRepository() {
+            if (skillRepository == null) {
+                Repositories repositories = Repositories.getInstance();
+                skillRepository = repositories.getSkillRepository();
+            }
+            return skillRepository;
+        }
+
+        public CollaboratorRepository getCollaboratorRepository() {
+            if (collaboratorRepository == null) {
+                Repositories repositories = Repositories.getInstance();
+                collaboratorRepository = repositories.getCollaboratorRepository();
+            }
+            return collaboratorRepository;
+        }
+        public void setSkillsToAssign(List<Skill> skillsToAssign) {
+            this.skillsToAssign = skillsToAssign;
+        }
+
+        public Collaborator getCollaboratorByName(String collaboratorName) {
+            for (Collaborator collaborator : collaboratorRepository.getCollaboratorsList()) {
+                if (collaborator.getName().equals(collaboratorName)) {
+                    return collaborator;
+                }
+            }
+            return null;
+        }
+
+        public List<Collaborator> getCollaboratorList() {
+            return collaboratorRepository.getCollaboratorsList();
+        }
+
+        private Skill getSkillByName(String skillName) {
+            SkillRepository skillRepository = getSkillRepository();
+            return skillRepository.getSkillByName(skillName);
+        }
+        public List<Skill> getSkillsList() {
+            return skillRepository.getSkillsList();
+        }
+
+        public void assignSkillToCollaborator(String collaboratorName, List<Skill> skillsToAssign) {
+
+        }
     }
