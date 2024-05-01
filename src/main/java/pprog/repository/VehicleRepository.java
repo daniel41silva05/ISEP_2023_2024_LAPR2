@@ -26,8 +26,21 @@ public class VehicleRepository {
         vehiclesList = new ArrayList<>();
     }
 
-
-
+    /**
+     * Registers a new vehicle in the repository.
+     *
+     * @param brand                  The brand of the vehicle.
+     * @param model                  The model of the vehicle.
+     * @param tare                   The tare weight of the vehicle.
+     * @param grossWeight            The gross weight of the vehicle.
+     * @param currentKm              The current kilometers of the vehicle.
+     * @param registerDate           The registration date of the vehicle.
+     * @param acquisitonDate        The acquisition date of the vehicle.
+     * @param maintenanceCheckUpFrequency The maintenance check-up frequency of the vehicle.
+     * @param idNumber               The ID number of the vehicle.
+     * @param type                   The type of the vehicle.
+     * @return                       The newly registered vehicle, or null if registration fails.
+     */
     public Vehicle registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
         Vehicle newVehicle = null;
         Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitonDate, maintenanceCheckUpFrequency, idNumber, type);

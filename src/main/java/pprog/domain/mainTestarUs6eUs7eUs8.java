@@ -2,19 +2,18 @@ package pprog.domain;
 
 import pprog.controller.RegisterVehicleController;
 import pprog.controller.RegisterCheckUpController;
-import pprog.domain.Date;
-import pprog.domain.VehicleType;
-import pprog.domain.Vehicle;
-import pprog.domain.CheckUp;
+import pprog.controller.VehicleNeedingMaintenanceController;
+
 import java.util.Scanner;
 import java.util.List;
 
-public class mainTestarUs6eUs7 {
+public class mainTestarUs6eUs7eUs8 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RegisterVehicleController vehicleController = new RegisterVehicleController();
         RegisterCheckUpController checkUpController = new RegisterCheckUpController();
+        VehicleNeedingMaintenanceController maintenanceController = new VehicleNeedingMaintenanceController();
 
         boolean exit = false;
         while (!exit) {
@@ -23,7 +22,8 @@ public class mainTestarUs6eUs7 {
             System.out.println("2 - Registrar uma manutenção para um veículo");
             System.out.println("3 - Ver a lista de veículos registrados");
             System.out.println("4 - Ver a lista de manutenções registradas");
-            System.out.println("5 - Sair");
+            System.out.println("5 - Ver a lista de veículos que precisam de manutenção");
+            System.out.println("6 - Sair");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer
@@ -42,6 +42,9 @@ public class mainTestarUs6eUs7 {
                     listCheckUps(checkUpController);
                     break;
                 case 5:
+                    listVehiclesNeedingMaintenance(maintenanceController);
+                    break;
+                case 6:
                     exit = true;
                     break;
                 default:
@@ -169,6 +172,19 @@ public class mainTestarUs6eUs7 {
         } else {
             for (CheckUp checkUp : checkUpsList) {
                 System.out.println(checkUp);
+            }
+        }
+    }
+
+    private static void listVehiclesNeedingMaintenance(VehicleNeedingMaintenanceController maintenanceController) {
+        List<String> vehiclesNeedingMaintenanceList = maintenanceController.getVehiclesNeedingMaintenanceList();
+
+        if (vehiclesNeedingMaintenanceList.isEmpty()) {
+            System.out.println("Nenhum veículo precisa de manutenção.");
+        } else {
+            System.out.println("\nVeículos que precisam de manutenção:");
+            for (String vehicleInfo : vehiclesNeedingMaintenanceList) {
+                System.out.println(vehicleInfo);
             }
         }
     }

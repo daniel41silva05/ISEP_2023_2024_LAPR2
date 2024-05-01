@@ -22,6 +22,7 @@ public class Repositories {
     /** The repository for check-ups. */
     private final CheckUpRepository checkUpRepository;
     private final GenerateTeamRepository generateTeamRepository;
+    private final VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
 
     /**
      * Constructs a new Repositories object, initializing all repositories.
@@ -33,6 +34,7 @@ public class Repositories {
         skillRepository = new SkillRepository();
         checkUpRepository = new CheckUpRepository();
         generateTeamRepository = new GenerateTeamRepository();
+        vehicleNeedingMaintenanceRepository = new VehicleNeedingMaintenanceRepository();
     }
 
     /**
@@ -89,5 +91,9 @@ public class Repositories {
     public CheckUpRepository getCheckUpRepository(){ return checkUpRepository; }
 
     public GenerateTeamRepository getGenerateTeamRepository() { return generateTeamRepository; }
+
+    public VehicleNeedingMaintenanceRepository getVehicleNeedingMaintenanceRepository() {
+        return vehicleNeedingMaintenanceRepository;
+    }
 }
 
