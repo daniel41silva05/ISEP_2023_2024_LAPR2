@@ -19,6 +19,7 @@ public class GenerateTeamRepository {
     public List<GenerateTeam> getTeamList() {
         return teamList;
     }
+    // sdf
 
     public List<Collaborator> team(int minSize, int maxSize, List<Skill> requiredSkills, List<Collaborator> collaboratorList) {
         List<Collaborator> newTeams = new ArrayList<>();
