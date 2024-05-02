@@ -9,66 +9,48 @@ public class GenerateTeam {
 
     private int minSize;
     private int maxSize;
-    private List<Skill> skillsList;
     private List<Skill> skillsNeeded;
-    private List<Collaborator> collaboratorList;
-    private static final int MIN_SIZE_POR_OMISSAO = 2;
-    private static final int MAX_SIZE_POR_OMISSAO = 10000;
+    private List<Collaborator> collaboratorsNeeded;
 
-    public GenerateTeam() {
-        minSize = MIN_SIZE_POR_OMISSAO;
-        maxSize = MAX_SIZE_POR_OMISSAO;
-        skillsList = new ArrayList<>();
-        skillsNeeded = new ArrayList<>();
-        collaboratorList = new ArrayList<>();
-    }
-    public GenerateTeam(int minSize, int maxSize, List<Skill> skillsList, List<Skill> skillsNeeded, List<Collaborator> collaboratorList){
+    public GenerateTeam(int minSize, int maxSize, List<Skill> skillsNeeded) {
         this.minSize = minSize;
         this.maxSize = maxSize;
-        this.skillsList = skillsList;
         this.skillsNeeded = skillsNeeded;
-        this.collaboratorList = collaboratorList;
+        this.collaboratorsNeeded = new ArrayList<>();
     }
 
     public int getMinSize() {
         return minSize;
     }
 
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public List<Skill> getSkillsList() {
-        return skillsList;
-    }
-
-    public List<Skill> getSkillsNeeded() {
-        return skillsNeeded;
-    }
-
-    public List<Collaborator> getCollaboratorList() {
-        return collaboratorList;
-    }
-
     public void setMinSize(int minSize) {
         this.minSize = minSize;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
     }
 
     public void setMaxSize(int maxSize) {
         this.maxSize = maxSize;
     }
 
-    public void setSkillsNeeded(List<Skill> skillsNeeded) {
-        this.skillsNeeded = skillsNeeded;
+    public List<Skill> getSkillAssign() {
+        return skillsNeeded;
     }
 
-    public List<Collaborator> seeColaboratorsWithSkillsNeeded(List<Skill> skillsNeeded) {
+    public List<Collaborator> getCollaboratorsNeeded() {
+        return collaboratorsNeeded;
+    }
+
+    public List<Collaborator> seeColaboratorsWithSkillsNeeded(List<Collaborator> collaboratorList, List<Skill> skillsNeeded) {
         List<Collaborator> collaboratorWithTheSkills = new ArrayList<>();
-        for (Collaborator c: collaboratorList) {
+        for (Collaborator c : collaboratorList) {
             List<Skill> cSkills = c.getSkillAssign();
             for (Skill s: skillsNeeded) {
                 if (cSkills.contains(s)) {
                     collaboratorWithTheSkills.add(c);
+                    break;
                 }
             }
         }
@@ -94,25 +76,8 @@ public class GenerateTeam {
         return r.nextInt((max - min) + 1) + min;
     }
 
-
-    @Override
-    public String toString() {
-        return String.format("Min Size: %d\nMax Size: %d\nSkill: %s", minSize, maxSize, skillsList);
+    public GenerateTeam clone() {
+        return new GenerateTeam(this.minSize, this.maxSize, this.skillsNeeded);
     }
-
-    @Override
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
-            return true;
-        }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
-            return false;
-        }
-        GenerateTeam outraGenerateTeam = (GenerateTeam) outroObjeto;
-        return minSize == outraGenerateTeam.minSize &&
-                maxSize == outraGenerateTeam.maxSize &&
-                skillsList.equals(outraGenerateTeam.skillsList);
-    }
-
 
 }
