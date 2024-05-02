@@ -6,28 +6,49 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Human Resources\n Manager" as ADM
+actor "Human Resources\n Manager" as HRM
 participant ":RegisterCollaboratorUI" as UI
 participant ":RegisterCollaboratorControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant "SkillsRepository:\nSkillsRepository" as SkillsRepository
-participant "collaboratorRepository:\ncollaboratorRepository" as collaboratorRepository
+participant "skillsRepository:\nSkillsRepository" as SkillsRepository
+participant "collaboratorsRepository:\n«CollaboratorsRepository" as collaboratorsRepository
 participant "collaborator\n:Collaborator" as COLLABORATOR
 
-activate ADM
+activate HRM
 
-        ADM -> UI : asks to assign skills to a collaborator
+        HRM -> UI : asks to assign skills to a collaborator
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
+        UI -> CTRL : getCollaboratorsList()
+        activate CTRL
 
-            UI --> ADM : displays list of collaborators and asks to select one
+            CTRL -> REP : getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS : getCollaboratorsRepository()
+            activate REPS
+
+            REPS --> CTRL: CollaboratorsRepository
+            deactivate REPS
+
+            CTRL -> collaboratorsRepository: getCollaboratorsList()
+            activate collaboratorsRepository
+
+            collaboratorsRepository --> CTRL : CollaboratorsList
+            deactivate collaboratorsRepository
+
+            CTRL --> UI : CollaboratorsList
+            deactivate CTRL
+
+            UI --> HRM : displays list of collaborators and asks to select one
         deactivate UI
 
-    ADM -> UI : selects the collaborator
+    HRM -> UI : selects the collaborator
     activate UI
 
     UI -> CTRL : getSkillsList()
@@ -54,16 +75,16 @@ activate ADM
             CTRL --> UI : SkillsList
             deactivate CTRL
 
-        UI --> ADM : displays list of skills
+        UI --> HRM : displays list of skills
     deactivate UI
 
-    ADM -> UI : selects skills and assign to the collaborator
+    HRM -> UI : selects skills and assign to the collaborator
     activate UI
 
-        UI --> ADM : shows all data and requests confirmation
+        UI --> HRM : shows all data and requests confirmation
     deactivate UI
 
-    ADM -> UI : confirms data
+    HRM -> UI : confirms data
     activate UI
 
         UI -> CTRL: registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, jobName)
@@ -128,9 +149,9 @@ activate ADM
 
                 CTRL --> UI: collaborator
                 deactivate CTRL
-            UI --> ADM: displays operation success
+            UI --> HRM: displays operation success
     deactivate UI
 
-deactivate ADM
+deactivate HRM
 
 @enduml
