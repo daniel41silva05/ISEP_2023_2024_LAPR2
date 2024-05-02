@@ -47,7 +47,7 @@ public class RegisterSkillController {
     /**
      * Registers a new skill.
      *
-     * @param s the skill to register
+     * @param skillName the skill to register
      * @return the newly registered skill, or null if registration fails
      */
     public boolean registerSkill(String skillName) {

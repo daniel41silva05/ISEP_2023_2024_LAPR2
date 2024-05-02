@@ -1,9 +1,6 @@
 package pprog.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GenerateTeam {
 
@@ -23,7 +20,7 @@ public class GenerateTeam {
         collaboratorList = new ArrayList<>();
     }
 
-    public GenerateTeam(int minSize, int maxSize, List<Skill> skillsList, List<Skill> skillsNeeded, List<Collaborator> collaboratorList){
+    public GenerateTeam(int minSize, int maxSize, List<Skill> skillsList, List<Skill> skillsNeeded, List<Collaborator> collaboratorList) {
         this.minSize = minSize;
         this.maxSize = maxSize;
         this.skillsList = skillsList;
@@ -63,36 +60,91 @@ public class GenerateTeam {
         this.skillsNeeded = skillsNeeded;
     }
 
-    public List<Collaborator> seeColaboratorsWithSkillsNeeded(List<Skill> skillsNeeded) {
-        List<Collaborator> collaboratorWithTheSkills = new ArrayList<>();
-        for (Collaborator c: collaboratorList) {
-            List<Skill> cSkills = c.getSkillAssign();
-            for (Skill s: skillsNeeded) {
-                if (cSkills.contains(s)) {
-                    collaboratorWithTheSkills.add(c);
-                }
+
+    public static List<Collaborator> assignCollaborators(List<Skill> skillsNeeded, List<Collaborator> collaboratorList, int minSize, int maxSize) {
+        List<Collaborator> selectedCollaborators = new ArrayList<>();
+
+        // Verifica quais colaboradores possuem as habilidades necessárias
+        for (Collaborator collaborator : collaboratorList) {
+            if (hasRequiredSkills(collaborator, skillsNeeded)) {
+                selectedCollaborators.add(collaborator);
             }
         }
-        return collaboratorWithTheSkills;
+
+        // Se não houver colaboradores suficientes, exibe uma mensagem e retorna uma lista vazia
+        if (selectedCollaborators.size() < minSize) {
+            System.out.println("Não há colaboradores suficientes para formar uma equipe.");
+            return new ArrayList<>();
+        }
+
+        // Gera a equipe com base nos colaboradores selecionados
+        List<Collaborator> team = generateTeam(selectedCollaborators, minSize, maxSize);
+
+        return team;
     }
 
-    public List<Collaborator> generateRandomTeam(List<Collaborator> collaboratorWithTheSkills, int maxSize, int minSize) {
+    private static boolean hasRequiredSkills(Collaborator collaborator, List<Skill> skillsNeeded) {
+        List<Skill> collaboratorSkills = collaborator.getSkillAssign();
+        return collaboratorSkills.containsAll(skillsNeeded);
+    }
+
+    private static List<Collaborator> generateTeam(List<Collaborator> selectedCollaborators, int minSize, int maxSize) {
         List<Collaborator> team = new ArrayList<>();
-        Collections.shuffle(collaboratorWithTheSkills);
-        int teamSize = getRandomNumberInRange(minSize, maxSize);
-        for (int i = 0; i < Math.min(teamSize, collaboratorWithTheSkills.size()); i++) {
-            team.add(collaboratorWithTheSkills.get(i));
+        Random random = new Random();
+
+        // Calcula o tamanho da equipe dentro dos limites especificados
+        int teamSize = Math.min(Math.max(minSize, 1), Math.min(maxSize, selectedCollaborators.size()));
+
+        // Se o tamanho da equipe for menor que o mínimo, exibe uma mensagem e retorna uma lista vazia
+        if (teamSize < minSize) {
+            System.out.println("Não há colaboradores suficientes para formar uma equipe com o tamanho mínimo especificado.");
+            return new ArrayList<>();
+        }
+
+        // Embaralha os colaboradores selecionados para formar uma equipe aleatória
+        Collections.shuffle(selectedCollaborators);
+
+        // Mantém o controle das habilidades atribuídas aos colaboradores na equipe
+        List<Skill> assignedSkills = new ArrayList<>();
+
+        // Seleciona os colaboradores para a equipe
+        for (int i = 0; i < teamSize; i++) {
+            Collaborator collaborator = selectedCollaborators.get(i);
+
+            // Verifica se o colaborador já possui todas as habilidades necessárias para a equipe
+            if (hasRequiredSkills(collaborator, assignedSkills)) {
+                team.add(collaborator);
+                assignedSkills.addAll(collaborator.getSkillAssign());
+            } else {
+                // Se o colaborador não possui todas as habilidades necessárias, tenta encontrar outro
+                for (Collaborator alternateCollaborator : selectedCollaborators) {
+                    if (alternateCollaborator != collaborator && hasRequiredSkills(alternateCollaborator, assignedSkills)) {
+                        team.add(alternateCollaborator);
+                        assignedSkills.addAll(alternateCollaborator.getSkillAssign());
+                        break;
+                    }
+                }
+            }
         }
 
         return team;
     }
 
-    private int getRandomNumberInRange(int min, int max) {
-        if (min >= max) {
-            throw new IllegalArgumentException("Max must be greater than min");
+
+    private static void assignRandomSkills(List<Collaborator> team, List<Skill> skillsNeeded) {
+        for (Skill skill : skillsNeeded) {
+            // Embaralha a lista de colaboradores para atribuir habilidades aleatoriamente
+            Collections.shuffle(team);
+            for (Collaborator collaborator : team) {
+                collaborator.getSkillAssign().add(skill); // Atribui a habilidade ao colaborador
+                break; // Atribui a habilidade apenas ao primeiro colaborador da equipe (aleatoriamente embaralhada)
+            }
         }
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
+    }
+
+    // Método fictício para obter os colaboradores já atribuídos a outras equipes
+    private static List<Collaborator> getAssignedCollaborators() {
+        return new ArrayList<>();
     }
 
 
