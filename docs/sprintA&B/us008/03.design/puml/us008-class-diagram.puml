@@ -41,6 +41,19 @@ class VehicleNeedingMaintenanceController{
 class VehicleNeedingMaintenanceUI{
 }
 
+VehicleNeedingMaintenanceUI ..> VehicleNeedingMaintenanceController
 
+VehicleNeedingMaintenanceController ..> Repositories: repositories
+VehicleNeedingMaintenanceController ..> CheckUpRepository: CheckUpRepository
+VehicleNeedingMaintenanceController ..> VehicleRepository: VehicleRepository
+VehicleNeedingMaintenanceController ..> VehicleNeedingMaintenanceRepository: VehicleNeedingMaintenanceRepository
+
+Repositories --> "1"CheckUpRepository
+Repositories --> "1"VehicleRepository
+Repositories --> "1"VehicleNeedingMaintenanceRepository
+Repositories --> Repositories: instance
+
+VehicleNeedingMaintenanceRepository --> "1"CheckUpRepository
+VehicleNeedingMaintenanceRepository --> "1"VehicleRepository
 
 @enduml
