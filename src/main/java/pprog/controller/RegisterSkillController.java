@@ -4,6 +4,8 @@ import pprog.domain.Skill;
 import pprog.repository.Repositories;
 import pprog.repository.SkillRepository;
 
+import java.util.List;
+
 /**
  * Controller for registering skills.
  */
@@ -44,6 +46,11 @@ public class RegisterSkillController {
         return skillRepository;
     }
 
+    private Skill getSkillByName(String skillName) {
+        SkillRepository skillRepository = getSkillRepository();
+        return skillRepository.getSkillByName(skillName);
+    }
+
     /**
      * Registers a new skill.
      *
@@ -56,6 +63,11 @@ public class RegisterSkillController {
         }
         Skill skill = new Skill(skillName);
         return skillRepository.registerSkill(skill);
+    }
+
+    public List<Skill> getSkillsList() {
+        SkillRepository skillRepository = getSkillRepository();
+        return skillRepository.getSkillsList();
     }
 
 }

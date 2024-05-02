@@ -18,17 +18,13 @@ public class GenerateTeam {
     public GenerateTeam() {
         minSize = MIN_SIZE_POR_OMISSAO;
         maxSize = MAX_SIZE_POR_OMISSAO;
-        skillsList = new ArrayList<>();
         skillsNeeded = new ArrayList<>();
-        collaboratorList = new ArrayList<>();
     }
 
     public GenerateTeam(int minSize, int maxSize, List<Skill> skillsList, List<Skill> skillsNeeded, List<Collaborator> collaboratorList){
         this.minSize = minSize;
         this.maxSize = maxSize;
-        this.skillsList = skillsList;
         this.skillsNeeded = skillsNeeded;
-        this.collaboratorList = collaboratorList;
     }
 
     public int getMinSize() {
