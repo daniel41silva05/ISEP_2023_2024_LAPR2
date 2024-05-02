@@ -58,8 +58,7 @@ public class GenerateTeam {
 
     public void setSkillsNeeded(List<Skill> skillsNeeded) {
         this.skillsNeeded = skillsNeeded;
-    }
-
+    }//
 
     public static List<Collaborator> assignCollaborators(List<Skill> skillsNeeded, List<Collaborator> collaboratorList, int minSize, int maxSize) {
         List<Collaborator> selectedCollaborators = new ArrayList<>();
