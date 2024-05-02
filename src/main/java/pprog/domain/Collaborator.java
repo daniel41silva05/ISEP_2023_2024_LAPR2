@@ -234,14 +234,6 @@ public class Collaborator {
         return skillAssign;
     }
 
-    public void setSkillAssign(List<Skill> skillAssign) {
-        this.skillAssign = skillAssign;
-    }
-
-    public void assignSkill (Skill skill) {
-        skillAssign.add(skill);
-    }
-
     /**
      * Creates and returns a copy of this collaborator.
      *

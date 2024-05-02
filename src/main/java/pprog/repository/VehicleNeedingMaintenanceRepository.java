@@ -49,4 +49,29 @@ public class VehicleNeedingMaintenanceRepository {
         }
         return lastCheckUpKms;
     }
+
+    // QUANDO O CHECKUP.GETDATE ESTIVER EM DATE E NÃO EM STRING, APAGAR O METODO ANTERIOR E COLOCAR ESTE
+//    private int getLastCheckUpKms(Vehicle vehicle, List<CheckUp> allCheckUps) {
+//        int lastCheckUpKms = 0;
+//        Date lastCheckUpDate = null;
+//
+//        for (CheckUp checkUp : allCheckUps) {
+//            if (checkUp.getVehicle().equals(vehicle)) {
+//                Date checkUpDate = checkUp.getDate();
+//                if (lastCheckUpDate == null || checkUpDate.after(lastCheckUpDate)) {
+//                    lastCheckUpDate = checkUpDate;
+//                    if (checkUp.getKMS() > lastCheckUpKms) {
+//                        lastCheckUpKms = checkUp.getKMS();
+//                    }
+//                }
+//            }
+//        }
+//        return lastCheckUpKms;
+//    }
+
+    @Override
+    public String toString() {
+        return "Vehicles Needing Maintenance = " + vehiclesNeedingMaintenanceList+'}';
+    }
+
 }

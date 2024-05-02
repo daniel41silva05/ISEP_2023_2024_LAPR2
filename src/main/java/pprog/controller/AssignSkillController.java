@@ -72,8 +72,14 @@ public class AssignSkillController {
         return skillRepository.getSkillsList();
     }
 
-    public void assignSkillToCollaborator(String collaboratorName, List<Skill> skillsToAssign) {
+    public void assignSkillToCollaborator(Collaborator collaborator, List<Skill> skillsToAssign) {
+        for (Skill skill: skillsToAssign) {
+            collaborator.getSkillAssign().add(skill);
+        }
+    }
 
+    public List<Skill> getSkillsOfCollaborator(Collaborator collaborator) {
+        return collaborator.getSkillAssign();
     }
 
 }
