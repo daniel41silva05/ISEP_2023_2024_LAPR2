@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import pprog.controller.AssignSkillController;
-import pprog.controller.RegisterCollaboratorController;
-import pprog.controller.RegisterJobController;
-import pprog.controller.RegisterSkillController;
+import pprog.controller.*;
 
 public class mainTestarUs1eUs2eUS3eUs4 {
     // asda
@@ -15,6 +12,7 @@ public class mainTestarUs1eUs2eUS3eUs4 {
     private static final RegisterJobController jobController = new RegisterJobController();
     private static final AssignSkillController skillController = new AssignSkillController();
     private static final RegisterSkillController registerSkillController = new RegisterSkillController();
+    private static final GenerateTeamController teamController = new GenerateTeamController();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -30,7 +28,8 @@ public class mainTestarUs1eUs2eUS3eUs4 {
             System.out.println("6. Show registered jobs");
             System.out.println("7. Show registered skills");
             System.out.println("8. Show skills of a collaborator");
-            System.out.println("9. Exit");
+            System.out.println("9. Generate a team");
+            System.out.println("10. Exit");
             System.out.print("Choose an option: ");
 
             int option = scanner.nextInt();
@@ -62,6 +61,9 @@ public class mainTestarUs1eUs2eUS3eUs4 {
                     showCollaboratorSkills();
                     break;
                 case 9:
+                    generateTeam();
+                    break;
+                case 10:
                     exit = true;
                     break;
                 default:
@@ -153,6 +155,8 @@ public class mainTestarUs1eUs2eUS3eUs4 {
             }
         }
 
+        // DEIXAR A PARTE DE VERIFICAR O COLABORADOR E SKILL PARA O MAIN
+
         if (skillsToAssign.isEmpty()) {
             System.out.println("No valid skills to assign.");
             return;
@@ -160,6 +164,37 @@ public class mainTestarUs1eUs2eUS3eUs4 {
 
         skillController.assignSkillToCollaborator(collaborator, skillsToAssign);
         System.out.println("Skills assigned to " + collaboratorName + " successfully.");
+    }
+
+    private static void generateTeam() {
+        System.out.println("\n=== Generate a New Team ===");
+        System.out.print("Enter minimum size of the team: ");
+        int minSize = scanner.nextInt();
+        System.out.print("Enter maximum size of the team: ");
+        int maxSize = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+
+        System.out.println("Enter required skills for the team (comma-separated): ");
+        String skillNamesInput = scanner.nextLine();
+        String[] skillNames = skillNamesInput.split(",");
+        List<Skill> requiredSkills = new ArrayList<>();
+        for (String skillName : skillNames) {
+            Skill skill = teamController.getSkillRepository().getSkillByName(skillName.trim());
+            if (skill != null) {
+                requiredSkills.add(skill);
+            } else {
+                System.out.println("Skill '" + skillName.trim() + "' not found.");
+            }
+        }
+
+        List <Collaborator> team = teamController.team(minSize, maxSize, requiredSkills);
+        if (team != null) {
+            System.out.println("Team generated successfully:");
+            // You might want to implement a method in GenerateTeam class to print its details
+            System.out.println(team);
+        } else {
+            System.out.println("Failed to generate team. Please try again.");
+        }
     }
 
     private static void showRegisteredCollaborators() {

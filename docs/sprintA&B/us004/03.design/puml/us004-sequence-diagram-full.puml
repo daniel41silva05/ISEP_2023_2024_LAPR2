@@ -7,8 +7,8 @@ autonumber
 
 'hide footbox
 actor "Human Resources\n Manager" as HRM
-participant ":RegisterCollaboratorUI" as UI
-participant ":RegisterCollaboratorControlller" as CTRL
+participant ":AssignSkillUI" as UI
+participant ":AssignSkillControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "skillsRepository:\nSkillsRepository" as SkillsRepository
@@ -87,33 +87,12 @@ activate HRM
     HRM -> UI : confirms data
     activate UI
 
-        UI -> CTRL: registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, jobName)
+        UI -> CTRL: assignSkillToCollaborator (collaborator, skillsToAssign)
 
                 activate CTRL
 
-                    CTRL -> CTRL: getJobsByName(jobName)
+                    CTRL -> CTRL: getCollaboratorByName (collaboratorName)
                     activate CTRL
-
-                    CTRL -> REP: getInstance()
-                    activate REP
-
-                    REP --> CTRL: repositories
-                    deactivate REP
-
-                    CTRL -> REPS: getJobRepository()
-                    activate REPS
-
-                    REPS --> CTRL: jobRepository
-                    deactivate REPS
-
-                    CTRL -> jobRepository: getJobsByName(jobName)
-                    activate jobRepository
-
-                    jobRepository --> CTRL: job
-                    deactivate jobRepository
-
-                    CTRL --> CTRL: job
-                    deactivate CTRL
 
                     CTRL -> REP: getInstance()
                     activate REP
@@ -124,30 +103,28 @@ activate HRM
                     CTRL -> REPS: getCollaboratorRepository()
                     activate REPS
 
-                    REPS --> CTRL: collaboratorRepository
+                    REPS --> CTRL: collaboratorsRepository
                     deactivate REPS
 
-                    CTRL -> collaboratorRepository: registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
-                    activate collaboratorRepository
+                    CTRL -> collaboratorsRepository: getCollaboratorByName (collaboratorName)
+                    activate collaboratorsRepository
 
-                        collaboratorRepository -> COLLABORATOR** : register(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
+                    collaboratorsRepository --> CTRL: collaborator
+                    deactivate collaboratorsRepository
 
-                        collaboratorRepository -> collaboratorRepository: addCollaborator (colaborator)
-                        activate collaboratorRepository
+                    CTRL --> CTRL: collaborator
+                    deactivate CTRL
 
-                        collaboratorRepository -> collaboratorRepository: validateCollaborator (colaborator)
-                        activate collaboratorRepository
+                    CTRL -> COLLABORATOR: assignSkillToCollaborator (collaborator, skillsToAssign)
+                    activate COLLABORATOR
 
-                        collaboratorRepository --> collaboratorRepository
-                        deactivate collaboratorRepository
+                    COLLABORATOR -> COLLABORATOR : assignSkillToCollaborator
 
-                        collaboratorRepository --> collaboratorRepository
-                        deactivate collaboratorRepository
+                    COLLABORATOR --> CTRL : ...
+                    deactivate COLLABORATOR
 
-                    collaboratorRepository --> CTRL: collaborator
-                    deactivate collaboratorRepository
 
-                CTRL --> UI: collaborator
+                CTRL --> UI: ...
                 deactivate CTRL
             UI --> HRM: displays operation success
     deactivate UI
