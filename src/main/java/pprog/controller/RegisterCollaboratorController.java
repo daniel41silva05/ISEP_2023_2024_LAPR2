@@ -1,7 +1,6 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
-import pprog.domain.Date;
 import pprog.domain.IdDocType;
 import pprog.domain.Job;
 import pprog.repository.CollaboratorRepository;
@@ -9,7 +8,6 @@ import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Controller responsible for registering collaborators.

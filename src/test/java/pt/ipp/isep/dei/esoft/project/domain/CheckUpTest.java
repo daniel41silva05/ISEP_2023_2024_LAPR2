@@ -2,9 +2,11 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pprog.domain.CheckUp;
 import pprog.domain.Vehicle;
-import pprog.domain.Date;
 import pprog.domain.VehicleType;
 import org.junit.jupiter.api.Test;
+
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

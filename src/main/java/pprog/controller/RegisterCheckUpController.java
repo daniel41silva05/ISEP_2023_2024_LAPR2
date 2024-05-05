@@ -3,8 +3,8 @@ package pprog.controller;
 import pprog.domain.CheckUp;
 import pprog.domain.Vehicle;
 import pprog.repository.*;
-import pprog.domain.Date;
 
+import java.util.Date;
 import java.util.List;
 
 

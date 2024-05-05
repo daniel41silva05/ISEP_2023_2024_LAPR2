@@ -2,9 +2,8 @@ package pprog.ui;
 
 import pprog.domain.CheckUp;
 import pprog.controller.RegisterCheckUpController;
-import java.util.ArrayList;
+
 import java.util.List;
-import pprog.domain.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

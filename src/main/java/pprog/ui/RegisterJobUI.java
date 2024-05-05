@@ -1,27 +1,58 @@
 package pprog.ui;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 import pprog.controller.RegisterJobController;
 import pprog.domain.Job;
 
-public class RegisterJobUI {
+public class RegisterJobUI implements Runnable {
     private RegisterJobController controller;
 
-    // Método para criar um novo cargo
-    public void create() {
-        // Criar instância do controlador
+    private String name;
+    private String description;
+
+    public RegisterJobUI() {
         controller = new RegisterJobController();
+    }
 
-        // Solicitar dados do usuário
-        String name = ""; // Obter nome do cargo do usuário
-        String description = ""; // Obter descrição do cargo do usuário
+    private RegisterJobController getController() {
+        return controller;
+    }
 
-        // Chamar método do controlador para registrar o cargo
-        controller.registerJob(name, description);
+    public void run() {
+        System.out.println("\n\n--- Register a Collaborator ------------------------");
 
-        // Exibir mensagem de sucesso para o usuário
-        System.out.println("Job registered successfully!");
+        requestData();
+        submitData();
+
+    }
+
+    private void submitData() {
+        Job job = controller.registerJob(name, description);
+        if (job != null) {
+            System.out.println("\nJob successfully registed!");
+        } else {
+            System.out.println("\nJob not registed!");
+        }
+
+    }
+
+    private void requestData() {
+
+        name = requestName();
+        description = requestDescription();
+
+    }
+
+    private String requestName() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Name: ");
+        return input.nextLine();
+    }
+
+    private String requestDescription() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Description: ");
+        return input.nextLine();
     }
 }

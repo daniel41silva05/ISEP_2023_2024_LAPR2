@@ -41,6 +41,11 @@ public class RegisterCollaboratorUI implements Runnable {
     private void submitData() {
 
         Collaborator collaborator = controller.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
+        if (collaborator != null) {
+            System.out.println("\nCollaborator successfully registed!");
+        } else {
+            System.out.println("\nCollaborator not registed!");
+        }
 
     }
 
