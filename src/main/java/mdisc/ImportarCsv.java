@@ -16,8 +16,8 @@ public class ImportarCsv {
             int destino = Integer.parseInt(linha[1]);
             int peso = Integer.parseInt(linha[2]);
             grafo.addAresta(origem, destino, peso);
-            grafo.setV(Math.max(grafo.getV(), Math.max(origem, destino) + 1));
-            grafo.setE(grafo.getE() + 1);
+            grafo.setVertice(Math.max(grafo.getVertice(), Math.max(origem, destino) + 1));
+            grafo.setAresta(grafo.getAresta() + 1);
         }
 
         return grafo;
