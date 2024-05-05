@@ -35,7 +35,6 @@ public class Grafo {
         Aresta[] resultado = new Aresta[vertice];
         int e = 0;
         int i = 0;
-        int maxVertice = 0;
         int custoTotal = 0;
 
         for (i = 0; i < vertice; ++i)
@@ -61,16 +60,11 @@ public class Grafo {
 
                     writer.append(String.valueOf(proximaAresta.getOrigem())).append(";").append(String.valueOf(proximaAresta.getDestino())).append(";").append(String.valueOf(proximaAresta.getPeso())).append("\n");
 
-                    // Atualiza a dimensão do grafo (vértice máximo)
-                    maxVertice = Math.max(maxVertice, Math.max(proximaAresta.getOrigem(), proximaAresta.getDestino()));
-
-                    // Calcula o custo total
                     custoTotal += proximaAresta.getPeso();
                 }
             }
 
-            // Escreve a informação no arquivo
-            writer.append("Graph Dimension = ").append(String.valueOf(maxVertice)).append(" : Graph Order = ").append(String.valueOf(e)).append(" : Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
+            writer.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
 
             System.out.println("Arquivo 'output_JardimDosSentimentos' criado com sucesso.");
 
