@@ -20,7 +20,7 @@ public class RegisterJobUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("\n\n--- Register a Collaborator ------------------------");
+        System.out.println("\n\n--- Register a Job ------------------------");
 
         requestData();
         submitData();
@@ -46,8 +46,15 @@ public class RegisterJobUI implements Runnable {
 
     private String requestName() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Name: ");
-        return input.nextLine();
+        String name;
+        do {
+            System.out.print("Name: ");
+            name = input.nextLine().trim();
+            if (!name.matches("[a-zA-Z ]+")) {
+                System.out.println("Invalid name. Please enter a valid name.");
+            }
+        } while (!name.matches("[a-zA-Z ]+"));
+        return name;
     }
 
     private String requestDescription() {

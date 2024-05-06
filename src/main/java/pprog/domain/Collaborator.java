@@ -1,6 +1,7 @@
 package pprog.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,10 +13,10 @@ public class Collaborator {
     private String name;
 
     /** The birthday of the collaborator. */
-    private String birthday;
+    private Date birthday;
 
     /** The admission date of the collaborator. */
-    private String admissionDate;
+    private Date admissionDate;
 
     /** The address of the collaborator. */
     private String address;
@@ -50,7 +51,7 @@ public class Collaborator {
      * @param idNumber      The identification number of the collaborator.
      * @param job           The job of the collaborator.
      */
-    public Collaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
@@ -61,6 +62,33 @@ public class Collaborator {
         this.idNumber = idNumber;
         this.job = job;
         this.skillAssign = new ArrayList<>();
+    }
+
+    public boolean validateBirthdayIsOver18() {
+        Date currentDate = new Date();
+        long diffMillis = currentDate.getTime() - this.birthday.getTime();
+        long ageInMillis = 18L * 365 * 24 * 60 * 60 * 1000;
+        return diffMillis > ageInMillis;
+    }
+
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Collaborator outroCollaborator = (Collaborator) outroObjeto;
+        return name.equalsIgnoreCase(outroCollaborator.name) &&
+                birthday.equals(outroCollaborator.birthday) &&
+                admissionDate.equals(outroCollaborator.admissionDate) &&
+                address.equalsIgnoreCase(outroCollaborator.address) &&
+                phoneNumber == outroCollaborator.phoneNumber &&
+                email.equalsIgnoreCase(outroCollaborator.email) &&
+                idDocType.equals(outroCollaborator.idDocType) &&
+                idNumber == outroCollaborator.idNumber &&
+                job.equals(outroCollaborator.job);
     }
 
     /**
@@ -86,7 +114,7 @@ public class Collaborator {
      *
      * @return The birthday of the collaborator.
      */
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
@@ -95,7 +123,7 @@ public class Collaborator {
      *
      * @param birthday The new birthday of the collaborator.
      */
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -104,7 +132,7 @@ public class Collaborator {
      *
      * @return The admission date of the collaborator.
      */
-    public String getAdmissionDate() {
+    public Date getAdmissionDate() {
         return admissionDate;
     }
 
@@ -113,7 +141,7 @@ public class Collaborator {
      *
      * @param admissionDate The new admission date of the collaborator.
      */
-    public void setAdmissionDate(String admissionDate) {
+    public void setAdmissionDate(Date admissionDate) {
         this.admissionDate = admissionDate;
     }
 
@@ -249,26 +277,5 @@ public class Collaborator {
         return String.format("Collaborator\nName: %s\nBirthday: %s\nAdmission Date: %s\nAddress: %s\nPhone Number: %d\nEmail: %s\nID Document Type: %s\nID Number: %d\nJob: %s\n",
                 name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
     }
-
-    @Override
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
-            return true;
-        }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
-            return false;
-        }
-        Collaborator outroCollaborator = (Collaborator) outroObjeto;
-        return name.equalsIgnoreCase(outroCollaborator.name) &&
-                birthday.equals(outroCollaborator.birthday) &&
-                admissionDate.equals(outroCollaborator.admissionDate) &&
-                address.equalsIgnoreCase(outroCollaborator.address) &&
-                phoneNumber == outroCollaborator.phoneNumber &&
-                email.equalsIgnoreCase(outroCollaborator.email) &&
-                idDocType.equals(outroCollaborator.idDocType) &&
-                idNumber == outroCollaborator.idNumber &&
-                job.equals(outroCollaborator.job);
-    }
-
 
 }

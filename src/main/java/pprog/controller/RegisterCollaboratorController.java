@@ -7,6 +7,7 @@ import pprog.repository.CollaboratorRepository;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,7 +84,7 @@ public class RegisterCollaboratorController {
      * @param jobName       the job name of the collaborator
      * @return the registered collaborator
      */
-    public Collaborator registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
+    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
         Job job = getJobByName(jobName);
         if (job == null) {
             return null;
