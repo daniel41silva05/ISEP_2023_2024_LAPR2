@@ -32,31 +32,12 @@ public class Skill {
     }
 
     /**
-     * Gets the skill.
+     * Validates the skill.
      *
-     * @return the skill
+     * @return true if the skill contains only letters and spaces and does not contain any digits; false otherwise
      */
-    public String getSkill() {
-        return skill;
-    }
-
-    /**
-     * Sets the skill.
-     *
-     * @param skill the skill to set
-     */
-    public void setSkill(String skill) {
-        this.skill = skill;
-    }
-
-    /**
-     * Returns a string representation of the skill.
-     *
-     * @return a string representation of the skill
-     */
-    @Override
-    public String toString() {
-        return String.format("Skill: %s", skill);
+    public boolean validateSkill() {
+        return this.skill.matches("[a-zA-Z ]+") && !this.skill.matches(".*\\d.*");
     }
 
     /**
@@ -78,11 +59,34 @@ public class Skill {
     }
 
     /**
-     * Validates the skill.
+     * Gets the skill.
      *
-     * @return true if the skill contains only letters and spaces and does not contain any digits; false otherwise
+     * @return the skill
      */
-    public boolean validateSkill() {
-        return this.skill.matches("[a-zA-Z ]+") && !this.skill.matches(".*\\d.*");
+    public String getSkill() {
+        return skill;
+    }
+
+    /**
+     * Sets the skill.
+     *
+     * @param skill the skill to set
+     */
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public Skill clone() {
+        return new Skill(this.skill);
+    }
+
+    /**
+     * Returns a string representation of the skill.
+     *
+     * @return a string representation of the skill
+     */
+    @Override
+    public String toString() {
+        return String.format("Skill: %s", skill);
     }
 }

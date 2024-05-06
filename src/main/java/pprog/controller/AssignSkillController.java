@@ -1,10 +1,8 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
-import pprog.domain.Job;
 import pprog.domain.Skill;
 import pprog.repository.CollaboratorRepository;
-import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 import pprog.repository.SkillRepository;
 
@@ -27,10 +25,6 @@ public class AssignSkillController {
         getCollaboratorRepository();
     }
 
-    public List<Skill> getSkillsToAssign() {
-        return skillsToAssign;
-    }
-
     public SkillRepository getSkillRepository() {
         if (skillRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -45,10 +39,6 @@ public class AssignSkillController {
             collaboratorRepository = repositories.getCollaboratorRepository();
         }
         return collaboratorRepository;
-    }
-
-    public void setSkillsToAssign(List<Skill> skillsToAssign) {
-        this.skillsToAssign = skillsToAssign;
     }
 
     public Collaborator getCollaboratorByName(String collaboratorName) {
@@ -80,6 +70,14 @@ public class AssignSkillController {
 
     public List<Skill> getSkillsOfCollaborator(Collaborator collaborator) {
         return collaborator.getSkillAssign();
+    }
+
+    public List<Skill> getSkillsToAssign() {
+        return skillsToAssign;
+    }
+
+    public void setSkillsToAssign(List<Skill> skillsToAssign) {
+        this.skillsToAssign = skillsToAssign;
     }
 
 }

@@ -1,5 +1,6 @@
 package pprog.domain;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -8,13 +9,27 @@ import java.util.Objects;
 public class CheckUp {
 
     private Vehicle vehicle;
-    private Date date; // The date of the check-up
-    private int KMS; // The kilometers covered by the vehicle at the time of the check-up
+    private Date date;
+    private int KMS;
 
     public CheckUp(Date date, Vehicle vehicle, int KMS) {
         this.date = date;
         this.vehicle = vehicle;
         this.KMS = KMS;
+    }
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param o The reference object with which to compare
+     * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || (! ( o instanceof CheckUp))) return false;
+        CheckUp checkUp = (CheckUp) o;
+        return Double.compare(KMS, checkUp.KMS) == 0 && Objects.equals(vehicle, checkUp.vehicle) && Objects.equals(date, checkUp.date);
     }
 
     /**
@@ -31,8 +46,8 @@ public class CheckUp {
      *
      * @return The date of the check-up
      */
-    public String getDate() {
-        return date.toString();
+    public Date getDate() {
+        return date;
     }
 
     public Vehicle getVehicle() {
@@ -66,34 +81,11 @@ public class CheckUp {
      *
      * @return A string representation of the object
      */
-    @Override
-    public String toString(){ return date + " " + vehicle + " " + KMS; }
-
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     *
-     * @param o The reference object with which to compare
-     * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || (! ( o instanceof CheckUp))) return false;
-        CheckUp checkUp = (CheckUp) o;
-        return Double.compare(KMS, checkUp.KMS) == 0 && Objects.equals(vehicle, checkUp.vehicle) && Objects.equals(date, checkUp.date);
-    }
-
-    /**
-     * Returns a hash code value for the object.
-     *
-     * @return A hash code value for this object
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(date, vehicle, KMS);
-    }
 
     public CheckUp clone() {
         return new CheckUp(this.date, this.vehicle, this.KMS);
     }
+
+    @Override
+    public String toString(){ return date + " " + vehicle + " " + KMS; }
 }

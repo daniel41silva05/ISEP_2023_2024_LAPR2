@@ -1,8 +1,5 @@
 package pprog.domain;
 
-import java.util.Objects;
-
-
 /**
  * Represents a job with a name and description.
  */
@@ -22,6 +19,18 @@ public class Job {
     public Job(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Job outroJob = (Job) outroObjeto;
+        return name.equalsIgnoreCase(outroJob.name);
     }
 
     /**

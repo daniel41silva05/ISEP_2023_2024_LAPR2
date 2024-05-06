@@ -1,9 +1,5 @@
 package pprog.domain;
 
-import pprog.repository.CollaboratorRepository;
-import pprog.repository.JobRepository;
-import pprog.repository.Repositories;
-
 /**
  * Represents a human resources manager.
  */

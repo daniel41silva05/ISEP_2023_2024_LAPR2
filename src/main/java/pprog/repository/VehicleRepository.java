@@ -1,13 +1,11 @@
 package pprog.repository;
 
-import pprog.domain.Date;
-import pprog.domain.Job;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Repository class to manage vehicles.
@@ -81,7 +79,7 @@ public class VehicleRepository {
                 return vehicle;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Vehicle with plate number '" + plateNumber + "' not found.");
     }
 
     /**

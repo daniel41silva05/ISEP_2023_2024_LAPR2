@@ -1,10 +1,8 @@
 package pprog.repository;
 
-import pprog.domain.Job;
 import pprog.domain.Skill;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,33 +44,6 @@ public class SkillRepository {
         }
         return null;
     }
-    public List<Skill> getSkillsList() {
-        return skillsList;
-    }
-
-    /**
-     * Sets the list of skills.
-     *
-     * @param skillsList the list of skills to set
-     */
-    public void setSkillsList(List<Skill> skillsList) {
-        this.skillsList = skillsList;
-    }
-
-    /**
-     * Returns a string representation of the skill repository.
-     *
-     * @return a string representation of the skill repository
-     */
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        for (Skill sk : skillsList) {
-            s.append(sk.toString());
-            s.append("\n");
-        }
-        return s.toString();
-    }
 
     /**
      * Adds a skill to the repository.
@@ -109,6 +80,34 @@ public class SkillRepository {
             throw new IllegalArgumentException("Skill already exists in the repository");
         }
         return addSkill(skill);
+    }
+
+    public List<Skill> getSkillsList() {
+        return skillsList;
+    }
+
+    /**
+     * Sets the list of skills.
+     *
+     * @param skillsList the list of skills to set
+     */
+    public void setSkillsList(List<Skill> skillsList) {
+        this.skillsList = skillsList;
+    }
+
+    /**
+     * Returns a string representation of the skill repository.
+     *
+     * @return a string representation of the skill repository
+     */
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Skill sk : skillsList) {
+            s.append(sk.toString());
+            s.append("\n");
+        }
+        return s.toString();
     }
 
 }

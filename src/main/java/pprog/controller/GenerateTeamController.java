@@ -3,10 +3,7 @@ package pprog.controller;
 import pprog.domain.Collaborator;
 import pprog.domain.GenerateTeam;
 import pprog.domain.Skill;
-import pprog.repository.CollaboratorRepository;
-import pprog.repository.GenerateTeamRepository;
-import pprog.repository.Repositories;
-import pprog.repository.SkillRepository;
+import pprog.repository.*;
 
 import java.util.List;
 
@@ -52,16 +49,9 @@ public class GenerateTeamController {
         return generateTeamRepository;
     }
 
-    public GenerateTeam generateTeam(int maxSize, int minSize, List<Skill> skillsNeeded) {
-        validateTeamParameters(maxSize, minSize);
-        return generateTeamRepository.generateTeam(maxSize, minSize, skillsNeeded);
-    }
+    public List<Collaborator> team(int minSize, int maxSize, List<Skill> requiredSkills) {
 
-    private void validateTeamParameters(int maxSize, int minSize) {
-        if (maxSize < minSize) {
-            throw new IllegalArgumentException("The maximum team size must be greater than or equal to the minimum size.");
-        }
-
+        return generateTeamRepository.team(minSize, maxSize, requiredSkills, getCollaboratorList());
     }
 
     public List<Skill> getSkillList() {
@@ -73,4 +63,10 @@ public class GenerateTeamController {
         CollaboratorRepository collaboratorRepository = getCollaboratorRepository();
         return collaboratorRepository.getCollaboratorsList();
     }
+
+    public List<GenerateTeam> getTeamList() {
+        GenerateTeamRepository generateTeamRepository = getGenerateTeamRepository();
+        return generateTeamRepository.getTeamList();
+    }
+
 }

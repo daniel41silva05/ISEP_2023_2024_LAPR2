@@ -1,8 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.Collaborator;
 import pprog.domain.Job;
-import pprog.domain.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +44,12 @@ public class JobRepository {
      * @return          True if the vehicle is successfully added, false otherwise.
      */
     public boolean addJob(Job job){
-        boolean success = false;
         if (validateJob(job)) {
-            success = jobsList.add(job.clone());
+            jobsList.add(job.clone());
+            return true;
+        } else {
+            throw new IllegalArgumentException("Job already exists in the repository");
         }
-        return success;
     }
 
     /**
@@ -64,7 +63,7 @@ public class JobRepository {
                 return job;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Job with name '" + jobName + "' not found.");
     }
 
     /**
@@ -92,7 +91,7 @@ public class JobRepository {
      */
     @Override
     public String toString() {
-        return "Jobs=" + jobsList + '}';
+        return "Jobs= " + jobsList;
     }
 
 }

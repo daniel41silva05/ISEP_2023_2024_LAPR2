@@ -3,8 +3,8 @@ package pprog.repository;
 import pprog.domain.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Repository class to manage collaborators.
@@ -37,7 +37,7 @@ public class CollaboratorRepository {
      * @param job           The job of the collaborator.
      * @return The newly registered collaborator, or null if registration fails.
      */
-    public Collaborator registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
         Collaborator newCollaborator = null;
         Collaborator collaborator = new Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
 
@@ -69,11 +69,15 @@ public class CollaboratorRepository {
      * @return true if the collaborator was added successfully, false otherwise.
      */
     private boolean addCollaborator(Collaborator collaborator) {
-        boolean success = false;
-        if (validateCollaborator(collaborator)) {
-            success = collaboratorsList.add(collaborator.clone());
+        if (!collaborator.validateBirthdayIsOver18()) {
+            throw new IllegalArgumentException("Collaborator must be at least 18 years old");
         }
-        return success;
+        if (validateCollaborator(collaborator)) {
+            collaboratorsList.add(collaborator.clone());
+            return true;
+        } else {
+            throw new IllegalArgumentException("Collaborator already exists in the repository");
+        }
     }
 
     /**

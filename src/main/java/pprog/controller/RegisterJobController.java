@@ -53,6 +53,11 @@ public class RegisterJobController {
         return jobRepository.registerJob(name, description);
     }
 
+    public Job getJobByName(String jobName) {
+        JobRepository jobRepository = getJobRepository();
+        return jobRepository.getJobByName(jobName);
+    }
+
     public List<Job> getJobsList() {
         JobRepository jobRepository = getJobRepository();
         return jobRepository.getJobsList();

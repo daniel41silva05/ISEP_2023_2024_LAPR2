@@ -14,12 +14,14 @@ public class VehicleNeedingMaintenanceRepository {
     }
 
     public List<String> getVehiclesNeedingMaintenanceList (List<Vehicle> allVehicles, List<CheckUp> allCheckUps) {
+        String headerLine = "Plate\tBrand\tModel\tCurr.Kms\tFreq\tLast\tNext\n";
+        vehiclesNeedingMaintenanceList.add(headerLine);
 
         for (Vehicle vehicle : allVehicles) {
             if (needsCheckUp(vehicle, allCheckUps)) {
                 int nextCheckUpKms = getLastCheckUpKms(vehicle, allCheckUps) + vehicle.getMaintenanceCheckUpFrequency();
 
-                String line = String.format("%s\t%s\t%s\t%d\t%d\t%d\t%d",
+                String line = String.format("%s\t%s\t%s\t%d\t%d\t%d\t%d\n",
                         vehicle.getPlateNumber(), vehicle.getBrand(), vehicle.getModel(), vehicle.getCurrentKm(), vehicle.getMaintenanceCheckUpFrequency(), getLastCheckUpKms(vehicle, allCheckUps), nextCheckUpKms);
 
                 vehiclesNeedingMaintenanceList.add(line);
@@ -49,25 +51,6 @@ public class VehicleNeedingMaintenanceRepository {
         }
         return lastCheckUpKms;
     }
-
-    // QUANDO O CHECKUP.GETDATE ESTIVER EM DATE E NÃO EM STRING, APAGAR O METODO ANTERIOR E COLOCAR ESTE
-//    private int getLastCheckUpKms(Vehicle vehicle, List<CheckUp> allCheckUps) {
-//        int lastCheckUpKms = 0;
-//        Date lastCheckUpDate = null;
-//
-//        for (CheckUp checkUp : allCheckUps) {
-//            if (checkUp.getVehicle().equals(vehicle)) {
-//                Date checkUpDate = checkUp.getDate();
-//                if (lastCheckUpDate == null || checkUpDate.after(lastCheckUpDate)) {
-//                    lastCheckUpDate = checkUpDate;
-//                    if (checkUp.getKMS() > lastCheckUpKms) {
-//                        lastCheckUpKms = checkUp.getKMS();
-//                    }
-//                }
-//            }
-//        }
-//        return lastCheckUpKms;
-//    }
 
     @Override
     public String toString() {

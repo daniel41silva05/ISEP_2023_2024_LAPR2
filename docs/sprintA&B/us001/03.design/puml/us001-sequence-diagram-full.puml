@@ -52,10 +52,16 @@ activate HRM
             activate SkillREP
 
             SkillREP -> SKILL** : register (name)
+            activate SKILL
+
+                SKILL -> SKILL : validateSkill (skill)
+
+                SKILL -> SkillREP : skill
+                deactivate SKILL
+
+                SkillREP -> SkillREP : registerSkill (skill)
 
                 SkillREP -> SkillREP : addSkill (skill)
-
-                SkillREP -> SkillREP : validateSkill (skill)
 
             SkillREP --> CTRL : skill
             deactivate SkillREP

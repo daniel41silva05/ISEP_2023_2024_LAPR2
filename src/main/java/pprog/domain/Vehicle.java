@@ -1,6 +1,6 @@
 package pprog.domain;
 
-import java.util.Objects;
+import java.util.Date;
 
 /**
  * Represents a vehicle.
@@ -81,6 +81,18 @@ public class Vehicle {
         this.maintenanceCheckUpFrequency = maintenanceCheckUpFrequency;
         this.plateNumber = plateNumber;
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Vehicle outroVehicle = (Vehicle) outroObjeto;
+        return plateNumber.equalsIgnoreCase(outroVehicle.plateNumber);
     }
 
     /**

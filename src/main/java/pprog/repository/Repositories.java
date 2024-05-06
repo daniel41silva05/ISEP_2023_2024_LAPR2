@@ -23,6 +23,7 @@ public class Repositories {
     private final CheckUpRepository checkUpRepository;
     private final GenerateTeamRepository generateTeamRepository;
     private final VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
+    private final AuthenticationRepository authenticationRepository;
 
     /**
      * Constructs a new Repositories object, initializing all repositories.
@@ -35,6 +36,7 @@ public class Repositories {
         checkUpRepository = new CheckUpRepository();
         generateTeamRepository = new GenerateTeamRepository();
         vehicleNeedingMaintenanceRepository = new VehicleNeedingMaintenanceRepository();
+        authenticationRepository = new AuthenticationRepository();
     }
 
     /**
@@ -94,6 +96,10 @@ public class Repositories {
 
     public VehicleNeedingMaintenanceRepository getVehicleNeedingMaintenanceRepository() {
         return vehicleNeedingMaintenanceRepository;
+    }
+
+    public AuthenticationRepository getAuthenticationRepository() {
+        return authenticationRepository;
     }
 }
 

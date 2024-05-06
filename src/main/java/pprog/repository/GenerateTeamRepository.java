@@ -1,5 +1,6 @@
 package pprog.repository;
 
+import pprog.domain.Collaborator;
 import pprog.domain.GenerateTeam;
 import pprog.domain.Skill;
 
@@ -10,10 +11,6 @@ public class GenerateTeamRepository {
 
     private List<GenerateTeam> teamList;
 
-    public GenerateTeamRepository(List<GenerateTeam> teamList) {
-        this.teamList = teamList;
-    }
-
     public GenerateTeamRepository() {
         teamList = new ArrayList<>();
     }
@@ -22,26 +19,28 @@ public class GenerateTeamRepository {
         return teamList;
     }
 
-    public void setTeamList(List<GenerateTeam> teamList) {
-        this.teamList = teamList;
-    }
+    public List<Collaborator> team(int minSize, int maxSize, List<Skill> requiredSkills, List<Collaborator> collaboratorList) {
+        List<Collaborator> newTeams = new ArrayList<>();
+        GenerateTeam team = new GenerateTeam(minSize, maxSize, requiredSkills);
 
-    public GenerateTeam generateTeam(int maxSize, int minSize, List<Skill> skillsNeeded) {
-        return generateTeam(maxSize, minSize, skillsNeeded);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        for (GenerateTeam gt : teamList) {
-            s.append(gt.toString());
-            s.append("\n");
+        if (addTeam(team)) {
+            List<Collaborator> collaboratorsWithSkills = team.seeColaboratorsWithSkillsNeeded(collaboratorList, requiredSkills);
+            List<Collaborator> generatedTeams = team.generateRandomTeam(collaboratorsWithSkills, maxSize, minSize);
+            newTeams.addAll(generatedTeams);
         }
-        return s.toString();
+        return newTeams;
     }
 
-    public boolean addTeam(GenerateTeam team) {
-        return teamList.add(team);
+    private boolean addTeam(GenerateTeam team) {
+        boolean success = false;
+        if (validateTeam(team)) {
+            success = teamList.add(team.clone());
+        }
+        return success;
+    }
+
+    private boolean validateTeam(GenerateTeam team) {
+        return !teamList.contains(team);
     }
 
 }

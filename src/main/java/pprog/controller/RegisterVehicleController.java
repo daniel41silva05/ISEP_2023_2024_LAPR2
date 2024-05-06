@@ -1,13 +1,12 @@
 package pprog.controller;
 
-import pprog.domain.Date;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Controller class responsible for registering vehicles.
