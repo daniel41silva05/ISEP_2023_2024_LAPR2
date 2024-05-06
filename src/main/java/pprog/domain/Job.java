@@ -1,8 +1,5 @@
 package pprog.domain;
 
-import java.util.Objects;
-
-
 /**
  * Represents a job with a name and description.
  */

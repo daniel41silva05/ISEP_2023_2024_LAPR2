@@ -1,4 +1,4 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
 import org.apache.commons.lang3.StringUtils;
 

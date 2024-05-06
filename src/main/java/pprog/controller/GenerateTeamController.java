@@ -2,7 +2,6 @@ package pprog.controller;
 
 import pprog.domain.Collaborator;
 import pprog.domain.GenerateTeam;
-import pprog.domain.Job;
 import pprog.domain.Skill;
 import pprog.repository.*;
 

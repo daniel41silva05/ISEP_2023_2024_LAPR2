@@ -1,8 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.Collaborator;
 import pprog.domain.Job;
-import pprog.domain.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;

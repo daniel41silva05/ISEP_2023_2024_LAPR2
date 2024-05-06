@@ -1,10 +1,8 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
-import pprog.domain.Job;
 import pprog.domain.Skill;
 import pprog.repository.CollaboratorRepository;
-import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 import pprog.repository.SkillRepository;
 

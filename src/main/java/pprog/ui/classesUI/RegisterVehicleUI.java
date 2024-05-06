@@ -1,8 +1,6 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
 import pprog.controller.RegisterVehicleController;
-import pprog.domain.IdDocType;
-import pprog.domain.Job;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 

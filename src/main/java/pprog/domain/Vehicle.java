@@ -1,7 +1,6 @@
 package pprog.domain;
 
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * Represents a vehicle.

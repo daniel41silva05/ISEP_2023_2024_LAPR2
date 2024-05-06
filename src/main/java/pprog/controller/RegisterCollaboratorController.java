@@ -85,6 +85,9 @@ public class RegisterCollaboratorController {
      */
     public Collaborator registerCollaborator(String name, String birthday, String admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
         Job job = getJobByName(jobName);
+        if (job == null) {
+            return null;
+        }
         return collaboratorRepository.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
     }
 

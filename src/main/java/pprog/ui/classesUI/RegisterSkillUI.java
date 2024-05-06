@@ -1,9 +1,6 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
-import pprog.controller.RegisterJobController;
 import pprog.controller.RegisterSkillController;
-import pprog.domain.Job;
-import pprog.domain.Skill;
 
 import java.util.Scanner;
 

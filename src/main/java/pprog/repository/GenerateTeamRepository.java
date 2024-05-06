@@ -1,6 +1,5 @@
 package pprog.repository;
 
-import pprog.domain.CheckUp;
 import pprog.domain.Collaborator;
 import pprog.domain.GenerateTeam;
 import pprog.domain.Skill;

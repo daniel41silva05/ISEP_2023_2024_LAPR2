@@ -1,9 +1,6 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
-import pprog.controller.RegisterCollaboratorController;
 import pprog.controller.VehicleNeedingMaintenanceController;
-import pprog.domain.Collaborator;
-import pprog.domain.IdDocType;
 
 import java.util.List;
 

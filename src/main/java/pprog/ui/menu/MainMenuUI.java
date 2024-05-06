@@ -1,6 +1,6 @@
 package pprog.ui.menu;
 
-import pprog.ui.DevTeamUI;
+import pprog.ui.classesUI.DevTeamUI;
 import pprog.ui.authorization.AuthenticationUI;
 import pprog.ui.utils.Utils;
 

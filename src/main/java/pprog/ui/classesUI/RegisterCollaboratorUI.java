@@ -1,4 +1,4 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
 import pprog.controller.RegisterCollaboratorController;
 import pprog.domain.Collaborator;

@@ -1,4 +1,4 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
 import pprog.domain.CheckUp;
 import pprog.controller.RegisterCheckUpController;
@@ -6,8 +6,6 @@ import pprog.controller.RegisterCheckUpController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RegisterCheckUpUI implements Runnable {

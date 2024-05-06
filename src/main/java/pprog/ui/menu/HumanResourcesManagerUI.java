@@ -1,14 +1,11 @@
 package pprog.ui.menu;
 
 
-import pprog.ui.RegisterSkillUI;
-import pprog.ui.RegisterJobUI;
-import pprog.ui.RegisterCollaboratorUI;
-import pprog.ui.AssignSkillUI;
-import pprog.ui.GenerateTeamUI;
-import pprog.ui.RegisterVehicleUI;
-import pprog.ui.RegisterCheckUpUI;
-import pprog.ui.VehicleNeedingMaintenanceUI;
+import pprog.ui.classesUI.RegisterSkillUI;
+import pprog.ui.classesUI.RegisterJobUI;
+import pprog.ui.classesUI.RegisterCollaboratorUI;
+import pprog.ui.classesUI.AssignSkillUI;
+import pprog.ui.classesUI.GenerateTeamUI;
 import pprog.ui.utils.Utils;
 
 import java.util.ArrayList;

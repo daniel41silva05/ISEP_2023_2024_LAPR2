@@ -1,10 +1,8 @@
 package pprog.repository;
 
-import pprog.domain.Job;
 import pprog.domain.Skill;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

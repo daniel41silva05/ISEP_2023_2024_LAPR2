@@ -1,7 +1,9 @@
 package pprog.ui.menu;
 
 
-import pprog.ui.*;
+import pprog.ui.classesUI.RegisterCheckUpUI;
+import pprog.ui.classesUI.RegisterVehicleUI;
+import pprog.ui.classesUI.VehicleNeedingMaintenanceUI;
 import pprog.ui.utils.Utils;
 
 import java.util.ArrayList;

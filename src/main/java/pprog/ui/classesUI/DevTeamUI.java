@@ -1,4 +1,4 @@
-package pprog.ui;
+package pprog.ui.classesUI;
 
 public class DevTeamUI implements Runnable {
     public DevTeamUI() {

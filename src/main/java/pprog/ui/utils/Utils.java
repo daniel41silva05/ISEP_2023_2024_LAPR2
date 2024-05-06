@@ -34,7 +34,7 @@ public class Utils {
 
                 return value;
             } catch (NumberFormatException ex) {
-                Logger.getLogger(pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(pprog.ui.utils.Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (true);
     }
@@ -48,7 +48,7 @@ public class Utils {
 
                 return value;
             } catch (NumberFormatException ex) {
-                Logger.getLogger(pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(pprog.ui.utils.Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (true);
     }
@@ -64,7 +64,7 @@ public class Utils {
 
                 return date;
             } catch (ParseException ex) {
-                Logger.getLogger(pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(pprog.ui.utils.Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (true);
     }
@@ -72,7 +72,7 @@ public class Utils {
     static public boolean confirm(String message) {
         String input;
         do {
-            input = pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils.readLineFromConsole("\n" + message + "\n");
+            input = pprog.ui.utils.Utils.readLineFromConsole("\n" + message + "\n");
         } while (!input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("n"));
 
         return input.equalsIgnoreCase("s");
@@ -105,7 +105,7 @@ public class Utils {
         String input;
         int value;
         do {
-            input = pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils.readLineFromConsole("Type your option: ");
+            input = pprog.ui.utils.Utils.readLineFromConsole("Type your option: ");
             value = Integer.valueOf(input);
         } while (value < 0 || value > list.size());
 
@@ -120,7 +120,7 @@ public class Utils {
         String input;
         int value;
         do {
-            input = pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils.readLineFromConsole("Type your option: ");
+            input = pprog.ui.utils.Utils.readLineFromConsole("Type your option: ");
             try {
                 value = Integer.valueOf(input);
             } catch (NumberFormatException ex) {
