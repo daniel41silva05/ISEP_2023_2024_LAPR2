@@ -3,112 +3,78 @@ package pprog.ui;
 import pprog.domain.CheckUp;
 import pprog.controller.RegisterCheckUpController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- * User interface class responsible for registering check-ups.
- */
-public class RegisterCheckUpUI {
+public class RegisterCheckUpUI implements Runnable {
 
     private final RegisterCheckUpController controller;
 
-    /**
-     * Default constructor.
-     */
+    private String vehiclePlateNumber;
+    private Date date;
+    private int kms;
+
     public RegisterCheckUpUI() {
         controller = new RegisterCheckUpController();
     }
 
-    /**
-     * Constructor with a specific check-up controller.
-     * @param controller The check-up controller to be set.
-     */
-    public RegisterCheckUpUI(RegisterCheckUpController controller) {
-        this.controller = controller;
+    private RegisterCheckUpController getController() {
+        return controller;
     }
 
-    /**
-     * Starts the user interface for registering check-ups.
-     */
-    public void start() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the Check-Up Registration System!");
+    public void run() {
+        System.out.println("\n\n---  Register a vehicle’s maintenance ------------------------");
 
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("\nChoose an option:");
-            System.out.println("1. Register a new check-up");
-            System.out.println("2. View all check-ups");
-            System.out.println("3. Exit");
-
-            int option;
-            try {
-                option = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine(); // clear the input buffer
-                continue;
-            }
-
-            switch (option) {
-                case 1:
-                    registerCheckUp(scanner);
-                    break;
-                case 2:
-                    viewCheckUps();
-                    break;
-                case 3:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid option. Please choose a number between 1 and 3.");
-            }
-        }
-
-        System.out.println("Goodbye!");
-        scanner.close();
+        requestData();
+        submitData();
     }
 
-    /**
-     * Registers a new check-up based on user input.
-     * @param scanner The scanner object to read user input.
-     */
-    private void registerCheckUp(Scanner scanner) {
-        System.out.println("\nEnter vehicle plate number:");
-        String plateNumber = scanner.next();
+    private void submitData() {
 
-        System.out.println("Enter check-up date (DD MM YYYY):");
-        int day = scanner.nextInt();
-        int month = scanner.nextInt();
-        int year = scanner.nextInt();
-        Date date = new Date(day, month, year);
-
-        System.out.println("Enter kilometers covered:");
-        int kms = scanner.nextInt();
-
-        CheckUp checkUp = controller.registerCheckUp(plateNumber, date, kms);
+        CheckUp checkUp = controller.registerCheckUp(vehiclePlateNumber, date, kms);
         if (checkUp != null) {
-            System.out.println("\nCheck-up registered successfully:");
-            System.out.println(checkUp);
+            System.out.println("\nVehicle maintenance successfully registed!");
         } else {
-            System.out.println("\nFailed to register check-up. Please check your input.");
+            System.out.println("\nVehicle maintenance not registed!");
+        }
+
+    }
+
+    private void requestData() {
+
+        vehiclePlateNumber = requestVehiclePlate();
+        date = requestDate();
+        kms = requestKms();
+
+    }
+
+    private String requestVehiclePlate() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Vehicle Plate Number: ");
+        return input.nextLine();
+    }
+
+    private Date requestDate() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Date (format: dd/MM/yyyy): ");
+        String dateStr = input.nextLine();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
+            return requestDate();
         }
     }
 
-    /**
-     * Displays all registered check-ups.
-     */
-    private void viewCheckUps() {
-        List<CheckUp> checkUpList = controller.getCheckUpList();
-        if (checkUpList.isEmpty()) {
-            System.out.println("\nNo check-ups registered yet.");
-        } else {
-            System.out.println("\nRegistered check-ups:");
-            for (CheckUp checkUp : checkUpList) {
-                System.out.println(checkUp);
-            }
-        }
+    private int requestKms() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Kms: ");
+        return input.nextInt();
     }
+
 }
