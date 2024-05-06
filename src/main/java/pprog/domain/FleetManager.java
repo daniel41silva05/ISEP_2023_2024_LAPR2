@@ -1,8 +1,5 @@
 package pprog.domain;
 
-import pprog.repository.Repositories;
-import pprog.repository.VehicleRepository;
-
 /**
  * Represents a fleet manager.
  */

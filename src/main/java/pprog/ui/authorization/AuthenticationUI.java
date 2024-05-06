@@ -1,7 +1,7 @@
 package pprog.ui.authorization;
 
 import pprog.controller.authorization.AuthenticationController;
-import pprog.ui.menu.AdminUI;
+import pprog.ui.menu.HumanResourcesManagerUI;
 import pprog.ui.menu.MenuItem;
 import pprog.ui.utils.Utils;
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
@@ -40,8 +40,8 @@ public class AuthenticationUI implements Runnable {
 
     private List<MenuItem> getMenuItemForRoles() {
         List<MenuItem> rolesUI = new ArrayList<>();
-        rolesUI.add(new MenuItem(AuthenticationController.ROLE_HRM, new AdminUI()));
-        rolesUI.add(new MenuItem(AuthenticationController.ROLE_VFM, new AdminUI()));
+        rolesUI.add(new MenuItem(AuthenticationController.ROLE_HRM, new HumanResourcesManagerUI()));
+        rolesUI.add(new MenuItem(AuthenticationController.ROLE_VFM, new HumanResourcesManagerUI()));
 
         return rolesUI;
     }

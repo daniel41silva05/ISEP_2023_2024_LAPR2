@@ -14,8 +14,8 @@ import pprog.ui.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminUI implements Runnable {
-    public AdminUI() {
+public class HumanResourcesManagerUI implements Runnable {
+    public HumanResourcesManagerUI() {
     }
 
     public void run() {
@@ -25,13 +25,10 @@ public class AdminUI implements Runnable {
         options.add(new MenuItem("Register a Collaborator", new RegisterCollaboratorUI()));
         options.add(new MenuItem("Assign one or more skills to a Collaborator", new AssignSkillUI()));
         options.add(new MenuItem("Generate a team proposal automatically", new GenerateTeamUI()));
-        options.add(new MenuItem("Register a Vehicle", new RegisterVehicleUI()));
-        options.add(new MenuItem("Register a vehicle’s maintenance", new RegisterCheckUpUI()));
-        options.add(new MenuItem("Produce a list of vehicles needing maintenance", new VehicleNeedingMaintenanceUI()));
 
         int option = 0;
         do {
-            option = Utils.showAndSelectIndex(options, "\n\n--- ADMIN MENU -------------------------");
+            option = Utils.showAndSelectIndex(options, "\n\n--- HUMAN RESOURCES MANAGER MENU -------------------------");
 
             if ((option >= 0) && (option < options.size())) {
                 options.get(option).run();

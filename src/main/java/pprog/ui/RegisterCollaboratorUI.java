@@ -100,7 +100,7 @@ public class RegisterCollaboratorUI implements Runnable {
 
     private IdDocType requestIdDocType() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Id Document Type: ");
+        System.out.println("Id Document Type: ");
         System.out.println("1 - Taxpayer Number");
         System.out.println("2 - Citizen Card");
         System.out.println("3 - Passport");
