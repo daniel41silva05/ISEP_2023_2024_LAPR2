@@ -79,7 +79,7 @@ public class VehicleRepository {
                 return vehicle;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Vehicle with plate number '" + plateNumber + "' not found.");
     }
 
     /**

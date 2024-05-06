@@ -19,30 +19,6 @@ public class GenerateTeam {
         this.collaboratorsNeeded = new ArrayList<>();
     }
 
-    public int getMinSize() {
-        return minSize;
-    }
-
-    public void setMinSize(int minSize) {
-        this.minSize = minSize;
-    }
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
-    }
-
-    public List<Skill> getSkillAssign() {
-        return skillsNeeded;
-    }
-
-    public List<Collaborator> getCollaboratorsNeeded() {
-        return collaboratorsNeeded;
-    }
-
     public List<Collaborator> seeColaboratorsWithSkillsNeeded(List<Collaborator> collaboratorList, List<Skill> skillsNeeded) {
         List<Collaborator> collaboratorWithTheSkills = new ArrayList<>();
         for (Collaborator c : collaboratorList) {
@@ -74,6 +50,30 @@ public class GenerateTeam {
         }
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
+    }
+
+    public int getMinSize() {
+        return minSize;
+    }
+
+    public void setMinSize(int minSize) {
+        this.minSize = minSize;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public List<Skill> getSkillAssign() {
+        return skillsNeeded;
+    }
+
+    public List<Collaborator> getCollaboratorsNeeded() {
+        return collaboratorsNeeded;
     }
 
     public GenerateTeam clone() {

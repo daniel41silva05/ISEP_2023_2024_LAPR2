@@ -83,6 +83,18 @@ public class Vehicle {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Vehicle outroVehicle = (Vehicle) outroObjeto;
+        return plateNumber.equalsIgnoreCase(outroVehicle.plateNumber);
+    }
+
     /**
      * Gets the brand of the vehicle.
      * @return The brand of the vehicle.

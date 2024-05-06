@@ -77,7 +77,7 @@ public class AssignSkillUI implements Runnable {
 
         System.out.println("List of existing collaborators: ");
         for (Collaborator collaborator : collaborators) {
-            System.out.println(collaborator.getName() + " - " + collaborator.getJob());
+            System.out.println(collaborator.getName());
         }
 
     }

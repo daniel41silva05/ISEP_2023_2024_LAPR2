@@ -71,8 +71,15 @@ public class RegisterCheckUpUI implements Runnable {
 
     private int requestKms() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Kms: ");
-        return input.nextInt();
+        int kms;
+        do {
+            System.out.print("Kms: ");
+            kms = input.nextInt();
+            if (kms < 0) {
+                System.out.println("Please enter a non-negative number.");
+            }
+        } while (kms < 0);
+        return kms;
     }
 
 }

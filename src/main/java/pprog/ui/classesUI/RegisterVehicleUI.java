@@ -77,20 +77,41 @@ public class RegisterVehicleUI implements Runnable {
 
     private int requestTare() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Tare: ");
-        return input.nextInt();
+        int tare;
+        do {
+            System.out.print("Tare: ");
+            tare = input.nextInt();
+            if (tare < 0) {
+                System.out.println("Please enter a non-negative number.");
+            }
+        } while (tare < 0);
+        return tare;
     }
 
     private int requestGrossWeight() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Gross Weight: ");
-        return input.nextInt();
+        int grossWeight;
+        do {
+            System.out.print("Gross Weight: ");
+            grossWeight = input.nextInt();
+            if (grossWeight < 0) {
+                System.out.println("Please enter a non-negative number.");
+            }
+        } while (grossWeight < 0);
+        return grossWeight;
     }
 
     private int requestCurrentKm() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Current Km: ");
-        return input.nextInt();
+        int currentKm;
+        do {
+            System.out.print("Current Km: ");
+            currentKm = input.nextInt();
+            if (currentKm < 0) {
+                System.out.println("Please enter a non-negative number.");
+            }
+        } while (currentKm < 0);
+        return currentKm;
     }
 
     private Date requestRegisterDate() {
@@ -121,14 +142,28 @@ public class RegisterVehicleUI implements Runnable {
 
     private int requestMaintenanceCheckUpFrequency() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Maintenance CheckUp Frequency: ");
-        return input.nextInt();
+        int maintenanceCheckUpFrequency;
+        do {
+            System.out.print("Maintenance CheckUp Frequency: ");
+            maintenanceCheckUpFrequency = input.nextInt();
+            if (maintenanceCheckUpFrequency < 0) {
+                System.out.println("Please enter a non-negative number.");
+            }
+        } while (maintenanceCheckUpFrequency < 0);
+        return maintenanceCheckUpFrequency;
     }
 
     private String requestPlateNumber() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Plate Number: ");
-        return input.nextLine();
+        String plateNumber;
+        do {
+            System.out.print("Plate Number (format: XX XX XX): ");
+            plateNumber = input.nextLine();
+            if (!plateNumber.matches("[A-Z0-9]{2} [A-Z0-9]{2} [A-Z0-9]{2}")) {
+                System.out.println("Please enter a plate number in the format XX XX XX.");
+            }
+        } while (!plateNumber.matches("[A-Z0-9]{2} [A-Z0-9]{2} [A-Z0-9]{2}"));
+        return plateNumber;
     }
 
     private VehicleType requestVehicleType() {
