@@ -66,11 +66,34 @@ public class Grafo {
 
             writer.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
 
+            generateDotFile(resultado, "output_JardimDosSentimentos.dot");
+
+            renderDotFile("output_JardimDosSentimentos.dot", "output_JardimDosSentimentos.png");
+
             System.out.println("Arquivo 'output_JardimDosSentimentos' criado com sucesso.");
 
         } catch (IOException ex) {
             System.err.println("Erro ao escrever no arquivo CSV: " + ex.getMessage());
         }
+    }
+
+    private void generateDotFile(Aresta[] resultado, String filename) throws IOException {
+        FileWriter writer = new FileWriter(filename);
+
+        writer.write("graph G {\n");
+        for (Aresta aresta : resultado) {
+            if (aresta.getPeso() != 0) {
+                writer.write(aresta.getOrigem() + " -- " + aresta.getDestino() + " [label=\"" + aresta.getPeso() + "\"];\n");
+            }
+        }
+        writer.write("}\n");
+
+        writer.close();
+    }
+
+    private void renderDotFile(String dotFileName, String outputFileName) throws IOException {
+        String[] cmd = {"dot", "-Tpng", dotFileName, "-o", outputFileName};
+        Runtime.getRuntime().exec(cmd);
     }
 
     public int getAresta() {
