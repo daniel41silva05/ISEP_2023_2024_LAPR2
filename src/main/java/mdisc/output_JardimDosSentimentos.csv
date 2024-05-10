@@ -1,3 +1,4 @@
+Origem;Destino;Peso
 22;23;1
 10;11;1
 18;19;2
@@ -18,4 +19,4 @@
 12;13;11
 7;18;11
 9;10;15
- : Cost of a Minimum spanning tree = 116
+Cost of a Minimum spanning tree = 116

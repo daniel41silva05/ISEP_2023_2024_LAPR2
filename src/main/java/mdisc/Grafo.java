@@ -47,7 +47,12 @@ public class Grafo {
 
         i = 0;
 
-        try (FileWriter writer = new FileWriter("output_JardimDosSentimentos.csv")) {
+        try (FileWriter csvWriter = new FileWriter("src/main/java/mdisc/output_JardimDosSentimentos.csv");
+             FileWriter dotWriter = new FileWriter("src/main/java/mdisc/output_JardimDosSentimentos.dot")) {
+
+            csvWriter.append("Origem;Destino;Peso\n");
+            dotWriter.write("graph G {\n");
+
             while (e < vertice - 1 && i < aresta) {
                 Aresta proximaAresta = arestas.get(i++);
 
@@ -58,18 +63,33 @@ public class Grafo {
                     resultado[e++] = proximaAresta;
                     unir(subset, x, y);
 
-                    writer.append(String.valueOf(proximaAresta.getOrigem())).append(";").append(String.valueOf(proximaAresta.getDestino())).append(";").append(String.valueOf(proximaAresta.getPeso())).append("\n");
+                    csvWriter.append(String.valueOf(proximaAresta.getOrigem())).append(";").append(String.valueOf(proximaAresta.getDestino())).append(";").append(String.valueOf(proximaAresta.getPeso())).append("\n");
+                    dotWriter.write("\t" + proximaAresta.getOrigem() + " -- " + proximaAresta.getDestino() + " [label=\"" + proximaAresta.getPeso() + "\"];\n");
 
                     custoTotal += proximaAresta.getPeso();
                 }
             }
 
-            writer.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
-
-            System.out.println("Arquivo 'output_JardimDosSentimentos' criado com sucesso.");
+            csvWriter.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
+            dotWriter.write("}");
 
         } catch (IOException ex) {
-            System.err.println("Erro ao escrever no arquivo CSV: " + ex.getMessage());
+            System.err.println("Erro ao escrever nos arquivos: " + ex.getMessage());
+        }
+    }
+
+    public void gerarArquivoDOT(String arquivo) {
+        try (FileWriter dotWriter = new FileWriter(arquivo)) {
+            dotWriter.write("graph G {\n");
+
+            for (Aresta a : arestas) {
+                dotWriter.write("\t" + a.getOrigem() + " -- " + a.getDestino() + " [label=\"" + a.getPeso() + "\"];\n");
+            }
+
+            dotWriter.write("}");
+
+        } catch (IOException ex) {
+            System.err.println("Erro ao escrever no arquivo DOT: " + ex.getMessage());
         }
     }
 
