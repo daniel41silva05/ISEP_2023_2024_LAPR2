@@ -49,7 +49,7 @@ public class Grafo {
 
         i = 0;
 
-        try (FileWriter writer = new FileWriter("output_JardimDosSentimentos.csv")) {
+        try (FileWriter writer = new FileWriter("src/main/java/mdisc/output_JardimDosSentimentos.csv")) {
             while (e < vertice - 1 && i < aresta) {
                 Aresta proximaAresta = arestas.get(i++);
 
@@ -68,9 +68,9 @@ public class Grafo {
 
             writer.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
 
-            generateDotFile(resultado, "output_JardimDosSentimentos.dot");
+            generateDotFile(resultado, "src/main/java/mdisc/output_JardimDosSentimentos.dot");
 
-            renderDotFile("output_JardimDosSentimentos.dot", "output_JardimDosSentimentos.png");
+            renderDotFile("src/main/java/mdisc/output_JardimDosSentimentos.dot", "src/main/java/mdisc/output_JardimDosSentimentos.png");
 
             System.out.println("Arquivo 'output_JardimDosSentimentos' criado com sucesso.");
 
@@ -95,7 +95,6 @@ public class Grafo {
 
         i = 0;
 
-        try (FileWriter writer = new FileWriter("output_JardimDosSentimentos.csv")) {
             while (e < vertice - 1 && i < aresta) {
                 Aresta proximaAresta = arestas.get(i++);
 
@@ -106,16 +105,10 @@ public class Grafo {
                     resultado[e++] = proximaAresta;
                     unir(subset, x, y);
 
-                    writer.append(String.valueOf(proximaAresta.getOrigem())).append(";").append(String.valueOf(proximaAresta.getDestino())).append(";").append(String.valueOf(proximaAresta.getPeso())).append("\n");
-
                     custoTotal += proximaAresta.getPeso();
                 }
             }
-            writer.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
 
-        } catch (IOException ex) {
-            System.err.println("Erro ao escrever no arquivo CSV: " + ex.getMessage());
-        }
     }
 
     private void generateDotFile(Aresta[] resultado, String filename) throws IOException {
@@ -138,12 +131,11 @@ public class Grafo {
     }
 
     public void runAlgorithmTests() {
-        try (FileWriter csvWriter = new FileWriter("execution_times.csv")) {
+        try (FileWriter csvWriter = new FileWriter("src/main/java/mdisc/execution_times.csv")) {
             csvWriter.append("Input Size,Execution Time (ms)\n");
 
             for (int i = 1; i <= 30; i++) {
-                // Ler dados de entrada do arquivo CSV
-                Grafo grafo = readGraphFromFile("datasets mdisc/us14_" + i + ".csv");
+                Grafo grafo = ImportarCsv.lerGrafoDeCSV("datasets mdisc/us14_" + i + ".csv");
 
                 long startTime = System.currentTimeMillis();
                 grafo.encontrarArvoreGeradoraUS14();
@@ -155,33 +147,15 @@ public class Grafo {
 
             csvWriter.flush();
 
-            generateExecutionTimeGraphic("execution_times.csv", "execution_time_graph.png");
+            generateExecutionTimeGraphic("src/main/java/mdisc/execution_times.csv", "execution_time_graph.png");
 
         } catch (IOException ex) {
             System.err.println("Error writing to CSV file: " + ex.getMessage());
         }
     }
 
-
-    private Grafo readGraphFromFile(String fileName) {
-        Grafo grafo = new Grafo();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(line, ";");
-                int origem = Integer.parseInt(st.nextToken());
-                int destino = Integer.parseInt(st.nextToken());
-                int peso = Integer.parseInt(st.nextToken());
-                grafo.addAresta(origem, destino, peso);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading graph file: " + e.getMessage());
-        }
-        return grafo;
-    }
-
     private void generateExecutionTimeGraphic(String csvFileName, String outputFileName) {
-        try (FileWriter writer = new FileWriter("plot.csv")) {
+        try (FileWriter writer = new FileWriter("src/main/java/mdisc/plot.csv")) {
             List<String> lines = Files.readAllLines(Paths.get(csvFileName));
             for (int i = 1; i < lines.size(); i++) {
                 String[] parts = lines.get(i).split(",");
