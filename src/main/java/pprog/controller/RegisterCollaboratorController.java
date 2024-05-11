@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Controller responsible for registering collaborators.
+ * Controller class responsible for registering collaborators.
  */
 public class RegisterCollaboratorController {
 
@@ -26,7 +26,7 @@ public class RegisterCollaboratorController {
     private JobRepository jobRepository;
 
     /**
-     * Default constructor. Retrieves the collaborator and job repository instance.
+     * Constructor. Retrieves the collaborator and job repository instance.
      */
     public RegisterCollaboratorController() {
         getCollaboratorRepository();
@@ -45,9 +45,9 @@ public class RegisterCollaboratorController {
     }
 
     /**
-     * Gets the collaborator repository, if not already initialized.
-     *
-     * @return the collaborator repository
+     * Gets the Collaborator repository.
+     * If not initialized, retrieves it from Repositories.
+     * @return Collaborator repository
      */
     private CollaboratorRepository getCollaboratorRepository() {
         if (collaboratorRepository == null) {
@@ -58,9 +58,9 @@ public class RegisterCollaboratorController {
     }
 
     /**
-     * Gets the job repository, if not already initialized.
-     *
-     * @return the job repository
+     * Gets the Job repository.
+     * If not initialized, retrieves it from Repositories.
+     * @return Job repository
      */
     private JobRepository getJobRepository() {
         if (jobRepository == null) {
@@ -105,7 +105,6 @@ public class RegisterCollaboratorController {
 
     /**
      * Gets the list of all available jobs.
-     *
      * @return the list of jobs
      */
     public List<Job> getJobsList() {
@@ -113,6 +112,10 @@ public class RegisterCollaboratorController {
         return jobRepository.getJobsList();
     }
 
+    /**
+     * Gets the list of all available collaborators.
+     * @return the list of collaborators
+     */
     public List<Collaborator> getCollaboratorsList() {
         CollaboratorRepository collaboratorRepository = getCollaboratorRepository();
         return collaboratorRepository.getCollaboratorsList();

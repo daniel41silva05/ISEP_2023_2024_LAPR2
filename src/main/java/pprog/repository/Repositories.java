@@ -4,6 +4,7 @@ package pprog.repository;
  * This class manages singleton instances of repositories.
  */
 public class Repositories {
+
     /** The singleton instance of Repositories. */
     private static Repositories instance;
 
@@ -21,8 +22,14 @@ public class Repositories {
 
     /** The repository for check-ups. */
     private final CheckUpRepository checkUpRepository;
+
+    /** The repository for teams. */
     private final GenerateTeamRepository generateTeamRepository;
+
+    /** The repository for vehicles needing maintenance. */
     private final VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
+
+    /** The repository for authentication. */
     private final AuthenticationRepository authenticationRepository;
 
     /**
@@ -87,17 +94,29 @@ public class Repositories {
     }
 
     /**
-     * Gets the repository for check-up.
+     * Gets the repository for check-ups.
      * @return The CheckUpRepository.
      */
     public CheckUpRepository getCheckUpRepository(){ return checkUpRepository; }
 
+    /**
+     * Gets the repository for teams.
+     * @return The GenerateTeamRepository.
+     */
     public GenerateTeamRepository getGenerateTeamRepository() { return generateTeamRepository; }
 
+    /**
+     * Gets the repository for vehicles needing maintenance.
+     * @return The VehicleNeedingMaintenanceRepository.
+     */
     public VehicleNeedingMaintenanceRepository getVehicleNeedingMaintenanceRepository() {
         return vehicleNeedingMaintenanceRepository;
     }
 
+    /**
+     * Gets the repository for authentication.
+     * @return The AuthenticationRepository.
+     */
     public AuthenticationRepository getAuthenticationRepository() {
         return authenticationRepository;
     }

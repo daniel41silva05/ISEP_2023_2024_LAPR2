@@ -67,6 +67,7 @@ public class CollaboratorRepository {
      *
      * @param collaborator The collaborator to add.
      * @return true if the collaborator was added successfully, false otherwise.
+     * @throws IllegalArgumentException if the collaborator is under 18 years old or already exists in the repository.
      */
     private boolean addCollaborator(Collaborator collaborator) {
         if (!collaborator.validateBirthdayIsOver18()) {

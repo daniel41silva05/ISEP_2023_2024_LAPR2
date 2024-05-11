@@ -36,6 +36,7 @@ public class Collaborator {
     /** The job of the collaborator. */
     private Job job;
 
+    /** The list of skills assigned to the collaborator. */
     private List<Skill> skillAssign;
 
     /**
@@ -64,6 +65,11 @@ public class Collaborator {
         this.skillAssign = new ArrayList<>();
     }
 
+    /**
+     * Validates if the collaborator's birthday is over 18 years old.
+     *
+     * @return true if the collaborator is over 18 years old, false otherwise.
+     */
     public boolean validateBirthdayIsOver18() {
         Date currentDate = new Date();
         long diffMillis = currentDate.getTime() - this.birthday.getTime();
@@ -71,6 +77,12 @@ public class Collaborator {
         return diffMillis > ageInMillis;
     }
 
+    /**
+     * Checks if this collaborator is equal to another object.
+     *
+     * @param outroObjeto The object to compare with.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
@@ -253,7 +265,11 @@ public class Collaborator {
         this.job = job;
     }
 
-
+    /**
+     * Gets the list of skills assigned to the collaborator.
+     *
+     * @return The list of skills assigned to the collaborator.
+     */
     public List<Skill> getSkillAssign() {
         return skillAssign;
     }

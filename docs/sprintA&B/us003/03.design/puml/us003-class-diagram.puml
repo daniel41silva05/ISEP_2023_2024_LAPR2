@@ -45,11 +45,6 @@ class Job {
     +Job(name)
 }
 
-class HumanResourcesManager {
-    - name
-    +HumanResourcesManager(name)
-}
-
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
@@ -58,9 +53,9 @@ class Repositories {
 }
 
 enum IdDocType {
-    + TAXPAYER_NUMBER
-    + CITIZEN_CARD
-    + PASSPORT
+    TAXPAYER_NUMBER
+    CITIZEN_CARD
+    PASSPORT
 }
 
 RegisterCollaboratorUI ..> RegisterCollaboratorController

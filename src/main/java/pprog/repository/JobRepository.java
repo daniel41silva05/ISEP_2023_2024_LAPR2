@@ -40,8 +40,9 @@ public class JobRepository {
     /**
      * Adds a job to the repository.
      *
-     * @param job       The job to be added.
-     * @return          True if the vehicle is successfully added, false otherwise.
+     * @param job The job to be added.
+     * @return True if the job is successfully added, false otherwise.
+     * @throws IllegalArgumentException if the job already exists in the repository.
      */
     public boolean addJob(Job job){
         if (validateJob(job)) {
@@ -54,8 +55,10 @@ public class JobRepository {
 
     /**
      * Retrieves a job by its name.
+     *
      * @param jobName The name of the job to retrieve.
      * @return The Job object with the specified name, or null if not found.
+     * @throws IllegalArgumentException if the job with the specified name is not found.
      */
     public Job getJobByName(String jobName) {
         for (Job job : jobsList) {

@@ -13,6 +13,7 @@ public class Job {
 
     /**
      * Constructs a job with the given name and description.
+     *
      * @param name The name of the job.
      * @param description The description of the job.
      */
@@ -21,6 +22,12 @@ public class Job {
         this.description = description;
     }
 
+    /**
+     * Checks if this job is equal to another object.
+     *
+     * @param outroObjeto The object to compare with.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
