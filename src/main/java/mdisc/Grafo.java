@@ -1,7 +1,5 @@
 package mdisc;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -111,7 +109,7 @@ public class Grafo {
 
     }
 
-    private void generateDotFile(Aresta[] resultado, String filename) throws IOException {
+    public void generateDotFile(Aresta[] resultado, String filename) throws IOException {
         FileWriter writer = new FileWriter(filename);
 
         writer.write("graph G {\n");
@@ -125,7 +123,7 @@ public class Grafo {
         writer.close();
     }
 
-    private void renderDotFile(String dotFileName, String outputFileName) throws IOException {
+    public void renderDotFile(String dotFileName, String outputFileName) throws IOException {
         String[] cmd = {"dot", "-Tpng", dotFileName, "-o", outputFileName};
         Runtime.getRuntime().exec(cmd);
     }
