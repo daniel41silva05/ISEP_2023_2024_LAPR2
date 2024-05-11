@@ -68,9 +68,9 @@ public class VehicleType {
      */
     private Transport transport;
 
-
     /**
      * Constructs a VehicleType object.
+     *
      * @param typeTransport The type of transport.
      * @param packageWeight The package weight.
      * @param transport The transport type.

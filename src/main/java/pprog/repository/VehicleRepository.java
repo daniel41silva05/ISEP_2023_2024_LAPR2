@@ -73,6 +73,13 @@ public class VehicleRepository {
         return isValid;
     }
 
+    /**
+     * Retrieves a vehicle by its plate number.
+     *
+     * @param plateNumber The plate number of the vehicle to be retrieved.
+     * @return The vehicle with the specified plate number.
+     * @throws IllegalArgumentException If the vehicle with the specified plate number is not found.
+     */
     public Vehicle getVehicleByPlateNumber(String plateNumber) {
         for (Vehicle vehicle : vehiclesList) {
             if (vehicle.getPlateNumber().equals(plateNumber)) {

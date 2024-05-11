@@ -59,6 +59,7 @@ public class Vehicle {
 
     /**
      * Constructs a new Vehicle object.
+     *
      * @param brand The brand of the vehicle.
      * @param model The model of the vehicle.
      * @param tare The tare weight of the vehicle.
@@ -83,6 +84,13 @@ public class Vehicle {
         this.type = type;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * Two vehicles are considered equal if they have the same plate number.
+     *
+     * @param outroObjeto The reference object with which to compare.
+     * @return True if this vehicle is the same as the obj argument; false otherwise.
+     */
     @Override
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {

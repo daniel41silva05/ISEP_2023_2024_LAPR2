@@ -39,18 +39,10 @@ class Vehicle {
 }
 
 class VehicleType {
-    +TypeTransport {PASSENGERS, MIXED}
-    +PackageWeight {LIGHT, HEAVY}
-    +Transport {OPEN_BOX, CLOSED_VANS, TRUCKS}
     -TypeTransport typeTransport
     -PackageWeight packageWeight
     -Transport transport
     +VehicleType(typeTransport, packageWeight, transport)
-}
-
-class FleetManager {
-    - name
-    + FleetManager(name)
 }
 
 class Repositories {

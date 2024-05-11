@@ -19,7 +19,7 @@ public class RegisterVehicleController {
     private VehicleRepository vehicleRepository;
 
     /**
-     * Default constructor. Retrieves the vehicle repository instance.
+     * Constructor. Retrieves the vehicle repository instance.
      */
     public RegisterVehicleController() {
         getVehicleRepository();
@@ -63,6 +63,10 @@ public class RegisterVehicleController {
         return vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
     }
 
+    /**
+     * Retrieves a list of all registered vehicles.
+     * @return A list of registered vehicle objects.
+     */
     public List<Vehicle> getVehiclesList() {
         VehicleRepository vehicleRepository = getVehicleRepository();
         return vehicleRepository.getVehiclesList();
