@@ -67,6 +67,10 @@ participant ":VehicleNeedingMaintenanceList" as MaintenanceList
 
                                                deactivate VR
 
+                                               end
+
+                                               autonumber 3
+
                                               CTRL -> MaintenanceRep: getVehiclesNeedingMaintenanceRepository
 
                                                activate MaintenanceRep
@@ -74,11 +78,6 @@ participant ":VehicleNeedingMaintenanceList" as MaintenanceList
                                               MaintenanceRep --> CTRL: vehiclesNeedingMaintenanceRepository
 
                                                 deactivate MaintenanceRep
-
-                                    end
-
-                                    autonumber 3
-
 
                               CTRL -> MaintenanceList: getVehiclesNeedingMaintenanceList (vehiclesList, checkUpList)
 
