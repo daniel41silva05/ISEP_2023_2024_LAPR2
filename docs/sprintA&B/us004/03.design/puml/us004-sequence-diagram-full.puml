@@ -120,11 +120,11 @@ activate HRM
 
                     COLLABORATOR -> COLLABORATOR : assignSkillToCollaborator
 
-                    COLLABORATOR --> CTRL : ...
+                    COLLABORATOR --> CTRL : collaborator
                     deactivate COLLABORATOR
 
 
-                CTRL --> UI: ...
+                CTRL --> UI: collaborator
                 deactivate CTRL
             UI --> HRM: displays operation success
     deactivate UI
