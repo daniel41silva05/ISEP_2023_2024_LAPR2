@@ -1,69 +1,68 @@
-# US006 - Create a Task 
+# US007 - Register a Check-Up
 
-## 4. Tests 
+## 4. Tests
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check if the check-up is being registered correctly, being stored in the repository and if it is not possible to register an already registered check-up - AC01.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
-	
+    @Test
+    void registerCheckUp() {
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+        CheckUpRepository repository = new CheckUpRepository();
+        VehicleRepository vehicleRepository = new VehicleRepository();
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+        Vehicle vehicle = new Vehicle("Toyota", "Corolla", 1500, 2000, 50000, new Date(), new Date(), 10000, "ABC1234", new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX));
+        vehicleRepository.registerVehicle("Toyota", "Corolla", 1500, 2000, 50000, new Date(), new Date(), 10000, "ABC1234", new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX));
 
-_It is also recommended to organize this content by subsections._ 
+        CheckUp checkUp = new CheckUp(new Date(), vehicle, 55000);
+
+        CheckUp registeredCheckUp = repository.registerCheckUp(checkUp.getDate(), checkUp.getVehicle(), checkUp.getKMS());
+
+        assertNotNull(registeredCheckUp);
+        assertEquals(checkUp, registeredCheckUp);
+
+        List<CheckUp> checkUpsList = repository.getCheckUpList();
+
+        assertTrue(checkUpsList.contains(registeredCheckUp));
+
+        assertThrows(IllegalArgumentException.class, () ->
+                repository.registerCheckUp(checkUp.getDate(), checkUp.getVehicle(), checkUp.getKMS()));
+    }
+
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class RegisterCheckUpController
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public CheckUp registerCheckUp(Date date, String vehiclePlateNumber, int KMS) {
+    Vehicle vehicle = getVehicleByPlateNumber(vehiclePlateNumber);
+    return checkUpRepository.registerCheckUp(date, vehicle, KMS);
 }
+
 ```
 
-### Class Organization
+### Class CheckUpRepository
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
+    public CheckUp registerCheckUp(Date date, Vehicle vehicle, int KMS) {
+    CheckUp newCheckUp = null;
+    CheckUp checkUp = new CheckUp(date, vehicle, KMS);
 
-    addTask(task);
-        
-    return task;
+    if (addCheckUp(checkUp)) {
+        newCheckUp = checkUp;
+    }
+    return newCheckUp;
 }
+
 ```
 
 
 ## 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the VFM menu options was added.
 
-* For demo purposes some tasks are bootstrapped while system starts.
+* For demo purposes a check-up is bootstrapped while system starts.
 
 
 ## 7. Observations

@@ -75,7 +75,7 @@
 
 ## 6. Integration and Demo 
 
-[//]: # (* A new option on the HRM menu options was added.)
+* A new option on the HRM menu options was added.
 
 * For demo purposes a job are bootstrapped while system starts.
 
