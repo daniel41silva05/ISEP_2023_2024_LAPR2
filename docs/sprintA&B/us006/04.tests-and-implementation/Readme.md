@@ -2,22 +2,72 @@
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check if the vehicle is being registered correctly, being stored in the repository and if it is not possible to register an already registered collaborator - AC01/AC09.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Vehicle instance = new Vehicle(null, null, null, null, null, null, null, null, null, null);
-	}
+    @Test
+    void registerVehicle() {
+
+        VehicleRepository vehicleRepository = new VehicleRepository();
+
+        String plateNumber = "ABC1234";
+        String brand = "Toyota";
+        String model = "Corolla";
+        int tare = 1500;
+        int grossWeight = 2000;
+        int currentKm = 50000;
+        Date registerDate = new Date();
+        Date acquisitionDate = new Date();
+        int maintenanceCheckUpFrequency = 10000;
+        VehicleType type = new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX);
+
+        Vehicle registeredVehicle = vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+
+        assertNotNull(registeredVehicle);
+        assertEquals(plateNumber, registeredVehicle.getPlateNumber());
+
+        List<Vehicle> vehiclesList = vehicleRepository.getVehiclesList();
+
+        assertTrue(vehiclesList.contains(registeredVehicle));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+        });
+    }
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check that the vehicle is identified by its plate number and that it is not possible for there to be vehicles with the same plate number - AC03/AC04. 
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+    @Test
+    void getVehicleByPlateNumber() {
+
+        VehicleRepository vehicleRepository = new VehicleRepository();
+        String plateNumber = "DEF5678";
+        String brand = "Honda";
+        String model = "Civic";
+        int tare = 1450;
+        int grossWeight = 1950;
+        int currentKm = 60000;
+        Date registerDate = new Date();
+        Date acquisitionDate = new Date();
+        int maintenanceCheckUpFrequency = 12000;
+        VehicleType type = new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX);
+
+        vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+
+        Vehicle retrievedVehicle = vehicleRepository.getVehicleByPlateNumber(plateNumber);
+
+        assertNotNull(retrievedVehicle);
+        assertEquals(brand, retrievedVehicle.getBrand());
+        assertEquals(model, retrievedVehicle.getModel());
+        assertEquals(tare, retrievedVehicle.getTare());
+        assertEquals(grossWeight, retrievedVehicle.getGrossWeight());
+        assertEquals(currentKm, retrievedVehicle.getCurrentKm());
+        assertEquals(registerDate, retrievedVehicle.getRegisterDate());
+        assertEquals(acquisitionDate, retrievedVehicle.getAcquisitionDate());
+        assertEquals(maintenanceCheckUpFrequency, retrievedVehicle.getMaintenanceCheckUpFrequency());
+        assertEquals(plateNumber, retrievedVehicle.getPlateNumber());
+        assertEquals(type, retrievedVehicle.getType());
+    }
 
 _It is also recommended to organize this content by subsections._ 
 
@@ -27,43 +77,30 @@ _It is also recommended to organize this content by subsections._
 ### Class RegisterVehicleController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public Vehicle registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
+    return vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
 }
 ```
 
 ### Class VehicleRepository
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
-
-    addTask(task);
-        
-    return task;
+    public Vehicle registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
+    Vehicle newVehicle = null;
+    Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitonDate, maintenanceCheckUpFrequency, idNumber, type);
+    if (addVehicle(vehicle)) {
+        newVehicle = vehicle;
+    }
+    return newVehicle;
 }
 ```
 
 
 ## 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the VFM menu options was added.
 
-* For demo purposes some tasks are bootstrapped while system starts.
+* For demo purposes a vehicle are bootstrapped while system starts.
 
 
 ## 7. Observations

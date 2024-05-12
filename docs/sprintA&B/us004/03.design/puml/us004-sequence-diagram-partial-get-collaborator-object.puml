@@ -3,42 +3,44 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+autonumber
 
-autonumber 12
--> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
+'hide footbox
 
-autonumber 12.1
+participant ":AssignSkillControlller" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "skillsRepository:\nSkillsRepository" as skillsRepository
 
+
+autonumber 6
+
+ -> CTRL : getSkillsList()
+autonumber 6.1
 activate CTRL
-    group Get Task Category
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
+    group Get Skills List
 
-            RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
+            CTRL -> REP : getInstance()
+            activate REP
 
-        CTRL -> PLAT : getTaskCategoryRepository()
-        activate PLAT
+            REP --> CTRL: repositories
+            deactivate REP
 
-            PLAT -> CTRL : taskCategoryRepository
-        deactivate PLAT
+            CTRL -> REPS : getSkillsRepository()
+            activate REPS
 
-        CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-        activate TaskCategoryRepository
+            REPS --> CTRL: SkillsRepository
+            deactivate REPS
 
-            TaskCategoryRepository --> CTRL : taskCategory
-        deactivate TaskCategoryRepository
+            CTRL -> skillsRepository: getSkillList()
+            activate skillsRepository
 
-    end group
+            skillsRepository --> CTRL : SkillsList
+            deactivate skillsRepository
 
-    autonumber 13
-    <-- CTRL : taskCategory
-
+    end
+    autonumber 7
+    <-- CTRL  : SkillsList
 deactivate CTRL
-
 
 @enduml
