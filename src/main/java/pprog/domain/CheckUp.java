@@ -8,10 +8,22 @@ import java.util.Objects;
  */
 public class CheckUp {
 
+    /** The vehicle associated with the check-up. */
     private Vehicle vehicle;
+
+    /** The date of the check-up. */
     private Date date;
+
+    /** The kilometers covered by the vehicle at the time of the check-up. */
     private int KMS;
 
+    /**
+     * Constructs a new CheckUp object.
+     *
+     * @param date   The date of the check-up.
+     * @param vehicle The vehicle associated with the check-up.
+     * @param KMS    The kilometers covered by the vehicle at the time of the check-up.
+     */
     public CheckUp(Date date, Vehicle vehicle, int KMS) {
         this.date = date;
         this.vehicle = vehicle;
@@ -33,59 +45,75 @@ public class CheckUp {
     }
 
     /**
-     * Gets the kilometers covered by the vehicle at the time of the check-up.
+     * Gets the vehicle associated with the check-up.
      *
-     * @return The kilometers covered
+     * @return The vehicle associated with the check-up.
      */
-    public int getKMS() {
-        return KMS;
-    }
-
-    /**
-     * Gets the date of the check-up.
-     *
-     * @return The date of the check-up
-     */
-    public Date getDate() {
-        return date;
-    }
-
     public Vehicle getVehicle() {
         return vehicle;
     }
 
     /**
+     * Sets the vehicle associated with the check-up.
+     *
+     * @param vehicle The vehicle associated with the check-up.
+     */
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    /**
+     * Gets the date of the check-up.
+     *
+     * @return The date of the check-up.
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
      * Sets the date of the check-up.
      *
-     * @param date The date of the check-up
+     * @param date The date of the check-up.
      */
     public void setDate(Date date) {
         this.date = date;
     }
 
     /**
-     * Sets the kilometers covered by the vehicle.
+     * Gets the kilometers covered by the vehicle at the time of the check-up.
      *
-     * @param KMS The kilometers covered
+     * @return The kilometers covered.
+     */
+    public int getKMS() {
+        return KMS;
+    }
+
+    /**
+     * Sets the kilometers covered by the vehicle at the time of the check-up.
+     *
+     * @param KMS The kilometers covered.
      */
     public void setKMS(int KMS) {
         this.KMS = KMS;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    /**
+     * Clones the check-up.
+     *
+     * @return A new CheckUp object with the same attributes as this one.
+     */
+    public CheckUp clone() {
+        return new CheckUp(this.date, this.vehicle, this.KMS);
     }
 
     /**
      * Returns a string representation of the CheckUp object.
      *
-     * @return A string representation of the object
+     * @return A string representation of the object.
      */
-
-    public CheckUp clone() {
-        return new CheckUp(this.date, this.vehicle, this.KMS);
-    }
-
     @Override
-    public String toString(){ return date + " " + vehicle + " " + KMS; }
+    public String toString() {
+        return date + " " + vehicle + " " + KMS;
+    }
 }
