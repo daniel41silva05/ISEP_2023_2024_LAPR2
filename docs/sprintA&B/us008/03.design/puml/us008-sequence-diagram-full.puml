@@ -5,176 +5,90 @@ skinparam shadowing false
 
 autonumber
 
-'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+actor "Vehicle and Equipment\n Fleet Manager" as VFM
+participant ":VehicleNeedingMaintenanceUI " as UI
+participant ":VehicleNeedingMaintenanceController" as CTRL
 participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant ":CheckUpRepository" as CheckUpRepository
+participant ":VehicleRepository" as VR
+participant ":VehicleNeedingMaintenanceRepository" as MaintenanceRep
+participant ":VehicleNeedingMaintenanceList" as MaintenanceList
 
-activate ADM
+activate VFM
 
-        ADM -> UI : asks to create a new task
+        VFM -> UI : ask to list vehicles needing check-up
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
             UI -> CTRL** : create
 
-            UI -> CTRL : getTaskCategories()
             activate CTRL
 
                 CTRL -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
 
                     RepositorySingleton --> CTRL: repositories
+
                 deactivate RepositorySingleton
 
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
+                CTRL -> RepositorySingleton : getCheckUpRepository()
 
-                    PLAT --> CTRL: taskCategoryRepository
-                deactivate PLAT
-
-                CTRL -> TaskCategoryRepository : getTaskCategories()
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : taskCategoryList
-                deactivate TaskCategoryRepository
-
-                CTRL --> UI : taskCategoryList
-            deactivate CTRL
-
-            UI --> ADM : shows task category list\n and asks to sleect one
-        deactivate UI
-
-    ADM -> UI : selects a task category
-    activate UI
-
-        UI --> ADM : requests data
-    deactivate UI
-
-    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
-    activate UI
-
-        UI --> ADM : shows selected category and requested data
-    deactivate UI
-
-    ADM -> UI : submits data
-    activate UI
-
-        UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
-        activate CTRL
-
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
-            activate CTRL
-
-                CTRL -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+                    RepositorySingleton --> CTRL: CheckUpRepository
 
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
+               deactivate RepositorySingleton
 
-                    PLAT -> CTRL : taskCategoryRepository
-                deactivate PLAT
+                    CTRL -> CheckUpRepository : getCheckUpsList()
 
-                CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-                activate TaskCategoryRepository
+               activate CheckUpRepository
 
-                    TaskCategoryRepository --> CTRL : taskCategory
-                deactivate TaskCategoryRepository
-                    CTRL --> CTRL : taskCategory
-            deactivate CTRL
+               CheckUpRepository --> CTRL: CheckUpList
 
-            |||
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
+               deactivate CheckUpRepository
 
-                CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
+                deactivate CheckUpRepository
 
+                              deactivate RepositorySingleton
 
-                CTRL -> APP: getCurrentSession()
-                activate APP
+                              CTRL -> RepositorySingleton : getVehicleRepository()
 
-                    APP --> CTRL: currentSession
-                deactivate APP
+                              activate RepositorySingleton
 
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
+                                  RepositorySingleton --> CTRL: VehicleRepository
 
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
+                             deactivate RepositorySingleton
 
+                              CTRL -> VR : getVehiclesList()
 
-                CTRL -> PLAT: getOrganizationRepository(email)
-                activate PLAT
+                              activate VR
 
-                    PLAT --> CTRL: organizationRepository
-                deactivate PLAT
+                              VR --> CTRL: VehiclesList
 
+                              deactivate VR
 
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
+                             CTRL -> MaintenanceRep: getVehiclesNeedingMaintenanceRepository
 
-                    loop [for each organization
-                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                        activate ORG
+                              activate MaintenanceRep
 
-                             ORG --> OrganizationRepository : true/false
-                        deactivate ORG
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
+                             MaintenanceRep --> CTRL: vehiclesNeedingMaintenanceRepository
 
-                CTRL -> ORG: getEmployeeByEmail(email)
-                activate ORG
+                              deactivate MaintenanceRep
 
-                    ORG --> CTRL : employee
-                deactivate ORG
+                              CTRL -> MaintenanceList: getVehiclesNeedingMaintenanceList
 
-                CTRL --> CTRL : employee
-            deactivate CTRL
+                              activate MaintenanceList
 
-            |||
-            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
-            activate ORG
+                              MaintenanceList --> CTRL: vehiclesNeedingMaintenanceList
 
-                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-                ORG -> ORG: addTask (task)
+                              deactivate MaintenanceList
 
+                              CTRL -> UI : vehiclesNeedingMaintenanceList
 
-                activate ORG
-                    ORG -> ORG: validateTask(task)
-                    activate ORG
-                        ORG --> ORG
-                    deactivate ORG
+                          deactivate CTRL
 
-                    ORG --> ORG
-                deactivate ORG
+                UI -> VFM : displays the list of vehicles needing the check-up
 
-                ORG --> CTRL : task
-
-            deactivate ORG
-
-            CTRL --> UI: task
-            deactivate CTRL
-            UI --> ADM: displays operation success
-    deactivate UI
-
-deactivate ADM
+deactivate VFM
 
 @enduml
