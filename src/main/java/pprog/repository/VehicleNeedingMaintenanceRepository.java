@@ -6,14 +6,30 @@ import pprog.domain.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository class to manage vehicles needing maintenance.
+ */
 public class VehicleNeedingMaintenanceRepository {
+    /**
+     * List to store vehicles needing maintenance.
+     */
     private final List<String> vehiclesNeedingMaintenanceList;
 
+    /**
+     * Constructs a new VehicleNeedingMaintenanceRepository with an empty list of vehicles needing maintenance.
+     */
     public VehicleNeedingMaintenanceRepository() {
         vehiclesNeedingMaintenanceList = new ArrayList<>();
     }
 
-    public List<String> getVehiclesNeedingMaintenanceList (List<Vehicle> allVehicles, List<CheckUp> allCheckUps) {
+    /**
+     * Retrieves the list of vehicles needing maintenance based on all vehicles and their check-ups.
+     *
+     * @param allVehicles  the list of all vehicles
+     * @param allCheckUps  the list of all check-ups
+     * @return the list of vehicles needing maintenance
+     */
+    public List<String> getVehiclesNeedingMaintenanceList(List<Vehicle> allVehicles, List<CheckUp> allCheckUps) {
         String headerLine = "Plate\tBrand\tModel\tCurr.Kms\tFreq\tLast\tNext\n";
         vehiclesNeedingMaintenanceList.add(headerLine);
 
@@ -52,6 +68,11 @@ public class VehicleNeedingMaintenanceRepository {
         return lastCheckUpKms;
     }
 
+    /**
+     * Provides a string representation of the VehicleNeedingMaintenanceRepository.
+     *
+     * @return A string representation of the VehicleNeedingMaintenanceRepository.
+     */
     @Override
     public String toString() {
         return "Vehicles Needing Maintenance = " + vehiclesNeedingMaintenanceList+'}';
