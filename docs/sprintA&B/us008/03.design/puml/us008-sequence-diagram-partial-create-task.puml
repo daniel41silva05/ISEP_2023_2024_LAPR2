@@ -3,32 +3,91 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+autonumber
 
-autonumber 16
--> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
 
-autonumber 16.1
-activate ORG
-    group Create Task
+participant ":VehicleNeedingMaintenanceUI " as UI
+participant ":VehicleNeedingMaintenanceController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant ":CheckUpRepository" as CheckUpRepository
+participant ":VehicleRepository" as VR
+participant ":VehicleNeedingMaintenanceRepository" as MaintenanceRep
+participant ":VehicleNeedingMaintenanceList" as MaintenanceList
 
-        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-        ORG -> ORG: addTask (task)
 
-        activate ORG
-            ORG -> ORG: validateTask(task)
-            activate ORG
-                ORG --> ORG
-            deactivate ORG
 
-            ORG --> ORG
-        deactivate ORG
+        activate UI
+
+            UI -> CTRL** : create
+
+            activate CTRL
+
+                 ref over CTRL
+                        Get CheckUp and Vehicle List
+                 end ref
+
+
+
+
+                              CTRL -> MaintenanceList: getVehiclesNeedingMaintenanceList (vehiclesList, checkUpList)
+
+                              activate MaintenanceList
+
+                              MaintenanceList --> CTRL: vehiclesNeedingMaintenanceList
+
+                              deactivate MaintenanceList
+
+                              CTRL -> UI : vehiclesNeedingMaintenanceList
+
+                          deactivate CTRL
+
+                UI -> VFM : displays the list of vehicles needing the check-up
+
+deactivate VFM
+
+@enduml@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+participant ":AssignSkillControlller" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "skillsRepository:\nSkillsRepository" as skillsRepository
+participant "collaboratorsRepository:\nCollaboratorsRepository" as collaboratorsRepository
+
+autonumber 2
+
+ -> CTRL : getCollaboratorsList()
+autonumber 2.1
+activate CTRL
+    group Get Collaborator Object
+
+            CTRL -> REP : getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS : getCollaboratorsRepository()
+            activate REPS
+
+            REPS --> CTRL: CollaboratorsRepository
+            deactivate REPS
+
+            CTRL -> collaboratorsRepository: getCollabboratorList()
+            activate collaboratorsRepository
+
+            collaboratorsRepository --> CTRL : CollaboratorList
+            deactivate collaboratorsRepository
+
     end
-
-    autonumber 17
-    <-- ORG : task
-deactivate ORG
-
+    autonumber 3
+    <-- CTRL  : CollaboratorList
+deactivate CTRL
 
 @enduml
