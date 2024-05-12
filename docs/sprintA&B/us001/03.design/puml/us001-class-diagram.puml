@@ -20,8 +20,8 @@ class HumanResourcesManager {
 }
 
 class SkillRepository {
-    - addSkill(skill)
-    - isSkillInList(skill)
+    + addSkill(skill)
+    + isSkillInList(skill)
     + registerSkill(name)
 }
 
@@ -32,7 +32,7 @@ class Repositories {
 }
 
 class RegisterSkillController {
-    + RegisterSkillController()
+    + RegisterSkillController(skillRepository)
     + registerSkill(name)
 }
 
@@ -40,12 +40,13 @@ class RegisterSkillUI {
 }
 
 RegisterSkillUI ..> RegisterSkillController
-RegisterSkillController ..> Repositories
-RegisterSkillController ..> SkillRepository
+RegisterSkillController ..> Repositories : repositories
+Repositories --> Repositories: instance
+RegisterSkillController ..> SkillRepository : SkillRepository
 RegisterSkillController ..> Skill
-Repositories --> SkillRepository
+Repositories --> "1" SkillRepository
 HumanResourcesManager --> Skill
-SkillRepository --> Skill
+SkillRepository --> "1..*" Skill
 
 
 
