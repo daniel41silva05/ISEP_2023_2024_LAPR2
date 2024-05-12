@@ -4,33 +4,89 @@ import pprog.controller.RegisterVehicleController;
 import pprog.domain.Vehicle;
 import pprog.domain.VehicleType;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * User interface for registering a vehicle.
+ */
 public class RegisterVehicleUI implements Runnable {
+    /**
+     * The controller for registering vehicles.
+     */
     private RegisterVehicleController controller;
 
+    /**
+     * The brand of the vehicle.
+     */
     private String brand;
+
+    /**
+     * The model of the vehicle.
+     */
     private String model;
+
+    /**
+     * The tare weight of the vehicle.
+     */
     private int tare;
+
+    /**
+     * The gross weight of the vehicle.
+     */
     private int grossWeight;
+
+    /**
+     * The current kilometers of the vehicle.
+     */
     private int currentKm;
+
+    /**
+     * The registration date of the vehicle.
+     */
     private Date registerDate;
+
+    /**
+     * The acquisition date of the vehicle.
+     */
     private Date acquisitionDate;
+
+    /**
+     * The maintenance check-up frequency of the vehicle.
+     */
     private int maintenanceCheckUpFrequency;
+
+    /**
+     * The plate number of the vehicle.
+     */
     private String plateNumber;
+
+    /**
+     * The type of the vehicle.
+     */
     private VehicleType type;
 
+    /**
+     * Constructs a RegisterVehicleUI with a new instance of RegisterVehicleController.
+     */
     public RegisterVehicleUI() {
         controller = new RegisterVehicleController();
     }
 
+    /**
+     * Gets the controller.
+     *
+     * @return the controller
+     */
     private RegisterVehicleController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI.
+     */
     public void run() {
         System.out.println("\n\n--- Register a Vehicle ------------------------");
 
@@ -39,6 +95,9 @@ public class RegisterVehicleUI implements Runnable {
 
     }
 
+    /**
+     * Submits data to register the vehicle.
+     */
     private void submitData() {
         Vehicle vehicle = controller.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
         if (vehicle != null) {
@@ -49,6 +108,9 @@ public class RegisterVehicleUI implements Runnable {
 
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
         brand = requestBrand();
         model = requestModel();
@@ -63,18 +125,33 @@ public class RegisterVehicleUI implements Runnable {
 
     }
 
+    /**
+     * Requests the brand of the vehicle from the user.
+     *
+     * @return the brand entered by the user
+     */
     private String requestBrand() {
         Scanner input = new Scanner(System.in);
         System.out.print("Brand: ");
         return input.nextLine();
     }
 
+    /**
+     * Requests the model of the vehicle from the user.
+     *
+     * @return the model entered by the user
+     */
     private String requestModel() {
         Scanner input = new Scanner(System.in);
         System.out.print("Model: ");
         return input.nextLine();
     }
 
+    /**
+     * Requests the tare of the vehicle from the user.
+     *
+     * @return the tare entered by the user
+     */
     private int requestTare() {
         Scanner input = new Scanner(System.in);
         int tare;
@@ -88,6 +165,11 @@ public class RegisterVehicleUI implements Runnable {
         return tare;
     }
 
+    /**
+     * Requests the gross weight of the vehicle from the user.
+     *
+     * @return the gross weight entered by the user
+     */
     private int requestGrossWeight() {
         Scanner input = new Scanner(System.in);
         int grossWeight;
@@ -101,6 +183,11 @@ public class RegisterVehicleUI implements Runnable {
         return grossWeight;
     }
 
+    /**
+     * Requests the current kilometers of the vehicle from the user.
+     *
+     * @return the current kilometers entered by the user
+     */
     private int requestCurrentKm() {
         Scanner input = new Scanner(System.in);
         int currentKm;
@@ -114,6 +201,11 @@ public class RegisterVehicleUI implements Runnable {
         return currentKm;
     }
 
+    /**
+     * Requests the registration date of the vehicle from the user.
+     *
+     * @return the registration date entered by the user
+     */
     private Date requestRegisterDate() {
         Scanner input = new Scanner(System.in);
         System.out.print("Register Date (format: dd/MM/yyyy): ");
@@ -127,6 +219,11 @@ public class RegisterVehicleUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the acquisition date of the vehicle from the user.
+     *
+     * @return the acquisition date entered by the user
+     */
     private Date requestAcquisitionDate() {
         Scanner input = new Scanner(System.in);
         System.out.print("Acquisition Date (format: dd/MM/yyyy): ");
@@ -140,6 +237,11 @@ public class RegisterVehicleUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the maintenance check-up frequency of the vehicle from the user.
+     *
+     * @return the maintenance check-up frequency entered by the user
+     */
     private int requestMaintenanceCheckUpFrequency() {
         Scanner input = new Scanner(System.in);
         int maintenanceCheckUpFrequency;
@@ -153,6 +255,11 @@ public class RegisterVehicleUI implements Runnable {
         return maintenanceCheckUpFrequency;
     }
 
+    /**
+     * Requests the plate number of the vehicle from the user.
+     *
+     * @return the plate number entered by the user
+     */
     private String requestPlateNumber() {
         Scanner input = new Scanner(System.in);
         String plateNumber;
@@ -166,6 +273,11 @@ public class RegisterVehicleUI implements Runnable {
         return plateNumber;
     }
 
+    /**
+     * Requests the vehicle type from the user.
+     *
+     * @return the vehicle type entered by the user
+     */
     private VehicleType requestVehicleType() {
         Scanner input = new Scanner(System.in);
         System.out.print("Vehicle Type: ");

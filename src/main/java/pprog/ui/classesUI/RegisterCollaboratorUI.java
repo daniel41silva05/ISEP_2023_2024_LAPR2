@@ -1,37 +1,90 @@
 package pprog.ui.classesUI;
 
-import pprog.controller.RegisterCollaboratorController;
-import pprog.domain.Collaborator;
-import pprog.domain.IdDocType;
-import pprog.domain.Job;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import pprog.controller.RegisterCollaboratorController;
+import pprog.domain.Collaborator;
+import pprog.domain.IdDocType;
+import pprog.domain.Job;
+
+/**
+ * User interface for registering a collaborator.
+ */
 public class RegisterCollaboratorUI implements Runnable {
 
+    /**
+     * The controller for registering collaborators.
+     */
     private final RegisterCollaboratorController controller;
+
+    /**
+     * The name of the collaborator.
+     */
     private String name;
+
+    /**
+     * The birthday of the collaborator.
+     */
     private Date birthday;
+
+    /**
+     * The admission date of the collaborator.
+     */
     private Date admissionDate;
+
+    /**
+     * The address of the collaborator.
+     */
     private String address;
+
+    /**
+     * The phone number of the collaborator.
+     */
     private int phoneNumber;
+
+    /**
+     * The email of the collaborator.
+     */
     private String email;
+
+    /**
+     * The type of ID document of the collaborator.
+     */
     private IdDocType idDocType;
+
+    /**
+     * The ID number of the collaborator.
+     */
     private int idNumber;
+
+    /**
+     * The job of the collaborator.
+     */
     private String job;
 
+    /**
+     * Constructs a RegisterCollaboratorUI with a new instance of RegisterCollaboratorController.
+     */
     public RegisterCollaboratorUI() {
         controller = new RegisterCollaboratorController();
     }
 
+    /**
+     * Gets the controller.
+     *
+     * @return the controller
+     */
     private RegisterCollaboratorController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI.
+     */
     public void run() {
         System.out.println("\n\n--- Register a Collaborator ------------------------");
 
@@ -41,6 +94,9 @@ public class RegisterCollaboratorUI implements Runnable {
         submitData();
     }
 
+    /**
+     * Submits data to register the collaborator.
+     */
     private void submitData() {
 
         Collaborator collaborator = controller.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
@@ -52,6 +108,9 @@ public class RegisterCollaboratorUI implements Runnable {
 
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
 
         name = requestName();
@@ -65,6 +124,11 @@ public class RegisterCollaboratorUI implements Runnable {
 
     }
 
+    /**
+     * Requests the name of the collaborator from the user.
+     *
+     * @return the name entered by the user
+     */
     private String requestName() {
         Scanner input = new Scanner(System.in);
         String name;
@@ -81,6 +145,11 @@ public class RegisterCollaboratorUI implements Runnable {
         return name;
     }
 
+    /**
+     * Requests the birthday of the collaborator from the user.
+     *
+     * @return the birthday entered by the user
+     */
     private Date requestBirthday() {
         Scanner input = new Scanner(System.in);
         System.out.print("Birthday (format: dd/MM/yyyy): ");
@@ -94,6 +163,11 @@ public class RegisterCollaboratorUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the admission date of the collaborator from the user.
+     *
+     * @return the admission date entered by the user
+     */
     private Date requestAdmissionDate() {
         Scanner input = new Scanner(System.in);
         System.out.print("Admission Date (format: dd/MM/yyyy): ");
@@ -107,6 +181,11 @@ public class RegisterCollaboratorUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the address of the collaborator from the user.
+     *
+     * @return the address entered by the user
+     */
     private String requestAddress() {
         Scanner input = new Scanner(System.in);
         String address;
@@ -127,6 +206,11 @@ public class RegisterCollaboratorUI implements Runnable {
         } while (true);
     }
 
+    /**
+     * Requests the phone number of the collaborator from the user.
+     *
+     * @return the phone number entered by the user
+     */
     private int requestPhoneNumber() {
         Scanner input = new Scanner(System.in);
         int phoneNumber;
@@ -140,6 +224,11 @@ public class RegisterCollaboratorUI implements Runnable {
         return phoneNumber;
     }
 
+    /**
+     * Requests the email of the collaborator from the user.
+     *
+     * @return the email entered by the user
+     */
     private String requestEmail() {
         Scanner input = new Scanner(System.in);
         String email;
@@ -154,6 +243,11 @@ public class RegisterCollaboratorUI implements Runnable {
         return email;
     }
 
+    /**
+     * Requests the type of ID document of the collaborator from the user.
+     *
+     * @return the ID document type selected by the user
+     */
     private IdDocType requestIdDocType() {
         Scanner input = new Scanner(System.in);
         System.out.println("Id Document Type: ");
@@ -175,6 +269,12 @@ public class RegisterCollaboratorUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the ID number of the collaborator from the user.
+     *
+     * @param idDocType the type of ID document of the collaborator
+     * @return the ID number entered by the user
+     */
     private int requestIdNumber(IdDocType idDocType) {
         Scanner input = new Scanner(System.in);
         int idNumber;
@@ -205,12 +305,20 @@ public class RegisterCollaboratorUI implements Runnable {
         return idNumber;
     }
 
+    /**
+     * Requests the job of the collaborator from the user.
+     *
+     * @return the job entered by the user
+     */
     private String requestJobName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Job: ");
         return input.nextLine();
     }
 
+    /**
+     * Displays the list of jobs.
+     */
     private void displayJobs() {
 
         List<Job> jobs = controller.getJobsList();

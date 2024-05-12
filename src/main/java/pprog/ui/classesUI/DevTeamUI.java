@@ -1,10 +1,20 @@
 package pprog.ui.classesUI;
 
+/**
+ * Represents the user interface for the development team information.
+ */
 public class DevTeamUI implements Runnable {
+
+    /**
+     * Constructs a new DevTeamUI object.
+     */
     public DevTeamUI() {
 
     }
 
+    /**
+     * Displays the development team information.
+     */
     public void run() {
         System.out.println("\n");
         System.out.println("--- DEVELOPMENT TEAM -------------------");
