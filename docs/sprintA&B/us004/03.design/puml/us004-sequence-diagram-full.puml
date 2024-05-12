@@ -12,7 +12,7 @@ participant ":AssignSkillControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "skillsRepository:\nSkillsRepository" as SkillsRepository
-participant "collaboratorsRepository:\n«CollaboratorsRepository" as collaboratorsRepository
+participant "collaboratorsRepository:\nCollaboratorsRepository" as collaboratorsRepository
 participant "collaborator\n:Collaborator" as COLLABORATOR
 
 activate HRM
