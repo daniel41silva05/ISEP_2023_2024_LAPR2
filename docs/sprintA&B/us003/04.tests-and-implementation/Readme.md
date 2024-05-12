@@ -2,68 +2,87 @@
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Collaborator class with null values. 
+**Test 1:** Check if the collaborator is being registered correctly, being stored in the repository and if it is not possible to register an already registered collaborator - AC01/AC15.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Collaborator instance = new Collaborator(null, null, null, null, null, null, null, null, null);
-	}
+    @Test
+    void registerCollaborator() {
+
+        CollaboratorRepository repository = new CollaboratorRepository();
+
+        Collaborator collaborator = new Collaborator("Daniel Silva", new Date(90,5,31),
+                new Date(), "123 Street", 123456789, "daniel.silva@example.com", IdDocType.PASSPORT, 123456, new Job("Software Engineer", "Developing software applications"));
+
+        Collaborator registeredCollaborator = repository.registerCollaborator(collaborator.getName(), collaborator.getBirthday(),
+                collaborator.getAdmissionDate(), collaborator.getAddress(), collaborator.getPhoneNumber(),
+                collaborator.getEmail(), collaborator.getIdDocType(), collaborator.getIdNumber(), collaborator.getJob());
+
+        assertNotNull(registeredCollaborator);
+        assertEquals(collaborator, registeredCollaborator);
+
+        List<Collaborator> collaboratorsList = repository.getCollaboratorsList();
+
+        assertTrue(collaboratorsList.contains(registeredCollaborator));
+
+        assertThrows(IllegalArgumentException.class, () ->
+                repository.registerCollaborator(collaborator.getName(), collaborator.getBirthday(),
+                        collaborator.getAdmissionDate(), collaborator.getAddress(), collaborator.getPhoneNumber(),
+                        collaborator.getEmail(), collaborator.getIdDocType(), collaborator.getIdNumber(), collaborator.getJob()));
+    }
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check that it is not possible to register a collaborator under 18 years old - AC05.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+    @Test
+    void validateBirthdayIsOver18() {
+
+        Collaborator collaborator = new Collaborator("Daniel Silva", new Date(90, 5, 31),
+                new Date(), "123 Street", 123456789, "daniel.silva@example.com", IdDocType.PASSPORT, 123456, new Job("Software Engineer", "Developing software applications"));
+
+        assertTrue(collaborator.validateBirthdayIsOver18());
+
+        Collaborator underageCollaborator = new Collaborator("Daniel Silva", new Date(120, 5, 31),
+                new Date(), "456 Avenue", 987654321, "daniel.silva@example.com", IdDocType.PASSPORT, 654321, new Job("Software Engineer", "Developing software applications"));
+
+        assertFalse(underageCollaborator.validateBirthdayIsOver18());
+    }
 
 _It is also recommended to organize this content by subsections._ 
 
 
 ## 5. Construction (Implementation)
 
-### Class RegisterVehicleController 
+### Class RegisterCollaboratorController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
+    Job job = getJobByName(jobName);
+    if (job == null) {
+        return null;
+    }
+    return collaboratorRepository.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
 }
 ```
 
 ### Class CollaboratorRepository
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
+    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    Collaborator newCollaborator = null;
+    Collaborator collaborator = new Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
 
-    addTask(task);
-        
-    return task;
+    if (addCollaborator(collaborator)) {
+        newCollaborator = collaborator;
+    }
+    return newCollaborator;
 }
 ```
 
 
 ## 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the HRM menu options was added.
 
-* For demo purposes some tasks are bootstrapped while system starts.
+* For demo purposes a collaborator are bootstrapped while system starts.
 
 
 ## 7. Observations
