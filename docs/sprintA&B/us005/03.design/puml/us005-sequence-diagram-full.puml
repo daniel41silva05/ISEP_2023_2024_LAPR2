@@ -12,6 +12,7 @@ participant ":GenerateTeamController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "skillRepository\n:SkillRepository" as SREP
+participant "collaboratorRepository\n:CollaboratorRepository" as CREP
 participant "generateTeamRepository:\nGenerateTeamRepository" as GTREP
 participant "team\n:Team" as T
 
@@ -65,8 +66,56 @@ activate HRM
     HRM -> UI : confirms the team generated
     activate UI
 
-        UI -> CTRL: generateTeam(minSize, maxSize, skill)
+         UI -> CTRL : getCollaboratorList()
+                activate CTRL
+
+                    CTRL -> REP : getInstance()
+                    activate REP
+
+                    REP --> CTRL: repositories
+                    deactivate REP
+
+                    CTRL -> REPS : getCollaboratorRepository()
+                    activate REPS
+
+                    REPS --> CTRL: CollaboratorRepository
+                    deactivate REPS
+
+                    CTRL -> CREP: getCollaboratorList()
+                    activate CREP
+
+                    CREP --> CTRL : CollaboratorList
+                    deactivate CREP
+
+                    CTRL --> UI : CollaboratorList
+                    deactivate CTRL
+
+        UI -> CTRL: generateTeam(minSize, maxSize, skillsNeeded)
         activate CTRL
+
+            CTRL -> CTRL: getSkillByName(skillsNeeded)
+                        activate CTRL
+
+                        CTRL -> REP: getInstance()
+                        activate REP
+
+                        REP --> CTRL: repositories
+                        deactivate REP
+
+                        CTRL -> REPS: getSkillRepository()
+                        activate REPS
+
+                        REPS --> CTRL: SkillRepository
+                        deactivate REPS
+
+                        CTRL -> SREP: getSkillByName(skillsNeeded)
+                        activate SREP
+
+                        SREP --> CTRL: skillsNeeded
+                        deactivate SREP
+
+                        CTRL --> CTRL: skillsNeeded
+                        deactivate CTRL
 
             CTRL -> REP: getInstance()
             activate REP
@@ -80,10 +129,10 @@ activate HRM
             REPS --> CTRL: generateTeamRepository
             deactivate REPS
 
-            CTRL -> GTREP: generateTeam(minSize, maxSize, skill)
+            CTRL -> GTREP: generateTeam(minSize, maxSize, skillsNeeded)
             activate GTREP
 
-                GTREP -> T** : generate(minSize, maxSize, skill)
+                GTREP -> T** : generate(minSize, maxSize, skillsNeeded)
 
                 GTREP -> GTREP: addTeam(team)
 

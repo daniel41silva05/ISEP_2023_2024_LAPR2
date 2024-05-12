@@ -10,8 +10,10 @@ skinparam classAttributeIconSize 0
 class GenerateTeam {
     - int minSize
     - int maxSize
+    - List<Skill> skillsNeeded
+    - List<Collaborator> collaboratorsNeeded
 
-    + GenerateTeam(minSize, maxSize, skill)
+    + GenerateTeam(minSize, maxSize, skillsNeeded)
 
 }
 
@@ -21,32 +23,48 @@ class Skill {
 
 }
 
+class Collaborator {
+    -String name
+    -Date birthday
+    -Date admissionDate
+    -String address
+    -int phoneNumber
+    -String email
+    -int idNumber
+    +Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)
+
+}
+
 class SkillsRepository {
     + getSkillsList()
+    + getSkillByName()
 }
 
 class GenerateTeamRepository {
     - addTeam()
     - validateTeam()
-    + generateTeam(minSize, maxSize, skill)
+    + generateTeam(minSize, maxSize, skillsNeeded)
+    + getTeamList()
+}
+
+class CollaboratorRepository {
+    + getCollaboratorList()
 }
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
+    + getCollaboratorRepository()
     + getSkillRepository()
     + getGenerateTeamRepository()
 }
 
-
-class HRM {
-    - name
-}
-
 class GenerateTeamController {
-    + GenerateTeamController()
+    + GenerateTeamController(collaboratorRepository, skillRepository, generateTeamRepository)
     + getSkillsList()
-    + generateTeam(minSize, maxSize, skill)
+    + getCollaboratorList()
+    + getTeamList()
+    + generateTeam(minSize, maxSize, skillsNeeded)
 }
 
 class GenerateTeamUI {
@@ -58,8 +76,10 @@ GenerateTeamController ..> GenerateTeamRepository
 GenerateTeamController ..> SkillsRepository
 Repositories --> GenerateTeamRepository
 Repositories --> SkillsRepository
-HRM --> GenerateTeam
-HRM --> Skill
+Repositories --> CollaboratorRepository
+CollaboratorRepository --> Collaborator
+Collaborator --> Skill
+GenerateTeam --> Collaborator
 GenerateTeamRepository --> GenerateTeam
 SkillsRepository --> Skill
 GenerateTeam --> Skill

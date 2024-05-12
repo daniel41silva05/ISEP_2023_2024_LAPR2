@@ -12,7 +12,9 @@ participant ":GenerateTeamController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "skillRepository\n:SkillRepository" as SREP
+participant "collaboratorRepository\n:CollaboratorRepository" as CREP
 participant "generateTeamRepository:\nGenerateTeamRepository" as GTREP
+participant "team\n:Team" as T
 
 
 activate HRM
@@ -31,9 +33,9 @@ activate HRM
         UI -> CTRL : getSkillsList()
         activate CTRL
 
-            ref over CTRL
-                    Get Skills List
-            end ref
+           ref over CTRL
+                Get Skills List
+           end ref
 
         CTRL --> UI : SkillsList
         deactivate CTRL
@@ -50,8 +52,29 @@ activate HRM
     HRM -> UI : confirms the team generated
     activate UI
 
-        UI -> CTRL: generateTeam(minSize, maxSize, skill)
+         UI -> CTRL : getCollaboratorList()
+                activate CTRL
+
+                    ref over CTRL
+                            Get Collaborator List
+                    end ref
+
+         CTRL --> UI : collaboratorList
+                    deactivate CTRL
+
+        UI -> CTRL: generateTeam(minSize, maxSize, skillsNeeded)
         activate CTRL
+
+            CTRL -> CTRL: getSkillByName(skillsNeeded)
+                        activate CTRL
+
+                        ref over CTRL
+                                Get SkillsNeeded Object
+                        end ref
+
+            CTRL --> CTRL : skillsNeeded
+
+                        deactivate CTRL
 
             CTRL -> REP: getInstance()
             activate REP
@@ -65,11 +88,11 @@ activate HRM
             REPS --> CTRL: generateTeamRepository
             deactivate REPS
 
-            CTRL -> GTREP: generateTeam(minSize, maxSize, skill)
+            CTRL -> GTREP: generateTeam(minSize, maxSize, skillsNeeded)
             activate GTREP
 
                 ref over GTREP
-                    Generate Team
+                        Generate Team
                 end ref
 
             GTREP --> CTRL: team
