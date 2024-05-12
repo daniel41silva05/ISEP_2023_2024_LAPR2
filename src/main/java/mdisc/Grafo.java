@@ -132,7 +132,7 @@ public class Grafo {
 
     public void runAlgorithmTests() {
         try (FileWriter csvWriter = new FileWriter("src/main/java/mdisc/execution_times.csv")) {
-            csvWriter.append("Input Size,Execution Time (ms)\n");
+            csvWriter.append("Tamanho da Entrada,Tempo de Execução (ms)\n");
 
             for (int i = 1; i <= 30; i++) {
                 Grafo grafo = ImportarCsv.lerGrafoDeCSV("datasets mdisc/us14_" + i + ".csv");
@@ -147,47 +147,50 @@ public class Grafo {
 
             csvWriter.flush();
 
-            generateExecutionTimeGraphic("src/main/java/mdisc/execution_times.csv", "execution_time_graph.png");
+            List<String> lines = Files.readAllLines(Paths.get("src/main/java/mdisc/execution_times.csv"));
+            int[] inputSizes = new int[lines.size() - 1];
+            long[] executionTimes = new long[lines.size() - 1];
 
-            plot("src/main/java/mdisc/plot.csv", "ola");
-
-        } catch (IOException ex) {
-            System.err.println("Error writing to CSV file: " + ex.getMessage());
-        }
-    }
-
-    private void generateExecutionTimeGraphic(String csvFileName, String outputFileName) {
-        try (FileWriter writer = new FileWriter("src/main/java/mdisc/plot.csv")) {
-            List<String> lines = Files.readAllLines(Paths.get(csvFileName));
             for (int i = 1; i < lines.size(); i++) {
                 String[] parts = lines.get(i).split(",");
-                int inputSize = Integer.parseInt(parts[0]);
-                long executionTime = Long.parseLong(parts[1]);
-                writer.append(inputSize + "," + executionTime + "\n");
+                inputSizes[i - 1] = Integer.parseInt(parts[0]);
+                executionTimes[i - 1] = Long.parseLong(parts[1]);
             }
-        } catch (IOException e) {
-            System.err.println("Error reading CSV file: " + e.getMessage());
+
+            generateExecutionTimeGraphic(inputSizes, executionTimes, "src/main/java/mdisc/execution_time_graph.png");
+
+        } catch (IOException ex) {
+            System.err.println("Erro ao escrever no arquivo CSV: " + ex.getMessage());
         }
-
-        System.out.println("Execution time graphic generated: " + outputFileName);
     }
 
-    public static void plot(String filename, String filePrefix) throws IOException {
-        File outF = new File("src/main/java/mdisc/auxFile.gp");
-        PrintWriter out = new PrintWriter(outF);
-        out.println("set terminal png\n");
-        out.println("set output '" + "src/main/java/mdisc/.png'");
-        out.print("set title 'Execution time tests'" + "\n");
-        out.print("set xlabel 'Size of Graph (number of edges)'" + "\n");
-        out.print("set ylabel 'Runtime (milliseconds)'" + "\n");
-        out.print("set grid\n"); // Add gridlines
-        out.print("set xrange [0:*]\n"); // Extend x-axis range
-        out.print("set yrange [0:*]\n"); // Extend y-axis range
-        out.print("set style fill transparent solid 0.9\n"); // Set plot area background color
-        out.println("plot '" + filename + "'  u 1:2 w p t 'Algorithm Performance'");
-        out.close();// It's done, closing document.
-        Runtime.getRuntime().exec("gnuplot " + "src/main/java/mdisc/auxFile.gp");
+    public void generateExecutionTimeGraphic(int[] inputSizes, long[] executionTimes, String outputFileName) {
+        try {
+            String gnuplotCommands = "set terminal png\n"
+                    + "set output '" + outputFileName + "'\n"
+                    + "set title 'Tempos de Execução'\n"
+                    + "set xlabel 'Tamanho da Entrada'\n"
+                    + "set ylabel 'Tempo de Execução (ms)'\n"
+                    + "plot '-' with lines title 'Tempo de Execução'\n";
+
+            for(int i = 0; i < inputSizes.length; ++i) {
+                gnuplotCommands += inputSizes[i] + " " + executionTimes[i] + "\n";
+            }
+
+            gnuplotCommands += "e\n";
+
+            ProcessBuilder processBuilder = new ProcessBuilder("gnuplot");
+            Process process = processBuilder.start();
+            process.getOutputStream().write(gnuplotCommands.getBytes());
+            process.getOutputStream().flush();
+            process.getOutputStream().close();
+            int exitCode = process.waitFor();
+            System.out.println("Código de saída do Gnuplot: " + exitCode);
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public int getAresta() {
         return aresta;

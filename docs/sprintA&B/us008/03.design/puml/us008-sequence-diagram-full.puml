@@ -75,7 +75,7 @@ activate VFM
 
                               deactivate MaintenanceRep
 
-                              CTRL -> MaintenanceList: getVehiclesNeedingMaintenanceList (vehiclesList, checkUpList)
+                              CTRL -> MaintenanceList: getVehiclesNeedingMaintenanceList
 
                               activate MaintenanceList
 
