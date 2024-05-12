@@ -61,7 +61,7 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 **Get Task Category Object**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us004-sequence-diagram-partial-get-collaborator-object.svg)
+![Sequence Diagram - Partial - Get Task Category Object](svg/us004-sequence-diagram-partial-get-Vehicle-List.svg)
 
 **Get Employee**
 
@@ -69,7 +69,7 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 **Create Task**
 
-![Sequence Diagram - Partial - Create Task](svg/us004-sequence-diagram-partial-get-collaborator-list.svg)
+![Sequence Diagram - Partial - Create Task](svg/us004-sequence-diagram-partial-get-checkUp-and-Vehicle-list.svg)
 
 ## 3.3. Class Diagram (CD)
 

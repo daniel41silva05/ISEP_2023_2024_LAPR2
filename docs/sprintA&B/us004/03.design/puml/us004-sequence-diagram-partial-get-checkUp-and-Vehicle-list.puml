@@ -5,7 +5,7 @@ skinparam shadowing false
 
 autonumber
 
-actor "Vehicle and Equipment\n Fleet Manager" as VFM
+
 participant ":VehicleNeedingMaintenanceUI " as UI
 participant ":VehicleNeedingMaintenanceController" as CTRL
 participant ":Repositories" as RepositorySingleton
@@ -14,9 +14,7 @@ participant ":VehicleRepository" as VR
 participant ":VehicleNeedingMaintenanceRepository" as MaintenanceRep
 participant ":VehicleNeedingMaintenanceList" as MaintenanceList
 
-activate VFM
 
-        VFM -> UI : ask to list vehicles needing check-up
 
         activate UI
 
@@ -46,5 +44,50 @@ activate VFM
                 UI -> VFM : displays the list of vehicles needing the check-up
 
 deactivate VFM
+
+@enduml@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+participant ":AssignSkillControlller" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "skillsRepository:\nSkillsRepository" as skillsRepository
+participant "collaboratorsRepository:\nCollaboratorsRepository" as collaboratorsRepository
+
+autonumber 2
+
+ -> CTRL : getCollaboratorsList()
+autonumber 2.1
+activate CTRL
+    group Get Collaborator Object
+
+            CTRL -> REP : getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS : getCollaboratorsRepository()
+            activate REPS
+
+            REPS --> CTRL: CollaboratorsRepository
+            deactivate REPS
+
+            CTRL -> collaboratorsRepository: getCollabboratorList()
+            activate collaboratorsRepository
+
+            collaboratorsRepository --> CTRL : CollaboratorList
+            deactivate collaboratorsRepository
+
+    end
+    autonumber 3
+    <-- CTRL  : CollaboratorList
+deactivate CTRL
 
 @enduml
