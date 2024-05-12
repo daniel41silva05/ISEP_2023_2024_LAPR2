@@ -71,18 +71,19 @@ class GenerateTeamUI {
 }
 
 GenerateTeamUI ..> GenerateTeamController
-GenerateTeamController ..> Repositories
+GenerateTeamController ..> Repositories : repositories
 GenerateTeamController ..> GenerateTeamRepository
 GenerateTeamController ..> SkillsRepository
-Repositories --> GenerateTeamRepository
-Repositories --> SkillsRepository
-Repositories --> CollaboratorRepository
-CollaboratorRepository --> Collaborator
-Collaborator --> Skill
-GenerateTeam --> Collaborator
-GenerateTeamRepository --> GenerateTeam
-SkillsRepository --> Skill
-GenerateTeam --> Skill
+Repositories --> Repositories : instance
+Repositories --> "1" GenerateTeamRepository : generateTeamRepository
+Repositories --> "1" SkillsRepository : skillRepository
+Repositories --> "1" CollaboratorRepository : collaboratorRepository
+CollaboratorRepository --> "1..*" Collaborator
+Collaborator --> "1..*" Skill
+GenerateTeam --> "2..*" Collaborator
+GenerateTeamRepository --> "1..*" GenerateTeam
+SkillsRepository --> "1..*" Skill
+GenerateTeam --> "1..*" Skill
 
 
 
