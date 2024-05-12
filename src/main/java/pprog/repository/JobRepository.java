@@ -44,7 +44,7 @@ public class JobRepository {
      * @return True if the job is successfully added, false otherwise.
      * @throws IllegalArgumentException if the job already exists in the repository.
      */
-    public boolean addJob(Job job){
+    private boolean addJob(Job job){
         if (validateJob(job)) {
             jobsList.add(job.clone());
             return true;
