@@ -1,69 +1,83 @@
-# US002 - Register a Job 
+# US002 - Register a job
 
-## 4. Tests 
+## 4. Tests
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check if the job is being registered correctly, being stored in the repository and if it is not possible to register an already registered job - AC01/AC09.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
-	
+    @Test
+    void registerJob() {
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+        JobRepository jobRepository = new JobRepository();
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("A[svg](..%2F03.design%2Fsvg)b1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+        String name = "Programmer";
+        String description = "Develop software applications";
+       
+        Job registeredJob = jobRepository.registerJob(name, description);
 
-_It is also recommended to organize this content by subsections._ 
+        assertNotNull(registeredJob);
+        assertEquals(name, registeredJob.getName());
+
+        List<Job> jobsList = jobRepository.getJobsList();
+
+        assertTrue(jobsList.contains(registeredJob));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jobRepository.registerJob(name, description);
+        });
+    }
+
+
+**Test 2:** Check that the job is identified by its name and that it is not possible for there to be jobs with the same name - AC03/AC04.
+
+    @Test
+    void getJobByName() {
+
+        JobRepository jobRepository = new JobRepository();
+        String name = "Manager";
+        String description = "Coordinate project teams";
+        
+        jobRepository.registerJob(name, description);
+
+        Job retrievedJob = jobRepository.getJobByName(name);
+
+        assertNotNull(retrievedJob);
+        assertEquals(name, retrievedJob.getName());
+        assertEquals(description, retrievedJob.getDescription());
+    }
+
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class RegisterJobController
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public Job registerJob(String name, String description) {
+    return jobRepository.registerJob(name, description);
 }
+
 ```
 
-### Class Organization
+### Class JobRepository
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
-
-    addTask(task);
-        
-    return task;
+    public Job registerJob (String name, String description) {
+    Job newJob = null;
+    Job job = new Job(name, description);
+    if (addJob(job)) {
+        newJob = job;
+    }
+    return newJob;
 }
+
 ```
 
 
 ## 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+[//]: # (* A new option on the HRM menu options was added.)
 
-* For demo purposes some tasks are bootstrapped while system starts.
+* For demo purposes a job are bootstrapped while system starts.
 
 
 ## 7. Observations
