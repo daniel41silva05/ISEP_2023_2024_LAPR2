@@ -8,44 +8,44 @@ class SkillTest {
 
     @Test
     void validateSkill() {
-        // Caso de teste: habilidade válida
+        // Test case: valid skill
         Skill skill1 = new Skill("Java Programming");
         assertTrue(skill1.validateSkill());
 
-        // Caso de teste: habilidade inválida (contém dígitos)
+        // Test case: invalid skill (contains digits)
         Skill skill2 = new Skill("Python 3");
         assertFalse(skill2.validateSkill());
 
-        // Caso de teste: habilidade inválida (caracteres especiais)
+        // Test case: invalid skill (special characters)
         Skill skill3 = new Skill("C++");
         assertFalse(skill3.validateSkill());
 
-        // Caso de teste: habilidade inválida (vazia)
+        // Test case: invalid skill (empty)
         Skill skill4 = new Skill("");
         assertFalse(skill4.validateSkill());
     }
 
     @Test
     void testEquals() {
-        // Caso de teste: habilidades iguais
+        // Test case: equal skills
         Skill skill1 = new Skill("Java");
         Skill skill2 = new Skill("Java");
         assertEquals(skill1, skill2);
 
-        // Caso de teste: habilidades diferentes
+        // Test case: different skills
         Skill skill3 = new Skill("Python");
         assertNotEquals(skill1, skill3);
     }
 
     @Test
     void testClone() {
-        // Criar uma instância de Skill
+        // Create an instance of Skill
         Skill originalSkill = new Skill("Java");
 
-        // Clonar a instância
+        // Clone the instance
         Skill clonedSkill = originalSkill.clone();
 
-        // Verificar se os valores foram copiados corretamente
+        // Verify if the values were copied correctly
         assertEquals(originalSkill.getSkill(), clonedSkill.getSkill());
         assertNotSame(originalSkill, clonedSkill);
     }
