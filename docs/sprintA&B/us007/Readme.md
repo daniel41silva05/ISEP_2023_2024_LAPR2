@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US007 - Register a Check-Up 
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
