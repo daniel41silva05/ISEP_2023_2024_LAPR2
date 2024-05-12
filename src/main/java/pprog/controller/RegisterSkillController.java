@@ -46,6 +46,12 @@ public class RegisterSkillController {
         return skillRepository;
     }
 
+    /**
+     * Gets the skill by name from the repository.
+     *
+     * @param skillName the name of the skill to retrieve
+     * @return the skill object, or null if not found
+     */
     private Skill getSkillByName(String skillName) {
         SkillRepository skillRepository = getSkillRepository();
         return skillRepository.getSkillByName(skillName);
@@ -54,8 +60,9 @@ public class RegisterSkillController {
     /**
      * Registers a new skill.
      *
-     * @param skillName the skill to register
-     * @return the newly registered skill, or null if registration fails
+     * @param skillName the name of the skill to register
+     * @return true if the skill is registered successfully, false otherwise
+     * @throws IllegalArgumentException if the skill name is null or empty
      */
     public boolean registerSkill(String skillName) {
         if (skillName == null || skillName.trim().isEmpty()) {
@@ -65,6 +72,11 @@ public class RegisterSkillController {
         return skillRepository.registerSkill(skill);
     }
 
+    /**
+     * Gets the list of all skills.
+     *
+     * @return the list of all skills
+     */
     public List<Skill> getSkillsList() {
         SkillRepository skillRepository = getSkillRepository();
         return skillRepository.getSkillsList();

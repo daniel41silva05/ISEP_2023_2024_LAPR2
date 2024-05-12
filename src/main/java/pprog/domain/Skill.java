@@ -76,6 +76,11 @@ public class Skill {
         this.skill = skill;
     }
 
+    /**
+     * Creates and returns a clone of this Skill object.
+     *
+     * @return a clone of this Skill object
+     */
     public Skill clone() {
         return new Skill(this.skill);
     }

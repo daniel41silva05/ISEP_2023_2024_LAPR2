@@ -32,9 +32,10 @@ public class SkillRepository {
     }
 
     /**
-     * Gets the list of skills.
+     * Gets the skill with the specified name from the repository.
      *
-     * @return the list of skills
+     * @param skillName the name of the skill to retrieve
+     * @return the skill with the specified name, or null if not found
      */
     public Skill getSkillByName(String skillName) {
         for (Skill skill : skillsList) {
@@ -50,6 +51,7 @@ public class SkillRepository {
      *
      * @param skill the skill to add
      * @return true if the skill is added successfully; false otherwise
+     * @throws IllegalArgumentException if the skill name is invalid
      */
     public boolean addSkill(Skill skill) {
         if (skill.validateSkill()) {
@@ -73,7 +75,8 @@ public class SkillRepository {
      * Registers a new skill in the repository.
      *
      * @param skill the skill to register
-     * @return the newly registered skill, or null if registration fails
+     * @return true if the skill is successfully registered; false otherwise
+     * @throws IllegalArgumentException if the skill already exists in the repository
      */
     public boolean registerSkill(Skill skill) {
         if (isSkillInList(skill)) {
@@ -82,12 +85,17 @@ public class SkillRepository {
         return addSkill(skill);
     }
 
+    /**
+     * Retrieves the list of skills in the repository.
+     *
+     * @return the list of skills
+     */
     public List<Skill> getSkillsList() {
         return skillsList;
     }
 
     /**
-     * Sets the list of skills.
+     * Sets the list of skills in the repository.
      *
      * @param skillsList the list of skills to set
      */
@@ -109,5 +117,4 @@ public class SkillRepository {
         }
         return s.toString();
     }
-
 }
