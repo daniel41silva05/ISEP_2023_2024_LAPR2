@@ -66,23 +66,9 @@ activate HRM
                     CTRL -> CTRL: getCollaboratorByName (collaboratorName)
                     activate CTRL
 
-                    CTRL -> REP: getInstance()
-                    activate REP
-
-                    REP --> CTRL: repositories
-                    deactivate REP
-
-                    CTRL -> REPS: getCollaboratorRepository()
-                    activate REPS
-
-                    REPS --> CTRL: collaboratorsRepository
-                    deactivate REPS
-
-                    CTRL -> collaboratorsRepository: getCollaboratorByName (collaboratorName)
-                    activate collaboratorsRepository
-
-                    collaboratorsRepository --> CTRL: collaborator
-                    deactivate collaboratorsRepository
+                    ref over CTRL
+                        Get Collaborator Object
+                    end ref
 
                     CTRL --> CTRL: collaborator
                     deactivate CTRL
