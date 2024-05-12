@@ -18,10 +18,17 @@ activate SkillREP
     group register Skill
 
             SkillREP -> SKILL** : register (name)
+                activate SKILL
 
-            SkillREP -> SkillREP : addSkill (skill)
+                    SKILL -> SKILL : validateSkill (skill)
 
-            SkillREP -> SkillREP : validateSkill (skill)
+                    SKILL -> SkillREP : skill
+                     deactivate SKILL
+
+                    SkillREP -> SkillREP : registerSkill (skill)
+
+                    SkillREP -> SkillREP : addSkill (skill)
+
     end
     autonumber 13
     <-- SkillREP  : skill
