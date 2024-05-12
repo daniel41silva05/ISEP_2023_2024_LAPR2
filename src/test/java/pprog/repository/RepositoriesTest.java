@@ -8,33 +8,92 @@ class RepositoriesTest {
 
     @Test
     void getInstance() {
+
+        Repositories repositories1 = Repositories.getInstance();
+        Repositories repositories2 = Repositories.getInstance();
+
+        assertNotNull(repositories1);
+        assertNotNull(repositories2);
+        assertSame(repositories1, repositories2);
     }
 
     @Test
     void getCollaboratorRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        CollaboratorRepository collaboratorRepository = repositories.getCollaboratorRepository();
+
+        assertNotNull(collaboratorRepository);
     }
 
     @Test
     void getJobRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        JobRepository jobRepository = repositories.getJobRepository();
+
+        assertNotNull(jobRepository);
     }
 
     @Test
     void getVehicleRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        VehicleRepository vehicleRepository = repositories.getVehicleRepository();
+
+        assertNotNull(vehicleRepository);
     }
 
     @Test
     void getSkillRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        SkillRepository skillRepository = repositories.getSkillRepository();
+
+        assertNotNull(skillRepository);
     }
 
     @Test
     void getCheckUpRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        CheckUpRepository checkUpRepository = repositories.getCheckUpRepository();
+
+        assertNotNull(checkUpRepository);
     }
 
     @Test
     void getGenerateTeamRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        GenerateTeamRepository generateTeamRepository = repositories.getGenerateTeamRepository();
+
+        assertNotNull(generateTeamRepository);
     }
 
     @Test
     void getVehicleNeedingMaintenanceRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository = repositories.getVehicleNeedingMaintenanceRepository();
+
+        assertNotNull(vehicleNeedingMaintenanceRepository);
+    }
+
+    @Test
+    void getAuthenticationRepository() {
+
+        Repositories repositories = Repositories.getInstance();
+
+        AuthenticationRepository authenticationRepository = repositories.getAuthenticationRepository();
+
+        assertNotNull(authenticationRepository);
     }
 }

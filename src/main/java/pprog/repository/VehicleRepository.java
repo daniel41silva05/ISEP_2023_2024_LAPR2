@@ -51,15 +51,17 @@ public class VehicleRepository {
     /**
      * Adds a vehicle to the repository.
      *
-     * @param vehicle   The vehicle to be added.
-     * @return          True if the vehicle is successfully added, false otherwise.
+     * @param vehicle The job to be added.
+     * @return True if the job is successfully added, false otherwise.
+     * @throws IllegalArgumentException if the vehicle already exists in the repository.
      */
     private boolean addVehicle (Vehicle vehicle) {
-        boolean success = false;
         if (validateVehicle(vehicle)) {
-            success = vehiclesList.add(vehicle.clone());
+            vehiclesList.add(vehicle.clone());
+            return true;
+        } else {
+            throw new IllegalArgumentException("Job already exists in the repository");
         }
-        return success;
     }
 
     /**
