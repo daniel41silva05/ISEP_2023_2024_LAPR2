@@ -69,7 +69,7 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 **Create Task**
 
-![Sequence Diagram - Partial - Create Task](svg/us008-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Create Task](svg/us008-sequence-diagram-partial-get-checkUp-and-Vehicle-List.svg)
 
 ## 3.3. Class Diagram (CD)
 

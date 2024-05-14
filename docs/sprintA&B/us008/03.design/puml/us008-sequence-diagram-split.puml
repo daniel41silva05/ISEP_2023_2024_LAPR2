@@ -28,6 +28,13 @@ activate VFM
                         Get CheckUp and Vehicle List
                  end ref
 
+                CTRL -> MaintenanceRep: getVehiclesNeedingMaintenanceRepository
+
+                                               activate MaintenanceRep
+
+                                              MaintenanceRep --> CTRL: vehiclesNeedingMaintenanceRepository
+
+                                                deactivate MaintenanceRep
 
 
 
