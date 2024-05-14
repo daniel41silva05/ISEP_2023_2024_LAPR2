@@ -9,145 +9,136 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class Grafo {
-    private int vertice;
-    private int aresta;
-    private ArrayList<Aresta> arestas;
 
-    public Grafo() {
-        arestas = new ArrayList<>();
-    }
+    public static List<Aresta> encontrarArvoreGeradora(List<Aresta> edges, List<Aresta> mstEdges) {
+        edges.sort(Comparator.comparingInt(Aresta::getPeso));
 
-    public void addAresta(int origem, int destino, int peso) {
-        arestas.add(new Aresta(origem, destino, peso));
-    }
+        Map<String, String> parent = new HashMap<>();
+        Map<String, Integer> rank = new HashMap<>();
+        Set<String> vertices = new HashSet<>();
 
-    public int encontrar(int[] subset, int i) {
-        if (subset[i] == -1)
-            return i;
-        return encontrar(subset, subset[i]);
-    }
+        for (Aresta edge : edges) {
+            vertices.add(edge.getOrigem());
+            vertices.add(edge.getDestino());
+        }
 
-    public void unir(int[] subset, int x, int y) {
-        int xroot = encontrar(subset, x);
-        int yroot = encontrar(subset, y);
-        subset[xroot] = yroot;
-    }
+        for (Aresta edge : edges) {
+            String rootX = findRoot(parent, edge.getOrigem());
+            String rootY = findRoot(parent, edge.getDestino());
 
-    public void encontrarArvoreGeradoraUS13() {
-        Aresta[] resultado = new Aresta[vertice];
-        int e = 0;
-        int i = 0;
-        int custoTotal = 0;
+            // Check if adding this edge creates a cycle
+            if (!rootX.equals(rootY)) {
+                mstEdges.add(edge);
 
-        for (i = 0; i < vertice; ++i)
-            resultado[i] = new Aresta(0, 0, 0);
+                // Union by rank to optimize the tree structure
+                modifiedUnion(parent, rank, rootX, rootY);
 
-        Collections.sort(arestas);
-
-        int[] subset = new int[vertice];
-        Arrays.fill(subset, -1);
-
-        i = 0;
-
-        try (FileWriter writer = new FileWriter("src/main/java/mdisc/output_JardimDosSentimentos.csv")) {
-            while (e < vertice - 1 && i < aresta) {
-                Aresta proximaAresta = arestas.get(i++);
-
-                int x = encontrar(subset, proximaAresta.getOrigem());
-                int y = encontrar(subset, proximaAresta.getDestino());
-
-                if (x != y) {
-                    resultado[e++] = proximaAresta;
-                    unir(subset, x, y);
-
-                    writer.append(String.valueOf(proximaAresta.getOrigem())).append(";").append(String.valueOf(proximaAresta.getDestino())).append(";").append(String.valueOf(proximaAresta.getPeso())).append("\n");
-
-                    custoTotal += proximaAresta.getPeso();
+                // If we have added enough edges, stop
+                if (mstEdges.size() == vertices.size() - 1) {
+                    break;
                 }
             }
+        }
 
-            writer.append("Cost of a Minimum spanning tree = ").append(String.valueOf(custoTotal)).append("\n");
+        return mstEdges;
+    }
 
-            generateDotFile(resultado, "src/main/java/mdisc/output_JardimDosSentimentos.dot");
+    private static String findRoot(Map<String, String> parent, String node) {
+        if (!parent.containsKey(node)) {
+            parent.put(node, node);
+        }
+        while (!parent.get(node).equals(node)) {
+            node = parent.get(node);
+        }
+        return node;
+    }
 
-            renderDotFile("src/main/java/mdisc/output_JardimDosSentimentos.dot", "src/main/java/mdisc/output_JardimDosSentimentos.png");
+    private static void modifiedUnion(Map<String, String> parent, Map<String, Integer> rank, String x, String y) {
+        String rootX = findRoot(parent, x);
+        String rootY = findRoot(parent, y);
 
-            System.out.println("Arquivo 'output_JardimDosSentimentos' criado com sucesso.");
+        if (rootX.equals(rootY)) {
+            return;
+        }
 
-        } catch (IOException ex) {
-            System.err.println("Erro ao escrever no arquivo CSV: " + ex.getMessage());
+        if (rank.getOrDefault(rootX, 0) < rank.getOrDefault(rootY, 0)) {
+            parent.put(rootX, rootY);
+        } else if (rank.getOrDefault(rootX, 0) > rank.getOrDefault(rootY, 0)) {
+            parent.put(rootY, rootX);
+        } else {
+            parent.put(rootY, rootX);
+            rank.put(rootX, rank.getOrDefault(rootX, 0) + 1);
         }
     }
 
-    public void encontrarArvoreGeradoraUS14() {
-        Aresta[] resultado = new Aresta[vertice];
-        int e = 0;
-        int i = 0;
-        int custoTotal = 0;
+    public static void gerarOutputExcel(String caminhoCsv, String nomeArquivoOutput) throws IOException {
+        List<Aresta> arestas = ImportarCsv.lerGrafoDeCSV(caminhoCsv);
+        List<Aresta> mstEdges = encontrarArvoreGeradora(arestas, new ArrayList<>());
 
-        for (i = 0; i < vertice; ++i)
-            resultado[i] = new Aresta(0, 0, 0);
+        try (PrintWriter writer = new PrintWriter(new File(nomeArquivoOutput))) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Origem, Destino, Peso\n");
 
-        Collections.sort(arestas);
+            for (Aresta aresta : mstEdges) {
+                sb.append(aresta.getOrigem()).append(",");
+                sb.append(aresta.getDestino()).append(",");
+                sb.append(aresta.getPeso()).append("\n");
+            }
 
-        int[] subset = new int[vertice];
-        Arrays.fill(subset, -1);
+            writer.write(sb.toString());
+        }
 
-        i = 0;
+        // Gera o arquivo DOT
+        generateDotFile(mstEdges.toArray(new Aresta[0]), nomeArquivoOutput + ".dot");
 
-            while (e < vertice - 1 && i < aresta) {
-                Aresta proximaAresta = arestas.get(i++);
+        // Renderiza o arquivo DOT como imagem PNG
+        renderDotFile(nomeArquivoOutput + ".dot", nomeArquivoOutput + ".png");
 
-                int x = encontrar(subset, proximaAresta.getOrigem());
-                int y = encontrar(subset, proximaAresta.getDestino());
+    }
 
-                if (x != y) {
-                    resultado[e++] = proximaAresta;
-                    unir(subset, x, y);
-
-                    custoTotal += proximaAresta.getPeso();
+    public static void generateDotFile(Aresta[] resultado, String filename) throws IOException {
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("graph G {\n");
+            for (Aresta aresta : resultado) {
+                if (aresta.getPeso() != 0) {
+                    writer.write(aresta.getOrigem() + " -- " + aresta.getDestino() + " [label=\"" + aresta.getPeso() + "\"];\n");
                 }
             }
-
-    }
-
-    public void generateDotFile(Aresta[] resultado, String filename) throws IOException {
-        FileWriter writer = new FileWriter(filename);
-
-        writer.write("graph G {\n");
-        for (Aresta aresta : resultado) {
-            if (aresta.getPeso() != 0) {
-                writer.write(aresta.getOrigem() + " -- " + aresta.getDestino() + " [label=\"" + aresta.getPeso() + "\"];\n");
-            }
+            writer.write("}\n");
         }
-        writer.write("}\n");
-
-        writer.close();
     }
 
-    public void renderDotFile(String dotFileName, String outputFileName) throws IOException {
+    public static void renderDotFile(String dotFileName, String outputFileName) throws IOException {
         String[] cmd = {"dot", "-Tpng", dotFileName, "-o", outputFileName};
-        Runtime.getRuntime().exec(cmd);
+        ProcessBuilder pb = new ProcessBuilder(cmd);
+        pb.redirectErrorStream(true);
+        Process process = pb.start();
+
+        try {
+            process.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void runAlgorithmTests() {
-        try (FileWriter csvWriter = new FileWriter("src/main/java/mdisc/execution_times.csv")) {
-            csvWriter.append("Tamanho da Entrada,Tempo de Execução (ms)\n");
+    public static void runAlgorithmTests(String ficheiroInput, String ficheiroOutputCsv, String ficheiroOutputPng) {
+        try (PrintWriter csvWriter = new PrintWriter(new File(ficheiroOutputCsv))) {
+            csvWriter.println("Tamanho da Entrada,Tempo de Execução (ms)");
 
             for (int i = 1; i <= 30; i++) {
-                Grafo grafo = ImportarCsv.lerGrafoDeCSV("datasets mdisc/us14_" + i + ".csv");
+                List<Aresta> arestas = ImportarCsv.lerGrafoDeCSV(ficheiroInput + i + ".csv");
 
                 long startTime = System.currentTimeMillis();
-                grafo.encontrarArvoreGeradoraUS14();
+                List<Aresta> mstEdges = encontrarArvoreGeradora(arestas, new ArrayList<>());
                 long endTime = System.currentTimeMillis();
                 long executionTime = endTime - startTime;
 
-                csvWriter.append(i + "," + executionTime + "\n");
+                csvWriter.println(i + "," + executionTime);
             }
 
             csvWriter.flush();
 
-            List<String> lines = Files.readAllLines(Paths.get("src/main/java/mdisc/execution_times.csv"));
+            List<String> lines = Files.readAllLines(Paths.get(ficheiroOutputCsv));
             int[] inputSizes = new int[lines.size() - 1];
             long[] executionTimes = new long[lines.size() - 1];
 
@@ -157,14 +148,14 @@ public class Grafo {
                 executionTimes[i - 1] = Long.parseLong(parts[1]);
             }
 
-            generateExecutionTimeGraphic(inputSizes, executionTimes, "src/main/java/mdisc/execution_time_graph.png");
+            generateExecutionTimeGraphic(inputSizes, executionTimes, ficheiroOutputPng);
 
         } catch (IOException ex) {
             System.err.println("Erro ao escrever no arquivo CSV: " + ex.getMessage());
         }
     }
 
-    public void generateExecutionTimeGraphic(int[] inputSizes, long[] executionTimes, String outputFileName) {
+    public static void generateExecutionTimeGraphic(int[] inputSizes, long[] executionTimes, String outputFileName) {
         try {
             String gnuplotCommands = "set terminal png\n"
                     + "set output '" + outputFileName + "'\n"
@@ -191,28 +182,4 @@ public class Grafo {
         }
     }
 
-
-    public int getAresta() {
-        return aresta;
-    }
-
-    public void setAresta(int a1) {
-        aresta = a1;
-    }
-
-    public int getVertice() {
-        return vertice;
-    }
-
-    public void setVertice(int v1) {
-        vertice = v1;
-    }
-
-    public ArrayList<Aresta> getArestas() {
-        return arestas;
-    }
-
-    public void setArestas(ArrayList<Aresta> arestas) {
-        this.arestas = arestas;
-    }
 }
