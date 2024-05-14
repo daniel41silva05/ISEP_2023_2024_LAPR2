@@ -7,7 +7,6 @@ autonumber
 participant ":AssignSkillControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant "skillsRepository:\nSkillsRepository" as skillsRepository
 participant "collaboratorsRepository:\nCollaboratorsRepository" as collaboratorsRepository
 autonumber 2
  -> CTRL : getCollaboratorsList()
