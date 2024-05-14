@@ -74,6 +74,7 @@ public class Grafo {
     public static void gerarOutputExcel(String caminhoCsv, String nomeArquivoOutput) throws IOException {
         List<Aresta> arestas = ImportarCsv.lerGrafoDeCSV(caminhoCsv);
         List<Aresta> mstEdges = encontrarArvoreGeradora(arestas, new ArrayList<>());
+        int totalCost = 0;
 
         try (PrintWriter writer = new PrintWriter(new File(nomeArquivoOutput))) {
             StringBuilder sb = new StringBuilder();
@@ -83,8 +84,10 @@ public class Grafo {
                 sb.append(aresta.getOrigem()).append(",");
                 sb.append(aresta.getDestino()).append(",");
                 sb.append(aresta.getPeso()).append("\n");
+                totalCost += aresta.getPeso();
             }
 
+            System.out.println("Cost of a Minimun spanning tree = " + totalCost);
             writer.write(sb.toString());
         }
 
@@ -133,7 +136,7 @@ public class Grafo {
                 long endTime = System.currentTimeMillis();
                 long executionTime = endTime - startTime;
 
-                csvWriter.println(i + "," + executionTime);
+                csvWriter.println(arestas.size() + "," + executionTime);
             }
 
             csvWriter.flush();
@@ -176,7 +179,6 @@ public class Grafo {
             process.getOutputStream().flush();
             process.getOutputStream().close();
             int exitCode = process.waitFor();
-            System.out.println("Código de saída do Gnuplot: " + exitCode);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
