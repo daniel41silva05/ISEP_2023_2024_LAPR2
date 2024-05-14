@@ -95,19 +95,19 @@ public class Grafo {
 
         i = 0;
 
-            while (e < vertice - 1 && i < aresta) {
-                Aresta proximaAresta = arestas.get(i++);
+        while (e < vertice - 1 && i < aresta) {
+            Aresta proximaAresta = arestas.get(i++);
 
-                int x = encontrar(subset, proximaAresta.getOrigem());
-                int y = encontrar(subset, proximaAresta.getDestino());
+            int x = encontrar(subset, proximaAresta.getOrigem());
+            int y = encontrar(subset, proximaAresta.getDestino());
 
-                if (x != y) {
-                    resultado[e++] = proximaAresta;
-                    unir(subset, x, y);
+            if (x != y) {
+                resultado[e++] = proximaAresta;
+                unir(subset, x, y);
 
-                    custoTotal += proximaAresta.getPeso();
-                }
+                custoTotal += proximaAresta.getPeso();
             }
+        }
 
     }
 
