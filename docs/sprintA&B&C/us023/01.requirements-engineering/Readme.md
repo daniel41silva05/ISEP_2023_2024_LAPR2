@@ -45,7 +45,6 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 	
 * Selected data:
     * Team
-    * Agenda 
     * Entry in the Agenda
 
 **Output Data:**
