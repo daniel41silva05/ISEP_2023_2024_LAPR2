@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US022 - ... 
 
 ## 3. Design - User Story Realization 
 
@@ -39,13 +39,13 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-_**Note that SSD - Alternative Two is adopted.**_
+_**Note that SSD - Alternative One is adopted.**_
 
 ### Full Diagram
 
 This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us006-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us022-sequence-diagram-full.svg)
 
 ### Split Diagrams
 
@@ -53,7 +53,7 @@ The following diagram shows the same sequence of interactions between the classe
 
 It uses Interaction Occurrence (a.k.a. Interaction Use).
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+![Sequence Diagram - split](svg/us022-sequence-diagram-split.svg)
 
 **Get Task Category List Partial SD**
 
@@ -73,4 +73,4 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us022-class-diagram.svg)
