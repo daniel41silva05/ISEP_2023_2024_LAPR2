@@ -1,58 +1,57 @@
-# US006 - Create a Task 
+# US023 - ... 
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a GSM, I want to assign a Team to an entry in the Agenda.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	...
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	...
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** ...
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** ...
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** ...
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** ...
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** A message must be sent to all team members informing them about the assignment.
+* **AC2:** Different email services can send the message. These services must be defined through a configuration file to allow the use of different platforms (e.g. Gmail, DEI’s email service, etc.).
+* **ACX:**
+* **ACX:** System must ensure that only GSM assigns a Team to an Agenda entry.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US022 - ..." as there must be at least one entry in the agenda.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    *
 	
 * Selected data:
-    * a task category 
+    * Team
+    * Agenda 
+    * Entry in the Agenda
 
 **Output Data:**
 
-* List of existing task categories
+* All team data
+* Entry in the Agenda
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -61,12 +60,12 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us023-system-sequence-diagram-alternative-one.svg)
 
 #### Alternative Two
 
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative Two](svg/us023-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

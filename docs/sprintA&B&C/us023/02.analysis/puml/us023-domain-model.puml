@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model - US023
+
+class Organization {
+}
+
+class GreenSpacesManager {
+    name
+}
+
+Organization "1" -- "1" GreenSpacesManager : has >
+
+
+@enduml
