@@ -11,11 +11,19 @@ import java.util.*;
 public class Grafo {
 
     public static List<Aresta> encontrarArvoreGeradora(List<Aresta> edges, List<Aresta> mstEdges) {
+        // Ordenação das arestas por peso
+
         edges.sort(Comparator.comparingInt(Aresta::getPeso));
+
+//        parent: Um mapa que mantém a relação entre um nó e seu pai na árvore.
+//        rank: Um mapa que mantém a altura de cada árvore.
+//        vertices: Um conjunto que armazena todos os vértices do grafo.
 
         Map<String, String> parent = new HashMap<>();
         Map<String, Integer> rank = new HashMap<>();
         Set<String> vertices = new HashSet<>();
+
+        //garante que todos os vértices estejam presentes na árvore geradora mínima
 
         for (Aresta edge : edges) {
             vertices.add(edge.getOrigem());
@@ -26,14 +34,14 @@ public class Grafo {
             String rootX = findRoot(parent, edge.getOrigem());
             String rootY = findRoot(parent, edge.getDestino());
 
-            // Check if adding this edge creates a cycle
+            // Verifica se adicionar esta aresta cria um ciclo
             if (!rootX.equals(rootY)) {
                 mstEdges.add(edge);
 
-                // Union by rank to optimize the tree structure
+                // União por rank para otimizar a estrutura da árvore
                 modifiedUnion(parent, rank, rootX, rootY);
 
-                // If we have added enough edges, stop
+                // Se adicionamos arestas suficientes, paramos
                 if (mstEdges.size() == vertices.size() - 1) {
                     break;
                 }
@@ -42,6 +50,10 @@ public class Grafo {
 
         return mstEdges;
     }
+
+//    Este método encontra o representante (ou raiz) do conjunto ao qual o nó node pertence.
+//    Se o nó node ainda não tiver um pai definido, ele é definido como seu próprio pai.
+//    Em seguida, encontra recursivamente o pai do pai até chegar à raiz do conjunto e a retorna.
 
     private static String findRoot(Map<String, String> parent, String node) {
         if (!parent.containsKey(node)) {
@@ -52,6 +64,15 @@ public class Grafo {
         }
         return node;
     }
+
+//    Este método realiza a união de dois conjuntos em um conjunto maior, otimizando a estrutura da árvore geradora.
+//            Primeiro, encontra as raízes dos conjuntos aos quais x e y pertencem.
+//    Se as raízes forem as mesmas, os conjuntos já estão unidos, então retorna.
+//    Caso contrário, decide qual árvore será a nova raiz com base na altura (representada por rank).
+//    Se a altura de x for menor que a de y, x se torna o pai de y.
+//    Se a altura de x for maior que a de y, y se torna o pai de x.
+//    Se as alturas forem iguais, y se torna o pai de x, e a altura de x é incrementada em 1.
+//    Isso ajuda a manter a árvore balanceada, evitando que ela cresça muito em altura.
 
     private static void modifiedUnion(Map<String, String> parent, Map<String, Integer> rank, String x, String y) {
         String rootX = findRoot(parent, x);
