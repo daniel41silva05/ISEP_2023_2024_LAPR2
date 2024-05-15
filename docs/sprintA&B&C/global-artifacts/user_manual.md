@@ -58,17 +58,24 @@ The application is a comprehensive digital solution developed to support the eff
 ### Main Functionalities
 It is intended for the responsible administrators and managers who handle everything from resource allocation to task management. However, there is also a user portal aimed at receiving feedback. It also provides functionalities for data analysis.
 
-### Multidisciplinary Team Management
-This application provides tools for the formation and management of multidisciplinary teams, considering technical skills, knowledge in botany, landscaping, and resource management.
+- #### Registration and maintenance of collaborators, jobs and skills
+Users can enter and update comprehensive details about collaborators such as skills and job. By consolidating this data, it facilitates effective assignment of tasks and allocation of roles based on collaborator skills, maximizing the utilization of the team's skills and talents.
 
-### Intelligent Team Allocation
-Using advanced algorithms, the software facilitates efficient allocation of teams in different green spaces, considering variables such as size, complexity, and specific needs of each area.
+- #### Multidisciplinary Team Management
+This application provides tools for the formation and management of multidisciplinary teams, considering technical skills, knowledge in botany, landscaping, and resource management. Using advanced algorithms, the software facilitates efficient allocation of teams, considering variables such as size, complexity, and specific needs of each area.
 
-### Fleet and Equipment Management
-An integrated feature allows for the management of the fleet of vehicles and equipment, ensuring proper maintenance, availability, and efficient utilization.
+- #### Vehicle registration and maintenance
+An integrated feature allows for the management of the fleet of vehicles and equipment, ensuring proper maintenance, availability, and efficient utilization. Like this, users can effortlessly register and manage vehicles vital to green space operations. This feature allows you to track vehicle details such as model, registration information, and maintenance schedules. Additionally, it organizes maintenance checks and manages vehicle-related tasks, ensuring vehicles are well maintained and minimizing downtime.
 
-### Production of Statistical Indicators
+- #### Production of Statistical Indicators
 The solution generates relevant statistical indicators to measure the performance of green space management activities, providing valuable insights for strategic decision-making.
+Therefore, it provides tools for analyzing the costs of water consumption in specific green spaces, this functionality being fundamental as it helps green space managers to identify areas of high consumption and possible inefficiencies and therefore reduce costs.
+It also provides an analysis of equipment use by observing factors such as maintenance and usage rates, which are essential for optimizing usage strategies or even replacing certain equipment.
+Finally, it also collects data through the user portal on the use of the parks, providing information on the age, frequency and recommendation of visitors, essential for customizing strategies to better attract visitors to the park.
+
+- #### Efficient Route Selection
+It employs advanced algorithms to calculate the most efficient routes for installing pipes in green spaces. This feature considers factors such as terrain, distance and water supply needs, ensuring optimal distribution of water resources. Through efficient route planning, it supports the development of efficient irrigation systems, adapted to the needs of green spaces, reducing waste of resources.
+
 
 ### Benefits
 * Improvement in urban quality of life through efficient maintenance of green spaces.
@@ -144,42 +151,108 @@ Optimization of resources and reduction of operational costs.
 > - Edit or confirm the team generated.
 > - After confirmation, the system provides a success message.
 
-**6. Register a vehicle | Fleet Manager**
+**6. Register a vehicle | Vehicle and Equipment Fleet Manager**
 
-> The feature allows the FM to register a new vehicle along with its details such as (meter as cenas q temos no veiculo).
+> The feature allows the FM to register a new vehicle along with its details.
 > 
 > **Instructions** :
 > 
-> - Enable the FM role.
+> - Enable the VFM role.
 > - Access the Vehicle Registration section.
 > - Input the necessary vehicle details, including brand, model, tare, gross weight, current km, register date, acquisition date, maintenance check up frequency, plate number.
 > - Select the available types from the types list.
 > - Verify the entered data and type selection.
 > - After confirmation, the system provides a success message.
 
-**7. Register Vehicle's Check-up | Fleet Manager**
+**7. Register Vehicle's Check-up | Vehicle and Equipment Fleet Manager**
 
 > The feature allows the FM to register a check-up for a vehicle.
 > 
 > **Instructions** :
 > 
-> - Enable the FM role.
+> - Enable the VFM role.
 > - Navigate to the Vehicle Check-Up Registration page.
 > - Choose the vehicle for which you wish to register a check-up.
 > - Input the details of the check-up, including current kms, ID and check-up date.
 > - Verify the entered data.
 > - After confirmation, the system provides a success message.
 
-**8. List the vehicles needing the check-up | Fleet Manager**
+**8. List the vehicles needing the check-up | Vehicle and Equipment Fleet Manager**
 
 > The feature allows the FM to view a list of vehicles that require a check-up.
 > 
 > **Instructions** :
 > 
-> - Enable the FM role.
+> - Enable the VFM role.
 > - Access the Check-Up Status page.
 > - Review the list of vehicles scheduled for a check-up, along with their respective details.
 > - The system provides a success message.
+
+**9. Know the exact costs referring to water consumption | Green Spaces Manager**
+
+> This feature allows the GSM to request a statistical analysis of water consumption costs.
+>
+> **Instructions** :
+>
+> - Enable the GSM role.
+> - Access the statistical analysis of water consumption costs page.
+> - Input the necessary information
+> - Verify the entered information.
+> - After submission, the system will display the analysis outcome, that include a bar plot, average costs, and statistical indicators..
+
+**10. Know in a pie chart which pieceS of equipment are used in each day | Green Spaces Manager**
+
+> The feature allows the GSM to analyze equipment usage.
+>
+> **Instructions** :
+>
+> - Enable the GSM role.
+> - Access the analysing equipment usage page.
+> - Upload the file "EquipmentUsed.csv"
+> - After upload, the system will display the analysis result in the form of a pie chart.
+
+**11. Collect data from the user portal | Green Spaces Manager**
+
+> The feature allows the GSM to collect data from the user portal regarding the use of the park.
+>
+> **Instructions** :
+>
+> - Enable the GSM role.
+> - Access the user portal page.
+> - Upload the file "Inquiry.csv"
+> - After upload, the system will display the analysis result about the use of the park.
+
+**12. Import a .csv file containing routes for pipe installation | Green Spaces Manager**
+
+> The feature allows the GSM to to import a .csv file containing data about possible routes for laying pipes between water points.
+>
+> **Instructions** :
+>
+> - Enable the GSM role.
+> - Access the pipe installation routes page.
+> - Upload the csv file.
+> - After upload, the system will process a graph representing the imported route data.
+
+**13. Know the routes to be opened, with minimum cost | Green Spaces Manager**
+
+> The feature allows the GSM to apply an algorithm that determines the graph with minimum accumulated cost.
+>
+> **Instructions** :
+>
+> - Enable the GSM role.
+> - Access the pipe installation routes page. 
+> - The system will display a graph representing the imported route data.
+> - The system will display a graph with routes with minimum cost.
+
+**14. Tests to observe asymptotic runtime behavior | Software Quality Assessment Team Manager**
+
+> The feature allows the QAM to run tests for inputs of variable size, to observe the asymptotic behavior of the execution time
+>
+> **Instructions** :
+>
+> - Enable the QAM role.
+> - Access the runtime tests page.
+> - The system will display a graph representing the execution time as a function of the input time.
 
 ---
 
