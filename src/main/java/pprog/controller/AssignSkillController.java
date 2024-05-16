@@ -80,5 +80,4 @@ public class AssignSkillController {
         this.skillsToAssign = skillsToAssign;
     }
 
-
 }
