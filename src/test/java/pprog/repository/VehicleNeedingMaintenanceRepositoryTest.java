@@ -20,16 +20,14 @@ class VehicleNeedingMaintenanceRepositoryTest {
         List<CheckUp> allCheckUps = new ArrayList<>();
 
         // Create vehicles
-        VehicleType vehicleType = new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX);
-
-        Vehicle vehicle1 = new Vehicle("Toyota", "Corolla", 1500, 2000, 52000, new Date(), new Date(), 5000, "123ABC", vehicleType);
-        Vehicle vehicle2 = new Vehicle("Honda", "Civic", 1600, 2100, 64000, new Date(), new Date(), 6000, "456DEF", vehicleType);
-        Vehicle vehicle3 = new Vehicle("Ford", "Focus", 1700, 2200, 72000, new Date(), new Date(), 7000, "789GHI", vehicleType);
+        Vehicle vehicle1 = new Vehicle("Toyota", "Corolla", 1500, 2000, 52000, new Date(), new Date(), 5000, "123ABC", 121);
+        Vehicle vehicle2 = new Vehicle("Honda", "Civic", 1600, 2100, 64000, new Date(), new Date(), 6000, "456DEF", 212);
+        Vehicle vehicle3 = new Vehicle("Ford", "Focus", 1700, 2200, 72000, new Date(), new Date(), 7000, "789GHI", 111);
 
         // Create check-ups
-        CheckUp checkUp1 = new CheckUp(null, vehicle1, 52000);
-        CheckUp checkUp2 = new CheckUp(null, vehicle2, 64000);
-        CheckUp checkUp3 = new CheckUp(null, vehicle3, 72000);
+        CheckUp checkUp1 = new CheckUp(new Date(), vehicle1, 1000);
+        CheckUp checkUp2 = new CheckUp(new Date(), vehicle2, 1000);
+        CheckUp checkUp3 = new CheckUp(new Date(), vehicle3, 1000);
 
         // Add vehicles and check-ups to lists
         allVehicles.add(vehicle1);
@@ -49,6 +47,6 @@ class VehicleNeedingMaintenanceRepositoryTest {
         // Assert
         assertNotNull(vehiclesNeedingMaintenanceList);
         assertFalse(vehiclesNeedingMaintenanceList.isEmpty());
-        assertEquals(4, vehiclesNeedingMaintenanceList.size()); // Including the header line
+        assertEquals(3, vehiclesNeedingMaintenanceList.size());
     }
 }

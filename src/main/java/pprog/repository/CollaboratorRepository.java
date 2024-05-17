@@ -52,6 +52,7 @@ public class CollaboratorRepository {
      *
      * @param collaboratorName The name of the collaborator to retrieve.
      * @return The collaborator with the specified name, or null if not found.
+     * @throws IllegalArgumentException if no collaborator with the specified name is found.
      */
     public Collaborator getCollaboratorByName(String collaboratorName) {
         for (Collaborator collaborator : collaboratorsList) {

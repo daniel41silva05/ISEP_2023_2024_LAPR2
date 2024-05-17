@@ -1,11 +1,9 @@
 package pprog.controller;
 
-import pprog.domain.Vehicle;
 import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Controller class responsible for registering vehicles.
@@ -56,11 +54,11 @@ public class RegisterVehicleController {
      * @param maintenanceCheckUpFrequency The frequency of maintenance check-ups.
      * @param plateNumber The plate number of the vehicle.
      * @param type The type of the vehicle.
-     * @return The registered vehicle object.
+     * @return True if the vehicle is registered successfully, false otherwise.
      */
     public boolean registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, int type) {
         try {
-            vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+            getVehicleRepository().registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());

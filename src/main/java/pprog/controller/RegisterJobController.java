@@ -3,7 +3,6 @@ package pprog.controller;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
-
 /**
  * Controller class responsible for registering jobs.
  */
@@ -45,7 +44,7 @@ public class RegisterJobController {
      * Registers a new job.
      * @param name The name of the job.
      * @param description The description of the job.
-     * @return The registered job object.
+     * @return True if the job was successfully registered, false otherwise.
      */
     public boolean registerJob(String name, String description) {
         try {

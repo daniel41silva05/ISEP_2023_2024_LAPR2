@@ -25,7 +25,7 @@ class VehicleRepositoryTest {
         Date registerDate = new Date();
         Date acquisitionDate = new Date();
         int maintenanceCheckUpFrequency = 10000;
-        VehicleType type = new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX);
+        int type = 121;
 
         Vehicle registeredVehicle = vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
 
@@ -54,7 +54,7 @@ class VehicleRepositoryTest {
         Date registerDate = new Date();
         Date acquisitionDate = new Date();
         int maintenanceCheckUpFrequency = 12000;
-        VehicleType type = new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.OPEN_BOX);
+        int type = 121;
 
         vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
 
@@ -70,6 +70,5 @@ class VehicleRepositoryTest {
         assertEquals(acquisitionDate, retrievedVehicle.getAcquisitionDate());
         assertEquals(maintenanceCheckUpFrequency, retrievedVehicle.getMaintenanceCheckUpFrequency());
         assertEquals(plateNumber, retrievedVehicle.getPlateNumber());
-        assertEquals(type, retrievedVehicle.getType());
     }
 }

@@ -13,6 +13,12 @@ public enum IdDocType {
     /** Passport. */
     PASSPORT;
 
+    /**
+     * Converts an integer value to its corresponding IdDocType enum value.
+     *
+     * @param value the integer value representing the IdDocType
+     * @return the corresponding IdDocType enum value, or null if no match is found
+     */
     public static IdDocType fromInt(int value) {
         switch (value) {
             case 1:

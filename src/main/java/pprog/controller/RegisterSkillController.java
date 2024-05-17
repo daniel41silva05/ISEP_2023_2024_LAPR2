@@ -3,7 +3,6 @@ package pprog.controller;
 import pprog.repository.Repositories;
 import pprog.repository.SkillRepository;
 
-
 /**
  * Controller for registering skills.
  */
@@ -49,7 +48,6 @@ public class RegisterSkillController {
      *
      * @param skillName the name of the skill to register
      * @return true if the skill is registered successfully, false otherwise
-     * @throws IllegalArgumentException if the skill name is null or empty
      */
     public boolean registerSkill(String skillName) {
         try {

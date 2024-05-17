@@ -13,7 +13,12 @@ public class Team {
      */
     private List<Collaborator> collaborators;
 
-    public Team (List<Collaborator> members) {
+    /**
+     * Constructs a team with the given list of collaborators.
+     *
+     * @param members The list of collaborators.
+     */
+    public Team(List<Collaborator> members) {
         collaborators = members;
     }
 
@@ -47,14 +52,16 @@ public class Team {
     }
 
     /**
-     * Generates a random number within the specified range.
+     * Validates the team size based on specified criteria.
      *
-     * @param minSize The minimum value of the range.
-     * @param maxSize The maximum value of the range.
-     * @return A random number within the range.
+     * @param minSize         The minimum size of the team.
+     * @param maxSize         The maximum size of the team.
+     * @param requiredSkills  The list of required skills for the team.
+     * @param collaboratorList The list of available collaborators.
+     * @return true if the team meets the desired size and skill requirements, false otherwise.
      * @throws IllegalArgumentException if max is less than or equal to min.
      */
-    public boolean teamValidations (int minSize, int maxSize, List<Skill> requiredSkills, List<Collaborator> collaboratorList) {
+    public boolean teamValidations(int minSize, int maxSize, List<Skill> requiredSkills, List<Collaborator> collaboratorList) {
         int teamSize = seeColaboratorsWithSkillsNeeded(collaboratorList, requiredSkills).size();
         if (minSize > maxSize) {
             throw new IllegalArgumentException("Max must be greater than min.");
@@ -64,28 +71,43 @@ public class Team {
         return true;
     }
 
+    /**
+     * Retrieves the list of collaborators in the team.
+     *
+     * @return The list of collaborators.
+     */
     public List<Collaborator> getTeam() {
         return collaborators;
     }
 
+    /**
+     * Sets the list of collaborators in the team.
+     *
+     * @param team The list of collaborators to set.
+     */
     public void setTeam(List<Collaborator> team) {
         this.collaborators = team;
     }
 
     /**
-     * Creates a deep copy of the GenerateTeam object.
+     * Creates a deep copy of the Team object.
      *
-     * @return A deep copy of the GenerateTeam object.
+     * @return A deep copy of the Team object.
      */
     public Team clone() {
         return new Team(this.collaborators);
     }
 
+    /**
+     * Returns a string representation of the team.
+     *
+     * @return A string representation of the team.
+     */
     @Override
     public String toString() {
         StringBuilder team = new StringBuilder();
 
-        for (Collaborator member : this.collaborators){
+        for (Collaborator member : this.collaborators) {
             team.append(member);
             team.append("\n");
         }

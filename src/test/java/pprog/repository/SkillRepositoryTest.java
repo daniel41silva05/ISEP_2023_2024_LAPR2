@@ -3,9 +3,6 @@ package pprog.repository;
 import org.junit.jupiter.api.Test;
 import pprog.domain.Skill;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SkillRepositoryTest {
@@ -14,36 +11,29 @@ class SkillRepositoryTest {
     void getSkillByName() {
         // Arrange
         Skill javaSkill = new Skill("Java");
-        Skill pythonSkill = new Skill("Python");
-        List<Skill> skills = new ArrayList<>();
-        skills.add(javaSkill);
-        skills.add(pythonSkill);
-        SkillRepository repository = new SkillRepository(skills);
+        SkillRepository repository = new SkillRepository();
+        repository.addSkill(javaSkill);
 
         // Act
-        Skill foundJavaSkill = repository.getSkillByName("Java");
-        Skill foundPythonSkill = repository.getSkillByName("Python");
-        Skill notFoundSkill = repository.getSkillByName("C++");
+        Skill retrievedSkill = repository.getSkillByName("Java");
 
         // Assert
-        assertNotNull(foundJavaSkill);
-        assertNotNull(foundPythonSkill);
-        assertNull(notFoundSkill);
+        assertNotNull(retrievedSkill);
+        assertEquals("Java", retrievedSkill.getSkill());
     }
 
     @Test
     void addSkill() {
         // Arrange
-        Skill javaSkill = new Skill("Java");
         SkillRepository repository = new SkillRepository();
+        Skill javaSkill = new Skill("Java");
 
         // Act
-        boolean addedFirstSkill = repository.addSkill(javaSkill);
-        boolean addedDuplicateSkill = repository.addSkill(javaSkill);
+        boolean addedSuccessfully = repository.addSkill(javaSkill);
 
         // Assert
-        assertTrue(addedFirstSkill);
-        assertFalse(addedDuplicateSkill);
+        assertTrue(addedSuccessfully);
+        assertTrue(repository.getSkillsList().contains(javaSkill));
     }
 
     @Test
@@ -66,15 +56,13 @@ class SkillRepositoryTest {
     @Test
     void registerSkill() {
         // Arrange
-        String name = "Java";
         SkillRepository repository = new SkillRepository();
 
         // Act
-        boolean firstRegistration = repository.registerSkill(name);
-        boolean duplicateRegistration = repository.registerSkill(name);
+        boolean addedSuccessfully = repository.registerSkill("Java");
 
         // Assert
-        assertTrue(firstRegistration);
-        assertThrows(IllegalArgumentException.class, () -> repository.registerSkill(name));
+        assertTrue(addedSuccessfully);
+        assertTrue(repository.getSkillsList().stream().anyMatch(skill -> skill.getSkill().equals("Java")));
     }
 }

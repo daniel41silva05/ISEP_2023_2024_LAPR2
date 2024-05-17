@@ -1,7 +1,6 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
-import pprog.domain.Team;
 import pprog.domain.Skill;
 import pprog.repository.*;
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for managing generation of teams.
+ * Controller class for managing the generation of teams.
  */
 public class GenerateTeamController {
 
@@ -95,7 +94,7 @@ public class GenerateTeamController {
      * @param minSize        The minimum size of the team.
      * @param maxSize        The maximum size of the team.
      * @param requiredSkills The list of required skills for the team.
-     * @return A list of collaborators forming the generated team.
+     * @return True if team generation was successful, false otherwise.
      */
     public boolean team(int minSize, int maxSize, List<String> requiredSkills) {
         List<Skill> skillsNeeded = new ArrayList<>();
@@ -132,5 +131,4 @@ public class GenerateTeamController {
     public List<Collaborator> getCollaboratorList() {
         return getCollaboratorRepository().getCollaboratorsList();
     }
-
 }

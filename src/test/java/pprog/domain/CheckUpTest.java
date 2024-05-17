@@ -12,7 +12,7 @@ class CheckUpTest {
     void testEquals() {
         // Create two CheckUp objects with the same attributes
         Date date = new Date();
-        Vehicle vehicle = new Vehicle("Toyota", "Corolla", 1500, 2000, 10000, new Date(), new Date(), 5000, "ABC123", new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.CLOSED_VANS));
+        Vehicle vehicle = new Vehicle("Toyota", "Corolla", 1500, 2000, 10000, new Date(), new Date(), 5000, "ABC123", 121);
         int kms = 10000;
         CheckUp checkUp1 = new CheckUp(date, vehicle, kms);
         CheckUp checkUp2 = new CheckUp(date, vehicle, kms);
@@ -25,7 +25,7 @@ class CheckUpTest {
     void testClone() {
         // Create a CheckUp object
         Date date = new Date();
-        Vehicle vehicle = new Vehicle("Toyota", "Corolla", 1500, 2000, 10000, new Date(), new Date(), 5000, "ABC123", new VehicleType(VehicleType.TypeTransport.PASSENGERS, VehicleType.PackageWeight.LIGHT, VehicleType.Transport.CLOSED_VANS));
+        Vehicle vehicle = new Vehicle("Toyota", "Corolla", 1500, 2000, 10000, new Date(), new Date(), 5000, "ABC123", 121);
         int kms = 10000;
         CheckUp originalCheckUp = new CheckUp(date, vehicle, kms);
 

@@ -40,22 +40,27 @@ class CollaboratorRepositoryTest {
 
     @Test
     void getCollaboratorByName() {
-
         CollaboratorRepository repository = new CollaboratorRepository();
 
-        Collaborator collaborator = new Collaborator("Daniel Silva", new Date(90,5,31),
-                new Date(), "123 Street", 123456789, "daniel.silva@example.com", 3, 123456, new Job("Software Engineer", "Developing software applications"));
-        repository.registerCollaborator(collaborator.getName(), collaborator.getBirthday(),
-                collaborator.getAdmissionDate(), collaborator.getAddress(), collaborator.getPhoneNumber(),
-                collaborator.getEmail(), IdDocType.PASSPORT.ordinal(), collaborator.getIdNumber(), collaborator.getJob());
+        Collaborator collaborator1 = new Collaborator("John Doe", new Date(90, 5, 31),
+                new Date(), "123 Street", 123456789, "john.doe@example.com", IdDocType.PASSPORT.ordinal(), 123456, new Job("Engineer", "Developing"));
+        Collaborator collaborator2 = new Collaborator("Jane Smith", new Date(92, 8, 15),
+                new Date(), "456 Avenue", 987654321, "jane.smith@example.com", IdDocType.PASSPORT.ordinal(), 654321, new Job("Designer", "Designing"));
 
-        Collaborator retrievedCollaborator = repository.getCollaboratorByName("Daniel Silva");
+        repository.registerCollaborator(collaborator1.getName(), collaborator1.getBirthday(),
+                collaborator1.getAdmissionDate(), collaborator1.getAddress(), collaborator1.getPhoneNumber(),
+                collaborator1.getEmail(), IdDocType.PASSPORT.ordinal(), collaborator1.getIdNumber(), collaborator1.getJob());
+        repository.registerCollaborator(collaborator2.getName(), collaborator2.getBirthday(),
+                collaborator2.getAdmissionDate(), collaborator2.getAddress(), collaborator2.getPhoneNumber(),
+                collaborator2.getEmail(), IdDocType.PASSPORT.ordinal(), collaborator2.getIdNumber(), collaborator2.getJob());
 
+        // Test for existing collaborator
+        Collaborator retrievedCollaborator = repository.getCollaboratorByName("John Doe");
         assertNotNull(retrievedCollaborator);
-        assertEquals(collaborator, retrievedCollaborator);
+        assertEquals(collaborator1, retrievedCollaborator);
 
-
-        Collaborator nonExistentCollaborator = repository.getCollaboratorByName("Non Existent");
-        assertNull(nonExistentCollaborator);
+        // Test for non-existing collaborator
+        assertThrows(IllegalArgumentException.class, () -> repository.getCollaboratorByName("Non Existing Name"));
     }
+
 }

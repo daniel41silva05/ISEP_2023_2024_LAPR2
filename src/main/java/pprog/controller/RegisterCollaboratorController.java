@@ -24,7 +24,7 @@ public class RegisterCollaboratorController {
     private JobRepository jobRepository;
 
     /**
-     * Constructor. Retrieves the collaborator and job repository instance.
+     * Constructor. Retrieves the collaborator and job repository instances.
      */
     public RegisterCollaboratorController() {
         getCollaboratorRepository();
@@ -45,7 +45,7 @@ public class RegisterCollaboratorController {
     /**
      * Gets the Collaborator repository.
      * If not initialized, retrieves it from Repositories.
-     * @return Collaborator repository
+     * @return Collaborator repository instance
      */
     private CollaboratorRepository getCollaboratorRepository() {
         if (collaboratorRepository == null) {
@@ -58,7 +58,7 @@ public class RegisterCollaboratorController {
     /**
      * Gets the Job repository.
      * If not initialized, retrieves it from Repositories.
-     * @return Job repository
+     * @return Job repository instance
      */
     private JobRepository getJobRepository() {
         if (jobRepository == null) {
@@ -80,7 +80,7 @@ public class RegisterCollaboratorController {
      * @param idDocType     the ID document type of the collaborator
      * @param idNumber      the ID number of the collaborator
      * @param jobName       the job name of the collaborator
-     * @return the registered collaborator
+     * @return True if the collaborator was successfully registered, false otherwise
      */
     public boolean registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocType, int idNumber, String jobName) {
         try {
@@ -96,6 +96,7 @@ public class RegisterCollaboratorController {
      * Gets a job by name.
      *
      * @param jobName the job name
+     * @return The job object corresponding to the given name
      */
     private Job getJobByName(String jobName) {
         return getJobRepository().getJobByName(jobName);
@@ -103,7 +104,7 @@ public class RegisterCollaboratorController {
 
     /**
      * Gets the list of all available jobs.
-     * @return the list of jobs
+     * @return The list of all available jobs
      */
     public List<Job> getJobsList() {
         return getJobRepository().getJobsList();
