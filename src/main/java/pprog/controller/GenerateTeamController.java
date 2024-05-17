@@ -1,10 +1,11 @@
 package pprog.controller;
 
 import pprog.domain.Collaborator;
-import pprog.domain.GenerateTeam;
+import pprog.domain.Team;
 import pprog.domain.Skill;
 import pprog.repository.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,8 +97,22 @@ public class GenerateTeamController {
      * @param requiredSkills The list of required skills for the team.
      * @return A list of collaborators forming the generated team.
      */
-    public List<Collaborator> team(int minSize, int maxSize, List<Skill> requiredSkills) {
-        return generateTeamRepository.team(minSize, maxSize, requiredSkills, getCollaboratorList());
+    public boolean team(int minSize, int maxSize, List<String> requiredSkills) {
+        List<Skill> skillsNeeded = new ArrayList<>();
+        try {
+            for (String skill : requiredSkills) {
+                skillsNeeded.add(getSkillByName(skill.trim()));
+            }
+            getGenerateTeamRepository().team(minSize, maxSize, skillsNeeded, getCollaboratorList());
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
+        }
+    }
+
+    private Skill getSkillByName(String skillName) {
+        return getSkillRepository().getSkillByName(skillName);
     }
 
     /**
@@ -106,8 +121,7 @@ public class GenerateTeamController {
      * @return The list of skills.
      */
     public List<Skill> getSkillList() {
-        SkillRepository skillRepository = getSkillRepository();
-        return skillRepository.getSkillsList();
+        return getSkillRepository().getSkillsList();
     }
 
     /**
@@ -116,17 +130,7 @@ public class GenerateTeamController {
      * @return The list of collaborators.
      */
     public List<Collaborator> getCollaboratorList() {
-        CollaboratorRepository collaboratorRepository = getCollaboratorRepository();
-        return collaboratorRepository.getCollaboratorsList();
+        return getCollaboratorRepository().getCollaboratorsList();
     }
 
-    /**
-     * Retrieves the list of generated teams.
-     *
-     * @return The list of generated teams.
-     */
-    public List<GenerateTeam> getTeamList() {
-        GenerateTeamRepository generateTeamRepository = getGenerateTeamRepository();
-        return generateTeamRepository.getTeamList();
-    }
 }

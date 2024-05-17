@@ -1,6 +1,5 @@
 package pprog.controller;
 
-import pprog.domain.*;
 import pprog.repository.CheckUpRepository;
 import pprog.repository.Repositories;
 import pprog.repository.VehicleNeedingMaintenanceRepository;
@@ -53,10 +52,7 @@ public class VehicleNeedingMaintenanceController {
     }
 
     public List<String> getVehiclesNeedingMaintenanceList() {
-        List<Vehicle> allVehicles = vehicleRepository.getVehiclesList();
-        List<CheckUp> allCheckUps = checkUpRepository.getCheckUpList();
-        VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository = getVehicleNeedingMaintenanceRepository();
-        return vehicleNeedingMaintenanceRepository.getVehiclesNeedingMaintenanceList(allVehicles, allCheckUps);
+        return getVehicleNeedingMaintenanceRepository().getVehiclesNeedingMaintenanceList(getVehicleRepository().getVehiclesList(), getCheckUpRepository().getCheckUpList());
     }
 
 }

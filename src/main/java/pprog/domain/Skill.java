@@ -92,6 +92,6 @@ public class Skill {
      */
     @Override
     public String toString() {
-        return String.format("Skill: %s", skill);
+        return String.format(skill);
     }
 }

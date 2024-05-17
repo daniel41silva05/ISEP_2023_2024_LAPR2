@@ -68,17 +68,70 @@ public class VehicleType {
      */
     private Transport transport;
 
+
     /**
-     * Constructs a VehicleType object.
+     * Constructs a VehicleType object from a single integer value representing the vehicle type.
      *
-     * @param typeTransport The type of transport.
-     * @param packageWeight The package weight.
-     * @param transport The transport type.
+     * @param vehicleTypeValue The integer value representing the vehicle type.
      */
-    public VehicleType(TypeTransport typeTransport, PackageWeight packageWeight, Transport transport) {
-        this.typeTransport = typeTransport;
-        this.packageWeight = packageWeight;
-        this.transport = transport;
+    public VehicleType(int vehicleTypeValue) {
+        int typeTransportValue = vehicleTypeValue / 100;
+        int packageWeightValue = (vehicleTypeValue % 100) / 10;
+        int transportValue = vehicleTypeValue % 10;
+
+        this.typeTransport = getTypeTransportFromInt(typeTransportValue);
+        this.packageWeight = getPackageWeightFromInt(packageWeightValue);
+        this.transport = getTransportFromInt(transportValue);
+    }
+
+    /**
+     * Converts an integer to TypeTransport enum.
+     *
+     * @param value The integer value to convert.
+     * @return The corresponding TypeTransport enum.
+     */
+    private TypeTransport getTypeTransportFromInt(int value) {
+        switch (value) {
+            case 1:
+                return TypeTransport.PASSENGERS;
+            case 2:
+                return TypeTransport.MIXED;
+        }
+        return null;
+    }
+
+    /**
+     * Converts an integer to PackageWeight enum.
+     *
+     * @param value The integer value to convert.
+     * @return The corresponding PackageWeight enum.
+     */
+    private PackageWeight getPackageWeightFromInt(int value) {
+        switch (value) {
+            case 1:
+                return PackageWeight.LIGHT;
+            case 2:
+                return PackageWeight.HEAVY;
+        }
+        return null;
+    }
+
+    /**
+     * Converts an integer to Transport enum.
+     *
+     * @param value The integer value to convert.
+     * @return The corresponding Transport enum.
+     */
+    private Transport getTransportFromInt(int value) {
+        switch (value) {
+            case 1:
+                return Transport.OPEN_BOX;
+            case 2:
+                return Transport.CLOSED_VANS;
+            case 3:
+                return Transport.TRUCKS;
+        }
+        return null;
     }
 
     /**

@@ -1,8 +1,6 @@
 package pprog.ui.classesUI;
 
 import pprog.controller.RegisterVehicleController;
-import pprog.domain.Vehicle;
-import pprog.domain.VehicleType;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +14,7 @@ public class RegisterVehicleUI implements Runnable {
     /**
      * The controller for registering vehicles.
      */
-    private RegisterVehicleController controller;
+    private final RegisterVehicleController controller;
 
     /**
      * The brand of the vehicle.
@@ -66,7 +64,7 @@ public class RegisterVehicleUI implements Runnable {
     /**
      * The type of the vehicle.
      */
-    private VehicleType type;
+    private int typeInput;
 
     /**
      * Constructs a RegisterVehicleUI with a new instance of RegisterVehicleController.
@@ -99,11 +97,11 @@ public class RegisterVehicleUI implements Runnable {
      * Submits data to register the vehicle.
      */
     private void submitData() {
-        Vehicle vehicle = controller.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
-        if (vehicle != null) {
+
+        if (getController().registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, typeInput)) {
             System.out.println("\nVehicle successfully registed!");
         } else {
-            System.out.println("\nVehicle not registed!");
+            System.out.println("Vehicle not registed!");
         }
 
     }
@@ -121,7 +119,7 @@ public class RegisterVehicleUI implements Runnable {
         acquisitionDate = requestAcquisitionDate();
         maintenanceCheckUpFrequency = requestMaintenanceCheckUpFrequency();
         plateNumber = requestPlateNumber();
-        type = requestVehicleType();
+        typeInput = requestVehicleType();
 
     }
 
@@ -278,47 +276,53 @@ public class RegisterVehicleUI implements Runnable {
      *
      * @return the vehicle type entered by the user
      */
-    private VehicleType requestVehicleType() {
+    private int requestVehicleType() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Vehicle Type: ");
-        System.out.println("- Type Transport");
-        System.out.println("1. Passengers");
-        System.out.println("2. Mixed");
-        int typeTransportInput = input.nextInt();
-        VehicleType.TypeTransport typeTransport = null;
-        if (typeTransportInput == 1) {
-            typeTransport = VehicleType.TypeTransport.PASSENGERS;
-        }
-        if (typeTransportInput == 2) {
-            typeTransport = VehicleType.TypeTransport.MIXED;
-        }
-        System.out.println("- Package Weight");
-        System.out.println("1. Light");
-        System.out.println("2. Heavy");
-        int packageWeightInput = input.nextInt();
-        VehicleType.PackageWeight packageWeight = null;
-        if (packageWeightInput == 1) {
-            packageWeight = VehicleType.PackageWeight.LIGHT;
-        }
-        if (packageWeightInput == 2) {
-            packageWeight = VehicleType.PackageWeight.HEAVY;
-        }
-        System.out.println("- Transport");
-        System.out.println("1. Open Box");
-        System.out.println("2. Closed Vans");
-        System.out.println("3. Trucks");
-        int transportInput = input.nextInt();
-        VehicleType.Transport transport = null;
-        if (transportInput == 1) {
-            transport = VehicleType.Transport.OPEN_BOX;
-        }
-        if (transportInput == 2) {
-            transport = VehicleType.Transport.CLOSED_VANS;
-        }
-        if (transportInput == 3) {
-            transport = VehicleType.Transport.TRUCKS;
+        int typeTransportInput;
+        int packageWeightInput;
+        int transportInput;
+
+        while (true) {
+            System.out.println("Vehicle Type:");
+            System.out.println("- Type Transport");
+            System.out.println("1. Passengers");
+            System.out.println("2. Mixed");
+            System.out.print("Please enter a number (1 or 2): ");
+            typeTransportInput = input.nextInt();
+            if (typeTransportInput == 1 || typeTransportInput == 2) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter 1 or 2.");
+            }
         }
 
-        return new VehicleType(typeTransport, packageWeight, transport);
+        while (true) {
+            System.out.println("- Package Weight");
+            System.out.println("1. Light");
+            System.out.println("2. Heavy");
+            System.out.print("Please enter a number (1 or 2): ");
+            packageWeightInput = input.nextInt();
+            if (packageWeightInput == 1 || packageWeightInput == 2) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter 1 or 2.");
+            }
+        }
+
+        while (true) {
+            System.out.println("- Transport");
+            System.out.println("1. Open Box");
+            System.out.println("2. Closed Vans");
+            System.out.println("3. Trucks");
+            System.out.print("Please enter a number (1, 2, or 3): ");
+            transportInput = input.nextInt();
+            if (transportInput >= 1 && transportInput <= 3) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter 1, 2, or 3.");
+            }
+        }
+
+        return typeTransportInput * 100 + packageWeightInput * 10 + transportInput;
     }
 }

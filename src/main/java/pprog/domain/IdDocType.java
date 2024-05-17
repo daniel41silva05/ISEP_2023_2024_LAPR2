@@ -13,6 +13,18 @@ public enum IdDocType {
     /** Passport. */
     PASSPORT;
 
+    public static IdDocType fromInt(int value) {
+        switch (value) {
+            case 1:
+                return TAXPAYER_NUMBER;
+            case 2:
+                return CITIZEN_CARD;
+            case 3:
+                return PASSPORT;
+        }
+        return null;
+    }
+
     /**
      * Returns a string representation of the identification document type.
      * The first letter is capitalized, and underscores are replaced with spaces.

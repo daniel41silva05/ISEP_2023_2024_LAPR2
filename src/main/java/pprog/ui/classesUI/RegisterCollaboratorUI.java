@@ -3,13 +3,9 @@ package pprog.ui.classesUI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 import pprog.controller.RegisterCollaboratorController;
-import pprog.domain.Collaborator;
-import pprog.domain.IdDocType;
-import pprog.domain.Job;
 
 /**
  * User interface for registering a collaborator.
@@ -54,7 +50,7 @@ public class RegisterCollaboratorUI implements Runnable {
     /**
      * The type of ID document of the collaborator.
      */
-    private IdDocType idDocType;
+    private int idDocType;
 
     /**
      * The ID number of the collaborator.
@@ -99,11 +95,10 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private void submitData() {
 
-        Collaborator collaborator = controller.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
-        if (collaborator != null) {
+        if (getController().registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job)) {
             System.out.println("\nCollaborator successfully registed!");
         } else {
-            System.out.println("\nCollaborator not registed!");
+            System.out.println("Collaborator not registed!");
         }
 
     }
@@ -235,7 +230,6 @@ public class RegisterCollaboratorUI implements Runnable {
         do {
             System.out.print("Email: ");
             email = input.nextLine().trim();
-            // Verifica se o email está em um formato válido
             if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
                 System.out.println("Invalid email. Please enter a valid email.");
             }
@@ -248,7 +242,7 @@ public class RegisterCollaboratorUI implements Runnable {
      *
      * @return the ID document type selected by the user
      */
-    private IdDocType requestIdDocType() {
+    private int requestIdDocType() {
         Scanner input = new Scanner(System.in);
         System.out.println("Id Document Type: ");
         System.out.println("1 - Taxpayer Number");
@@ -256,16 +250,11 @@ public class RegisterCollaboratorUI implements Runnable {
         System.out.println("3 - Passport");
         int idDocTypeInput = input.nextInt();
 
-        switch (idDocTypeInput) {
-            case 1:
-                return IdDocType.TAXPAYER_NUMBER;
-            case 2:
-                return IdDocType.CITIZEN_CARD;
-            case 3:
-                return IdDocType.PASSPORT;
-            default:
-                System.out.println("Invalid input. Please choose a valid option.");
-                return requestIdDocType();
+        if (idDocTypeInput < 1 || idDocTypeInput > 3) {
+            System.out.println("Invalid input. Please choose a valid option (1, 2, 3, or 4).");
+            return requestIdDocType();
+        } else {
+            return idDocTypeInput;
         }
     }
 
@@ -275,26 +264,26 @@ public class RegisterCollaboratorUI implements Runnable {
      * @param idDocType the type of ID document of the collaborator
      * @return the ID number entered by the user
      */
-    private int requestIdNumber(IdDocType idDocType) {
+    private int requestIdNumber(int idDocType) {
         Scanner input = new Scanner(System.in);
         int idNumber;
         do {
             System.out.print("ID Number: ");
             idNumber = input.nextInt();
             switch (idDocType) {
-                case TAXPAYER_NUMBER:
+                case 1:
                     if (String.valueOf(idNumber).length() != 9) {
                         System.out.println("Invalid taxpayer number. Please enter a 9-digit number.");
                         idNumber = -1;
                     }
                     break;
-                case CITIZEN_CARD:
+                case 2:
                     if (String.valueOf(idNumber).length() != 8) {
                         System.out.println("Invalid citizen card number. Please enter an 8-digit number.");
                         idNumber = -1;
                     }
                     break;
-                case PASSPORT:
+                case 3:
                     if (!String.valueOf(idNumber).matches("[a-zA-Z]\\d{6}")) {
                         System.out.println("Invalid passport number. Please enter a letter followed by 6 digits.");
                         idNumber = -1;
@@ -321,12 +310,8 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private void displayJobs() {
 
-        List<Job> jobs = controller.getJobsList();
-
         System.out.println("List of existing jobs: ");
-        for (Job job : jobs) {
-            System.out.println(job.getName());
-        }
+        System.out.println(getController().getJobsList());
 
     }
 }

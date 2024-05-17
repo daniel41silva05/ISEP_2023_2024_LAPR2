@@ -3,7 +3,6 @@ package pprog.ui.classesUI;
 import java.util.Scanner;
 
 import pprog.controller.RegisterJobController;
-import pprog.domain.Job;
 
 /**
  * User interface for registering a job.
@@ -12,7 +11,7 @@ public class RegisterJobUI implements Runnable {
     /**
      * The controller for registering jobs.
      */
-    private RegisterJobController controller;
+    private final RegisterJobController controller;
 
     /**
      * The name of the job.
@@ -55,11 +54,10 @@ public class RegisterJobUI implements Runnable {
      * Submits data to register the job.
      */
     private void submitData() {
-        Job job = controller.registerJob(name, description);
-        if (job != null) {
+        if (getController().registerJob(name, description)) {
             System.out.println("\nJob successfully registed!");
         } else {
-            System.out.println("\nJob not registed!");
+            System.out.println("Job not registed!");
         }
 
     }
@@ -86,7 +84,7 @@ public class RegisterJobUI implements Runnable {
             System.out.print("Name: ");
             name = input.nextLine().trim();
             if (!name.matches("[a-zA-Z ]+")) {
-                System.out.println("Invalid name. Please enter a valid name.");
+                System.out.println("Invalid name format. Please enter a valid name.");
             }
         } while (!name.matches("[a-zA-Z ]+"));
         return name;

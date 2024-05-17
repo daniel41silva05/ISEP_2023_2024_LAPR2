@@ -69,9 +69,9 @@ public class Vehicle {
      * @param acquisitionDate The date when the vehicle was acquired.
      * @param maintenanceCheckUpFrequency The frequency of maintenance check-ups.
      * @param plateNumber The plate number of the vehicle.
-     * @param type The type of the vehicle.
+     * @param vehicleTypeValue The type of the vehicle.
      */
-    public Vehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
+    public Vehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, int vehicleTypeValue) {
         this.brand = brand;
         this.model = model;
         this.tare = tare;
@@ -81,7 +81,7 @@ public class Vehicle {
         this.acquisitionDate = acquisitionDate;
         this.maintenanceCheckUpFrequency = maintenanceCheckUpFrequency;
         this.plateNumber = plateNumber;
-        this.type = type;
+        this.type = new VehicleType(vehicleTypeValue);
     }
 
     /**
@@ -264,20 +264,12 @@ public class Vehicle {
     }
 
     /**
-     * Clones the vehicle.
-     * @return A new Vehicle object with the same attributes as this one.
-     */
-    public Vehicle clone() {
-        return new Vehicle(this.brand, this.model, this.tare, this.grossWeight, this.currentKm, this.registerDate, this.acquisitionDate, this.maintenanceCheckUpFrequency, this.plateNumber, this.type);
-    }
-
-    /**
      * Returns a string representation of the vehicle.
      * @return A string representation of the vehicle.
      */
     @Override
     public String toString() {
-        return String.format("Vehicle\nBrand: %s\nModel: %s\nTare: %d\nGross Weight: %d\nCurrent Km: %d\nRegister Date: %s\nAcquisition Date: %s\nMaintenance CheckUp Frequency: %d\nPlate Number: %s\nType: %s\n",
+        return String.format("Vehicle\nBrand: %s\nModel: %s\nTare: %d\nGross Weight: %d\nCurrent Km: %d\nRegister Date: %s\nAcquisition Date: %s\nMaintenance CheckUp Frequency: %d\nPlate Number: %s\n%s\n",
                 brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
     }
 }

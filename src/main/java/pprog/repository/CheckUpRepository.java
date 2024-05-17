@@ -35,11 +35,12 @@ public class CheckUpRepository {
     }
 
     private boolean addCheckUp(CheckUp checkUp) {
-        boolean success = false;
         if (validateCheckUp(checkUp)) {
-            success = checkUpList.add(checkUp.clone());
+            checkUpList.add(checkUp.clone());
+            return true;
+        } else {
+            throw new IllegalArgumentException("Check Up already exists in the repository.");
         }
-        return success;
     }
 
     private boolean validateCheckUp(CheckUp checkUp) {

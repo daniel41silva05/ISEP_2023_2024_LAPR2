@@ -1,10 +1,7 @@
 package pprog.ui.classesUI;
 
 import pprog.controller.GenerateTeamController;
-import pprog.domain.Collaborator;
-import pprog.domain.Skill;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +28,7 @@ public class GenerateTeamUI implements Runnable {
     /**
      * The list of required skills for the team.
      */
-    private List<Skill> requiredSkills;
+    private List<String> requiredSkills;
 
     /**
      * Constructs a new GenerateTeamUI with default values.
@@ -65,11 +62,10 @@ public class GenerateTeamUI implements Runnable {
      * Submits the entered data for team generation.
      */
     private void submitData() {
-        List<Collaborator> team = controller.team(minSize, maxSize, requiredSkills);
-        if (team != null) {
-            System.out.println("\nTeam generated successfully!\n" + team);
+        if (getController().team(minSize, maxSize, requiredSkills)) {
+            System.out.println("\nTeam generated successfully!");
         } else {
-            System.out.println("\nTeam generation failed!");
+            System.out.println("Team generation failed!");
         }
     }
 
@@ -88,8 +84,15 @@ public class GenerateTeamUI implements Runnable {
      */
     private int requestMinSize() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Minimum Size: ");
-        return input.nextInt();
+        int minSize = 0;
+        do {
+            System.out.print("Minimum Size: ");
+            minSize = input.nextInt();
+            if (minSize < 1) {
+                System.out.println("Please enter a number greater than 1.");
+            }
+        } while (minSize < 1);
+        return minSize;
     }
 
     /**
@@ -99,8 +102,15 @@ public class GenerateTeamUI implements Runnable {
      */
     private int requestMaxSize() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Maximum Size: ");
-        return input.nextInt();
+        int maxSize = 0;
+        do {
+            System.out.print("Maximum Size: ");
+            maxSize = input.nextInt();
+            if (maxSize < 1) {
+                System.out.println("Please enter a number greater than 1.");
+            }
+        } while (maxSize < 1);
+        return maxSize;
     }
 
     /**
@@ -108,31 +118,21 @@ public class GenerateTeamUI implements Runnable {
      *
      * @return The list of required skills.
      */
-    private List<Skill> requestRequiredSkills() {
+    private List<String> requestRequiredSkills() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter required skills for the team (comma-separated): \"");
+        System.out.print("Enter required skills for the team (comma-separated): ");
         String skillNamesInput = input.nextLine();
         String[] skillNames = skillNamesInput.split(",");
-        List<Skill> requiredSkills = new ArrayList<>();
-        for (String skillName : skillNames) {
-            Skill skill = controller.getSkillRepository().getSkillByName(skillName.trim());
-            if (skill != null) {
-                requiredSkills.add(skill);
-            } else {
-                throw new IllegalArgumentException("Skill '" + skillName.trim() + "' not found.");
-            }
-        }
-        return requiredSkills;
+        return List.of(skillNames);
     }
 
     /**
      * Displays the list of available skills to the user.
      */
     private void displaySkills() {
-        List<Skill> skills = controller.getSkillList();
+
         System.out.println("List of existing skills: ");
-        for (Skill skill : skills) {
-            System.out.println(skill.getSkill());
-        }
+        System.out.println(getController().getSkillList());
+
     }
 }

@@ -1,10 +1,7 @@
 package pprog.ui.classesUI;
 
 import pprog.controller.AssignSkillController;
-import pprog.domain.Collaborator;
-import pprog.domain.Skill;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,12 +18,12 @@ public class AssignSkillUI implements Runnable {
     /**
      * The collaborator to whom skills will be assigned.
      */
-    private Collaborator collaborator;
+    private String collaborator;
 
     /**
      * The list of skills to be assigned.
      */
-    private List<Skill> skillsToAssign;
+    private List<String> skillsToAssign;
 
     /**
      * Constructs a new AssignSkillUI object.
@@ -60,7 +57,13 @@ public class AssignSkillUI implements Runnable {
      * Submits the data to assign skills to the collaborator.
      */
     private void submitData() {
-        controller.assignSkillToCollaborator(collaborator, skillsToAssign);
+
+        if (getController().assignSkillToCollaborator(collaborator, skillsToAssign)) {
+            System.out.println("\nSkills successfully assigned to the collaborator!");
+        } else {
+            System.out.println("Skills were not assigned!");
+        }
+
     }
 
     /**
@@ -76,15 +79,10 @@ public class AssignSkillUI implements Runnable {
      *
      * @return the selected collaborator
      */
-    private Collaborator requestCollaborator() {
+    private String requestCollaborator() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the name of the collaborator: ");
-        String collaboratorName = input.nextLine();
-        Collaborator collaborator = controller.getCollaboratorByName(collaboratorName);
-        if (collaborator == null) {
-            throw new IllegalArgumentException("Collaborator not found: " + collaboratorName);
-        }
-        return collaborator;
+        return input.nextLine();
     }
 
     /**
@@ -92,42 +90,31 @@ public class AssignSkillUI implements Runnable {
      *
      * @return the list of skills to assign
      */
-    private List<Skill> requestSkillsToAssign() {
+    private List<String> requestSkillsToAssign() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter skill names (comma-separated) to assign to the collaborator: ");
         String skillNamesInput = input.nextLine();
         String[] skillNames = skillNamesInput.split(",");
-        List<Skill> skillsToAssign = new ArrayList<>();
-        for (String skillName : skillNames) {
-            Skill skill = controller.getSkillRepository().getSkillByName(skillName.trim());
-            if (skill != null) {
-                skillsToAssign.add(skill);
-            } else {
-                throw new IllegalArgumentException("Skill '" + skillName.trim() + "' not found.");
-            }
-        }
-        return skillsToAssign;
+        return List.of(skillNames);
     }
 
     /**
      * Displays the list of existing collaborators.
      */
     private void displayCollaborators() {
-        List<Collaborator> collaborators = controller.getCollaboratorList();
+
         System.out.println("List of existing collaborators: ");
-        for (Collaborator collaborator : collaborators) {
-            System.out.println(collaborator.getName());
-        }
+        System.out.println(getController().getCollaboratorList());
+
     }
 
     /**
      * Displays the list of existing skills.
      */
     private void displaySkills() {
-        List<Skill> skills = controller.getSkillsList();
+
         System.out.println("List of existing skills: ");
-        for (Skill skill : skills) {
-            System.out.println(skill.getSkill());
-        }
+        System.out.println(getController().getSkillsList());
+
     }
 }

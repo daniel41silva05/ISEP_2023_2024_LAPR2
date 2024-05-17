@@ -66,15 +66,15 @@ class SkillRepositoryTest {
     @Test
     void registerSkill() {
         // Arrange
-        Skill javaSkill = new Skill("Java");
+        String name = "Java";
         SkillRepository repository = new SkillRepository();
 
         // Act
-        boolean firstRegistration = repository.registerSkill(javaSkill);
-        boolean duplicateRegistration = repository.registerSkill(javaSkill);
+        boolean firstRegistration = repository.registerSkill(name);
+        boolean duplicateRegistration = repository.registerSkill(name);
 
         // Assert
         assertTrue(firstRegistration);
-        assertThrows(IllegalArgumentException.class, () -> repository.registerSkill(javaSkill));
+        assertThrows(IllegalArgumentException.class, () -> repository.registerSkill(name));
     }
 }

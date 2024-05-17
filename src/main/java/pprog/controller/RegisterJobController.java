@@ -1,10 +1,8 @@
 package pprog.controller;
 
-import pprog.domain.Job;
 import pprog.repository.JobRepository;
 import pprog.repository.Repositories;
 
-import java.util.List;
 
 /**
  * Controller class responsible for registering jobs.
@@ -49,17 +47,14 @@ public class RegisterJobController {
      * @param description The description of the job.
      * @return The registered job object.
      */
-    public Job registerJob(String name, String description) {
-        return jobRepository.registerJob(name, description);
+    public boolean registerJob(String name, String description) {
+        try {
+            getJobRepository().registerJob(name, description);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
+        }
     }
 
-    public Job getJobByName(String jobName) {
-        JobRepository jobRepository = getJobRepository();
-        return jobRepository.getJobByName(jobName);
-    }
-
-    public List<Job> getJobsList() {
-        JobRepository jobRepository = getJobRepository();
-        return jobRepository.getJobsList();
-    }
 }

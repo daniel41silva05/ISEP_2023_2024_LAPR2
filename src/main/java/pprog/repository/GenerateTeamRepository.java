@@ -1,7 +1,7 @@
 package pprog.repository;
 
 import pprog.domain.Collaborator;
-import pprog.domain.GenerateTeam;
+import pprog.domain.Team;
 import pprog.domain.Skill;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class GenerateTeamRepository {
     /**
      * List to store the generated teams.
      */
-    private List<GenerateTeam> teamList;
+    private final List<Team> teamList;
 
     /**
      * Constructs a new GenerateTeamRepository with an empty list of teams.
@@ -29,7 +29,7 @@ public class GenerateTeamRepository {
      *
      * @return The list of teams.
      */
-    public List<GenerateTeam> getTeamList() {
+    public List<Team> getTeamList() {
         return teamList;
     }
 
@@ -42,16 +42,14 @@ public class GenerateTeamRepository {
      * @param collaboratorList The list of available collaborators.
      * @return A list of collaborators forming the generated team.
      */
-    public List<Collaborator> team(int minSize, int maxSize, List<Skill> requiredSkills, List<Collaborator> collaboratorList) {
-        List<Collaborator> newTeams = new ArrayList<>();
-        GenerateTeam team = new GenerateTeam(minSize, maxSize, requiredSkills);
+    public Team team(int minSize, int maxSize, List<Skill> requiredSkills, List<Collaborator> collaboratorList) {
+        Team newTeam = null;
+        Team team = new Team(Team.seeColaboratorsWithSkillsNeeded(collaboratorList, requiredSkills));
 
-        if (addTeam(team)) {
-            List<Collaborator> collaboratorsWithSkills = team.seeColaboratorsWithSkillsNeeded(collaboratorList, requiredSkills);
-            List<Collaborator> generatedTeams = team.generateRandomTeam(collaboratorsWithSkills, maxSize, minSize);
-            newTeams.addAll(generatedTeams);
+        if (addTeam(team) && team.teamValidations(minSize, maxSize, requiredSkills, collaboratorList)) {
+            newTeam = team;
         }
-        return newTeams;
+        return newTeam;
     }
 
     /**
@@ -60,12 +58,13 @@ public class GenerateTeamRepository {
      * @param team The team to be added.
      * @return True if the team was added successfully, false otherwise.
      */
-    private boolean addTeam(GenerateTeam team) {
-        boolean success = false;
+    private boolean addTeam(Team team) {
         if (validateTeam(team)) {
-            success = teamList.add(team.clone());
+            teamList.add(team.clone());
+            return true;
+        } else {
+            throw new IllegalArgumentException("Team already exists in the repository.");
         }
-        return success;
     }
 
     /**
@@ -74,23 +73,16 @@ public class GenerateTeamRepository {
      * @param team The team to be validated.
      * @return True if the team is valid and can be added, false otherwise.
      */
-    private boolean validateTeam(GenerateTeam team) {
+    private boolean validateTeam(Team team) {
         return !teamList.contains(team);
     }
 
     /**
-     * Adds a list of teams to the repository if they pass validation.
-     *
-     * @param teams The list of teams to be added.
-     * @return The number of teams added successfully.
+     * Returns a string representation of this GenerateTeamRepository.
+     * @return A string representation containing all teams.
      */
-    public int addTeams(List<GenerateTeam> teams) {
-        int count = 0;
-        for (GenerateTeam team : teams) {
-            if (addTeam(team)) {
-                count++;
-            }
-        }
-        return count;
+    @Override
+    public String toString() {
+        return "Teams= " + teamList;
     }
 }

@@ -1,7 +1,5 @@
 package pprog.controller;
 
-import pprog.domain.Collaborator;
-import pprog.domain.IdDocType;
 import pprog.domain.Job;
 import pprog.repository.CollaboratorRepository;
 import pprog.repository.JobRepository;
@@ -84,23 +82,23 @@ public class RegisterCollaboratorController {
      * @param jobName       the job name of the collaborator
      * @return the registered collaborator
      */
-    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, String jobName) {
-        Job job = getJobByName(jobName);
-        if (job == null) {
-            return null;
+    public boolean registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocType, int idNumber, String jobName) {
+        try {
+            getCollaboratorRepository().registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, getJobByName(jobName));
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
         }
-        return collaboratorRepository.registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
     }
 
     /**
      * Gets a job by name.
      *
      * @param jobName the job name
-     * @return the job corresponding to the name
      */
     private Job getJobByName(String jobName) {
-        JobRepository jobRepository = getJobRepository();
-        return jobRepository.getJobByName(jobName);
+        return getJobRepository().getJobByName(jobName);
     }
 
     /**
@@ -108,17 +106,7 @@ public class RegisterCollaboratorController {
      * @return the list of jobs
      */
     public List<Job> getJobsList() {
-        JobRepository jobRepository = getJobRepository();
-        return jobRepository.getJobsList();
-    }
-
-    /**
-     * Gets the list of all available collaborators.
-     * @return the list of collaborators
-     */
-    public List<Collaborator> getCollaboratorsList() {
-        CollaboratorRepository collaboratorRepository = getCollaboratorRepository();
-        return collaboratorRepository.getCollaboratorsList();
+        return getJobRepository().getJobsList();
     }
 
 }

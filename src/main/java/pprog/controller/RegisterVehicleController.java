@@ -1,7 +1,6 @@
 package pprog.controller;
 
 import pprog.domain.Vehicle;
-import pprog.domain.VehicleType;
 import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;
 
@@ -59,16 +58,14 @@ public class RegisterVehicleController {
      * @param type The type of the vehicle.
      * @return The registered vehicle object.
      */
-    public Vehicle registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, VehicleType type) {
-        return vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+    public boolean registerVehicle(String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitionDate, int maintenanceCheckUpFrequency, String plateNumber, int type) {
+        try {
+            vehicleRepository.registerVehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
+        }
     }
 
-    /**
-     * Retrieves a list of all registered vehicles.
-     * @return A list of registered vehicle objects.
-     */
-    public List<Vehicle> getVehiclesList() {
-        VehicleRepository vehicleRepository = getVehicleRepository();
-        return vehicleRepository.getVehiclesList();
-    }
 }

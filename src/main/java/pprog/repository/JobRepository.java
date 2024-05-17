@@ -49,8 +49,18 @@ public class JobRepository {
             jobsList.add(job.clone());
             return true;
         } else {
-            throw new IllegalArgumentException("Job already exists in the repository");
+            throw new IllegalArgumentException("Job already exists in the repository.");
         }
+    }
+
+    /**
+     * Validates a job before adding it to the repository.
+     *
+     * @param job       The job to be validated.
+     * @return          True if the job is valid (not already in the repository), false otherwise.
+     */
+    private boolean validateJob (Job job) {
+        return !jobsList.contains(job);
     }
 
     /**
@@ -67,17 +77,6 @@ public class JobRepository {
             }
         }
         throw new IllegalArgumentException("Job with name '" + jobName + "' not found.");
-    }
-
-    /**
-     * Validates a job before adding it to the repository.
-     *
-     * @param job       The job to be validated.
-     * @return          True if the job is valid (not already in the repository), false otherwise.
-     */
-    private boolean validateJob (Job job) {
-        boolean isValid = !jobsList.contains(job);
-        return isValid;
     }
 
     /**

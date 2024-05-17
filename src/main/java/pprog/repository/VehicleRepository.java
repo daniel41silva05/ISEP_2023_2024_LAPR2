@@ -1,7 +1,6 @@
 package pprog.repository;
 
 import pprog.domain.Vehicle;
-import pprog.domain.VehicleType;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +38,7 @@ public class VehicleRepository {
      * @param type                   The type of the vehicle.
      * @return                       The newly registered vehicle, or null if registration fails.
      */
-    public Vehicle registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, VehicleType type) {
+    public Vehicle registerVehicle (String brand, String model, int tare, int grossWeight, int currentKm, Date registerDate, Date acquisitonDate, int maintenanceCheckUpFrequency, String idNumber, int type) {
         Vehicle newVehicle = null;
         Vehicle vehicle = new Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitonDate, maintenanceCheckUpFrequency, idNumber, type);
         if (addVehicle(vehicle)) {
@@ -57,10 +56,10 @@ public class VehicleRepository {
      */
     private boolean addVehicle (Vehicle vehicle) {
         if (validateVehicle(vehicle)) {
-            vehiclesList.add(vehicle.clone());
+            vehiclesList.add(vehicle);
             return true;
         } else {
-            throw new IllegalArgumentException("Job already exists in the repository");
+            throw new IllegalArgumentException("Vehicle already exists in the repository");
         }
     }
 
@@ -71,8 +70,7 @@ public class VehicleRepository {
      * @return          True if the vehicle is valid (not already in the repository), false otherwise.
      */
     private boolean validateVehicle (Vehicle vehicle) {
-        boolean isValid = !vehiclesList.contains(vehicle);
-        return isValid;
+        return !vehiclesList.contains(vehicle);
     }
 
     /**

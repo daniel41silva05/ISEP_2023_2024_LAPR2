@@ -12,7 +12,7 @@ public class RegisterSkillUI implements Runnable {
     /**
      * The controller for managing skill registration.
      */
-    private RegisterSkillController controller;
+    private final RegisterSkillController controller;
 
     /**
      * The name of the skill to be registered.
@@ -50,11 +50,10 @@ public class RegisterSkillUI implements Runnable {
      * Submits the entered data for skill registration.
      */
     private void submitData() {
-        boolean success = controller.registerSkill(name);
-        if (success) {
+        if (getController().registerSkill(name)) {
             System.out.println("\nSkill successfully registered!");
         } else {
-            System.out.println("\nSkill not registered!");
+            System.out.println("Skill not registered!");
         }
     }
 

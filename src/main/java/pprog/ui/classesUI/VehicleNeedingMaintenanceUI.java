@@ -44,8 +44,10 @@ public class VehicleNeedingMaintenanceUI implements Runnable {
      */
     private void submitData() {
 
-        List<String> vehiclesNeedingMaintenanceList = controller.getVehiclesNeedingMaintenanceList();
+        List<String> vehiclesNeedingMaintenanceList = getController().getVehiclesNeedingMaintenanceList();
         if (vehiclesNeedingMaintenanceList != null) {
+            System.out.printf("%-15s%-15s%-15s%-10s%-10s%-10s%-10s%n",
+                    "Plate", "Brand", "Model", "Curr.Kms", "Freq", "Last", "Next");
             System.out.println(vehiclesNeedingMaintenanceList);
         } else {
             System.out.println("No vehicle needs maintenance");

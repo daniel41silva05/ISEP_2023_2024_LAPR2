@@ -13,7 +13,7 @@ public class SkillRepository {
     /**
      * The list of skills.
      */
-    private List<Skill> skillsList;
+    private final List<Skill> skillsList;
 
     /**
      * Constructs a SkillRepository with the given list of skills.
@@ -43,7 +43,7 @@ public class SkillRepository {
                 return skill;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Skill with name '" + skillName + "' not found.");
     }
 
     /**
@@ -55,7 +55,8 @@ public class SkillRepository {
      */
     public boolean addSkill(Skill skill) {
         if (skill.validateSkill()) {
-            return skillsList.add(skill);
+            skillsList.add(skill.clone());
+            return true;
         } else {
             throw new IllegalArgumentException("Invalid skill name");
         }
@@ -74,11 +75,12 @@ public class SkillRepository {
     /**
      * Registers a new skill in the repository.
      *
-     * @param skill the skill to register
+     * @param skillName the skill to register
      * @return true if the skill is successfully registered; false otherwise
      * @throws IllegalArgumentException if the skill already exists in the repository
      */
-    public boolean registerSkill(Skill skill) {
+    public boolean registerSkill(String skillName) {
+        Skill skill = new Skill(skillName);
         if (isSkillInList(skill)) {
             throw new IllegalArgumentException("Skill already exists in the repository");
         }
@@ -92,15 +94,6 @@ public class SkillRepository {
      */
     public List<Skill> getSkillsList() {
         return skillsList;
-    }
-
-    /**
-     * Sets the list of skills in the repository.
-     *
-     * @param skillsList the list of skills to set
-     */
-    public void setSkillsList(List<Skill> skillsList) {
-        this.skillsList = skillsList;
     }
 
     /**

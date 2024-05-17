@@ -48,18 +48,18 @@ public class Collaborator {
      * @param address       The address of the collaborator.
      * @param phoneNumber   The phone number of the collaborator.
      * @param email         The email of the collaborator.
-     * @param idDocType     The identification document type of the collaborator.
+     * @param idDocTypeInt     The identification document type of the collaborator.
      * @param idNumber      The identification number of the collaborator.
      * @param job           The job of the collaborator.
      */
-    public Collaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
+    public Collaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocTypeInt, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.idDocType = idDocType;
+        this.idDocType = IdDocType.fromInt(idDocTypeInt);
         this.idNumber = idNumber;
         this.job = job;
         this.skillAssign = new ArrayList<>();
@@ -92,15 +92,7 @@ public class Collaborator {
             return false;
         }
         Collaborator outroCollaborator = (Collaborator) outroObjeto;
-        return name.equalsIgnoreCase(outroCollaborator.name) &&
-                birthday.equals(outroCollaborator.birthday) &&
-                admissionDate.equals(outroCollaborator.admissionDate) &&
-                address.equalsIgnoreCase(outroCollaborator.address) &&
-                phoneNumber == outroCollaborator.phoneNumber &&
-                email.equalsIgnoreCase(outroCollaborator.email) &&
-                idDocType.equals(outroCollaborator.idDocType) &&
-                idNumber == outroCollaborator.idNumber &&
-                job.equals(outroCollaborator.job);
+        return name.equalsIgnoreCase(outroCollaborator.name);
     }
 
     /**
@@ -280,7 +272,7 @@ public class Collaborator {
      * @return A new Collaborator object with the same attributes.
      */
     public Collaborator clone() {
-        return new Collaborator(this.name, this.birthday, this.admissionDate, this.address, this.phoneNumber, this.email, this.idDocType, this.idNumber, this.job);
+        return new Collaborator(this.name, this.birthday, this.admissionDate, this.address, this.phoneNumber, this.email, this.idDocType.ordinal(), this.idNumber, this.job);
     }
 
     /**
@@ -290,8 +282,7 @@ public class Collaborator {
      */
     @Override
     public String toString() {
-        return String.format("Collaborator\nName: %s\nBirthday: %s\nAdmission Date: %s\nAddress: %s\nPhone Number: %d\nEmail: %s\nID Document Type: %s\nID Number: %d\nJob: %s\n",
-                name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
+        return String.format(name, "-", job);
     }
 
 }

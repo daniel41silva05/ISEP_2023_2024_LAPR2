@@ -1,6 +1,5 @@
 package pprog.ui.classesUI;
 
-import pprog.domain.CheckUp;
 import pprog.controller.RegisterCheckUpController;
 
 import java.text.ParseException;
@@ -64,8 +63,7 @@ public class RegisterCheckUpUI implements Runnable {
      */
     private void submitData() {
 
-        CheckUp checkUp = controller.registerCheckUp(vehiclePlateNumber, date, kms);
-        if (checkUp != null) {
+        if (getController().registerCheckUp(vehiclePlateNumber, date, kms)) {
             System.out.println("\nVehicle maintenance successfully registed!");
         } else {
             System.out.println("\nVehicle maintenance not registed!");

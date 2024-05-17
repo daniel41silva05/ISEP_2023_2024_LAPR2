@@ -30,14 +30,12 @@ public class VehicleNeedingMaintenanceRepository {
      * @return the list of vehicles needing maintenance
      */
     public List<String> getVehiclesNeedingMaintenanceList(List<Vehicle> allVehicles, List<CheckUp> allCheckUps) {
-        String headerLine = "Plate\tBrand\tModel\tCurr.Kms\tFreq\tLast\tNext\n";
-        vehiclesNeedingMaintenanceList.add(headerLine);
 
         for (Vehicle vehicle : allVehicles) {
             if (needsCheckUp(vehicle, allCheckUps)) {
                 int nextCheckUpKms = getLastCheckUpKms(vehicle, allCheckUps) + vehicle.getMaintenanceCheckUpFrequency();
 
-                String line = String.format("%s\t%s\t%s\t%d\t%d\t%d\t%d\n",
+                String line = String.format("%-15s%-15s%-15s%-10d%-10d%-10d%-10d\n",
                         vehicle.getPlateNumber(), vehicle.getBrand(), vehicle.getModel(), vehicle.getCurrentKm(), vehicle.getMaintenanceCheckUpFrequency(), getLastCheckUpKms(vehicle, allCheckUps), nextCheckUpKms);
 
                 vehiclesNeedingMaintenanceList.add(line);

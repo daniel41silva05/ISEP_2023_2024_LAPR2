@@ -1,10 +1,8 @@
 package pprog.controller;
 
-import pprog.domain.Skill;
 import pprog.repository.Repositories;
 import pprog.repository.SkillRepository;
 
-import java.util.List;
 
 /**
  * Controller for registering skills.
@@ -47,17 +45,6 @@ public class RegisterSkillController {
     }
 
     /**
-     * Gets the skill by name from the repository.
-     *
-     * @param skillName the name of the skill to retrieve
-     * @return the skill object, or null if not found
-     */
-    private Skill getSkillByName(String skillName) {
-        SkillRepository skillRepository = getSkillRepository();
-        return skillRepository.getSkillByName(skillName);
-    }
-
-    /**
      * Registers a new skill.
      *
      * @param skillName the name of the skill to register
@@ -65,21 +52,13 @@ public class RegisterSkillController {
      * @throws IllegalArgumentException if the skill name is null or empty
      */
     public boolean registerSkill(String skillName) {
-        if (skillName == null || skillName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Skill name cannot be null or empty");
+        try {
+            getSkillRepository().registerSkill(skillName);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
         }
-        Skill skill = new Skill(skillName);
-        return skillRepository.registerSkill(skill);
-    }
-
-    /**
-     * Gets the list of all skills.
-     *
-     * @return the list of all skills
-     */
-    public List<Skill> getSkillsList() {
-        SkillRepository skillRepository = getSkillRepository();
-        return skillRepository.getSkillsList();
     }
 
 }

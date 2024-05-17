@@ -6,12 +6,11 @@ import pprog.repository.CollaboratorRepository;
 import pprog.repository.Repositories;
 import pprog.repository.SkillRepository;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AssignSkillController {
 
-    private List<Skill> skillsToAssign;
     private SkillRepository skillRepository;
     private CollaboratorRepository collaboratorRepository;
 
@@ -42,42 +41,35 @@ public class AssignSkillController {
     }
 
     public Collaborator getCollaboratorByName(String collaboratorName) {
-        for (Collaborator collaborator : collaboratorRepository.getCollaboratorsList()) {
-            if (collaborator.getName().equals(collaboratorName)) {
-                return collaborator;
-            }
-        }
-        return null;
+        return getCollaboratorRepository().getCollaboratorByName(collaboratorName);
     }
 
     public List<Collaborator> getCollaboratorList() {
-        return collaboratorRepository.getCollaboratorsList();
+        return getCollaboratorRepository().getCollaboratorsList();
     }
 
     private Skill getSkillByName(String skillName) {
-        SkillRepository skillRepository = getSkillRepository();
-        return skillRepository.getSkillByName(skillName);
+        return getSkillRepository().getSkillByName(skillName);
     }
+
     public List<Skill> getSkillsList() {
-        return skillRepository.getSkillsList();
+        return getSkillRepository().getSkillsList();
     }
 
-    public void assignSkillToCollaborator(Collaborator collaborator, List<Skill> skillsToAssign) {
-        for (Skill skill: skillsToAssign) {
-            collaborator.getSkillAssign().add(skill);
+    public boolean assignSkillToCollaborator(String nameCollaborator, List<String> skillNames) {
+        List<Skill> skillsToAssign = new ArrayList<>();
+        try {
+            for (String skillName : skillNames) {
+                skillsToAssign.add(getSkillByName(skillName.trim()));
+            }
+            for (Skill skill: skillsToAssign) {
+                getCollaboratorByName(nameCollaborator).getSkillAssign().add(skill);
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
         }
-    }
-
-    public List<Skill> getSkillsOfCollaborator(Collaborator collaborator) {
-        return collaborator.getSkillAssign();
-    }
-
-    public List<Skill> getSkillsToAssign() {
-        return skillsToAssign;
-    }
-
-    public void setSkillsToAssign(List<Skill> skillsToAssign) {
-        this.skillsToAssign = skillsToAssign;
     }
 
 }

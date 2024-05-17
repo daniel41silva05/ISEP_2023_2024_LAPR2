@@ -1,11 +1,9 @@
 package pprog.controller;
 
-import pprog.domain.CheckUp;
 import pprog.domain.Vehicle;
 import pprog.repository.*;
 
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -57,18 +55,18 @@ public class RegisterCheckUpController {
         return vehicleRepository;
     }
 
-    public CheckUp registerCheckUp(String vehiclePlateNumber, Date date, int KMS) {
-        Vehicle vehicle = getVehicleByPlateNumber(vehiclePlateNumber);
-        return checkUpRepository.registerCheckUp(date, vehicle, KMS);
+    public boolean registerCheckUp(String vehiclePlateNumber, Date date, int KMS) {
+        try {
+            getCheckUpRepository().registerCheckUp(date, getVehicleByPlateNumber(vehiclePlateNumber), KMS);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("\n" + e.getMessage());
+            return false;
+        }
     }
 
     private Vehicle getVehicleByPlateNumber (String vehiclePlateNumber) {
-        VehicleRepository vehicleRepository = getVehicleRepository();
-        return vehicleRepository.getVehicleByPlateNumber(vehiclePlateNumber);
+        return getVehicleRepository().getVehicleByPlateNumber(vehiclePlateNumber);
     }
 
-    public List<CheckUp> getCheckUpList() {
-        CheckUpRepository checkUpRepository = getCheckUpRepository();
-        return checkUpRepository.getCheckUpList();
-    }
 }
