@@ -23,9 +23,11 @@ As a GSM, I want to add a new entry in the Agenda.
 >
 > **Answer:** To-do list entries doesn't have dates!
 
-> **Question:** When a new entry is added to the Agenda, the status of that task will be, by default, set to "planned", right?
+> **Question:**
+When a new entry is added to the ToDo list, the default status of that task will be "pending" or no status at all is considered on ToDo list?
+Similarly, when a new entry is added to the Agenda, the status of that task will be, by default, set to "planned", right?
 >
-> **Answer:** "Planned" as default for Agenda entries, sounds good.
+> **Answer:** "Pending" as default for to-do list entries and "Planned" as default for Agenda entries, sounds good;
 
 > **Question:** When the GSM plans a task (that was previously in To-Do) into the Agenda, what aditional data/information does he need to input when planning?
 >
@@ -39,8 +41,8 @@ Later the GSM will be able to add the Team and vehicles (if required).
 * **AC3:** The new entry added must have the status of Planned.
 * **AC4:** The entry start date must correspond to the time GSM adds the entry to the Agenda.
 * **AC5:** Start Date can only contain numbers and follow the format xx/xx/xxxx.
-* pensar na unidade da Expected Duration
-* **ACX:** System must ensure that only GSM adds a new entry in the Agenda.
+* **AC6:** Expected Duration can only contain numbers that are not negative and their respective unit of measurement.
+* **AC7:** System must ensure that only GSM adds a new entry in the Agenda.
 
 ### 1.4. Found out Dependencies
 
@@ -52,8 +54,7 @@ Later the GSM will be able to add the Team and vehicles (if required).
 **Input Data:**
 
 * Typed data:
-    * Task Reference (verificar se é isto)
-    * Expected Duration (verificar se é preciso)
+    * Starting Date
 	
 * Selected data:
     * To-Do List
@@ -71,10 +72,6 @@ Later the GSM will be able to add the Team and vehicles (if required).
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us022-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us022-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 

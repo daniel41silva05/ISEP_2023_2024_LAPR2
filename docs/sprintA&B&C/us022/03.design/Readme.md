@@ -1,4 +1,4 @@
-# US022 - ... 
+# US022 - Add a entry in the Agenda 
 
 ## 3. Design - User Story Realization 
 
@@ -28,13 +28,13 @@ _**Note that SSD - Alternative One is adopted.**_
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* Organization
-* Task
+* Agenda
+* Entry
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateTaskUI  
-* CreateTaskController
+* AddEntryAgendaUI  
+* AddEntryAgendaController
 
 
 ## 3.2. Sequence Diagram (SD)
