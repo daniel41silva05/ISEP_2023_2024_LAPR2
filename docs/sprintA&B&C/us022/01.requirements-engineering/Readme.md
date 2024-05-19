@@ -37,7 +37,7 @@ Later the GSM will be able to add the Team and vehicles (if required).
 * **AC1:** The new entry must be associated with a green space man aged by the GSM.
 * **AC2:** The new entry must exist in the To-Do list.
 * **AC3:** The new entry added must have the status of Planned.
-* **AC4:** The task start date must correspond to the time GSM adds the entry to the Agenda.
+* **AC4:** The entry start date must correspond to the time GSM adds the entry to the Agenda.
 * **AC5:** Start Date can only contain numbers and follow the format xx/xx/xxxx.
 * pensar na unidade da Expected Duration
 * **ACX:** System must ensure that only GSM adds a new entry in the Agenda.
@@ -52,7 +52,8 @@ Later the GSM will be able to add the Team and vehicles (if required).
 **Input Data:**
 
 * Typed data:
-    * Expected Duration
+    * Task Reference (verificar se é isto)
+    * Expected Duration (verificar se é preciso)
 	
 * Selected data:
     * To-Do List
@@ -70,6 +71,10 @@ Later the GSM will be able to add the Team and vehicles (if required).
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us022-system-sequence-diagram-alternative-one.svg)
+
+#### Alternative Two
+
+![System Sequence Diagram - Alternative Two](svg/us022-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
