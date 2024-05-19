@@ -1,4 +1,4 @@
-# US026 - ...
+# US026 - Assign Vehicles to an entry in the Agenda
 
 
 ## 1. Requirements Engineering
@@ -11,15 +11,18 @@ As a GSM, I want to assign one or more vehicles to an entry in the Agenda.
 
 **From the specifications document:**
 
->	...
+>	Vehicles are needed to carry out the tasks assigned to the teams and to transport machines and equipment.
 
->	...
+>	The Agenda is made set of entries related to a task where each one had vehicles/equipment assigned to the task.
+
+>   The Green Spaces Manager is responsible for assigning the vehicles to the entry in the Agenda.
 
 **From the client clarifications:**
 
-> **Question:** ...
+> **Question:** Should all company vehicles be available to receive a agenda entry, or only vehicles with up-to-date maintenance?
 >
-> **Answer:** ...
+> **Answer:** All vehicles that are not assigned to a task in the same period.
+In a real context we also need to manage (un)availability of vehicles due to overhauls or breakdowns, but it is not necessary in this proof of concept.
 
 > **Question:** ...
 >
@@ -27,13 +30,15 @@ As a GSM, I want to assign one or more vehicles to an entry in the Agenda.
 
 ### 1.3. Acceptance Criteria
 
-* **ACX:**
+* **ACX:** The vehicles available to assign must not be assigned to a task in the same period.
+* **ACX:** User will select one or more vehicles from the list of vehicles registered in US06.
+* **ACX:** User will select an entry from those contained in the Agenda.
 * **ACX:** System must ensure that only GSM assigns one or more vehicles to an Agenda entry.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US006 - ..." as there must be at least one registered vehicle to be able to assign.
-* There is a dependency on "US022 - ..." as there must be at least one entry in the agenda.
+* There is a dependency on "US006 - Register a vehicle" as there must be at least one registered vehicle to be able to assign.
+* There is a dependency on "US022 - Add a entry in the Agenda" as there must be at least one entry in the agenda.
 
 ### 1.5 Input and Output Data
 

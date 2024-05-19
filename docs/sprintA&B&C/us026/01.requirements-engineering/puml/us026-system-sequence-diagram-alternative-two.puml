@@ -7,32 +7,33 @@ title System Sequence Diagram (SSD) - Alternative Two
 
 autonumber
 
-actor "Organization\nEmployee" as Employee
+actor "Green Spaces\nManager" as GSM
 participant ":System" as System
 
-activate Employee
+activate GSM
 
-    Employee -> System : asks to create a new task
+    GSM -> System : asks to assign one or more vehicles to an entry in the agenda
     activate System
 
-        System --> Employee : shows task category list and asks to select one
+        System --> GSM : shows vehicles list and asks to select one or more
     deactivate System
 
-    Employee -> System : selects a task category
+    GSM -> System : selects one or more vehicles
     activate System
 
-        System --> Employee : requests data (i.e. reference, designation, informal\ndescription, technical description, duration, cost)
+        System --> GSM : shows agenda and asks to select an entry
     deactivate System
 
-    Employee -> System : types requested data
+    GSM -> System : selects an entry and assigns it to vehicle/vehicles
     activate System
 
-        System --> Employee : shows all data and requests confirmation
+        System --> GSM : shows all data and requests confirmation
     deactivate System
 
-    Employee -> System : confirms data
+    GSM -> System : confirms data
     activate System
 
-        System --> Employee : displays operation success
+        System --> GSM : displays operation success
     deactivate System
+
 @enduml

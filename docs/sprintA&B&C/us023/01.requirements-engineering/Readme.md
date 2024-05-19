@@ -14,6 +14,8 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 >	The Agenda is also made up of teams that will carry out the tasks.
 
 >	A team will carry out that task in a green space at a certain time interval on a specific date.
+ 
+>   The Green Spaces Manager is responsible for assigning the team to the entry in the Agenda.
 
 **From the client clarifications:**
 
