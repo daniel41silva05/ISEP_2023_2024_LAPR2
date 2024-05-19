@@ -1,4 +1,4 @@
-# US022 - ... 
+# US022 - Add a entry in the Agenda 
 
 
 ## 1. Requirements Engineering
@@ -11,25 +11,35 @@ As a GSM, I want to add a new entry in the Agenda.
 
 **From the specifications document:**
 
->	...
+>	The Agenda is made up of entries that relate to a task (which was previously in the To-Do List).
 
->	... 
+>	Each entry in the Agenda has an expected duration and its status (Planned, Postponed, Canceled, Done).
+
+>	The Green Spaces Manager fills in all the fields to add it to the Agenda.
 
 **From the client clarifications:**
 
-> **Question:** ...
+> **Question:** We also know that an Agenda entry has a target date, but is this target date supposed to be inputted upon transferring a task from the to-do list to the agenda, or is it supposed to be inputted upon creating the task in the to-do list?
 >
-> **Answer:** ...
+> **Answer:** To-do list entries doesn't have dates!
 
-> **Question:** ...
+> **Question:** When a new entry is added to the Agenda, the status of that task will be, by default, set to "planned", right?
 >
-> **Answer:** ...
+> **Answer:** "Planned" as default for Agenda entries, sounds good.
+
+> **Question:** When the GSM plans a task (that was previously in To-Do) into the Agenda, what aditional data/information does he need to input when planning?
+>
+> **Answer:** The starting date for the task.
+Later the GSM will be able to add the Team and vehicles (if required).
 
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The new entry must be associated with a green space man aged by the GSM.
 * **AC2:** The new entry must exist in the To-Do list.
-* **ACX:** 
+* **AC3:** The new entry added must have the status of Planned.
+* **AC4:** The task start date must correspond to the time GSM adds the entry to the Agenda.
+* **AC5:** Start Date can only contain numbers and follow the format xx/xx/xxxx.
+* pensar na unidade da Expected Duration
 * **ACX:** System must ensure that only GSM adds a new entry in the Agenda.
 
 ### 1.4. Found out Dependencies
@@ -42,11 +52,11 @@ As a GSM, I want to add a new entry in the Agenda.
 **Input Data:**
 
 * Typed data:
-    *
+    * Expected Duration
 	
 * Selected data:
-    * List of Green Spaces 
     * To-Do List
+    * Status
 
 **Output Data:**
 
@@ -60,10 +70,6 @@ As a GSM, I want to add a new entry in the Agenda.
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us022-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us022-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
