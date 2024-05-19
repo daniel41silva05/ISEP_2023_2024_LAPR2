@@ -1,4 +1,4 @@
-# US022 - ...
+# US022 - Add a entry in the Agenda
 
 ## 4. Tests 
 

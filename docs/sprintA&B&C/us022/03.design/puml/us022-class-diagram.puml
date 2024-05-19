@@ -39,7 +39,8 @@ class Task {
     -String description
     -EmergencyDegree degreeOfUrgency
     -int expectedDuration
-    +Task(reference, description, degreeOfUrgency, expectedDuration)
+    -GreenSpace greenSpace
+    +Task(reference, description, degreeOfUrgency, expectedDuration, greenSpace)
 }
 
 class Repositories {

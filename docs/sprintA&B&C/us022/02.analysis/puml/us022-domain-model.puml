@@ -17,7 +17,35 @@ class GreenSpacesManager {
     name
 }
 
-Organization "1" -- "1" GreenSpacesManager : has >
+class Agenda {
+    entriesList
+}
 
+class ToDoList {
+    tasksList
+}
+
+class Entry {
+    startingDate
+    agendaStatus
+}
+
+class Task {
+    reference
+    description
+    degreeOfUrgency
+    expectedDuration
+    taskStatus
+    greenSpace
+}
+
+Organization "1" -- "1..*" GreenSpacesManager : has >
+Organization "1" -- "1" Agenda : has >
+Organization "1" -- "1" ToDoList : has >
+GreenSpacesManager "1" -- "1" Task : selects  >
+GreenSpacesManager "1" -- "1..*" Entry : adds >
+Agenda "1" -- "0..*" Entry : has >
+ToDoList "1" -- "1..*" Task : has >
+Task "1" -- "1" Entry : assigned to >
 
 @enduml
