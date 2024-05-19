@@ -267,6 +267,15 @@ public class Collaborator {
     }
 
     /**
+     * Sets the list of skills assigned to the collaborator.
+     *
+     * @param skillAssign The new job of the collaborator.
+     */
+    public void assignSkills(List<Skill> skillAssign) {
+        this.skillAssign = skillAssign;
+    }
+
+    /**
      * Creates and returns a copy of this collaborator.
      *
      * @return A new Collaborator object with the same attributes.
@@ -282,7 +291,7 @@ public class Collaborator {
      */
     @Override
     public String toString() {
-        return String.format(name, "-", job);
+        return String.format(name);
     }
 
 }

@@ -113,9 +113,7 @@ public class AssignSkillController {
             for (String skillName : skillNames) {
                 skillsToAssign.add(getSkillByName(skillName.trim()));
             }
-            for (Skill skill: skillsToAssign) {
-                getCollaboratorByName(nameCollaborator).getSkillAssign().add(skill);
-            }
+            getCollaboratorByName(nameCollaborator).assignSkills(skillsToAssign);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());

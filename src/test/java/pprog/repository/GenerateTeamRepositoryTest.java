@@ -37,7 +37,7 @@ class GenerateTeamRepositoryTest {
         collaborators.add(bob);
 
         // Create GenerateTeamRepository instance
-        GenerateTeamRepository repository = new GenerateTeamRepository();
+        TeamRepository repository = new TeamRepository();
 
         // Generate a team
         Team generatedTeam = repository.team(1, 3, List.of(programmingSkill, designSkill), collaborators);

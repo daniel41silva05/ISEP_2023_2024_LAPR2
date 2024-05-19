@@ -72,7 +72,7 @@ class RepositoriesTest {
 
         Repositories repositories = Repositories.getInstance();
 
-        GenerateTeamRepository generateTeamRepository = repositories.getGenerateTeamRepository();
+        TeamRepository generateTeamRepository = repositories.getTeamRepository();
 
         assertNotNull(generateTeamRepository);
     }

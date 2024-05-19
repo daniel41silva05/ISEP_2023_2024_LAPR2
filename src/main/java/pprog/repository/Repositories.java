@@ -24,7 +24,7 @@ public class Repositories {
     private final CheckUpRepository checkUpRepository;
 
     /** The repository for teams. */
-    private final GenerateTeamRepository generateTeamRepository;
+    private final TeamRepository teamRepository;
 
     /** The repository for vehicles needing maintenance. */
     private final VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
@@ -41,7 +41,7 @@ public class Repositories {
         vehicleRepository = new VehicleRepository();
         skillRepository = new SkillRepository();
         checkUpRepository = new CheckUpRepository();
-        generateTeamRepository = new GenerateTeamRepository();
+        teamRepository = new TeamRepository();
         vehicleNeedingMaintenanceRepository = new VehicleNeedingMaintenanceRepository();
         authenticationRepository = new AuthenticationRepository();
     }
@@ -103,7 +103,7 @@ public class Repositories {
      * Gets the repository for teams.
      * @return The GenerateTeamRepository.
      */
-    public GenerateTeamRepository getGenerateTeamRepository() { return generateTeamRepository; }
+    public TeamRepository getTeamRepository() { return teamRepository; }
 
     /**
      * Gets the repository for vehicles needing maintenance.

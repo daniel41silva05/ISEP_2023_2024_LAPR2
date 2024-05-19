@@ -25,7 +25,7 @@ public class GenerateTeamController {
     /**
      * Repository for managing generated teams.
      */
-    private GenerateTeamRepository generateTeamRepository;
+    private TeamRepository teamRepository;
 
     /**
      * Constructs a new GenerateTeamController and initializes repositories.
@@ -33,7 +33,7 @@ public class GenerateTeamController {
     public GenerateTeamController() {
         getSkillRepository();
         getCollaboratorRepository();
-        getGenerateTeamRepository();
+        getTeamRepository();
     }
 
     /**
@@ -41,12 +41,12 @@ public class GenerateTeamController {
      *
      * @param skillRepository        The skill repository.
      * @param collaboratorRepository The collaborator repository.
-     * @param generateTeamRepository The generate team repository.
+     * @param teamRepository The generate team repository.
      */
-    public GenerateTeamController(SkillRepository skillRepository, CollaboratorRepository collaboratorRepository, GenerateTeamRepository generateTeamRepository) {
+    public GenerateTeamController(SkillRepository skillRepository, CollaboratorRepository collaboratorRepository, TeamRepository teamRepository) {
         this.skillRepository = skillRepository;
         this.collaboratorRepository = collaboratorRepository;
-        this.generateTeamRepository = generateTeamRepository;
+        this.teamRepository = teamRepository;
     }
 
     /**
@@ -80,12 +80,12 @@ public class GenerateTeamController {
      *
      * @return The generate team repository.
      */
-    public GenerateTeamRepository getGenerateTeamRepository() {
-        if (generateTeamRepository == null) {
+    public TeamRepository getTeamRepository() {
+        if (teamRepository == null) {
             Repositories repositories = Repositories.getInstance();
-            generateTeamRepository = repositories.getGenerateTeamRepository();
+            teamRepository = repositories.getTeamRepository();
         }
-        return generateTeamRepository;
+        return teamRepository;
     }
 
     /**
@@ -102,7 +102,7 @@ public class GenerateTeamController {
             for (String skill : requiredSkills) {
                 skillsNeeded.add(getSkillByName(skill.trim()));
             }
-            getGenerateTeamRepository().team(minSize, maxSize, skillsNeeded, getCollaboratorList());
+            getTeamRepository().team(minSize, maxSize, skillsNeeded, getCollaboratorList());
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
