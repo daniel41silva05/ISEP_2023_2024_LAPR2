@@ -1,4 +1,4 @@
-# US023 - ... 
+# US023 - Assign a Team to an entry in the Agenda 
 
 
 ## 1. Requirements Engineering
@@ -11,9 +11,9 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 
 **From the specifications document:**
 
->	...
+>	The Agenda is also made up of teams that will carry out the tasks.
 
->	...
+>	A team will carry out that task in a green space at a certain time interval on a specific date.
 
 **From the client clarifications:**
 
@@ -29,12 +29,14 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 
 * **AC1:** A message must be sent to all team members informing them about the assignment.
 * **AC2:** Different email services can send the message. These services must be defined through a configuration file to allow the use of different platforms (e.g. Gmail, DEI’s email service, etc.).
-* **ACX:**
+* **ACX:** User will select a team from the list of teams generated in US05.
+* **ACX:** User will select an entry from those contained in the Agenda.
 * **ACX:** System must ensure that only GSM assigns a Team to an Agenda entry.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US022 - ..." as there must be at least one entry in the agenda.
+* There is a dependency on "US005 - Generate a team proposal automatically" as there must be at least one team to be able to assign.
+* There is a dependency on "US022 - Add a entry in the Agenda" as there must be at least one entry in the agenda.
 
 ### 1.5 Input and Output Data
 
