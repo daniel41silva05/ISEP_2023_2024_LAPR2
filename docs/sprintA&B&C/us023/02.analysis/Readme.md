@@ -1,4 +1,4 @@
-# US023 - ...
+# US023 - Assign a Team to an entry in the Agenda
 
 ## 2. Analysis
 
