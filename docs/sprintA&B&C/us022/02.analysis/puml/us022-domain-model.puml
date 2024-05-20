@@ -35,6 +35,7 @@ class Task {
     description
     degreeOfUrgency
     expectedDuration
+    type
     taskStatus
     greenSpace
 }

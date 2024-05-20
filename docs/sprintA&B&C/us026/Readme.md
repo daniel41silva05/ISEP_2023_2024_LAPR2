@@ -1,4 +1,4 @@
-# US026 - ...
+# US026 - Assign Vehicles to an entry in the Agenda
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

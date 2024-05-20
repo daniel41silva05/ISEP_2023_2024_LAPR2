@@ -1,4 +1,4 @@
-# US026 - ...
+# US026 - Assign Vehicles to an entry in the Agenda
 
 ## 3. Design - User Story Realization 
 
@@ -28,13 +28,12 @@ _**Note that SSD - Alternative One is adopted.**_
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* Organization
-* Task
+* Entry
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateTaskUI  
-* CreateTaskController
+* AssignVehiclesUI  
+* AssignVehiclesController
 
 
 ## 3.2. Sequence Diagram (SD)

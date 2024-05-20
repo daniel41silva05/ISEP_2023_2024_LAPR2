@@ -1,4 +1,4 @@
-# US026 - ... 
+# US026 - Assign Vehicles to an entry in the Agenda
 
 ## 4. Tests 
 
