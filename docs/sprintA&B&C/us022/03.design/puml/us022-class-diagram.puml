@@ -28,7 +28,6 @@ class Agenda {
 class Entry {
     -Date startingDate
     +Entry(startingDate, task)
-    +changeStatus(status)
 }
 
 class ToDoList {

@@ -32,6 +32,9 @@ public class Repositories {
     /** The repository for authentication. */
     private final AuthenticationRepository authenticationRepository;
 
+    private final Agenda agenda;
+    private final ToDoList toDoList;
+
     /**
      * Constructs a new Repositories object, initializing all repositories.
      */
@@ -44,6 +47,8 @@ public class Repositories {
         teamRepository = new TeamRepository();
         vehicleNeedingMaintenanceRepository = new VehicleNeedingMaintenanceRepository();
         authenticationRepository = new AuthenticationRepository();
+        agenda = new Agenda();
+        toDoList = new ToDoList();
     }
 
     /**
@@ -119,6 +124,14 @@ public class Repositories {
      */
     public AuthenticationRepository getAuthenticationRepository() {
         return authenticationRepository;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public ToDoList getToDoList() {
+        return toDoList;
     }
 }
 
