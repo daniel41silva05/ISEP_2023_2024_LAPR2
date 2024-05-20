@@ -1,6 +1,7 @@
 package pprog.repository;
 
 import pprog.domain.Collaborator;
+import pprog.domain.Task;
 import pprog.domain.Team;
 import pprog.domain.Skill;
 
@@ -24,13 +25,11 @@ public class TeamRepository {
         teamList = new ArrayList<>();
     }
 
-    /**
-     * Retrieves the list of teams stored in this repository.
-     *
-     * @return The list of teams.
-     */
-    public List<Team> getTeamList() {
-        return teamList;
+    public Team getTeamByIndex(int index) {
+        if (index < 1 || index > teamList.size()) {
+            throw new IllegalArgumentException("Team not found.");
+        }
+        return teamList.get(index - 1);
     }
 
     /**
@@ -75,6 +74,15 @@ public class TeamRepository {
      */
     private boolean validateTeam(Team team) {
         return !teamList.contains(team);
+    }
+
+    /**
+     * Retrieves the list of teams stored in this repository.
+     *
+     * @return The list of teams.
+     */
+    public List<Team> getTeamList() {
+        return teamList;
     }
 
     /**

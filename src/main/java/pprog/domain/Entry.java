@@ -7,11 +7,13 @@ public class Entry {
     private Date startingDate;
     private AgendaStatus status;
     private Task task;
+    private Team teamAssign;
 
     public Entry (Date startingDate, Task task) {
         this.startingDate = startingDate;
         this.status = AgendaStatus.PLANNED;
         this.task = task;
+        this.teamAssign = null;
     }
 
     public Date getStartingDate() {
@@ -36,5 +38,13 @@ public class Entry {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public Team getTeamAssign() {
+        return teamAssign;
+    }
+
+    public void assignTeam(Team teamAssign) {
+        this.teamAssign = teamAssign;
     }
 }

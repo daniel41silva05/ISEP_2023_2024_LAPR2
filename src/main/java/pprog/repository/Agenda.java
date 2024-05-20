@@ -1,7 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.Entry;
-import pprog.domain.Task;
+import pprog.domain.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +24,20 @@ public class Agenda {
         return newEntry;
     }
 
+    public Entry getEntryByIndex(int index) {
+        if (index < 1 || index > entriesList.size()) {
+            throw new IllegalArgumentException("Entry not found in Agenda.");
+        }
+        return entriesList.get(index - 1);
+    }
+
     private boolean addEntry(Entry entry) {
         if (validateEntry(entry)) {
+            entry.getTask().chanceStatus(TaskStatus.PROCESSED);
             entriesList.add(entry);
             return true;
         } else {
-            throw new IllegalArgumentException("Entry already exists in the repository.");
+            throw new IllegalArgumentException("Entry already exists in the Agenda.");
         }
     }
 
