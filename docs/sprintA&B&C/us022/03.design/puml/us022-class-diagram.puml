@@ -28,6 +28,7 @@ class Agenda {
 class Entry {
     -Date startingDate
     +Entry(startingDate, task)
+    +changeStatus(status)
 }
 
 class ToDoList {
@@ -41,6 +42,7 @@ class Task {
     -int expectedDuration
     -GreenSpace greenSpace
     +Task(reference, description, degreeOfUrgency, expectedDuration, greenSpace)
+    +changeStatus(status)
 }
 
 class Repositories {
