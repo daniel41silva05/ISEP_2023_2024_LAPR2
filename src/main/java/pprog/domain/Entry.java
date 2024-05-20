@@ -1,6 +1,8 @@
 package pprog.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Entry {
 
@@ -8,12 +10,14 @@ public class Entry {
     private AgendaStatus status;
     private Task task;
     private Team teamAssign;
+    private List<Vehicle> vehiclesAssign;
 
     public Entry (Date startingDate, Task task) {
         this.startingDate = startingDate;
         this.status = AgendaStatus.PLANNED;
         this.task = task;
         this.teamAssign = null;
+        this.vehiclesAssign = new ArrayList<>();
     }
 
     public Date getStartingDate() {
@@ -46,5 +50,13 @@ public class Entry {
 
     public void assignTeam(Team teamAssign) {
         this.teamAssign = teamAssign;
+    }
+
+    public List<Vehicle> getVehiclesAssign() {
+        return vehiclesAssign;
+    }
+
+    public void assignVehicles(List<Vehicle> vehiclesAssign) {
+        this.vehiclesAssign = vehiclesAssign;
     }
 }
