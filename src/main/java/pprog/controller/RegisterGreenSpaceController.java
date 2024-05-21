@@ -1,35 +1,32 @@
 package pprog.controller;
 
-import pprog.domain.GreenSpace;
+import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;
-import pprog.repository.VehicleRepository;
-
-import java.util.Date;
 
 
 public class RegisterGreenSpaceController {
 
-    private GreenSpaceRepository GreenSpaceRepository;
+    private GreenSpaceRepository greenSpaceRepository;
 
     public RegisterGreenSpaceController() {
         getGreenSpaceRepository();
     }
 
-    public RegisterGreenSpaceController(GreenSpaceRepository GreenSpaceRepository) {
-        this.GreenSpaceRepository = GreenSpaceRepository;
+    public RegisterGreenSpaceController(GreenSpaceRepository greenSpaceRepository) {
+        this.greenSpaceRepository = greenSpaceRepository;
     }
 
-    private VehicleRepository getVehicleRepository() {
-        if (GreenSpaceRepository == null) {
+    private GreenSpaceRepository getGreenSpaceRepository() {
+        if (greenSpaceRepository == null) {
             Repositories repositories = Repositories.getInstance();
-            GreenSpaceRepository = repositories.getVehicleRepository();
+            greenSpaceRepository = repositories.getGreenSpaceRepository();
         }
-        return GreenSpaceRepository;
+        return greenSpaceRepository;
     }
 
     public boolean registerGreenSpace(String name, String address, int type, double area) {
         try {
-            getVehicleRepository().registerVehicle(name, address, type, area);
+            getGreenSpaceRepository().registerGreenSpace(name, address, type, area);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
