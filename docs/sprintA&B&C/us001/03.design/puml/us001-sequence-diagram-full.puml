@@ -7,8 +7,8 @@ autonumber
 
 'hide footbox
 actor "Human Resources\nManager" as HRM
-participant ":CreateSkillUI" as UI
-participant ":CreateSkillController" as CTRL
+participant ":RegisterSkillUI" as UI
+participant ":RegisterSkillController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "skillRepository:\nSkillRepository" as SkillREP

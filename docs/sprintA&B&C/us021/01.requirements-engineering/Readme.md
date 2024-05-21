@@ -1,59 +1,65 @@
-# US006 - Create a Task 
+# US021 -  As a GSM, I want to add a new entry to the To-Do List 
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a Green Space Manager (GSM), I want to add a new entry to the To-Do List
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	The GSM is tasked with the job of adding new entrys to the To-Do List.
+>
+>	The new entrys must be associated with green spaces managed by GSM.
+>
+>   The green spaces for the new entrys should be chosen from a list presented to the GSM.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** If there are multiple GSM in the system, can a GSM create an entry for a Green Space managed by another GSM?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** No.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** What are the details the GSM needs to input, other than the Green Space, frequency, estimated duration?Title and description are required?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** Title and description could be useful.
+
+> **Question:** Should the to-do entries be unique or can a GSM repeat the same to-do entry, for the same Green Space, multiple times ?
+> 
+> **Answer:** Yes; Assuming the previous task with same description was previously processed and is not open anymore.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** The new entry must be associated with a green space managed by the GSM.
+* **AC2:** The green space for the new entry should be chosen from a list presented to the GSM.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US022" - to add a new entry in the Agenda, the new entry must exist in the To-Do List.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * Task title
+    * Task description
+    * Degree of urgency
+    * Estimated duration
+
 	
 * Selected data:
-    * a task category 
+    * Green space
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List of green spaces managed by the GSM
+* Success of the operation
+* Error messages
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -69,4 +75,4 @@ As an organization employee, I want to create a new task in order to be further 
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

@@ -10,13 +10,14 @@ _**Note that SSD - Alternative One is adopted.**_
 |:---------------|:----------------------------------------------|:--------------------------|:--------------------------------------------------------------------------------------------------------------|
 | Step 1  		     | 	... interacting with the actor?              | RegisterCheckUpUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
 | 			  		        | 	... coordinating the US?                     | RegisterCheckUpController | Controller                                                                                                    |
+| 			  		        | 	... instantiating a new Task?                | RegisterCheckUp           | Creator (Rule 1): in the DM Organization has a Task.                                                          |
 | Step 2  		     | 							                                       |                           |                                                                                                               |
 | Step 3  		     | 	...saving the inputted data?                 | CheckUp                   | IE: object created in step 1 has its own data.                                                                |
 | Step 4  		     | 	...knowing the check-up's to date?           | CheckUpRespository        | IE: owns all its check-up's.                                                                      |
 | Step 5  		     | 							                                       |                           |                                                                                                               |              
 | Step 6  		     | 	... validating all data (local validation)?  | CheckUp                   | IE: owns its data.                                                                                            | 
 | 			  		        | 	... validating all data (global validation)? | CheckUpRepository         | IE: knows all its check-ups.                                                                                  | 
-| 			  		        | 	... saving the created check-up?             | CheckUpRepository         | IE: owns all its check-up's.                                                                                  | 
+| 			  		        | 	... saving the created task?                 | CheckUpRepository         | IE: owns all its check-up's.                                                                                  | 
 | Step 7  		     | 	... informing operation success?             | RegisterCheckUpUI         | IE: is responsible for user interactions.                                                                     | 
 
 ### Systematization ##

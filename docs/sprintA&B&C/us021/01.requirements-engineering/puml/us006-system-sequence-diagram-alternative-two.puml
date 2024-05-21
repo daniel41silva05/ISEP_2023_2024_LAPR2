@@ -3,36 +3,37 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative Two
+title System Sequence Diagram (SSD) - Alternative One
 
 autonumber
 
-actor "Organization\nEmployee" as Employee
+actor "Green Space\nManager" as GSM
 participant ":System" as System
 
-activate Employee
+activate GSM
 
-    Employee -> System : asks to create a new task
+    GSM -> System : Asks to add a new entry to the To-Do List
     activate System
 
-        System --> Employee : shows task category list and asks to select one
+        System --> GSM : Shows list of green spaces managed by GSM
     deactivate System
 
-    Employee -> System : selects a task category
+    GSM -> System : Selects a green space
     activate System
 
-        System --> Employee : requests data (i.e. reference, designation, informal\ndescription, technical description, duration, cost)
+        System --> GSM : Requests data (title, descritpion, urgencyDegree, expectedDuration)
     deactivate System
 
-    Employee -> System : types requested data
+    GSM -> System : Types requested data
     activate System
 
-        System --> Employee : shows all data and requests confirmation
+        System --> GSM : Shows all data and requests confirmation
     deactivate System
 
-    Employee -> System : confirms data
+    GSM -> System : Confirms data
     activate System
 
-        System --> Employee : displays operation success
+        System --> GSM : Displays operation success
     deactivate System
+
 @enduml
