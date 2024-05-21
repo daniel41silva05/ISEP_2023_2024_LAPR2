@@ -11,75 +11,58 @@ autonumber
 actor "HRM" as HRM
 participant ":RegisterJobUI" as UI
 participant ":RegisterJobController" as CTRL
-participant ":JobRepository" as JOBS
 participant ":Repositories" as REP
-participant "repositories\n:Repositories" as PLAT
+participant "repositories\n:Repositories" as REPS
+participant ":JobRepository" as jobRepository
 
 activate HRM
 
-        HRM -> UI : asks to create a new job
+    HRM -> UI : asks to register a new job
+    activate UI
 
-        activate UI
+        UI -> CTRL** : create
 
-            create CTRL
-            UI -> CTRL** : create
+    UI --> HRM : requests data
+    deactivate UI
 
-            activate JOBS
-            CTRL -> JOBS : getJobRepository
+    HRM -> UI : types/selects requested data
+    activate UI
 
-            activate CTRL
-            JOBS -> CTRL : jobRepository
+    UI --> HRM : shows all data and requests confirmation
+    deactivate UI
 
-            deactivate JOBS
+    HRM -> UI : confirms data
+    activate UI
 
-            UI --> HRM : shows all jobs category existing to date or asks to create one
+        UI -> CTRL: registerJob(name, description)
+        activate CTRL
 
-            HRM --> UI : selects an option
+            CTRL -> REP: getInstance()
+            activate REP
 
-            UI --> HRM : requests data (name, description)
+            REP --> CTRL: repositories
+            deactivate REP
 
+            CTRL -> REPS: getJobRepository()
+            activate REPS
 
+            REPS --> CTRL: jobRepository
+            deactivate REPS
 
-    HRM -> UI : types requested data (name, description)
+            CTRL -> jobRepository: registerJob(name, description)
+            activate jobRepository
 
+                ref over jobRepository
+                    Register Job
+                end ref
 
-    HRM -> UI : submits data
+            jobRepository --> CTRL: job
+            deactivate jobRepository
 
-        UI -> CTRL : registerJob(name,description)
+        CTRL --> UI: job
+        deactivate CTRL
 
-            deactivate UI
-                CTRL -> REP : getInstance()
-                activate REP
-
-                    REP --> CTRL: repositories
-                deactivate REP
-
-                CTRL -> PLAT: getJobRepository()
-
-                activate PLAT
-
-                PLAT --> CTRL: jobRepository
-                deactivate PLAT
-
-
-            |||
-            CTRL -> JOBS: registerJob(name, description)
-
-            activate JOBS
-            ref over JOBS
-                Register Job
-            end ref
-            deactivate JOBS
-
-            JOBS --> CTRL: job
-            activate JOBS
-
-            activate UI
-            CTRL --> UI: job
-
-
-
-            UI --> HRM: displays operation success
+    UI --> HRM : displays operation success
     deactivate UI
 
 deactivate HRM
