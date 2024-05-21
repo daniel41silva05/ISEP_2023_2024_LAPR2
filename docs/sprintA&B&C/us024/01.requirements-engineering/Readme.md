@@ -1,29 +1,32 @@
-# US006 - Create a Task 
+  # US024 - Postpone a Date
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a GSM, I want to Postpone an entry in the Agenda to a specific future date.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>   The GSM should be able to select the specific entry in the Agenda that they want to postpone.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	The GSM should be able to choose a specific future date for the postponed entry.
+
+>   The selected entry in the Agenda should be moved to the specified new date.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** The date you want to postpone is the date referring to the "approximate expected duration" field when we registered the task?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** No; sometimes, for various reasons (e.g. insufficient staff, faulty equipment or adverse weather conditions) a task has to be postponed to a new date; task duration is not directly related to this.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** An entry in the Agenda (i.e. a task) can have the status of Planned, Postponed, Canceled or
+Done?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** 
 
 ### 1.3. Acceptance Criteria
 
