@@ -34,6 +34,7 @@ public class Repositories {
 
     private final Agenda agenda;
     private final ToDoList toDoList;
+    private final GreenSpaceRepository greenSpaceRepository;
 
     /**
      * Constructs a new Repositories object, initializing all repositories.
@@ -49,6 +50,7 @@ public class Repositories {
         authenticationRepository = new AuthenticationRepository();
         agenda = new Agenda();
         toDoList = new ToDoList();
+        greenSpaceRepository = new GreenSpaceRepository();
     }
 
     /**
@@ -132,6 +134,10 @@ public class Repositories {
 
     public ToDoList getToDoList() {
         return toDoList;
+    }
+
+    public GreenSpaceRepository getGreenSpaceRepository() {
+        return greenSpaceRepository;
     }
 }
 
