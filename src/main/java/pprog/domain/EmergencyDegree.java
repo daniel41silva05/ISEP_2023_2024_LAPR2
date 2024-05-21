@@ -1,4 +1,6 @@
 package pprog.domain;
 
-public enum EmergencyDegree {
+import java.io.Serializable;
+
+public enum EmergencyDegree implements Serializable {
 }

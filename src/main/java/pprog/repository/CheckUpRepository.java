@@ -2,6 +2,7 @@ package pprog.repository;
 
 import pprog.domain.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * Repository class to manage check-ups.
  */
-public class CheckUpRepository {
+public class CheckUpRepository implements Serializable {
 
     /**
      * List to store check-ups.

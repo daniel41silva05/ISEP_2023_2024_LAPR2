@@ -2,10 +2,11 @@ package pprog.repository;
 
 import pprog.domain.GreenSpace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GreenSpaceRepository {
+public class GreenSpaceRepository implements Serializable {
 
     private final List<GreenSpace> greenSpacesList;
 

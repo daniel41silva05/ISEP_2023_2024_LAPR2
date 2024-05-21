@@ -1,40 +1,42 @@
 package pprog.repository;
 
+import java.io.*;
+
 /**
  * This class manages singleton instances of repositories.
  */
-public class Repositories {
+public class Repositories implements Serializable {
 
     /** The singleton instance of Repositories. */
     private static Repositories instance;
 
     /** The repository for collaborators. */
-    private final CollaboratorRepository collaboratorRepository;
+    private CollaboratorRepository collaboratorRepository;
 
     /** The repository for jobs. */
-    private final JobRepository jobRepository;
+    private JobRepository jobRepository;
 
     /** The repository for vehicles. */
-    private final VehicleRepository vehicleRepository;
+    private VehicleRepository vehicleRepository;
 
     /** The repository for skills. */
-    private final SkillRepository skillRepository;
+    private SkillRepository skillRepository;
 
     /** The repository for check-ups. */
-    private final CheckUpRepository checkUpRepository;
+    private CheckUpRepository checkUpRepository;
 
     /** The repository for teams. */
-    private final TeamRepository teamRepository;
+    private TeamRepository teamRepository;
 
     /** The repository for vehicles needing maintenance. */
-    private final VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
+    private VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
 
     /** The repository for authentication. */
-    private final AuthenticationRepository authenticationRepository;
+    private transient AuthenticationRepository authenticationRepository;
 
-    private final Agenda agenda;
-    private final ToDoList toDoList;
-    private final GreenSpaceRepository greenSpaceRepository;
+    private Agenda agenda;
+    private ToDoList toDoList;
+    private GreenSpaceRepository greenSpaceRepository;
 
     /**
      * Constructs a new Repositories object, initializing all repositories.
@@ -139,5 +141,43 @@ public class Repositories {
     public GreenSpaceRepository getGreenSpaceRepository() {
         return greenSpaceRepository;
     }
+
+    public void saveSystemStateToBinary(File file){
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(instance);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void loadSystemStateFromBinary(File file){
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+            ObjectInputStream in = new ObjectInputStream(fileInputStream);
+            Repositories repObject = (Repositories) in.readObject();
+            collaboratorRepository = repObject.getCollaboratorRepository();
+            jobRepository = repObject.getJobRepository();
+            vehicleRepository = repObject.getVehicleRepository();
+            skillRepository = repObject.getSkillRepository();
+            checkUpRepository = repObject.getCheckUpRepository();
+            teamRepository = repObject.getTeamRepository();
+            vehicleNeedingMaintenanceRepository = repObject.getVehicleNeedingMaintenanceRepository();
+
+            in.close();
+            fileInputStream.close();
+        } catch (ClassNotFoundException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    @Override
+    public String toString() {
+        return "Repositories{" + skillRepository;
+    }
+
 }
 

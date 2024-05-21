@@ -3,6 +3,7 @@ package pprog.repository;
 import pprog.domain.CheckUp;
 import pprog.domain.Vehicle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Repository class to manage vehicles needing maintenance.
  * This repository handles the retrieval of vehicles requiring maintenance based on their check-up history and maintenance frequency.
  */
-public class VehicleNeedingMaintenanceRepository {
+public class VehicleNeedingMaintenanceRepository implements Serializable {
     /**
      * List to store vehicles needing maintenance.
      */

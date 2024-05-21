@@ -1,6 +1,8 @@
 package pprog.domain;
 
-public enum GreenSpaceType {
+import java.io.Serializable;
+
+public enum GreenSpaceType implements Serializable {
     GARDEN,
     MEDIUM_SIZED_PARK,
     LARGE_SIZED_PARK;

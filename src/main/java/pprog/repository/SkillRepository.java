@@ -2,13 +2,14 @@ package pprog.repository;
 
 import pprog.domain.Skill;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Repository for managing skills.
  */
-public class SkillRepository {
+public class SkillRepository implements Serializable {
 
     /**
      * The list of skills.

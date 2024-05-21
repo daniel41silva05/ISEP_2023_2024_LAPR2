@@ -1,6 +1,8 @@
 package pprog.domain;
 
-public class GreenSpace {
+import java.io.Serializable;
+
+public class GreenSpace implements Serializable {
 
     private String name;
 

@@ -2,6 +2,7 @@ package pprog.repository;
 
 import pprog.domain.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Repository class to manage collaborators.
  */
-public class CollaboratorRepository {
+public class CollaboratorRepository implements Serializable {
 
     /**
      * The list of collaborators managed by the repository.

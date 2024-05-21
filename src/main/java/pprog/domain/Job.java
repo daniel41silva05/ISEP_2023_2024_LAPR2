@@ -1,9 +1,11 @@
 package pprog.domain;
 
+import java.io.Serializable;
+
 /**
  * Represents a job with a name and description.
  */
-public class Job {
+public class Job implements Serializable {
 
     /** The name of the job. */
     private String name;

@@ -3,6 +3,8 @@ package pprog.repository;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
+import java.io.Serializable;
+
 /**
  * Repository for handling authentication operations.
  */
@@ -10,7 +12,7 @@ public class AuthenticationRepository {
     /**
      * The facade for authentication operations.
      */
-    private final AuthFacade authenticationFacade;
+    private transient AuthFacade authenticationFacade;
 
     /**
      * Constructs an AuthenticationRepository with a new instance of AuthFacade.

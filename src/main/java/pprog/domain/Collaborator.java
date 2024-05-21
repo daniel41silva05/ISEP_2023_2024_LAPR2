@@ -1,5 +1,6 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Represents a collaborator.
  */
-public class Collaborator {
+public class Collaborator implements Serializable {
 
     /** The name of the collaborator. */
     private String name;

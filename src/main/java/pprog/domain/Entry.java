@@ -1,10 +1,11 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Entry {
+public class Entry implements Serializable {
 
     private Date startingDate;
     private AgendaStatus status;

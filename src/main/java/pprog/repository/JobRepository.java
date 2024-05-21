@@ -2,13 +2,14 @@ package pprog.repository;
 
 import pprog.domain.Job;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Repository class to manage jobs.
  */
-public class JobRepository {
+public class JobRepository implements Serializable {
 
     /** The list of jobs stored in this repository. */
     private final List<Job> jobsList;

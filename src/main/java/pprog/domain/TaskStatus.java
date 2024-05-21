@@ -1,6 +1,8 @@
 package pprog.domain;
 
-public enum TaskStatus {
+import java.io.Serializable;
+
+public enum TaskStatus implements Serializable {
     PENDING,
     PROCESSED;
 }

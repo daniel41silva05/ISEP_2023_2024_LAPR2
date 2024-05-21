@@ -1,11 +1,12 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Represents a vehicle.
  */
-public class Vehicle {
+public class Vehicle implements Serializable {
 
     /**
      * The brand of the vehicle.

@@ -2,10 +2,11 @@ package pprog.repository;
 
 import pprog.domain.Task;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToDoList {
+public class ToDoList implements Serializable {
 
     private final List<Task> tasksList;
 

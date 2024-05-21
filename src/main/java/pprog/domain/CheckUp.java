@@ -1,12 +1,13 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * Represents a vehicle check-up.
  */
-public class CheckUp {
+public class CheckUp implements Serializable {
 
     /** The vehicle associated with the check-up. */
     private Vehicle vehicle;

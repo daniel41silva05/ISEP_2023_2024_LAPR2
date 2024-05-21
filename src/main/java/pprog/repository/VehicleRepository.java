@@ -2,6 +2,7 @@ package pprog.repository;
 
 import pprog.domain.Vehicle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Repository class to manage vehicles.
  */
-public class VehicleRepository {
+public class VehicleRepository implements Serializable {
 
     /**
      * List to store vehicles.

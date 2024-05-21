@@ -2,11 +2,12 @@ package pprog.repository;
 
 import pprog.domain.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Agenda {
+public class Agenda implements Serializable {
 
     private final List<Entry> entriesList;
 

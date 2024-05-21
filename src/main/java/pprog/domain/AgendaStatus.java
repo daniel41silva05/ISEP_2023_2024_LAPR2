@@ -1,6 +1,8 @@
 package pprog.domain;
 
-public enum AgendaStatus {
+import java.io.Serializable;
+
+public enum AgendaStatus implements Serializable {
     PLANNED,
     POSTPONED,
     CANCELED,
