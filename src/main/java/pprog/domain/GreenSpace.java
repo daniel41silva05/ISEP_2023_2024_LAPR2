@@ -1,21 +1,19 @@
 package pprog.domain;
 
-import java.util.Date;
-
 public class GreenSpace {
 
     private String name;
 
     private String address;
 
-    private int type;
+    private GreenSpaceType type;
 
     private double area;
 
     public GreenSpace(String name, String address, int type, double area) {
         this.name = name;
         this.address = address;
-        this.type = type;
+        this.type = GreenSpaceType.fromInt(type);
         this.area = area;
     }
 
@@ -35,11 +33,11 @@ public class GreenSpace {
         this.address = address;
     }
 
-    public int getType() {
+    public GreenSpaceType getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(GreenSpaceType type) {
         this.type = type;
     }
 
@@ -51,9 +49,13 @@ public class GreenSpace {
         this.area = area;
     }
 
+    public GreenSpace clone() {
+        return new GreenSpace(this.name, this.address, this.type.ordinal(), this.area);
+    }
+
     @Override
     public String toString() {
-        return String.format("Vehicle\nName: %s\nAddress: %s\nType: %d\nArea: %.2f", name, address, type, area);
+        return String.format("Vehicle\nName: %s\nAddress: %s\nType: %s\nArea: %.2f", name, address, type, area);
     }
 }
 

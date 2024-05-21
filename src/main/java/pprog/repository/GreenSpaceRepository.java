@@ -3,7 +3,6 @@ package pprog.repository;
 import pprog.domain.GreenSpace;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GreenSpaceRepository {
@@ -25,7 +24,7 @@ public class GreenSpaceRepository {
 
     private boolean addGreenSpace (GreenSpace greenSpace) {
         if (validateGreenSpace(greenSpace)) {
-            greenSpacesList.add(greenSpace);
+            greenSpacesList.add(greenSpace.clone());
             return true;
         } else {
             throw new IllegalArgumentException("Green space already exists in the repository");
