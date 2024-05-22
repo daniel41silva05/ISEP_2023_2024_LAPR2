@@ -39,9 +39,9 @@ public class AddEntryAgendaController {
         return toDoList;
     }
 
-    public boolean addEntryAgenda(Date startingDate, String reference) {
+    public boolean addEntryAgenda(Date startingDate, String title) {
         try {
-            getAgenda().addEntryAgenda(startingDate, getTaskByReference(reference));
+            getAgenda().addEntryAgenda(startingDate, getTaskByTitle(title));
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
@@ -49,8 +49,8 @@ public class AddEntryAgendaController {
         }
     }
 
-    private Task getTaskByReference(String reference) {
-        return getToDoList().getTaskByReference(reference);
+    private Task getTaskByTitle(String title) {
+        return getToDoList().getTaskByTitle(title);
     }
 
     public List<Task> getTasksList() {

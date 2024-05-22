@@ -40,6 +40,15 @@ public class GreenSpaceRepository implements Serializable {
         return greenSpacesList;
     }
 
+    public GreenSpace getGreenSpaceByName(String name) {
+        for (GreenSpace gs: greenSpacesList) {
+            if (gs.getName().equalsIgnoreCase(name)) {
+                return gs;
+            }
+        }
+        throw new IllegalArgumentException("Green space with the name '" + name + "' doesn't exist.");
+    }
+
     @Override
     public String toString() {
         return "Green space=" + greenSpacesList + '}';

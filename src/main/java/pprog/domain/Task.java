@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Task implements Serializable {
 
-    private String reference;
+    private String title;
     private String description;
     private EmergencyDegree degreeOfUrgency;
     private int expectedDuration;
@@ -13,8 +13,8 @@ public class Task implements Serializable {
     private TaskStatus status;
 
     // mudar os parametros que o construtor: EmergencyDegree e TaskType para int, quando já houver o método que vai buscar o objeto apartir do inteiro da classe enum
-    public Task (String reference, String description, EmergencyDegree degreeOfUrgency, int expectedDuration, TaskType type, GreenSpace greenSpace) {
-        this.reference = reference;
+    public Task (String title, String description, EmergencyDegree degreeOfUrgency, int expectedDuration, TaskType type, GreenSpace greenSpace) {
+        this.title = title;
         this.description = description;
         this.degreeOfUrgency = degreeOfUrgency;
         this.expectedDuration = expectedDuration;
@@ -23,12 +23,12 @@ public class Task implements Serializable {
         this.status = TaskStatus.PENDING;
     }
 
-    public String getReference() {
-        return reference;
+    public String getTitle() {
+        return title;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -75,7 +75,34 @@ public class Task implements Serializable {
         return status;
     }
 
-    public void chanceStatus(TaskStatus status) {
+    public void changeStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public Task clone() {
+        return new Task(this.title, this.description, this.degreeOfUrgency, this.expectedDuration, this.type, this.greenSpace);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Title: %s\nDescription: %s\nDegree of Urgency: %s\nExpected Duration: %d\nType: %s\nGreen Space: %s", title, description, degreeOfUrgency, expectedDuration, type, greenSpace);
+    }
+
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return false;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+
+        Task outraTask = (Task) outroObjeto;
+        return title.equalsIgnoreCase(outraTask.title) &&
+                description.equalsIgnoreCase(outraTask.description) &&
+                degreeOfUrgency.equals(outraTask.degreeOfUrgency) &&
+                expectedDuration == outraTask.expectedDuration &&
+                type.equals(outraTask.type) &&
+                greenSpace.equals(outraTask.greenSpace);
     }
 }

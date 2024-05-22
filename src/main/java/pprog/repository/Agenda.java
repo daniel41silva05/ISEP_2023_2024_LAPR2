@@ -34,7 +34,7 @@ public class Agenda implements Serializable {
 
     private boolean addEntry(Entry entry) {
         if (validateEntry(entry)) {
-            entry.getTask().chanceStatus(TaskStatus.PROCESSED);
+            entry.getTask().changeStatus(TaskStatus.PROCESSED);
             entriesList.add(entry);
             return true;
         } else {
