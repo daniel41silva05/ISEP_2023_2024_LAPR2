@@ -44,6 +44,22 @@ public class Agenda implements Serializable {
         }
     }
 
+    public void postponeEntry(Entry entry, Date newStartingDate) {
+        if (!entriesList.contains(entry)) {
+            throw new IllegalArgumentException("Entry not found in Agenda.");
+        }
+
+        entry.setStartingDate(newStartingDate);
+    }
+
+    public void cancelEntry(Entry entry) {
+        if (!entriesList.contains(entry)) {
+            throw new IllegalArgumentException("Entry not found in Agenda.");
+        }
+
+        entry.cancelEntry();
+    }
+
     private boolean validateEntry(Entry entry) {
         return !entriesList.contains(entry);
     }
