@@ -1,0 +1,42 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+skinparam classAttributeIconSize 0
+
+class Agenda {
+    -addEntry(entry)
+    -validateEntry(entry)
+    +addEntryAgenda(startingDate, task)
+}
+
+class Entry {
+    -Date startingDate
+    +Entry(startingDate, task)
+}
+
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getAgenda()
+    + getToDoList()
+}
+
+enum AgendaStatus {
+    PLANNED
+    POSTPONED
+    CANCELED
+    DONE
+}
+
+class PostponeEntryController{
+
+}
+
+class PostponeEntryUI{
+
+}
+
+@enduml
