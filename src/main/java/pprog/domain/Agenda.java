@@ -1,5 +1,6 @@
 package pprog.domain;
 
+import pprog.domain.agenda.AgendaStatus;
 import pprog.domain.agenda.Entry;
 import pprog.domain.todolist.Task;
 import pprog.domain.todolist.TaskStatus;
@@ -57,7 +58,7 @@ public class Agenda implements Serializable {
             throw new IllegalArgumentException("Entry not found in Agenda.");
         }
 
-        entry.cancelEntry();
+        entry.changeStatus(AgendaStatus.CANCELED);
     }
 
     private boolean validateEntry(Entry entry) {
