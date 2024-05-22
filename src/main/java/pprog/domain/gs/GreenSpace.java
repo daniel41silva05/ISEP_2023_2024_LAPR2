@@ -1,4 +1,4 @@
-package pprog.domain;
+package pprog.domain.gs;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package pprog.ui.classesUI;
 
-import pprog.controller.AssignSkillController;
+import pprog.controller.skill.AssignSkillController;
 
 import java.util.List;
 import java.util.Scanner;

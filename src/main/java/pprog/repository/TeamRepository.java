@@ -1,7 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.Collaborator;
-import pprog.domain.Task;
+import pprog.domain.collaborator.Collaborator;
 import pprog.domain.Team;
 import pprog.domain.Skill;
 

@@ -1,6 +1,6 @@
-package pprog.controller;
+package pprog.controller.team;
 
-import pprog.domain.Collaborator;
+import pprog.domain.collaborator.Collaborator;
 import pprog.domain.Skill;
 import pprog.repository.*;
 

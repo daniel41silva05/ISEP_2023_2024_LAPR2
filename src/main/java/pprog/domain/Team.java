@@ -1,5 +1,7 @@
 package pprog.domain;
 
+import pprog.domain.collaborator.Collaborator;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

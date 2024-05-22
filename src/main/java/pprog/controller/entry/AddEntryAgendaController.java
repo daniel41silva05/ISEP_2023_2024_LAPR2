@@ -1,6 +1,6 @@
-package pprog.controller;
+package pprog.controller.entry;
 
-import pprog.domain.Task;
+import pprog.domain.agenda.Task;
 import pprog.repository.Agenda;
 import pprog.repository.Repositories;
 import pprog.repository.ToDoList;

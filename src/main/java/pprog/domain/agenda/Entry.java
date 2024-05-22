@@ -1,4 +1,7 @@
-package pprog.domain;
+package pprog.domain.agenda;
+
+import pprog.domain.Team;
+import pprog.domain.vehicle.Vehicle;
 
 import java.io.Serializable;
 import java.util.ArrayList;

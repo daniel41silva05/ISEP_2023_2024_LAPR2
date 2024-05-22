@@ -1,6 +1,6 @@
-package pprog.controller;
+package pprog.controller.team;
 
-import pprog.domain.Entry;
+import pprog.domain.agenda.Entry;
 import pprog.domain.Team;
 import pprog.repository.Agenda;
 import pprog.repository.Repositories;

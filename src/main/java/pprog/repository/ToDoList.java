@@ -1,9 +1,9 @@
 package pprog.repository;
 
-import pprog.domain.EmergencyDegree;
-import pprog.domain.GreenSpace;
-import pprog.domain.Task;
-import pprog.domain.TaskType;
+import pprog.domain.agenda.EmergencyDegree;
+import pprog.domain.gs.GreenSpace;
+import pprog.domain.agenda.Task;
+import pprog.domain.agenda.TaskType;
 
 import java.io.Serializable;
 import java.util.ArrayList;

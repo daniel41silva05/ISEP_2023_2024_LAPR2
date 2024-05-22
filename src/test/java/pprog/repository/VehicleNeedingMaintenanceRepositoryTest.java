@@ -1,9 +1,8 @@
 package pprog.repository;
 
 import org.junit.jupiter.api.Test;
-import pprog.domain.CheckUp;
-import pprog.domain.Vehicle;
-import pprog.domain.VehicleType;
+import pprog.domain.vehicle.CheckUp;
+import pprog.domain.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,6 +1,6 @@
 package pprog.ui.classesUI;
 
-import pprog.controller.VehicleNeedingMaintenanceController;
+import pprog.controller.vehicle.VehicleNeedingMaintenanceController;
 
 import java.util.List;
 

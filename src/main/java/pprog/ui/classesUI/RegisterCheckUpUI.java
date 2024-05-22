@@ -1,6 +1,6 @@
 package pprog.ui.classesUI;
 
-import pprog.controller.RegisterCheckUpController;
+import pprog.controller.vehicle.RegisterCheckUpController;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

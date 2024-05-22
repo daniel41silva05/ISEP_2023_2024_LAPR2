@@ -1,6 +1,6 @@
 package pprog.ui.classesUI;
 
-import pprog.controller.RegisterSkillController;
+import pprog.controller.skill.RegisterSkillController;
 
 import java.util.Scanner;
 

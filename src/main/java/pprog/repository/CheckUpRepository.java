@@ -1,6 +1,7 @@
 package pprog.repository;
 
-import pprog.domain.*;
+import pprog.domain.vehicle.CheckUp;
+import pprog.domain.vehicle.Vehicle;
 
 import java.io.Serializable;
 import java.util.ArrayList;

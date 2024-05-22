@@ -1,8 +1,8 @@
 package pprog.repository;
 
 import org.junit.jupiter.api.Test;
-import pprog.domain.Collaborator;
-import pprog.domain.IdDocType;
+import pprog.domain.collaborator.Collaborator;
+import pprog.domain.collaborator.IdDocType;
 import pprog.domain.Job;
 
 import java.util.Date;

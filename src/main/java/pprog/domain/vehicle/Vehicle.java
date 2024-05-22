@@ -1,4 +1,4 @@
-package pprog.domain;
+package pprog.domain.vehicle;
 
 import java.io.Serializable;
 import java.util.Date;

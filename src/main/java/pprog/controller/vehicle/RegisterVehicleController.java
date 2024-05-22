@@ -1,4 +1,4 @@
-package pprog.controller;
+package pprog.controller.vehicle;
 
 import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;

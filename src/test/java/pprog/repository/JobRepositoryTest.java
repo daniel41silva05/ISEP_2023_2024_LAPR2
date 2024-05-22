@@ -1,7 +1,6 @@
 package pprog.repository;
 
 import org.junit.jupiter.api.Test;
-import pprog.domain.Collaborator;
 import pprog.domain.Job;
 
 import java.util.List;

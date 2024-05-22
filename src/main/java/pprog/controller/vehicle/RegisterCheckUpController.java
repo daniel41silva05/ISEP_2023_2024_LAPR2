@@ -1,6 +1,6 @@
-package pprog.controller;
+package pprog.controller.vehicle;
 
-import pprog.domain.Vehicle;
+import pprog.domain.vehicle.Vehicle;
 import pprog.repository.*;
 
 import java.util.Date;

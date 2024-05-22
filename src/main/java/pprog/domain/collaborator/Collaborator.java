@@ -1,4 +1,7 @@
-package pprog.domain;
+package pprog.domain.collaborator;
+
+import pprog.domain.Job;
+import pprog.domain.Skill;
 
 import java.io.Serializable;
 import java.util.ArrayList;

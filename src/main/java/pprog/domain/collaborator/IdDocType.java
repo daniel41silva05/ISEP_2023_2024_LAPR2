@@ -1,4 +1,4 @@
-package pprog.domain;
+package pprog.domain.collaborator;
 
 import java.io.Serializable;
 

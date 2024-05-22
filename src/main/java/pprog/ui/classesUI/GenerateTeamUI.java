@@ -1,6 +1,6 @@
 package pprog.ui.classesUI;
 
-import pprog.controller.GenerateTeamController;
+import pprog.controller.team.GenerateTeamController;
 
 import java.util.List;
 import java.util.Scanner;

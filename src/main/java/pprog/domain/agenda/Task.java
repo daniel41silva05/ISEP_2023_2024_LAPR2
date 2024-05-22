@@ -1,4 +1,6 @@
-package pprog.domain;
+package pprog.domain.agenda;
+
+import pprog.domain.gs.GreenSpace;
 
 import java.io.Serializable;
 

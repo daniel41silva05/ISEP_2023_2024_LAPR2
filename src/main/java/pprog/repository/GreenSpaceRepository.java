@@ -1,6 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.GreenSpace;
+import pprog.domain.gs.GreenSpace;
 
 import java.io.Serializable;
 import java.util.ArrayList;
