@@ -171,12 +171,25 @@ public class Repositories implements Serializable {
         } catch (ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
+
+    public void clearData() {
+        collaboratorRepository = new CollaboratorRepository();
+        jobRepository = new JobRepository();
+        vehicleRepository = new VehicleRepository();
+        skillRepository = new SkillRepository();
+        checkUpRepository = new CheckUpRepository();
+        teamRepository = new TeamRepository();
+        vehicleNeedingMaintenanceRepository = new VehicleNeedingMaintenanceRepository();
+        authenticationRepository = new AuthenticationRepository();
+        agenda = new Agenda();
+        toDoList = new ToDoList();
+        greenSpaceRepository = new GreenSpaceRepository();
+    }
+
     @Override
     public String toString() {
-        return "Repositories{" + skillRepository;
+        return "Repositories{" + skillRepository + collaboratorRepository + jobRepository + checkUpRepository + teamRepository + vehicleNeedingMaintenanceRepository + vehicleRepository;
     }
 
 }
