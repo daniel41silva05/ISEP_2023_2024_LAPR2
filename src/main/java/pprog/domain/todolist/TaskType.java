@@ -1,4 +1,4 @@
-package pprog.domain.agenda;
+package pprog.domain.todolist;
 
 public enum TaskType {
     REGULAR,

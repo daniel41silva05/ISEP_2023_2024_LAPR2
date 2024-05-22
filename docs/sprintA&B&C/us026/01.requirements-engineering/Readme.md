@@ -24,9 +24,9 @@ As a GSM, I want to assign one or more vehicles to an entry in the Agenda.
 > **Answer:** All vehicles that are not assigned to a task in the same period.
 In a real context we also need to manage (un)availability of vehicles due to overhauls or breakdowns, but it is not necessary in this proof of concept.
 
-> **Question:** ...
+> **Question:** Is the number of vehicles to be assigned provided by the Green Spaces Manager?
 >
-> **Answer:** ...
+> **Answer:** There is no specification concerning the number of vehicles, is upt to GSM decide what vehicles the task needs.
 
 ### 1.3. Acceptance Criteria
 

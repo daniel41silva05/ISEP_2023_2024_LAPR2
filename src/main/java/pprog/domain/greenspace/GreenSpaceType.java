@@ -1,4 +1,4 @@
-package pprog.domain.gs;
+package pprog.domain.greenspace;
 
 import java.io.Serializable;
 

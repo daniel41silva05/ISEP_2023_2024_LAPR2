@@ -19,13 +19,13 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 
 **From the client clarifications:**
 
-> **Question:** ...
+> **Question:** Can a Team be assigned to multiple entrys?
 >
-> **Answer:** ...
+> **Answer:** yes.
 
-> **Question:** ...
+> **Question:** Can an Agenda entry have more than one team assigned to it?
 >
-> **Answer:** ...
+> **Answer:** No.
 
 ### 1.3. Acceptance Criteria
 

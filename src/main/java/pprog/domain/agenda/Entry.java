@@ -1,6 +1,7 @@
 package pprog.domain.agenda;
 
 import pprog.domain.Team;
+import pprog.domain.todolist.Task;
 import pprog.domain.vehicle.Vehicle;
 
 import java.io.Serializable;

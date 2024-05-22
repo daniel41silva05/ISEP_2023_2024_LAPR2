@@ -1,11 +1,11 @@
 package pprog.controller;
 
-import pprog.domain.agenda.EmergencyDegree;
-import pprog.domain.gs.GreenSpace;
-import pprog.domain.agenda.TaskType;
+import pprog.domain.todolist.EmergencyDegree;
+import pprog.domain.greenspace.GreenSpace;
+import pprog.domain.todolist.TaskType;
 import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;
-import pprog.repository.ToDoList;
+import pprog.domain.todolist.ToDoList;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package pprog.domain.agenda;
+package pprog.domain.todolist;
 
 import java.io.Serializable;
 

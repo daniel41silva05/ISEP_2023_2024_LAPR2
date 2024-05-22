@@ -1,9 +1,6 @@
-package pprog.repository;
+package pprog.domain.todolist;
 
-import pprog.domain.agenda.EmergencyDegree;
-import pprog.domain.gs.GreenSpace;
-import pprog.domain.agenda.Task;
-import pprog.domain.agenda.TaskType;
+import pprog.domain.greenspace.GreenSpace;
 
 import java.io.Serializable;
 import java.util.ArrayList;

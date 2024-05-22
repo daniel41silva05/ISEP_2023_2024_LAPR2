@@ -1,8 +1,8 @@
-package pprog.repository;
+package pprog.domain;
 
 import pprog.domain.agenda.Entry;
-import pprog.domain.agenda.Task;
-import pprog.domain.agenda.TaskStatus;
+import pprog.domain.todolist.Task;
+import pprog.domain.todolist.TaskStatus;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package pprog.controller.vehicle;
 
 import pprog.domain.agenda.Entry;
 import pprog.domain.vehicle.Vehicle;
-import pprog.repository.Agenda;
+import pprog.domain.Agenda;
 import pprog.repository.Repositories;
 import pprog.repository.VehicleRepository;
 

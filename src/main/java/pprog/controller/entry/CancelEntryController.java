@@ -1,7 +1,7 @@
 package pprog.controller.entry;
 
 import pprog.domain.agenda.Entry;
-import pprog.repository.Agenda;
+import pprog.domain.Agenda;
 import pprog.repository.Repositories;
 
 public class CancelEntryController {

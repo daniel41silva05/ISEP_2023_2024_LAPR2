@@ -1,9 +1,9 @@
 package pprog.controller.entry;
 
-import pprog.domain.agenda.Task;
-import pprog.repository.Agenda;
+import pprog.domain.todolist.Task;
+import pprog.domain.Agenda;
 import pprog.repository.Repositories;
-import pprog.repository.ToDoList;
+import pprog.domain.todolist.ToDoList;
 
 import java.util.Date;
 import java.util.List;

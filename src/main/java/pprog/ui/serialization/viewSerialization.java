@@ -1,4 +1,4 @@
-package pprog.ui;
+package pprog.ui.serialization;
 
 import pprog.repository.Repositories;
 
