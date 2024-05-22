@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US024 - Postpone an entry 
 
 ## 2. Analysis
 
@@ -6,6 +6,3 @@
 
 ![Domain Model](svg/us024-domain-model.svg)
 
-### 2.2. Other Remarks
-
-n/a

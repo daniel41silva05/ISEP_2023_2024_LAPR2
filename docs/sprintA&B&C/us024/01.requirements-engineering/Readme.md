@@ -58,6 +58,3 @@ Done?
 
 ![System Sequence Diagram - Alternative One](svg/us024-system-sequence-diagram-alternative-one.svg)
 
-
-[//]: # (### 1.7 Other Relevant Remarks)
-
