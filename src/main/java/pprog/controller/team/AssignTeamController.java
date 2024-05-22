@@ -1,11 +1,13 @@
 package pprog.controller.team;
 
+import pprog.domain.EmailService;
 import pprog.domain.agenda.Entry;
 import pprog.domain.Team;
 import pprog.domain.Agenda;
 import pprog.repository.Repositories;
 import pprog.repository.TeamRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AssignTeamController {
@@ -63,6 +65,26 @@ public class AssignTeamController {
 
     public List<Team> getTeamsList() {
         return getTeamRepository().getTeamList();
+    }
+
+    // requer alteracoes
+    public static void sendTheEmailToTheClient(String from, String to, String subject, String body) throws IOException {
+        EmailService.sendToEmailFile(from,to, subject, body);
+    }
+
+    // apenas para testar o envio do email
+    public static void main(String[] args) {
+        String from = "sender@example.com";
+        String to = "recipient@example.com";
+        String subject = "Important";
+        String body = "This is a test email.";
+
+        try {
+            sendTheEmailToTheClient(from, to, subject, body);
+            System.out.println("Email sent successfully.");
+        } catch (IOException e) {
+            System.out.println("Failed to send email: " + e.getMessage());
+        }
     }
 
 }

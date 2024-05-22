@@ -1,0 +1,10 @@
+Email Service: Gmail
+From: sender@example.com
+To: recipient@example.com
+Subject: Important
+This is a test email.
+Email Service: Dei Service
+From: sender@example.com
+To: recipient@example.com
+Subject: Important
+This is a test email.

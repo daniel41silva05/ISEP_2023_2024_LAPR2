@@ -1,11 +1,13 @@
 package pprog.session;
 
+import pprog.domain.Email;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
 public class ApplicationSession {
@@ -47,5 +49,20 @@ public class ApplicationSession {
             }
         }
         return singleton;
+    }
+
+    private static String getEmail() throws IOException {
+        try (InputStream input = new FileInputStream(CONFIGURATION_FILENAME)) {
+            Properties prop = new Properties();
+            prop.load(input);
+            return prop.getProperty("emailService", "");
+        }
+    }
+
+    // Method to get Email service instance using reflection
+    public static Email getEmailService() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        String emailClassPath = "pprog.domain." + getEmail();
+        Class<?> className = Class.forName(emailClassPath);
+        return (Email) className.getDeclaredConstructor().newInstance();
     }
 }
