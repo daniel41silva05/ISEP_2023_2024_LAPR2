@@ -1,4 +1,6 @@
-package pprog.domain;
+package pprog.domain.email;
+
+import pprog.domain.email.Email;
 
 import java.io.File;
 import java.io.FileWriter;

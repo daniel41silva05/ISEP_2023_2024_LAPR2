@@ -1,6 +1,6 @@
 package pprog.controller.team;
 
-import pprog.domain.EmailService;
+import pprog.domain.email.EmailService;
 import pprog.domain.agenda.Entry;
 import pprog.domain.Team;
 import pprog.domain.Agenda;

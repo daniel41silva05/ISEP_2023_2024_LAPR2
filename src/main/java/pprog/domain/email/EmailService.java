@@ -1,5 +1,6 @@
-package pprog.domain;
+package pprog.domain.email;
 
+import pprog.domain.email.Email;
 import pprog.session.ApplicationSession;
 
 import java.io.IOException;

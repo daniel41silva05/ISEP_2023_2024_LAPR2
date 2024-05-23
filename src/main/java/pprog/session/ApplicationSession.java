@@ -1,6 +1,6 @@
 package pprog.session;
 
-import pprog.domain.Email;
+import pprog.domain.email.Email;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
 
