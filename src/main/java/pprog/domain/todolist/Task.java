@@ -15,12 +15,12 @@ public class Task implements Serializable {
     private TaskStatus status;
 
     // mudar os parametros que o construtor: EmergencyDegree e TaskType para int, quando já houver o método que vai buscar o objeto apartir do inteiro da classe enum
-    public Task (String title, String description, EmergencyDegree degreeOfUrgency, int expectedDuration, TaskType type, GreenSpace greenSpace) {
+    public Task (String title, String description, int degreeOfUrgency, int expectedDuration, int type, GreenSpace greenSpace) {
         this.title = title;
         this.description = description;
-        this.degreeOfUrgency = degreeOfUrgency;
+        this.degreeOfUrgency = EmergencyDegree.fromInt(degreeOfUrgency);
         this.expectedDuration = expectedDuration;
-        this.type = type;
+        this.type = TaskType.fromInt(type);
         this.greenSpace = greenSpace;
         this.status = TaskStatus.PENDING;
     }
@@ -82,7 +82,7 @@ public class Task implements Serializable {
     }
 
     public Task clone() {
-        return new Task(this.title, this.description, this.degreeOfUrgency, this.expectedDuration, this.type, this.greenSpace);
+        return new Task(this.title, this.description, this.degreeOfUrgency.ordinal(), this.expectedDuration, this.type.ordinal(), this.greenSpace);
     }
 
     @Override

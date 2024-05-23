@@ -40,7 +40,7 @@ public class AddEntryToDoListController {
         return greenSpacesRepository;
     }
 
-    public boolean addTaskToDoList(String title, String descritpion, EmergencyDegree degreeOfUrgency, int expectedDurantionTime, TaskType taskType, String greenSpace) {
+    public boolean addTaskToDoList(String title, String descritpion, int degreeOfUrgency, int expectedDurantionTime, int taskType, String greenSpace) {
         try {
             getToDoList().addTaskToDoList(title, descritpion, degreeOfUrgency, expectedDurantionTime, taskType, getGreenSpaceByName(greenSpace));
             return true;
