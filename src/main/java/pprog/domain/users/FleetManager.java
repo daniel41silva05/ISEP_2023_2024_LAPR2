@@ -1,9 +1,11 @@
 package pprog.domain.users;
 
+import java.io.Serializable;
+
 /**
  * Represents a fleet manager.
  */
-public class FleetManager {
+public class FleetManager implements Serializable {
 
     private final String email;
 

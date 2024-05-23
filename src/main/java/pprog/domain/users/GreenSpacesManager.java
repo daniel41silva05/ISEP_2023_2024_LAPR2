@@ -1,9 +1,11 @@
 package pprog.domain.users;
 
+import java.io.Serializable;
+
 /**
  * Represents a green spaces manager.
  */
-public class GreenSpacesManager {
+public class GreenSpacesManager implements Serializable {
 
     private final String email;
 
@@ -46,6 +48,6 @@ public class GreenSpacesManager {
      */
     @Override
     public String toString() {
-        return String.format("Green Spaces Manager: %s\n", email);
+        return String.format(email);
     }
 }
