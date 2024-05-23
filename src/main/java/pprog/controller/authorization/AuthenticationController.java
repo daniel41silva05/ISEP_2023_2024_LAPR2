@@ -21,6 +21,10 @@ public class AuthenticationController {
      */
     public static final String ROLE_VFM = "Vehicle and Equipment Fleet Manager";
 
+    public static final String ROLE_GSM = "Green Spaces Manager";
+
+    public static final String ROLE_COLLABORATOR = "Collaborator";
+
     private final AuthenticationRepository authenticationRepository;
 
     /**
