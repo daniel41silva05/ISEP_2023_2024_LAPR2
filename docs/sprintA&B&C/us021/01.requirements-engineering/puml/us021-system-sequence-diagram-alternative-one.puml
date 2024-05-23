@@ -15,7 +15,7 @@ activate GSM
     GSM -> System : Asks to add a new entry to the To-Do List
     activate System
 
-        System --> GSM : Requests data (title, descritpion, urgencyDegree, expectedDuration)
+        System --> GSM : Requests data (title, descritpion, degreeOfUrgency, expectedDurationTime, taskType, greenSpace)
     deactivate System
 
     GSM -> System : Types requested data

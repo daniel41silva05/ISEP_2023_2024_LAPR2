@@ -12,19 +12,13 @@ participant ":System" as System
 
 activate GSM
 
-    GSM -> System : Asks to add a new entry to the To-Do List
+    GSM -> System : Asks to cancel a entry in the Agenda
     activate System
 
-        System --> GSM : Shows list of green spaces managed by GSM
+        System --> GSM : Shows list of existing entrys in the Agenda
     deactivate System
 
-    GSM -> System : Selects a green space
-    activate System
-
-        System --> GSM : Requests data (title, descritpion, degreeOfUrgency, expectedDurationTime, taskType, greenSpace)
-    deactivate System
-
-    GSM -> System : Types requested data
+    GSM -> System : Selects a entry
     activate System
 
         System --> GSM : Shows all data and requests confirmation

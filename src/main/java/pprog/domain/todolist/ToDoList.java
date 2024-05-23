@@ -14,7 +14,7 @@ public class ToDoList implements Serializable {
         tasksList = new ArrayList<>();
     }
 
-    public Task addTaskToDoList(String title, String descritpion, EmergencyDegree degreeOfUrgency, int expectedDurantionTime, TaskType taskType, GreenSpace greenSpace) {
+    public Task addTaskToDoList(String title, String descritpion, int degreeOfUrgency, int expectedDurantionTime, int taskType, GreenSpace greenSpace) {
         Task newTask = null;
         Task task = new Task(title, descritpion, degreeOfUrgency, expectedDurantionTime, taskType, greenSpace);
 

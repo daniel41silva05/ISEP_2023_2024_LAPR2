@@ -14,11 +14,11 @@ public class Agenda implements Serializable {
 
     private final List<Entry> entriesList;
 
-    public Agenda () {
+    public Agenda() {
         entriesList = new ArrayList<>();
     }
 
-    public Entry addEntryAgenda (Date startingDate, Task task) {
+    public Entry addEntryAgenda(Date startingDate, Task task) {
         Entry newEntry = null;
         Entry entry = new Entry(startingDate, task);
 
@@ -46,18 +46,10 @@ public class Agenda implements Serializable {
     }
 
     public void postponeEntry(Entry entry, Date newStartingDate) {
-        if (!entriesList.contains(entry)) {
-            throw new IllegalArgumentException("Entry not found in Agenda.");
-        }
-
         entry.setStartingDate(newStartingDate);
     }
 
     public void cancelEntry(Entry entry) {
-        if (!entriesList.contains(entry)) {
-            throw new IllegalArgumentException("Entry not found in Agenda.");
-        }
-
         entry.changeStatus(AgendaStatus.CANCELED);
     }
 
