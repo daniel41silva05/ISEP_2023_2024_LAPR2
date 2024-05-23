@@ -64,6 +64,4 @@ public class Entry implements Serializable {
     public void assignVehicles(List<Vehicle> vehiclesAssign) {
         this.vehiclesAssign = vehiclesAssign;
     }
-
-    public void cancelEntry() { this.status = AgendaStatus.CANCELED; }
 }
