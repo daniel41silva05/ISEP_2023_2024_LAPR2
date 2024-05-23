@@ -9,43 +9,23 @@ import java.util.Scanner;
 public class CompleteEntryAgendaUI {
 
     private CompleteEntryAgendaController controller;
-    private Scanner scanner;
 
-    public CompleteEntryAgendaUI(CompleteEntryAgendaController controller, Scanner scanner) {
-        this.controller = controller;
-        this.scanner = scanner;
-    }
+    private int taskIndex;
 
     public CompleteEntryAgendaUI() {
         controller = new CompleteEntryAgendaController();
-        scanner = new Scanner(System.in);
+    }
+
+    public CompleteEntryAgendaController getController() {
+        return controller;
     }
 
     public void run() {
-        System.out.println("## COMPLETE ENTRY AGENDA ##");
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("1. List all entries");
-            System.out.println("2. Complete an entry");
-            System.out.println("0. Exit");
-            System.out.println("Choose an option: ");
-            int option = scanner.nextInt();
-            scanner.nextLine();
+        System.out.println("\n\n--- Complete a Task ------------------------");
 
-            switch(option) {
-                case 1:
-                    listAllEntries();
-                    break;
-                case 2:
-                    completeEntry();
-                    break;
-                case 0:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-            }
-        }
+        listAllEntries();
+        requestData();
+        submitData();
     }
 
     private void listAllEntries() {
@@ -60,16 +40,22 @@ public class CompleteEntryAgendaUI {
         }
     }
 
-    private void completeEntry() {
-        System.out.print("Enter the index of the entry you want to cancel: ");
-        int index = scanner.nextInt();
-        scanner.nextLine(); // Clears the scanner buffer
-
-        boolean success = controller.completeEntry(index);
-        if (success) {
-            System.out.println("Entry completed successfully.");
+    private void submitData() {
+        if (getController().completeEntry(taskIndex)) {
+            System.out.println("\nTask successfully completed!");
         } else {
-            System.out.println("Failed to complete the entry. Please check the index and try again.");
+            System.out.println("Task not completed!");
         }
     }
+
+    private void requestData() {
+        taskIndex = requestTask();
+    }
+
+    private int requestTask() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Task: ");
+        return sc.nextInt();
+    }
+
 }
