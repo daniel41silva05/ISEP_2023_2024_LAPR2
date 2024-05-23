@@ -53,6 +53,10 @@ public class Agenda implements Serializable {
         entry.changeStatus(AgendaStatus.CANCELED);
     }
 
+    public void completeEntry(Entry entry) {
+        entry.changeStatus(AgendaStatus.DONE);
+    }
+
     private boolean validateEntry(Entry entry) {
         return !entriesList.contains(entry);
     }
