@@ -51,5 +51,8 @@ As a GSM, I want to Cancel an entry in the Agenda
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us025-system-sequence-diagram-alternative-one.svg)
 
+### 1.7 Other Relevant Remarks
+
+* n/a
