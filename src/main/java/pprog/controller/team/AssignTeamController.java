@@ -3,7 +3,7 @@ package pprog.controller.team;
 import pprog.domain.email.EmailService;
 import pprog.domain.agenda.Entry;
 import pprog.domain.Team;
-import pprog.domain.Agenda;
+import pprog.domain.agenda.Agenda;
 import pprog.repository.Repositories;
 import pprog.repository.TeamRepository;
 

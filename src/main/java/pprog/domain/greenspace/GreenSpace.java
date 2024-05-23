@@ -14,14 +14,14 @@ public class GreenSpace implements Serializable {
 
     private double area;
 
-    private GreenSpacesManager gsm;
+    private GreenSpacesManager greenSpacesManager;
 
     public GreenSpace(String name, String address, int type, double area, GreenSpacesManager gsm) {
         this.name = name;
         this.address = address;
         this.type = GreenSpaceType.fromInt(type);
         this.area = area;
-        this.gsm = gsm;
+        this.greenSpacesManager = gsm;
     }
 
     public String getName() {
@@ -56,21 +56,21 @@ public class GreenSpace implements Serializable {
         this.area = area;
     }
 
-    public GreenSpacesManager getGsm() {
-        return gsm;
+    public GreenSpacesManager getGreenSpacesManager() {
+        return greenSpacesManager;
     }
 
-    public void setGsm(GreenSpacesManager gsm) {
-        this.gsm = gsm;
+    public void setGreenSpacesManager(GreenSpacesManager greenSpacesManager) {
+        this.greenSpacesManager = greenSpacesManager;
     }
 
     public GreenSpace clone() {
-        return new GreenSpace(this.name, this.address, this.type.ordinal(), this.area, this.gsm);
+        return new GreenSpace(this.name, this.address, this.type.ordinal(), this.area, this.greenSpacesManager);
     }
 
     @Override
     public String toString() {
-        return String.format("Green Space\nName: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s", name, address, type, area, gsm);
+        return String.format("Green Space\nName: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s", name, address, type, area, greenSpacesManager);
     }
 }
 

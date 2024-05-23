@@ -1,6 +1,6 @@
 package pprog.ui.menu;
 
-import pprog.session.UserSession;
+import pprog.ui.classesUI.AddEntryAgendaUI;
 import pprog.ui.classesUI.RegisterGreenSpaceUI;
 import pprog.ui.utils.Utils;
 
@@ -14,8 +14,8 @@ public class GreenSpacesManagerUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
             options.add(new MenuItem("Register a Green Space", new RegisterGreenSpaceUI()));
-//        options.add(new MenuItem("Register a vehicle’s maintenance", new RegisterCheckUpUI()));
-//        options.add(new MenuItem("Produce a list of vehicles needing maintenance", new VehicleNeedingMaintenanceUI()));
+//            options.add(new MenuItem("Add Entry To Do List", new AddEntryToDoListUI()));
+            options.add(new MenuItem("Add Entry Agenda", new AddEntryAgendaUI()));
 
         int option = 0;
         do {

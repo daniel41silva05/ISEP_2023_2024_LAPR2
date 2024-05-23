@@ -1,6 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.Agenda;
+import pprog.domain.agenda.Agenda;
 import pprog.domain.todolist.ToDoList;
 
 import java.io.*;
@@ -169,6 +169,8 @@ public class Repositories implements Serializable {
             teamRepository = repObject.getTeamRepository();
             vehicleNeedingMaintenanceRepository = repObject.getVehicleNeedingMaintenanceRepository();
             greenSpaceRepository = repObject.getGreenSpaceRepository();
+            toDoList = repObject.getToDoList();
+            agenda = repObject.getAgenda();
 
             in.close();
             fileInputStream.close();
@@ -193,7 +195,7 @@ public class Repositories implements Serializable {
 
     @Override
     public String toString() {
-        return "Repositories{" + skillRepository + collaboratorRepository + jobRepository + checkUpRepository + teamRepository + vehicleNeedingMaintenanceRepository + vehicleRepository + greenSpaceRepository;
+        return "Repositories{" + skillRepository + collaboratorRepository + jobRepository + checkUpRepository + teamRepository + vehicleNeedingMaintenanceRepository + vehicleRepository + greenSpaceRepository + toDoList + agenda;
     }
 
 }

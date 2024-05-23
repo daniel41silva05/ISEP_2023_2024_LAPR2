@@ -1,7 +1,8 @@
 package pprog.controller.entry;
 
 import pprog.domain.agenda.Entry;
-import pprog.domain.Agenda;
+import pprog.domain.agenda.Agenda;
+import pprog.domain.todolist.Task;
 import pprog.repository.Repositories;
 
 import java.util.Date;
@@ -52,13 +53,16 @@ public class PostponeEntryAgendaController {
      */
     public boolean postponeEntry(int entryIndex, Date newStartingDate) {
         try {
-            Entry entry = getAgenda().getEntryByIndex(entryIndex);
-            getAgenda().postponeEntry(entry, newStartingDate);
+            getAgenda().postponeEntry(getEntryByIndex(entryIndex), newStartingDate);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
             return false;
         }
+    }
+
+    private Entry getEntryByIndex(int index) {
+        return getAgenda().getEntryByIndex(index);
     }
 
     public List<Entry> getEntriesList() {
