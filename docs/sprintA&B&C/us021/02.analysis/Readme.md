@@ -1,4 +1,4 @@
-# US021 - Add a new task to the To-Do List
+# US021 - Add a new entry to the To-Do List
 
 ## 2. Analysis
 
