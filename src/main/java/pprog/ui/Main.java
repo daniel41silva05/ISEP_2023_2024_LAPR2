@@ -1,11 +1,9 @@
 package pprog.ui;
 
-import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
 import pprog.ui.menu.MainMenuUI;
 
 import java.io.File;
-import java.io.IOException;
 
 public class Main {
 

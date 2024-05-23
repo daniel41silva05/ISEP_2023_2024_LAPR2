@@ -96,7 +96,7 @@ public class Collaborator implements Serializable {
             return false;
         }
         Collaborator outroCollaborator = (Collaborator) outroObjeto;
-        return name.equalsIgnoreCase(outroCollaborator.name);
+        return email.equalsIgnoreCase(outroCollaborator.email);
     }
 
     /**
@@ -295,7 +295,7 @@ public class Collaborator implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format(name);
+        return String.format("Name: %s, Email: %s", name, email);
     }
 
 }
