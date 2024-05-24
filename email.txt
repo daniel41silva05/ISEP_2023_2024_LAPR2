@@ -1,20 +1,16 @@
-Email Service: Gmail
-From: sender@example.com
-To: recipient@example.com
-Subject: Important
-This is a test email.
 Email Service: Dei Service
-From: sender@example.com
-To: recipient@example.com
-Subject: Important
-This is a test email.
+From: gsm1@this.app
+To: ana@sla.com
+Subject: Assignment to a task
+Olá Ana.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+pprog.domain.agenda.Entry@57536d79
 Email Service: Dei Service
-From: sender@example.com
-To: recipient@example.com
-Subject: Important
-This is a test email.
-Email Service: Dei Service
-From: sender@example.com
-To: recipient@example.com
-Subject: Important
-This is a test email.
+From: gsm1@this.app
+To: bruno@this.app
+Subject: Assignment to a task
+Olá Bruno.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+pprog.domain.agenda.Entry@57536d79
