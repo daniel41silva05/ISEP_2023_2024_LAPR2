@@ -1,6 +1,8 @@
 package pprog.domain.todolist;
 
-public enum TaskType {
+import java.io.Serializable;
+
+public enum TaskType implements Serializable {
     REGULAR,
     OCCASIONAL;
 

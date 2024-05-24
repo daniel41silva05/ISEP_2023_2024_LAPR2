@@ -1,6 +1,7 @@
 package pprog.repository;
 
 import pprog.domain.greenspace.GreenSpace;
+import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,9 +15,9 @@ public class GreenSpaceRepository implements Serializable {
         greenSpacesList = new ArrayList<>();
     }
 
-    public GreenSpace registerGreenSpace (String name, String address, int type, double area) {
+    public GreenSpace registerGreenSpace (String name, String address, int type, double area, GreenSpacesManager greenSpacesManager) {
         GreenSpace newGreenSpace = null;
-        GreenSpace greenSpace = new GreenSpace (name, address, type, area);
+        GreenSpace greenSpace = new GreenSpace (name, address, type, area, greenSpacesManager);
         if (addGreenSpace(greenSpace)) {
             newGreenSpace = greenSpace;
         }

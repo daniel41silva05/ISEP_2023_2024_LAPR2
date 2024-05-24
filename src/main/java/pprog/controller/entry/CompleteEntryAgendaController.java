@@ -1,6 +1,6 @@
 package pprog.controller.entry;
 
-import pprog.domain.Agenda;
+import pprog.domain.agenda.Agenda;
 import pprog.domain.agenda.Entry;
 import pprog.repository.Repositories;
 
@@ -28,13 +28,16 @@ public class CompleteEntryAgendaController {
 
     public boolean completeEntry(int entryIndex) {
         try {
-            Entry entry = getAgenda().getEntryByIndex(entryIndex);
-            getAgenda().completeEntry(entry);
+            getAgenda().completeEntry(getEntryByIndex(entryIndex));
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
             return false;
         }
+    }
+
+    private Entry getEntryByIndex(int index) {
+        return getAgenda().getEntryByIndex(index);
     }
 
     public List<Entry> getEntriesList() {

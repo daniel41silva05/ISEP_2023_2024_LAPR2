@@ -1,9 +1,8 @@
-package pprog.domain;
+package pprog.domain.agenda;
 
-import pprog.domain.agenda.AgendaStatus;
-import pprog.domain.agenda.Entry;
 import pprog.domain.todolist.Task;
 import pprog.domain.todolist.TaskStatus;
+import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,11 +17,11 @@ public class Agenda implements Serializable {
         entriesList = new ArrayList<>();
     }
 
-    public Entry addEntryAgenda(Date startingDate, Task task) {
+    public Entry addEntryAgenda(Date startingDate, Task task, GreenSpacesManager gsmFromSession) {
         Entry newEntry = null;
         Entry entry = new Entry(startingDate, task);
 
-        if (addEntry(entry)) {
+        if (addEntry(gsmFromSession, entry)) {
             newEntry = entry;
         }
         return newEntry;
@@ -35,8 +34,8 @@ public class Agenda implements Serializable {
         return entriesList.get(index - 1);
     }
 
-    private boolean addEntry(Entry entry) {
-        if (validateEntry(entry)) {
+    private boolean addEntry(GreenSpacesManager gsmFromSession, Entry entry) {
+        if (validateEntry(entry) && validateUser(gsmFromSession, entry)) {
             entry.getTask().changeStatus(TaskStatus.PROCESSED);
             entriesList.add(entry);
             return true;
@@ -47,6 +46,7 @@ public class Agenda implements Serializable {
 
     public void postponeEntry(Entry entry, Date newStartingDate) {
         entry.setStartingDate(newStartingDate);
+        entry.changeStatus(AgendaStatus.POSTPONED);
     }
 
     public void cancelEntry(Entry entry) {
@@ -59,6 +59,14 @@ public class Agenda implements Serializable {
 
     private boolean validateEntry(Entry entry) {
         return !entriesList.contains(entry);
+    }
+
+    public boolean validateUser(GreenSpacesManager gsmFromSession, Entry entry) {
+        if (entry.getGreenSpacesManager().equals(gsmFromSession)) {
+            return true;
+        } else {
+            throw new IllegalArgumentException("The logged in Green Space Manager does not manage the green space associated with this entrance.");
+        }
     }
 
     public List<Entry> getEntriesList() {

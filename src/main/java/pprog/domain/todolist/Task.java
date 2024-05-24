@@ -1,6 +1,7 @@
 package pprog.domain.todolist;
 
 import pprog.domain.greenspace.GreenSpace;
+import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
 
@@ -13,8 +14,8 @@ public class Task implements Serializable {
     private TaskType type;
     private GreenSpace greenSpace;
     private TaskStatus status;
+    private GreenSpacesManager greenSpacesManager;
 
-    // mudar os parametros que o construtor: EmergencyDegree e TaskType para int, quando já houver o método que vai buscar o objeto apartir do inteiro da classe enum
     public Task (String title, String description, int degreeOfUrgency, int expectedDuration, int type, GreenSpace greenSpace) {
         this.title = title;
         this.description = description;
@@ -23,6 +24,7 @@ public class Task implements Serializable {
         this.type = TaskType.fromInt(type);
         this.greenSpace = greenSpace;
         this.status = TaskStatus.PENDING;
+        this.greenSpacesManager = greenSpace.getGreenSpacesManager();
     }
 
     public String getTitle() {
@@ -79,6 +81,14 @@ public class Task implements Serializable {
 
     public void changeStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public GreenSpacesManager getGreenSpacesManager() {
+        return greenSpacesManager;
+    }
+
+    public void setGreenSpacesManager(GreenSpacesManager greenSpacesManager) {
+        this.greenSpacesManager = greenSpacesManager;
     }
 
     public Task clone() {

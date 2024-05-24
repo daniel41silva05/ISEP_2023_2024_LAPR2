@@ -1,7 +1,7 @@
 package pprog.controller.entry;
 
 import pprog.domain.agenda.Entry;
-import pprog.domain.Agenda;
+import pprog.domain.agenda.Agenda;
 import pprog.repository.Repositories;
 
 import java.util.List;
@@ -50,13 +50,16 @@ public class CancelEntryAgendaController {
      */
     public boolean cancelEntry(int entryIndex) {
         try {
-            Entry entry = getAgenda().getEntryByIndex(entryIndex);
-            getAgenda().cancelEntry(entry);
+            getAgenda().cancelEntry(getEntryByIndex(entryIndex));
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
             return false;
         }
+    }
+
+    private Entry getEntryByIndex(int index) {
+        return getAgenda().getEntryByIndex(index);
     }
 
     /**
