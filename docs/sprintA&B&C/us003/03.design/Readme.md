@@ -6,19 +6,19 @@
 
 _**Note that SSD - Alternative One is adopted.**_
 
-| Interaction ID | Question: Which class is responsible for...     | Answer                          | Justification (with patterns)                                                                                |
-|:---------------|:------------------------------------------------|:--------------------------------|:-------------------------------------------------------------------------------------------------------------|
-| Step 1  		     | 	... interacting with the actor?                | RegisterCollaboratorUI          | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model |
-|   		           | 	... coordinating the US?                       | RegisterCollaboratorControlller | Controller                                                                                                   |
-| Step 2 		      | 	                                            |                              |                                                                                                              |
-| Step 3 		      | 	... saving the inputted data?                  | Collaborator                    | Information Expert: object created in step 1 has its own data                                                |
-| Step 4 		      | 	... knowing the job list to show?              | JobRepository                   | Information Expert: owns all jobs                                                                            |
-| Step 5 		      | 	... saving the selected job?                   | Collaborator                    | Information Expert: object created in step 1 has a job                                                                                       |
-| Step 6 		      | 	                                               |                                 |                                                                                                              |
-| Step 7 		      | 	... validating all data (local validation)?    | Collaborator                    | Information Expert: owns its data                                                                            |
-| 		             | 	... validating all data (global validation)?   | CollaboratorRepository                    | Information Expert: knows all collaborators                                                                  |
-| 		             | 	... saving the registered collaborator?        | CollaboratorRepository          | Information Expert: owns all collaborators                                                                   |
-| Step 8 		      | 	... informing operation success?               | RegisterCollaboratorUI          | Information Expert: is responsible for user interactions.                                                    |
+| Interaction ID | Question: Which class is responsible for...     | Answer                          | Justification (with patterns)                                                                                                      |
+|:---------------|:------------------------------------------------|:--------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------|
+| Step 1  		     | 	... interacting with the actor?                | RegisterCollaboratorUI          | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model                       |
+|   		           | 	... coordinating the US?                       | RegisterCollaboratorControlller | Controller                                                                                                                         |
+| Step 2 		      | 	                                            |                              |                                                                                                                                    |
+| Step 3 		      | 	... saving the inputted data?                  | Collaborator                    | Information Expert: object created in step 1 has its own data                                                                      |
+| Step 4 		      | 	... knowing the job list to show?              | JobRepository                   | Information Expert: owns all jobs                                                                                                  |
+| Step 5 		      | 	... saving the selected job?                   | Collaborator                    | Information Expert: object created has a job                                                                                       |
+| Step 6 		      | 	                                               |                                 |                                                                                                                                    |
+| Step 7 		      | 	... validating all data (local validation)?    | Collaborator                    | Information Expert: owns its data                                                                                                  |
+| 		             | 	... validating all data (global validation)?   | CollaboratorRepository                    | Information Expert: knows all collaborators                                                                                        |
+| 		             | 	... saving the registered collaborator?        | CollaboratorRepository          | Information Expert: owns all collaborators                                                                                         |
+| Step 8 		      | 	... informing operation success?               | RegisterCollaboratorUI          | Information Expert: is responsible for user interactions.                                                                          |
 
 ### Systematization ##
 

@@ -25,10 +25,6 @@ public class HumanResourcesManager implements Serializable {
         return email.equals(hrm.email);
     }
 
-    public boolean hasEmail(String email) {
-        return this.email.equals(email);
-    }
-
     public String getEmail() {
         return email;
     }

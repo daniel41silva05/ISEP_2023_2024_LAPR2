@@ -14,30 +14,28 @@ class Organization {
 }
 
 class GreenSpacesManager {
-    name
+    email
 }
 
 class Agenda {
-    entriesList
 }
 
 class ToDoList {
-    tasksList
 }
 
 class Entry {
     startingDate
-    agendaStatus
+    status
 }
 
 class Task {
-    reference
+    title
     description
     degreeOfUrgency
     expectedDuration
     type
-    taskStatus
     greenSpace
+    status
 }
 
 Organization "1" -- "1..*" GreenSpacesManager : has >
@@ -46,7 +44,7 @@ Organization "1" -- "1" ToDoList : has >
 GreenSpacesManager "1" -- "1" Task : selects  >
 GreenSpacesManager "1" -- "1..*" Entry : adds >
 Agenda "1" -- "0..*" Entry : has >
-ToDoList "1" -- "1..*" Task : has >
+ToDoList "1" -- "0..*" Task : has >
 Task "1" -- "1" Entry : assigned to >
 
 @enduml

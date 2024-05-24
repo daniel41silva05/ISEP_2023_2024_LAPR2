@@ -25,10 +25,6 @@ public class GreenSpacesManager implements Serializable {
         return email.equals(gsm.email);
     }
 
-    public boolean hasEmail(String email) {
-        return this.email.equals(email);
-    }
-
     public String getEmail() {
         return email;
     }

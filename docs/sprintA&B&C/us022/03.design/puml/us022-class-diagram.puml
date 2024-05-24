@@ -13,16 +13,18 @@ class AddEntryAgendaUI {
 }
 
 class AddEntryAgendaController {
-    +AddEntryAgendaController(agenda, toDoList)
-    +addEntryAgenda(startingDate, taskReference)
-    -getTaskByReference(taskReference)
+    +AddEntryAgendaController(agenda, toDoList, authenticationRepository)
+    +addEntryAgenda(startingDate, index)
+    -getTaskByIndex(index)
+    -getGSMFromSession()
     +getTasksList()
 }
 
 class Agenda {
-    -addEntry(entry)
+    +addEntryAgenda(startingDate, task, gsmFromSession)
+    -addEntry(gsmFromSession, entry)
     -validateEntry(entry)
-    +addEntryAgenda(startingDate, task)
+    -validateUser(gsmFromSession, entry)
 }
 
 class Entry {
@@ -31,11 +33,11 @@ class Entry {
 }
 
 class ToDoList {
-    +getTaskByReference(taskReference)
+    +getTaskByIndex(index)
 }
 
 class Task {
-    -String reference
+    -String title
     -String description
     -EmergencyDegree degreeOfUrgency
     -int expectedDuration
@@ -45,11 +47,12 @@ class Task {
     +changeStatus(status)
 }
 
-class Repositories {
+class Repositories{
     - Repositories()
     + getInstance() : Repositories
     + getAgenda()
     + getToDoList()
+    + getAuthenticationRepository()
 }
 
 enum AgendaStatus {
@@ -64,17 +67,30 @@ enum TaskStatus {
     PROCESSED
 }
 
+class AuthenticationRepository {
+    +getCurrentUserSession()
+}
+
+class GreenSpaceManager {
+    -String email
+    +GreenSpaceManager(email)
+}
+
 AddEntryAgendaUI ..> AddEntryAgendaController
 AddEntryAgendaController ..> Repositories: repositories
 AddEntryAgendaController ..> Agenda: agenda
 AddEntryAgendaController ..> ToDoList: toDoList
+AddEntryAgendaController ..> AuthenticationRepository: authentication
 Repositories --> Repositories: instance
 Repositories --> "1" Agenda
 Repositories --> "1" ToDoList
+Repositories --> "1" AuthenticationRepository
 Agenda --> "*" Entry
 ToDoList --> "*" Task
 Entry --> "1" Task
 Entry --> "1" AgendaStatus
 Task --> "1" TaskStatus
+Entry --> "1" GreenSpaceManager
+Task --> "1" GreenSpaceManager
 
 @enduml

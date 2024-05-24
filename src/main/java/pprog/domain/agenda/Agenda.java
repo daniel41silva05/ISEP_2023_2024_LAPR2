@@ -61,7 +61,7 @@ public class Agenda implements Serializable {
         return !entriesList.contains(entry);
     }
 
-    public boolean validateUser(GreenSpacesManager gsmFromSession, Entry entry) {
+    private boolean validateUser(GreenSpacesManager gsmFromSession, Entry entry) {
         if (entry.getGreenSpacesManager().equals(gsmFromSession)) {
             return true;
         } else {
