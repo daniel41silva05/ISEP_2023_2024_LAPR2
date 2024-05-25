@@ -31,8 +31,8 @@ In a real context we also need to manage (un)availability of vehicles due to ove
 ### 1.3. Acceptance Criteria
 
 * **ACX:** The vehicles available to assign must not be assigned to a task in the same period.
-* **ACX:** User will select one or more vehicles from the list of vehicles registered in US06.
-* **ACX:** User will select an entry from those contained in the Agenda.
+* **ACX:** GSM will select one or more vehicles from the list of vehicles registered in US06.
+* **ACX:** GSM will select an entry from those contained in the Agenda.
 * **ACX:** System must ensure that only GSM assigns one or more vehicles to an Agenda entry.
 
 ### 1.4. Found out Dependencies
@@ -43,9 +43,6 @@ In a real context we also need to manage (un)availability of vehicles due to ove
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
-* Typed data:
-  *
 
 * Selected data:
   * List of Vehicles

@@ -40,10 +40,10 @@ public class AssignVehiclesController {
         return vehicleRepository;
     }
 
-    public boolean assignVehiclesToEntry(int agendaIndex, List<String> vehicles) {
+    public boolean assignVehiclesToEntry(int agendaIndex, List<String> vehiclesPlateNumber) {
         List<Vehicle> vehiclesToAssign = new ArrayList<>();
         try {
-            for (String vehicle : vehicles) {
+            for (String vehicle : vehiclesPlateNumber) {
                 vehiclesToAssign.add(getVehicleByPlateNumber(vehicle.trim()));
             }
             getEntryByIndex(agendaIndex).assignVehicles(vehiclesToAssign);

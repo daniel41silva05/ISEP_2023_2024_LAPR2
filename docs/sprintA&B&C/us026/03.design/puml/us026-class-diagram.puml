@@ -15,31 +15,32 @@ class AssignVehiclesUI {
 class AssignVehiclesController {
     +AssignVehiclesController(agenda, vehicleRepository)
     +assignVehiclesToEntry(agendaIndex, vehiclesPlateNumber)
-    -getEntryByIndex(agendaIndex)
-    -getVehicleByPlateNumber(vehiclesPlateNumber)
+    -getEntryByIndex(index)
+    -getVehicleByPlateNumber(vehiclePlateNumber)
     +getEntriesList()
     +getVehiclesList()
 }
 
 class Agenda {
-    +getEntryByIndex(agendaIndex)
+    +getEntryByIndex(index)
 }
 
 class Entry {
     -Date startingDate
     -AgendaStatus status
     -Task task
-    -List<Vehicle> vehiclesAssigned
+    -List<Vehicle> vehiclesAssign
     +Entry(startingDate, task)
-    +assignVehicles(vehiclesAssigned)
+    +assignVehicles(vehiclesAssign)
 }
 
 class VehicleRepository {
-    +getVehicleByPlateNumber(vehiclePlateNumber)
+    +getVehicleByPlateNumber(plateNumber)
 }
 
 class Vehicle {
     -String plateNumber
+    +getPlateNumber()
 }
 
 class Repositories {

@@ -14,16 +14,15 @@ class Organization {
 }
 
 class GreenSpacesManager {
-    name
+    email
 }
 
 class Agenda {
-    entriesList
 }
 
 class Entry {
     startingDate
-    agendaStatus
+    status
     task
 }
 
