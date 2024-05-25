@@ -71,6 +71,10 @@ class AuthenticationRepository {
     +getCurrentUserSession()
 }
 
+class UserSession {
+    +getCurrentUserSession()
+}
+
 class GreenSpaceManager {
     -String email
     +GreenSpaceManager(email)
@@ -80,7 +84,8 @@ AddEntryAgendaUI ..> AddEntryAgendaController
 AddEntryAgendaController ..> Repositories: repositories
 AddEntryAgendaController ..> Agenda: agenda
 AddEntryAgendaController ..> ToDoList: toDoList
-AddEntryAgendaController ..> AuthenticationRepository: authentication
+AddEntryAgendaController ..> AuthenticationRepository: authenticationRepository
+AuthenticationRepository ..> UserSession
 Repositories --> Repositories: instance
 Repositories --> "1" Agenda
 Repositories --> "1" ToDoList

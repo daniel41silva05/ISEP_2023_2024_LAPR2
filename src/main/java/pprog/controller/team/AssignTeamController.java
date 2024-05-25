@@ -86,8 +86,8 @@ public class AssignTeamController {
         return getTeamRepository().getTeamList();
     }
 
-    private void sendTheEmailToTeam(String from, String to, String nameCollaborator, String task) {
-        EmailService.sendToEmailFile(from, to, nameCollaborator, task);
+    private void sendTheEmailToTeam(String from, String to, String nameCollaborator, String entry) {
+        EmailService.sendToEmailFile(from, to, nameCollaborator, entry);
     }
 
     private String getEmailGSMFromSession() {

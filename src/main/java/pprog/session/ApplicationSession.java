@@ -59,7 +59,6 @@ public class ApplicationSession {
         }
     }
 
-    // Method to get Email service instance using reflection
     public static Email getEmailService() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         String emailClassPath = "pprog.domain." + getEmail();
         Class<?> className = Class.forName(emailClassPath);

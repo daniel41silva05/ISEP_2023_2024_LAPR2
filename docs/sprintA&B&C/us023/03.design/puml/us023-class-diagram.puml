@@ -13,12 +13,14 @@ class AssignTeamUI {
 }
 
 class AssignTeamController {
-    +AssignTeamController(agenda, toDoList)
+    +AssignTeamController(agenda, toDoList, authenticationRepository)
     +assignTeamToEntry(agendaIndex, teamIndex)
     -getEntryByIndex(agendaIndex)
     -getTeamByIndex(teamIndex)
     +getEntriesList()
     +getTeamsList()
+    -sendTheEmailToTeam(from, to, nameCollaborator, entry)
+    -getGSMFromSession()
 }
 
 class Agenda {
@@ -47,17 +49,58 @@ class Repositories {
     + getInstance() : Repositories
     + getAgenda()
     + getTeamRepository()
+    + getAuthenticationRepository()
 }
+
+class AuthenticationRepository {
+    +getCurrentUserSession()
+}
+
+class UserSession {
+    +getCurrentUserSession()
+}
+
+class EmailService {
+    +sendToEmailFile(from, to, nameCollaborator, entry)
+}
+
+class ApplicationSession {
+    -getEmail()
+    +getEmailService()
+}
+
+interface Email {
+    +sendEmail(from, to, subject, body)
+}
+
+class DeiService {
+    +sendEmail(from, to, subject, body)
+    -writeToFile(file, from, to, subject, body)
+}
+
+class GmailService {
+    +sendEmail(from, to, subject, body)
+    -writeToFile(file, from, to, subject, body)
+}
+
 
 AssignTeamUI ..> AssignTeamController
 AssignTeamController ..> Repositories: repositories
 AssignTeamController ..> Agenda: agenda
 AssignTeamController ..> TeamRepository: teamRepository
+AssignTeamController ..> AuthenticationRepository: authenticationRepository
+AuthenticationRepository ..> UserSession
 Repositories --> Repositories: instance
 Repositories --> "1" Agenda
 Repositories --> "1" TeamRepository
+Repositories --> "1" AuthenticationRepository
 Agenda --> "*" Entry
 TeamRepository --> "*" Team
 Entry --> "1" Team
+AssignTeamController ..> EmailService
+EmailService ..> ApplicationSession
+ApplicationSession --> Email: instance
+DeiService ..> Email
+GmailService ..> Email
 
 @enduml

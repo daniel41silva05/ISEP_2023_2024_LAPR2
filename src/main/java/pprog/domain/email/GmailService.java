@@ -28,9 +28,9 @@ public class GmailService implements Email {
 
     }
 
-    public static void writeToFile(File f, String from, String to, String subject, String body) {
+    private static void writeToFile(File file, String from, String to, String subject, String body) {
         try {
-            FileWriter send = new FileWriter(f, true);
+            FileWriter send = new FileWriter(file, true);
             send.write("Email Service: Gmail\nFrom: "+ from + "\nTo: " + to + "\nSubject: " + subject + "\n" + body + "\n");
             send.flush();
             send.close();
