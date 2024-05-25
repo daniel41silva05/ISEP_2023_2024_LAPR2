@@ -10,19 +10,19 @@ import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
 
-public class AddEntryToDoListController {
+public class AddTaskToDoListController {
 
     private ToDoList toDoList;
     private GreenSpaceRepository greenSpacesRepository;
     private AuthenticationRepository authenticationRepository;
 
-    public AddEntryToDoListController() {
+    public AddTaskToDoListController() {
         getToDoList();
         getGreenSpacesRepository();
         getAuthenticationRepository();
     }
 
-    public AddEntryToDoListController(ToDoList toDoList, GreenSpaceRepository greenSpacesRepository, AuthenticationRepository authenticationRepository) {
+    public AddTaskToDoListController(ToDoList toDoList, GreenSpaceRepository greenSpacesRepository, AuthenticationRepository authenticationRepository) {
         this.toDoList = toDoList;
         this.greenSpacesRepository = greenSpacesRepository;
         this.authenticationRepository = authenticationRepository;
