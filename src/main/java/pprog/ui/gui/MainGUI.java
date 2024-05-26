@@ -9,8 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import pprog.repository.Repositories;
 import pprog.ui.Bootstrap;
 
+import java.io.File;
 import java.util.Optional;
 
 public class MainGUI extends Application {
@@ -44,9 +46,13 @@ public class MainGUI extends Application {
     }
 
     public static void main(String[] args) {
+        File f = new File("src\\main\\resources\\config.properties.xml");
+        Repositories.getInstance().loadSystemStateFromBinary(f);
         pprog.ui.Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
 
         launch(args);
+
+        Repositories.getInstance().saveSystemStateToBinary(f);
     }
 }

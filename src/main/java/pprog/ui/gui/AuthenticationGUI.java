@@ -34,7 +34,7 @@ public class AuthenticationGUI implements Initializable {
     @FXML
     private Button btnLogIn;
 
-    private int maxAttemps = 2;
+    private int maxAttemps = 3;
     private final AuthenticationController controller = new AuthenticationController();
 
 
@@ -43,20 +43,61 @@ public class AuthenticationGUI implements Initializable {
 
     }
 
-    public void doLoginActionButton(ActionEvent actionEvent) throws IOException {
-        if (maxAttemps >0){
+    public void doLoginActionButton(ActionEvent actionEvent) {
+        boolean success = doLogin();
 
-            boolean success = doLogin();
-            if (!success){
-                maxAttemps--;
+        if (success) {
+            maxAttemps = 3;
+            List<UserRoleDTO> roles = this.controller.getUserRoles();
+            if ((roles == null) || (roles.isEmpty())) {
+                System.out.println("No role assigned to user.");
+            } else {
+                UserRoleDTO role = roles.get(0);
+                if (!Objects.isNull(role)) {
+                    Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
+                    switch (role.getDescription()) {
+                        case AuthenticationController.ROLE_HRM:
+                            changeScene(stage, "/fxml/HumanResourcesManager.fxml", false);
+                            break;
+                        case AuthenticationController.ROLE_VFM:
+                            changeScene(stage, "/fxml/FleetManager.fxml", false);
+                            break;
+                        case AuthenticationController.ROLE_GSM:
+                            changeScene(stage, "/fxml/GreenSpacesManager.fxml", false);
+                            break;
+                        case AuthenticationController.ROLE_COLLABORATOR:
+                            changeScene(stage, "/fxml/Collaborator.fxml", false);
+                            break;
+                    }
+                } else {
+                    System.out.println("No role selected.");
+                }
+            }
+        } else {
+            maxAttemps--;
+            if (maxAttemps > 0) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Invalid Credentials");
                 alert.setHeaderText("Invalid Email and/or Password");
-                int temp = maxAttemps;
-                alert.setContentText("You have "+(temp + 1)+" attempts remainig");
+                alert.setContentText("You have " + maxAttemps + " attempts remaining");
                 alert.showAndWait();
                 txtPwd.clear();
-            }else {
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Max Attempts Reached");
+                alert.setHeaderText("Maximum number of attempts reached");
+                alert.setContentText("You will be redirected to the main menu");
+                alert.showAndWait();
+                closeLoginStage(actionEvent);
+            }
+        }
+        //this.logout();
+    }
+    public void doLoginActionKey(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            boolean success = doLogin();
+
+            if (success) {
                 maxAttemps = 3;
                 List<UserRoleDTO> roles = this.controller.getUserRoles();
                 if ((roles == null) || (roles.isEmpty())) {
@@ -64,92 +105,43 @@ public class AuthenticationGUI implements Initializable {
                 } else {
                     UserRoleDTO role = roles.get(0);
                     if (!Objects.isNull(role)) {
-                        Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
-                        switch (role.getId()){
+                        Stage stage = (Stage) ((Node) keyEvent.getTarget()).getScene().getWindow();
+                        switch (role.getDescription()) {
                             case AuthenticationController.ROLE_HRM:
-                                changeScene(stage,"/fxml/ClientUIFX.fxml",false);
+                                changeScene(stage, "/fxml/HumanResourcesManager.fxml", false);
                                 break;
                             case AuthenticationController.ROLE_VFM:
-                                changeScene(stage,"/fxml/SystemAdimUIFX.fxml",false);
+                                changeScene(stage, "/fxml/FleetManager.fxml", false);
                                 break;
                             case AuthenticationController.ROLE_GSM:
-                                changeScene(stage,"/fxml/AgentUIFx.fxml",false);
+                                changeScene(stage, "/fxml/GreenSpacesManager.fxml", false);
                                 break;
-                            case  AuthenticationController.ROLE_COLLABORATOR:
-                                changeScene(stage,"/fxml/NetworkManagerUIFX.fxml",false);
+                            case AuthenticationController.ROLE_COLLABORATOR:
+                                changeScene(stage, "/fxml/Collaborator.fxml", false);
                                 break;
                         }
                     } else {
                         System.out.println("No role selected.");
                     }
                 }
-            }
-
-        }else {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Max Attemps reached");
-            alert.setHeaderText("Maximum number of attempts reached");
-            alert.setContentText("You will be redirected to the main menu");
-            alert.showAndWait();
-            closeLoginStage(actionEvent);
-
-        }
-        //this.logout();
-    }
-    public void doLoginActionKey(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            if (maxAttemps > 0) {
-
-                boolean success = doLogin();
-                if (!success) {
-                    maxAttemps--;
+            } else {
+                maxAttemps--;
+                if (maxAttemps > 0) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Invalid Credentials");
                     alert.setHeaderText("Invalid Email and/or Password");
-                    int temp = maxAttemps;
-                    alert.setContentText("You have "+(temp + 1)+" attempts remainig");
+                    alert.setContentText("You have " + maxAttemps + " attempts remaining");
                     alert.showAndWait();
                     txtPwd.clear();
                 } else {
-                    maxAttemps = 3;
-                    List<UserRoleDTO> roles = this.controller.getUserRoles();
-                    if ((roles == null) || (roles.isEmpty())) {
-                        System.out.println("No role assigned to user.");
-                    } else {
-                        UserRoleDTO role = roles.get(0);
-                        if (!Objects.isNull(role)) {
-                            Stage stage = (Stage) ((Node) keyEvent.getTarget()).getScene().getWindow();
-
-                            switch (role.getId()) {
-                                case AuthenticationController.ROLE_HRM:
-                                    changeScene(stage,"/fxml/ClientUIFX.fxml",false);
-                                    break;
-                                case AuthenticationController.ROLE_VFM:
-                                    changeScene(stage,"/fxml/SystemAdimUIFX.fxml",false);
-                                    break;
-                                case AuthenticationController.ROLE_GSM:
-                                    changeScene(stage,"/fxml/AgentUIFx.fxml",false);
-                                    break;
-                                case  AuthenticationController.ROLE_COLLABORATOR:
-                                    changeScene(stage,"/fxml/NetworkManagerUIFX.fxml",false);
-                                    break;
-                            }
-
-                        } else {
-                            System.out.println("No role selected.");
-                        }
-                    }
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Max Attempts Reached");
+                    alert.setHeaderText("Maximum number of attempts reached");
+                    alert.setContentText("You will be redirected to the main menu");
+                    alert.showAndWait();
+                    closeLoginStage(keyEvent);
                 }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Max Attemps reached");
-                alert.setHeaderText("Maximum number of attempts reached");
-                alert.setContentText("You will be redirected to the main menu");
-                alert.showAndWait();
-                closeLoginStage(keyEvent);
             }
-
         }
     }
 
