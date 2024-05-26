@@ -1,5 +1,6 @@
 package pprog.session;
 
+import pprog.domain.SortingAlgorithm;
 import pprog.domain.email.Email;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
@@ -64,4 +65,19 @@ public class ApplicationSession {
         Class<?> className = Class.forName(emailClassPath);
         return (Email) className.getDeclaredConstructor().newInstance();
     }
+
+    private static String getAlgorithm() throws IOException {
+        try (InputStream input = new FileInputStream(CONFIGURATION_FILENAME)) {
+            Properties prop = new Properties();
+            prop.load(input);
+            return prop.getProperty("SortingAlgorithm", "");
+        }
+    }
+
+    public static SortingAlgorithm getSortingAlgorithm() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchMethodException, InvocationTargetException {
+        String algorithm= "pprog.domain." + getAlgorithm();
+        Class<?> className = Class.forName(algorithm);
+        return (SortingAlgorithm) className.getDeclaredConstructor().newInstance();
+    }
+
 }
