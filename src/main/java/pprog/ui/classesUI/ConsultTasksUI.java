@@ -50,7 +50,7 @@ public class ConsultTasksUI {
         }
 
         // Consult tasks
-        List<Entry> tasks = controller.getTasksForCollaboratorBetweenDates(new Collaborator(collaboratorName, null, null, null, 0, null, 0, 0, null), startDate, endDate, taskStatus);
+        List<Entry> tasks = controller.getTasksForCollaboratorBetweenDates(startDate, endDate, taskStatus);
 
         // Display found tasks
         System.out.println("\nFound tasks:");
