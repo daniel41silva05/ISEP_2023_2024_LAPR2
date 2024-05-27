@@ -53,4 +53,4 @@ In this project no distinction will be made between recorrent/occasional tasks; 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us028-system-sequence-diagram-alternative-one.svg)
