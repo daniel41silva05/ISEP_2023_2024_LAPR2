@@ -1,4 +1,4 @@
-package pprog.domain;
+package pprog.domain.algoritmos;
 
 import pprog.domain.greenspace.GreenSpace;
 
@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SortingAlgorithm {
 
-    List<GreenSpace> sort(List<GreenSpace> managedGreenSpacesList);
+    void sort(List<GreenSpace> managedGreenSpacesList);
 
 }

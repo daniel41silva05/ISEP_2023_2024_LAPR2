@@ -1,10 +1,15 @@
 package pprog.controller;
 
+import pprog.domain.greenspace.GreenSpace;
 import pprog.domain.users.GreenSpacesManager;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;
 import pt.isep.lei.esoft.auth.domain.model.Email;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class RegisterGreenSpaceController {
 
@@ -52,5 +57,21 @@ public class RegisterGreenSpaceController {
     }
 
 
+
+    public GreenSpace getGreenSpaceByName(String greenSpaceName) {
+        return getGreenSpaceRepository().getGreenSpaceByName(greenSpaceName);
+    }
+
+    public List<GreenSpace> getGreenSpaceListByGSM() {
+        List<GreenSpace> greenSpacesListByGSM = new ArrayList<>();
+
+        GreenSpacesManager gsm = getGSMFromSession();
+        for (GreenSpace gs: getGreenSpaceRepository().getGreenSpacesList()) {
+            if (gs.getGreenSpacesManager().equals(gsm)) {
+                greenSpacesListByGSM.add(gs);
+            }
+        }
+        return greenSpacesListByGSM;
+    }
 
 }
