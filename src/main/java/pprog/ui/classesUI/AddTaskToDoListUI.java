@@ -6,18 +6,18 @@ import pprog.domain.todolist.EmergencyDegree;
 import pprog.domain.todolist.TaskType;
 import pprog.repository.GreenSpaceRepository;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class    AddTaskToDoListUI {
 
     private final AddTaskToDoListController controller;
-    private GreenSpaceRepository greenSpaceRepository;
     private String title;
     private String description;
     private int degreeOfUrgency;
     private int expectedDuration;
     private int type;
-    private GreenSpace greenSpace;
+    private String greenSpace;
 
     public AddTaskToDoListUI(AddTaskToDoListController controller) {
         this.controller = controller;
@@ -27,19 +27,16 @@ public class    AddTaskToDoListUI {
         return controller;
     }
 
-    private GreenSpaceRepository getGreenSpaceRepository() {
-        return greenSpaceRepository;
-    }
-
     private void run() {
         System.out.println("\n\n--- Add task to To-Do List ------------------------");
 
+        listAllGreenSpaces();
         requestData();
         submitData();
     }
 
     private void submitData() {
-        if (getController().addTaskToDoList(title, description, degreeOfUrgency, expectedDuration, type, String.valueOf(greenSpace))) {
+        if (getController().addTaskToDoList(title, description, degreeOfUrgency, expectedDuration, type, greenSpace)) {
             System.out.println("Task successfully added!");
         } else {
             System.out.println("Skill not added!");
@@ -128,19 +125,28 @@ public class    AddTaskToDoListUI {
         }
     }
 
-    private GreenSpace requestGreenSpace() {
+    private String requestGreenSpace() {
         Scanner input = new Scanner(System.in);
-        String greenSpaceStr;
-        GreenSpace greenSpace;
+        String greenSpace;
         System.out.println("Green Space: ");
-        greenSpaceStr = input.nextLine().trim();
-        greenSpace = getGreenSpaceRepository().getGreenSpaceByName(greenSpaceStr);
+        greenSpace = input.nextLine().trim();
 
-        if (!greenSpaceStr.matches("[a-zA-Z ]+") || !getGreenSpaceRepository().getGreenSpacesList().contains(greenSpace)) {
+        if (!greenSpace.matches("[a-zA-Z ]+")) {
             System.out.println("Invalid name. Please introduce a valid name!");
             return requestGreenSpace();
         } else {
             return greenSpace;
+        }
+    }
+
+    private void listAllGreenSpaces() {
+        List<GreenSpace> listOfGreenSpaces = getController().getGreenSpacesList();
+        if (listOfGreenSpaces == null) {
+            System.out.println("No Green Spaces found!");
+        } else {
+            for (GreenSpace gs: listOfGreenSpaces) {
+                System.out.println(gs);
+            }
         }
     }
 }
