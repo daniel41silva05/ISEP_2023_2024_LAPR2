@@ -6,28 +6,45 @@ import pprog.domain.agenda.Entry;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * User interface for canceling an entry in the agenda.
+ */
 public class CancelEntryAgendaUI {
 
     private CancelEntryAgendaController controller;
 
     private int taskIndex;
 
+    /**
+     * Constructs a new CancelEntryAgendaUI instance with a default controller.
+     */
     public CancelEntryAgendaUI() {
         controller = new CancelEntryAgendaController();
     }
 
+    /**
+     * Gets the controller associated with this UI.
+     *
+     * @return The CancelEntryAgendaController instance.
+     */
     public CancelEntryAgendaController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI to cancel a task.
+     */
     public void run() {
-        System.out.println("\n\n--- Cancel a Task ------------------------");
+        System.out.println("\n\n--- Cancel an Entry ------------------------");
 
         listAllEntries();
         requestData();
         submitData();
     }
 
+    /**
+     * Lists all entries in the agenda.
+     */
     private void listAllEntries() {
         List<Entry> entries = controller.getEntriesList();
         if (entries.isEmpty()) {
@@ -40,18 +57,29 @@ public class CancelEntryAgendaUI {
         }
     }
 
+    /**
+     * Submits data to cancel the selected task.
+     */
     private void submitData() {
         if (getController().cancelEntry(taskIndex)) {
-            System.out.println("\nTask successfully completed!");
+            System.out.println("\nTask successfully canceled!");
         } else {
-            System.out.println("Task not completed!");
+            System.out.println("Task not canceled!");
         }
     }
 
+    /**
+     * Requests data from the user to select the task to cancel.
+     */
     private void requestData() {
         taskIndex = requestTask();
     }
 
+    /**
+     * Requests the task index from the user.
+     *
+     * @return The index of the task to cancel.
+     */
     private int requestTask() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Task: ");

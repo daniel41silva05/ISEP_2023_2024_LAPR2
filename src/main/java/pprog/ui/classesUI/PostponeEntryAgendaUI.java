@@ -29,7 +29,7 @@ public class PostponeEntryAgendaUI {
      * Runs the UI for postponing an entry.
      */
     public void run() {
-        System.out.println("## POSTPONE ENTRY AGENDA ##");
+        System.out.println("\n\n--- Postpone an Entry ------------------------");
         boolean exit = false;
         while (!exit) {
             System.out.println("1. List all entries");
