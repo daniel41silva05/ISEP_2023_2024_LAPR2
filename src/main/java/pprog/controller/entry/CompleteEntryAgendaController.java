@@ -70,7 +70,7 @@ public class CompleteEntryAgendaController {
      */
     public boolean completeEntry(int entryIndex) {
         try {
-            getAgenda().completeEntry(getEntryByIndex(entryIndex));
+            getAgenda().completeEntry(getEntryByIndex(entryIndex), getEmailCollaboratorFromSession());
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.getMessage());
@@ -105,20 +105,5 @@ public class CompleteEntryAgendaController {
     private String getEmailCollaboratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
-    }
-
-    /**
-     * Verifies if the current session's collaborator is assigned to the entry at the specified index.
-     *
-     * @param entryIndex The index of the entry to verify.
-     * @return True if the current session's collaborator is assigned to the entry, false otherwise.
-     */
-    public boolean verifyCollaborator(int entryIndex) {
-        for (Collaborator c : getEntryByIndex(entryIndex).getTeamAssign().getTeam()) {
-            if (getEmailCollaboratorFromSession().equalsIgnoreCase(c.getEmail())) {
-                return true;
-            }
-        }
-        return false;
     }
 }

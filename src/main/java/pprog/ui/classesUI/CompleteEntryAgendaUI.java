@@ -41,14 +41,10 @@ public class CompleteEntryAgendaUI {
     }
 
     private void submitData() {
-        if (getController().verifyCollaborator(taskIndex)) {
-            if (getController().completeEntry(taskIndex)) {
-                System.out.println("\nTask successfully completed!");
-            } else {
-                System.out.println("Task not completed!");
-            }
+        if (getController().completeEntry(taskIndex)) {
+            System.out.println("\nTask successfully completed!");
         } else {
-            System.out.println("\n You don't have permission to update the status of this task!");
+            System.out.println("Task not completed!");
         }
     }
 

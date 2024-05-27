@@ -102,8 +102,12 @@ public class Agenda implements Serializable {
      *
      * @param entry  The entry to be completed.
      */
-    public void completeEntry(Entry entry) {
-        entry.changeStatus(AgendaStatus.DONE);
+    public void completeEntry(Entry entry, String collaboratorFromSession) {
+        if (verifyCollaborator(entry, collaboratorFromSession)) {
+            entry.changeStatus(AgendaStatus.DONE);
+        } else {
+            System.out.println("\n You don´t have permission to complete a entry!");
+        }
     }
 
     /**
@@ -167,5 +171,14 @@ public class Agenda implements Serializable {
      */
     public List<Entry> getEntriesList() {
         return entriesList;
+    }
+
+    public boolean verifyCollaborator(Entry entry, String collaboratorFromSession) {
+        for (Collaborator c : entry.getTeamAssign().getTeam()) {
+            if (collaboratorFromSession.equalsIgnoreCase(c.getEmail())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
