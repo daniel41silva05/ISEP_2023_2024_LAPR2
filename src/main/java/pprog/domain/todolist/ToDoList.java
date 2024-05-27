@@ -16,7 +16,7 @@ public class ToDoList implements Serializable {
         tasksList = new ArrayList<>();
     }
 
-    public Task addTaskToDoList(String title, String description, int degreeOfUrgency, int expectedDurantionTime, int taskType, GreenSpace greenSpace, GreenSpacesManager gsmFromSession) {
+    public Task addTaskToDoList(String title, String description, int degreeOfUrgency, int expectedDurantionTime, int taskType, GreenSpace greenSpace, String gsmFromSession) {
         Task newTask = null;
         Task task = new Task(title, description, degreeOfUrgency, expectedDurantionTime, taskType, greenSpace);
 
@@ -34,7 +34,7 @@ public class ToDoList implements Serializable {
         return tasksList.get(index - 1);
     }
 
-    private boolean addTask(GreenSpacesManager gsmFromSession, Task task) {
+    private boolean addTask(String gsmFromSession, Task task) {
         if (validateTask(task) && validateUser(gsmFromSession, task)) {
             return tasksList.add(task);
         } else {
@@ -46,8 +46,8 @@ public class ToDoList implements Serializable {
         return !tasksList.contains(task);
     }
 
-    public boolean validateUser(GreenSpacesManager gsmFromSession, Task task) {
-        if (task.getGreenSpacesManager().equals(gsmFromSession)) {
+    public boolean validateUser(String gsmFromSession, Task task) {
+        if (task.getGreenSpacesManager().getEmail().equals(gsmFromSession)) {
             return true;
         } else {
             throw new IllegalArgumentException("The logged in Green Space Manager does not manage the green space associated with this task.");

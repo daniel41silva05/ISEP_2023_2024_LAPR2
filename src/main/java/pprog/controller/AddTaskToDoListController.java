@@ -66,9 +66,9 @@ public class AddTaskToDoListController {
         return getGreenSpacesRepository().getGreenSpaceByName(name);
     }
 
-    private GreenSpacesManager getGSMFromSession() {
+    private String getGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
-        return new GreenSpacesManager(email.getEmail());
+        return email.getEmail();
     }
 
     public List<GreenSpace> getGreenSpacesList() {

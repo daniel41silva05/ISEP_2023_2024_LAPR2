@@ -33,7 +33,7 @@ public class Agenda implements Serializable {
      * @param gsmFromSession  The Green Spaces Manager associated with the session.
      * @return                The newly added entry.
      */
-    public Entry addEntryAgenda(Date startingDate, Task task, GreenSpacesManager gsmFromSession) {
+    public Entry addEntryAgenda(Date startingDate, Task task, String gsmFromSession) {
         Entry newEntry = null;
         Entry entry = new Entry(startingDate, task);
 
@@ -67,7 +67,7 @@ public class Agenda implements Serializable {
      * @return                True if the entry is successfully added, false otherwise.
      * @throws IllegalArgumentException if the entry already exists in the agenda.
      */
-    private boolean addEntry(GreenSpacesManager gsmFromSession, Entry entry) {
+    private boolean addEntry(String gsmFromSession, Entry entry) {
         if (validateEntry(entry) && validateUser(gsmFromSession, entry)) {
             entry.getTask().changeStatus(TaskStatus.PROCESSED);
             entriesList.add(entry);
@@ -124,7 +124,7 @@ public class Agenda implements Serializable {
      * @return                True if the user is authorized to add the entry, false otherwise.
      * @throws IllegalArgumentException if the logged-in Green Space Manager does not manage the green space associated with the entry.
      */
-    private boolean validateUser(GreenSpacesManager gsmFromSession, Entry entry) {
+    private boolean validateUser(String gsmFromSession, Entry entry) {
         if (entry.getGreenSpacesManager().equals(gsmFromSession)) {
             return true;
         } else {

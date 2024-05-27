@@ -122,9 +122,9 @@ public class AddEntryAgendaController {
      *
      * @return The GreenSpacesManager instance from the current session.
      */
-    private GreenSpacesManager getGSMFromSession() {
+    private String getGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
-        return new GreenSpacesManager(email.getEmail());
+        return email.getEmail();
     }
 
 }

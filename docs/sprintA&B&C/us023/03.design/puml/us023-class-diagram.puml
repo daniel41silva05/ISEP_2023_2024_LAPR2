@@ -57,7 +57,7 @@ class AuthenticationRepository {
 }
 
 class UserSession {
-    +getCurrentUserSession()
+    +getUserId()
 }
 
 class EmailService {
