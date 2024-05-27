@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Collaborator"
+participant ":System" as System
+
+activate "Collaborator"
+
+    "Collaborator" -> System : accesses the task query interface.
+    activate System
+
+    "Collaborator" -> System : selects the start date and end date.
+
+        System --> "Collaborator" : ensures that the start and end dates entered are valid.
+
+
+        System --> "Collaborator" : displays the list of tasks sorted by date.
+    deactivate System
+
+    "Collaborator" -> System :  applies the status filter, if desired.
+    activate System
+
+        System --> "Collaborator" : updates the task list based on the applied filter.
+    deactivate System
+
+@enduml
