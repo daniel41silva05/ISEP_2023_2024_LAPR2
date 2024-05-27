@@ -1,7 +1,9 @@
 package pprog.repository;
 
+import pprog.domain.algoritmos.SortingAlgorithm;
 import pprog.domain.greenspace.GreenSpace;
 import pprog.domain.users.GreenSpacesManager;
+import pprog.session.ApplicationSession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,6 +55,16 @@ public class GreenSpaceRepository implements Serializable {
     @Override
     public String toString() {
         return "Green space=" + greenSpacesList + '}';
+    }
+
+    public void sortingAlgoritmo() {
+        SortingAlgorithm algorithm;
+        try {
+            algorithm = ApplicationSession.getSortingAlgorithm();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+        algorithm.sort(getGreenSpacesList());
     }
 }
 

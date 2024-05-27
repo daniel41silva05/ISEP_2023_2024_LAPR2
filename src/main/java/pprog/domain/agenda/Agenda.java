@@ -3,7 +3,6 @@ package pprog.domain.agenda;
 import pprog.domain.collaborator.Collaborator;
 import pprog.domain.todolist.Task;
 import pprog.domain.todolist.TaskStatus;
-import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -105,8 +104,6 @@ public class Agenda implements Serializable {
     public void completeEntry(Entry entry, String collaboratorFromSession) {
         if (verifyCollaborator(entry, collaboratorFromSession)) {
             entry.changeStatus(AgendaStatus.DONE);
-        } else {
-            System.out.println("\n You don´t have permission to complete a entry!");
         }
     }
 
@@ -129,7 +126,7 @@ public class Agenda implements Serializable {
      * @throws IllegalArgumentException if the logged-in Green Space Manager does not manage the green space associated with the entry.
      */
     private boolean validateUser(String gsmFromSession, Entry entry) {
-        if (entry.getGreenSpacesManager().equals(gsmFromSession)) {
+        if (entry.getGreenSpacesManager().getEmail().equals(gsmFromSession)) {
             return true;
         } else {
             throw new IllegalArgumentException("The logged in Green Space Manager does not manage the green space associated with this entrance.");
@@ -179,6 +176,6 @@ public class Agenda implements Serializable {
                 return true;
             }
         }
-        return false;
+        throw new IllegalArgumentException("You don´t have permission to complete a entry.");
     }
 }
