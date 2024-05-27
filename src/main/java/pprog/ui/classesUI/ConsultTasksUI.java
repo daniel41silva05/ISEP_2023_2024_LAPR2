@@ -75,13 +75,4 @@ public class ConsultTasksUI {
         }
     }
 
-    /**
-     * The main method to start the application.
-     *
-     * @param args The command line arguments.
-     */
-    public static void main(String[] args) {
-        ConsultTasksUI ui = new ConsultTasksUI();
-        ui.start();
-    }
 }
