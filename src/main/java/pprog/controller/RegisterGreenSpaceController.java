@@ -37,13 +37,12 @@ public class RegisterGreenSpaceController {
         return authenticationRepository;
     }
 
-    public boolean registerGreenSpace(String name, String address, int type, double area) {
+    public String registerGreenSpace(String name, String address, int type, double area) {
         try {
             getGreenSpaceRepository().registerGreenSpace(name, address, type, area, getGSMFromSession());
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -51,5 +50,7 @@ public class RegisterGreenSpaceController {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new GreenSpacesManager(email.getEmail());
     }
+
+
 
 }

@@ -1,5 +1,6 @@
 package pprog.domain.greenspace;
 
+import pprog.domain.Job;
 import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
@@ -22,6 +23,18 @@ public class GreenSpace implements Serializable {
         this.type = GreenSpaceType.fromInt(type);
         this.area = area;
         this.greenSpacesManager = gsm;
+    }
+
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        GreenSpace outroGreenSpace = (GreenSpace) outroObjeto;
+        return name.equalsIgnoreCase(outroGreenSpace.name);
     }
 
     public String getName() {
@@ -62,10 +75,6 @@ public class GreenSpace implements Serializable {
 
     public void setGreenSpacesManager(GreenSpacesManager greenSpacesManager) {
         this.greenSpacesManager = greenSpacesManager;
-    }
-
-    public GreenSpace clone() {
-        return new GreenSpace(this.name, this.address, this.type.ordinal(), this.area, this.greenSpacesManager);
     }
 
     @Override

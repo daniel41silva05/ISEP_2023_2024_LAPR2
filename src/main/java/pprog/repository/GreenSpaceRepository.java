@@ -26,7 +26,7 @@ public class GreenSpaceRepository implements Serializable {
 
     private boolean addGreenSpace (GreenSpace greenSpace) {
         if (validateGreenSpace(greenSpace)) {
-            greenSpacesList.add(greenSpace.clone());
+            greenSpacesList.add(greenSpace);
             return true;
         } else {
             throw new IllegalArgumentException("Green space already exists in the repository");

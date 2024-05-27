@@ -31,16 +31,15 @@ public class RegisterGreenSpaceUI implements Runnable {
     }
 
     private void submitData() {
-
-        if (getController().registerGreenSpace(name, address, type, area)) {
-            System.out.println("\nGreen Space successfully registed!");
+        String result = getController().registerGreenSpace(name, address, type, area);
+        if (result == null) {
+            System.out.println("\nGreen Space successfully registered!");
             List<GreenSpace> greenSpaces = getController().getGreenSpaceRepository().getGreenSpacesList();
             GreenSpace lastGreenSpace = greenSpaces.get(greenSpaces.size() - 1);
             System.out.println(lastGreenSpace);
         } else {
-            System.out.println("Green Space not registed!");
+            System.out.println("Green Space not registered!\n" + result);
         }
-
     }
 
     private void requestData() {
@@ -60,13 +59,34 @@ public class RegisterGreenSpaceUI implements Runnable {
 
     private String request2() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter the address of the green space: ");
-        return input.nextLine();
+        String address;
+        do {
+            System.out.print("Address (street, zipcode, city): ");
+            address = input.nextLine().trim();
+            String[] parts = address.split(",");
+            if (parts.length != 3) {
+                System.out.println("Invalid address format. Please enter the address including street, zipcode, and city.");
+                continue;
+            }
+            String zipcode = parts[1].trim();
+            if (!zipcode.matches("\\d{4}-\\d{3}")) {
+                System.out.println("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
+                continue;
+            }
+            return address;
+        } while (true);
     }
     private int request3() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the type of the green space (1: Park, 2: Garden, etc.): ");
-        return input.nextInt();
+        int type = input.nextInt();
+
+        if (type < 1 || type > 3) {
+            System.out.println("Invalid input. Please choose a valid option (1, 2 or 3).");
+            return request3();
+        } else {
+            return type;
+        }
     }
 
     private Double request4() {
