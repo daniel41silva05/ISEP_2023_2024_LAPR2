@@ -24,7 +24,7 @@ public class ConsultTasksController {
         this.agenda = new Agenda();
     }
 
-    private Collaborator getEmailCollaboratorFromSession() {
+    private String getEmailCollaboratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
     }

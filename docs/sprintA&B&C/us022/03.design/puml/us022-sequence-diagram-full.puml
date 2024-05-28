@@ -142,22 +142,22 @@ activate GSM
             REPS --> CTRL: agenda
             deactivate REPS
 
-            CTRL -> agenda: addEntryAgenda(startingDate, task, gsmFromSession)
+            CTRL -> agenda: addEntryAgenda(startingDate, task, email)
             activate agenda
 
                 agenda -> ENTRY** : create(startingDate, task)
 
-                agenda -> agenda: addEntry (gsmFromSession, entry)
+                agenda -> agenda: addEntry (email, entry)
                 activate agenda
 
                 agenda -> agenda: validateEntry (entry)
                 activate agenda
 
-                agenda -> agenda: validateUser (gsmFromSession, entry)
-                activate agenda
-
                 agenda --> agenda
                 deactivate agenda
+
+                agenda -> agenda: validateUser (email, entry)
+                activate agenda
 
                 agenda --> agenda
                 deactivate agenda
