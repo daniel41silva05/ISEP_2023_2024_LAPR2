@@ -2,10 +2,11 @@ package pprog.controller.entry;
 
 import pprog.domain.agenda.Agenda;
 import pprog.domain.agenda.Entry;
-import pprog.domain.email.Email;
+import pt.isep.lei.esoft.auth.domain.model.Email;
 import pprog.domain.todolist.TaskStatus;
 import pprog.domain.collaborator.Collaborator;
 import pprog.repository.AuthenticationRepository;
+import pprog.repository.Repositories;
 
 import java.util.Date;
 import java.util.List;
@@ -16,17 +17,51 @@ import java.util.List;
 public class ConsultTasksController {
 
     private Agenda agenda;
+    private AuthenticationRepository authenticationRepository;
 
+
+    public ConsultTasksController() {
+        getAgenda();
+        getAuthenticationRepository();
+    }
     /**
      * Constructs a new ConsultTasksController object.
      */
-    public ConsultTasksController() {
+    public ConsultTasksController(Agenda agenda, AuthenticationRepository authenticationRepository) {
         this.agenda = new Agenda();
+        this.authenticationRepository = new AuthenticationRepository();
     }
 
     private String getEmailCollaboratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
+    }
+
+
+    /**
+     * Retrieves the agenda instance.
+     *
+     * @return The agenda instance.
+     */
+    public Agenda getAgenda() {
+        if (agenda == null) {
+            Repositories repositories = Repositories.getInstance();
+            agenda = repositories.getAgenda();
+        }
+        return agenda;
+    }
+
+    /**
+     * Retrieves the authentication repository instance.
+     *
+     * @return The authentication repository instance.
+     */
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
     }
 
     /**
