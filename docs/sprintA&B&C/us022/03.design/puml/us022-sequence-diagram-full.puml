@@ -17,6 +17,7 @@ participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
 participant "agenda:\nAgenda" as agenda
 participant "entry\n:Entry" as ENTRY
+participant "Green Spaces\nManager" as USER
 
 activate GSM
 
@@ -142,22 +143,34 @@ activate GSM
             REPS --> CTRL: agenda
             deactivate REPS
 
-            CTRL -> agenda: addEntryAgenda(startingDate, task, gsmFromSession)
+            CTRL -> agenda: addEntryAgenda(startingDate, task, email)
             activate agenda
 
                 agenda -> ENTRY** : create(startingDate, task)
 
-                agenda -> agenda: addEntry (gsmFromSession, entry)
+                agenda -> agenda: addEntry (email, entry)
                 activate agenda
 
                 agenda -> agenda: validateEntry (entry)
                 activate agenda
 
-                agenda -> agenda: validateUser (gsmFromSession, entry)
-                activate agenda
-
                 agenda --> agenda
                 deactivate agenda
+
+                agenda -> agenda: validateUser (email, entry)
+                activate agenda
+
+                    agenda -> ENTRY: getGreenSpacesManager()
+                    activate ENTRY
+
+                    ENTRY --> agenda: greenSpacesManager
+                    deactivate ENTRY
+
+                    agenda -> USER: getEmail()
+                    activate USER
+
+                    USER --> agenda: email
+                    deactivate USER
 
                 agenda --> agenda
                 deactivate agenda
