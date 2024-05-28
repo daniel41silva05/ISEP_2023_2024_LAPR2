@@ -136,7 +136,6 @@ public class Agenda implements Serializable {
     /**
      * Retrieves a list of tasks for a collaborator between specified dates and with a specific task status.
      *
-     * @param collaborator  The collaborator for whom to retrieve tasks.
      * @param startDate     The start date for the task retrieval period.
      * @param endDate       The end date for the task retrieval period.
      * @param taskStatus    The status of the tasks to retrieve (optional).
