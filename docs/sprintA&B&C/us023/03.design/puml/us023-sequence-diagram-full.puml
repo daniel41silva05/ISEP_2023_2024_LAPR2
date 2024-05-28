@@ -207,7 +207,7 @@ activate GSM
                     Collaborator --> CTRL: name
                     deactivate Collaborator
 
-                CTRL -> emailService: sendTheEmailToTeam(gsmEmail, collaboratorEmail, collaboratorName, entry)
+                CTRL -> emailService: sendToEmailFile(gsmEmail, collaboratorEmail, collaboratorName, entry)
                 activate emailService
 
                     emailService -> ApplicationSession: getEmailService()
