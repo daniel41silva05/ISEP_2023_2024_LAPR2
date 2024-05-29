@@ -6,13 +6,13 @@ skinparam linetype polyline
 skinparam classAttributeIconSize 0
 
 class Agenda {
-    -addEntry(entry)
     -validateEntry(entry)
-    +addEntryAgenda(startingDate, task)
+    +postponeEntry(entry, newStartingDate)
+    +getEntriesList()
 }
 
 class Entry {
-    -Date startingDate
+    -Date: startingDate
     +Entry(startingDate, task)
 }
 
@@ -32,7 +32,9 @@ enum AgendaStatus {
 }
 
 class PostponeEntryController{
--Agenda: agenda
+    -getEntryByIndex(index)
+    +postponeEntry(entryindex, newStartingDate)
+    +getEntriesList()
 }
 
 class PostponeEntryUI{
