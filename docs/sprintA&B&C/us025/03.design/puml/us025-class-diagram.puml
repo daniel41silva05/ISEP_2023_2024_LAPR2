@@ -9,6 +9,10 @@ skinparam classAttributeIconSize 0
 class CancelEntryAgendaUI{}
 
 class CancelEntryAgendaController{
+    -getEntryByIndex(index)
+    +cancelEntry(entryIndex)
+    +getEntriesList()
+
 }
 
 class Repositories{
@@ -18,9 +22,9 @@ class Repositories{
 }
 
 class Agenda{
-    -addEntry(entry)
-    -validateEntry()
-    +addEntryAgenda(startingDate, task)
+    -validateEntry(entry)
+    +getEntriesList()
+    +cancelEntry(entry)
 }
 
 class Entry{
