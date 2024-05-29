@@ -9,8 +9,9 @@ skinparam classAttributeIconSize 0
 class ConsultTasksUI{}
 
 class ConsultTasksController{
-    -getTaskByReference(taskReference)
-    +getTasksList()
+    - getAuthenticationRepository()
+    - getEmailCollaboratorFromSession()
+    + getTasksForCollaboratorBetweenDates(startDate, endDate)
 }
 
 class Repositories{
@@ -19,35 +20,27 @@ class Repositories{
     +getToDoList()
 }
 
-class ToDoList{
-    +getTaskByReference(taskReference)
+class Agenda{
+    + getTasksForCollaboratorBetweenDates(collaboratorEmail, startDate, endDate)
+    + verifyCollaborator(entry, collaboratorFromSession)
 }
 
-class Task{
-    -String reference
-    -String description
-    -EmergencyDegree: degreeOfUrgency
-    -int expectedDuration
-    -TaskType: type
-    -GreenSpace: greenSpace
-}
-
-enum TaskStatus{
-    PENDING
-    PROCESSED
+enum AgendaStatus{
+        PLANNED
+        POSTPONED
+        CANCELED
+        DONE
 }
 
 ConsultTasksUI ..> ConsultTasksController
 
 ConsultTasksController ..> Repositories
 
-ConsultTasksController ..> ToDoList
+ConsultTasksController ..> Agenda
 
 Repositories --> Repositories: repositories
 
-Repositories --> "1" ToDoList
+Repositories --> "1" Agenda
 
-ToDoList --> "*" Task
-
-Task --> "1" TaskStatus
+Agenda --> AgendaStatus
 @enduml
