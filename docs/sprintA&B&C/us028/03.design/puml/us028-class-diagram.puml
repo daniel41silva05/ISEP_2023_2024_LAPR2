@@ -1,0 +1,53 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+skinparam classAttributeIconSize 0
+
+class ConsultTasksUI{}
+
+class ConsultTasksController{
+    -getTaskByReference(taskReference)
+    +getTasksList()
+}
+
+class Repositories{
+    -Repositories()
+    +getInstance(): Repositories
+    +getToDoList()
+}
+
+class ToDoList{
+    +getTaskByReference(taskReference)
+}
+
+class Task{
+    -String reference
+    -String description
+    -EmergencyDegree: degreeOfUrgency
+    -int expectedDuration
+    -TaskType: type
+    -GreenSpace: greenSpace
+}
+
+enum TaskStatus{
+    PENDING
+    PROCESSED
+}
+
+ConsultTasksUI ..> ConsultTasksController
+
+ConsultTasksController ..> Repositories
+
+ConsultTasksController ..> ToDoList
+
+Repositories --> Repositories: repositories
+
+Repositories --> "1" ToDoList
+
+ToDoList --> "*" Task
+
+Task --> "1" TaskStatus
+@enduml
