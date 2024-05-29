@@ -3,8 +3,6 @@ package pprog.controller.entry;
 import pprog.domain.agenda.Agenda;
 import pprog.domain.agenda.Entry;
 import pt.isep.lei.esoft.auth.domain.model.Email;
-import pprog.domain.todolist.TaskStatus;
-import pprog.domain.collaborator.Collaborator;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
 
@@ -69,10 +67,9 @@ public class ConsultTasksController {
      *
      * @param startDate    The start date for the task retrieval period.
      * @param endDate      The end date for the task retrieval period.
-     * @param taskStatus   The optional status of tasks to filter by (null to ignore).
      * @return A list of tasks matching the criteria.
      */
-    public List<Entry> getTasksForCollaboratorBetweenDates(Date startDate, Date endDate, TaskStatus taskStatus) {
-        return agenda.getTasksForCollaboratorBetweenDates(getEmailCollaboratorFromSession(), startDate, endDate, taskStatus);
+    public List<Entry> getTasksForCollaboratorBetweenDates(Date startDate, Date endDate) {
+        return agenda.getTasksForCollaboratorBetweenDates(getEmailCollaboratorFromSession(), startDate, endDate);
     }
 }
