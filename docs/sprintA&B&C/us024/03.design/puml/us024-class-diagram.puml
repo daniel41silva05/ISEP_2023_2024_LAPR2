@@ -32,11 +32,24 @@ enum AgendaStatus {
 }
 
 class PostponeEntryController{
-
+-Agenda: agenda
 }
 
 class PostponeEntryUI{
 
 }
 
+PostponeEntryUI ..> PostponeEntryController
+
+PostponeEntryController ..> Repositories: repositories
+
+PostponeEntryController ..> Agenda: agenda
+
+Repositories --> Repositories: instance
+
+Repositories --> "1" Agenda
+
+Agenda --> "*" Entry
+
+Entry --> "1" AgendaStatus
 @enduml
