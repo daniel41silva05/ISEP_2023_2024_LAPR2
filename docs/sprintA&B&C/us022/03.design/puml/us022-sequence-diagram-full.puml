@@ -17,7 +17,8 @@ participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
 participant "agenda:\nAgenda" as agenda
 participant "entry\n:Entry" as ENTRY
-participant "Green Spaces\nManager" as USER
+participant "greenSpacesManager:\nGreen Spaces Manager" as USER
+participant "task\n:Task" as TASK
 
 activate GSM
 
@@ -174,6 +175,18 @@ activate GSM
 
                 agenda --> agenda
                 deactivate agenda
+
+                agenda -> ENTRY: getTask()
+                activate ENTRY
+
+                ENTRY --> agenda: task
+                deactivate ENTRY
+
+                agenda -> TASK: changeStatus(TaskStatus.PROCESSED)
+                activate TASK
+
+                TASK --> agenda
+                deactivate TASK
 
                 agenda --> agenda
                 deactivate agenda
