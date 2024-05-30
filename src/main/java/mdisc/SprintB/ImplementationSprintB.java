@@ -1,4 +1,4 @@
-package mdisc;
+package mdisc.SprintB;
 
 import java.io.File;
 import java.io.FileWriter;
