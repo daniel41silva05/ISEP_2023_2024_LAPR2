@@ -86,7 +86,7 @@ public class Dijkstra {
         StringBuilder path = new StringBuilder();
         while (currentVertex != -1) {
             if (path.length() > 0) {
-                path.insert(0, ";");
+                path.insert(0, ",");
             }
             path.insert(0, points[currentVertex]);
             currentVertex = predecessors[currentVertex];
@@ -98,11 +98,15 @@ public class Dijkstra {
         StringBuilder path = new StringBuilder();
         while (currentVertex != -1) {
             if (path.length() > 0) {
-                path.insert(0, ";");
+                path.insert(0, ",");
             }
             path.insert(0, points[currentVertex]);
             currentVertex = predecessors[currentVertex];
         }
         return path.toString();
+    }
+
+    public int getTotalDistance(int vertex) {
+        return distances[vertex];
     }
 }
