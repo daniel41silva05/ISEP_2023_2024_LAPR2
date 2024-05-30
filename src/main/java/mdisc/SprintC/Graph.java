@@ -28,8 +28,7 @@ public class Graph {
         while ((line = br.readLine()) != null) {
             String[] values = line.split(";");
             for (int col = 0; col < values.length; col++) {
-                values[col] = values[col].replaceAll("[^\\d]", "");
-                adjacencyMatrix[row][col] = Integer.parseInt(values[col]);
+                adjacencyMatrix[row][col] = Integer.parseInt(values[col].replaceAll("[^\\d]", ""));
             }
             row++;
         }
