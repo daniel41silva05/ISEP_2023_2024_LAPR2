@@ -2,6 +2,7 @@ package pprog.ui.menu;
 
 import pprog.ui.classesUI.AddEntryAgendaUI;
 import pprog.ui.classesUI.AssignTeamUI;
+import pprog.ui.classesUI.ListGreenSpacesByGSMUI;
 import pprog.ui.classesUI.RegisterGreenSpaceUI;
 import pprog.ui.utils.Utils;
 
@@ -18,6 +19,7 @@ public class GreenSpacesManagerUI implements Runnable {
             // options.add(new MenuItem("Add Entry To Do List", new AddEntryToDoListUI()));
             options.add(new MenuItem("Add Entry Agenda", new AddEntryAgendaUI()));
             options.add(new MenuItem("Assign Team Entry Agenda", new AssignTeamUI()));
+            options.add(new MenuItem("List Green Spaces managed by GSM", new ListGreenSpacesByGSMUI()));
 
         int option = 0;
         do {

@@ -61,17 +61,4 @@ public class RegisterGreenSpaceController {
     public GreenSpace getGreenSpaceByName(String greenSpaceName) {
         return getGreenSpaceRepository().getGreenSpaceByName(greenSpaceName);
     }
-
-    public List<GreenSpace> getGreenSpaceListByGSM() {
-        List<GreenSpace> greenSpacesListByGSM = new ArrayList<>();
-
-        GreenSpacesManager gsm = getGSMFromSession();
-        for (GreenSpace gs: getGreenSpaceRepository().getGreenSpacesList()) {
-            if (gs.getGreenSpacesManager().equals(gsm)) {
-                greenSpacesListByGSM.add(gs);
-            }
-        }
-        return greenSpacesListByGSM;
-    }
-
 }

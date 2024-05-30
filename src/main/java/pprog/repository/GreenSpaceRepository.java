@@ -57,14 +57,27 @@ public class GreenSpaceRepository implements Serializable {
         return "Green space=" + greenSpacesList + '}';
     }
 
-    public void sortingAlgoritmo() {
+    public List<GreenSpace> getGreenSpaceListByGSM(GreenSpacesManager gsmFromSession) {
+        List<GreenSpace> greenSpacesListByGSM = new ArrayList<>();
+
+        for (GreenSpace gs: getGreenSpacesList()) {
+            if (gs.getGreenSpacesManager().equals(gsmFromSession)) {
+                greenSpacesListByGSM.add(gs);
+            }
+        }
+        return greenSpacesListByGSM;
+    }
+
+    public List<GreenSpace> sortListByAlgorithm(GreenSpacesManager gsmFromSession) {
         SortingAlgorithm algorithm;
         try {
             algorithm = ApplicationSession.getSortingAlgorithm();
         } catch (Exception ex) {
             throw new RuntimeException(ex.getMessage());
         }
-        algorithm.sort(getGreenSpacesList());
+        List<GreenSpace> sortedgreenSpacesListByGSM = getGreenSpaceListByGSM(gsmFromSession);
+        algorithm.sort(sortedgreenSpacesListByGSM);
+        return sortedgreenSpacesListByGSM;
     }
 }
 
