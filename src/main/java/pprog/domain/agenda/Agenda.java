@@ -136,22 +136,18 @@ public class Agenda implements Serializable {
     /**
      * Retrieves a list of tasks for a collaborator between specified dates and with a specific task status.
      *
-     * @param collaborator  The collaborator for whom to retrieve tasks.
+     * @param collaboratorEmail  The collaborator for whom to retrieve tasks.
      * @param startDate     The start date for the task retrieval period.
      * @param endDate       The end date for the task retrieval period.
-     * @param taskStatus    The status of the tasks to retrieve (optional).
      * @return              A list of tasks matching the specified criteria.
      */
-    public List<Entry> getTasksForCollaboratorBetweenDates(Collaborator collaborator, Date startDate, Date endDate, TaskStatus taskStatus) {
+    public List<Entry> getTasksForCollaboratorBetweenDates(String collaboratorEmail, Date startDate, Date endDate) {
         List<Entry> tasks = new ArrayList<>();
 
         for (Entry entry : entriesList) {
-            // Verifica se a entrada está dentro do intervalo de datas especificado
             if (entry.getStartingDate().after(startDate) && entry.getStartingDate().before(endDate)) {
-                // Verifica se o colaborador está atribuído a esta entrada
-                if (entry.getTask().getGreenSpacesManager().equals(collaborator)) {
-                    // Verifica se o status da tarefa corresponde ao filtro
-                    if (taskStatus == null || entry.getTask().getStatus() == taskStatus) {
+                for (Collaborator c : entry.getTeamAssign().getTeam()) {
+                    if (c.getEmail().equalsIgnoreCase(collaboratorEmail)){
                         tasks.add(entry);
                     }
                 }

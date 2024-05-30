@@ -17,6 +17,8 @@ participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
 participant "agenda:\nAgenda" as agenda
 participant "entry\n:Entry" as ENTRY
+participant "greenSpacesManager:\nGreen Spaces Manager" as USER
+participant "task\n:Task" as TASK
 
 activate GSM
 
@@ -142,25 +144,49 @@ activate GSM
             REPS --> CTRL: agenda
             deactivate REPS
 
-            CTRL -> agenda: addEntryAgenda(startingDate, task, gsmFromSession)
+            CTRL -> agenda: addEntryAgenda(startingDate, task, email)
             activate agenda
 
                 agenda -> ENTRY** : create(startingDate, task)
 
-                agenda -> agenda: addEntry (gsmFromSession, entry)
+                agenda -> agenda: addEntry (email, entry)
                 activate agenda
 
                 agenda -> agenda: validateEntry (entry)
                 activate agenda
 
-                agenda -> agenda: validateUser (gsmFromSession, entry)
+                agenda --> agenda
+                deactivate agenda
+
+                agenda -> agenda: validateUser (email, entry)
                 activate agenda
 
-                agenda --> agenda
-                deactivate agenda
+                    agenda -> ENTRY: getGreenSpacesManager()
+                    activate ENTRY
+
+                    ENTRY --> agenda: greenSpacesManager
+                    deactivate ENTRY
+
+                    agenda -> USER: getEmail()
+                    activate USER
+
+                    USER --> agenda: email
+                    deactivate USER
 
                 agenda --> agenda
                 deactivate agenda
+
+                agenda -> ENTRY: getTask()
+                activate ENTRY
+
+                ENTRY --> agenda: task
+                deactivate ENTRY
+
+                agenda -> TASK: changeStatus(TaskStatus.PROCESSED)
+                activate TASK
+
+                TASK --> agenda
+                deactivate TASK
 
                 agenda --> agenda
                 deactivate agenda

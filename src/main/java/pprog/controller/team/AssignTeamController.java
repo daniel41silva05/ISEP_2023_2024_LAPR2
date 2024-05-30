@@ -10,7 +10,6 @@ import pprog.repository.Repositories;
 import pprog.repository.TeamRepository;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AssignTeamController {
@@ -86,8 +85,8 @@ public class AssignTeamController {
         return getTeamRepository().getTeamList();
     }
 
-    private void sendTheEmailToTeam(String from, String to, String nameCollaborator, String entry) {
-        EmailService.sendToEmailFile(from, to, nameCollaborator, entry);
+    private void sendTheEmailToTeam(String gsmEmail, String collaboratorEmail, String collaboratorName, String entry) {
+        EmailService.sendToEmailFile(gsmEmail, collaboratorEmail, collaboratorName, entry);
     }
 
     private String getEmailGSMFromSession() {

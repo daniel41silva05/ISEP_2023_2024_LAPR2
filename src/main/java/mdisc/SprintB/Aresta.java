@@ -1,4 +1,4 @@
-package mdisc;
+package mdisc.SprintB;
 
 public class Aresta {
     private String origem;

@@ -1,4 +1,6 @@
-package mdisc;
+package mdisc.SprintB;
+
+import mdisc.SprintB.Aresta;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -29,6 +29,7 @@ Apart, which atributes has a task ( maybe something like: name, frequency, creat
 
 > **Answer:** No, in a specific period (for instance during a week) a collaborator just belongs to team. But if you consider a wider period you may find different teams to which a collaborator belonged.
 In this project no distinction will be made between recorrent/occasional tasks; I suppose that the identification is a combination of Name, Date and Local, like Prunning Trees at 20/05/2024 in Parque da Cidade.
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The list of green spaces must be sorted by date

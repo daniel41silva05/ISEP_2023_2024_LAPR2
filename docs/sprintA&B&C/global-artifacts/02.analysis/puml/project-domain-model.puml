@@ -9,29 +9,20 @@ hide methods
 
 title Domain Model
 
-class MediumSizedPark {
-}
-class LargeSizedPark {
-}
-class Garden {
-}
-class GreenSpace {
-}
-
 class Organization {
 }
 
 class FleetManager {
-    name
+    email
 }
 class HumanResourcesManager {
-    name
+    email
 }
 class GreenSpaceManager {
-    name
+    email
 }
 class GreenSpaceUser {
-    name
+    email
 }
 
 class Equipment {
@@ -77,43 +68,105 @@ class Collaborator {
 class Skill {
     name
 }
-class GenerateTeam {
-    minSize
-    maxSize
-    skillsNeeded
+class Team {
+}
+
+class GreenSpace {
+    name
+    address
+    area
+}
+
+enum GreenSpaceType {
+    garden
+    mediumSizedPark
+    largeSizedPark
 }
 
 class Task {
+    title
+    description
+    expectedDuration
 }
 
-Organization "1" -- "1..*" GreenSpace : manages >
-MediumSizedPark "1" -- "1" GreenSpace : is a >
-Garden "1" -- "1" GreenSpace : is a >
-LargeSizedPark "1" -- "1" GreenSpace : is a >
+enum EmergencyDegree {
+    high
+    medium
+    low
+}
+
+enum TaskType {
+    regular
+    occasional
+}
+
+enum TaskStatus {
+    pending
+    processed
+}
+
+class Entry {
+    startingDate
+}
+
+enum AgendaStatus {
+    planned
+    postponed
+    canceled
+    done
+}
+
+class Agenda {
+}
+
+class ToDoList {
+}
+
+class Email {
+}
+
 Organization "1" -- "1..*" FleetManager : has >
 Organization "1" -- "1..*" HumanResourcesManager : has >
-Organization "1" -- "1" GreenSpaceManager : has >
+Organization "1" -- "1..*" GreenSpaceManager : has >
 Organization "1" -- "1..*" GreenSpaceUser : has >
-Collaborator "0..*" -- "1" Job : has >
-Collaborator "0..*" -- "1..*" Skill : has >
-HumanResourcesManager "1" -- "1" Job : selects  >
-HumanResourcesManager "1" -- "1..*" Skill : selects  >
-HumanResourcesManager "1" -- "1..*" Job : register  >
+Organization "1" --- "1" Agenda : has >
+Organization "1" -- "1" ToDoList : has >
+HumanResourcesManager "1" --- "1" Job : selects >
+HumanResourcesManager "1" --- "1..*" Skill : selects >
+HumanResourcesManager "1" --- "1..*" Job : register >
 Job "1" -- "0..*" Collaborator : assigned to >
 Skill "1..*" -- "0..*" Collaborator : assigned to >
-HumanResourcesManager "1" -- "1..*" Collaborator : register >
-HumanResourcesManager "1" -- "1..*" Skill : register >
-HumanResourcesManager "1" -- "1..*" GenerateTeam : generates >
+HumanResourcesManager "1" --- "1..*" Collaborator : register >
+HumanResourcesManager "1" --- "1..*" Skill : register >
+HumanResourcesManager "1" --- "1..*" Team : generates >
 FleetManager "1" -- "1..*" Vehicle : register >
 FleetManager "1" -- "1..*" Equipment : manages >
 FleetManager "1" -- "1..*" Machine : manages >
 FleetManager "1" - "1..*" CheckUp : register >
 Vehicle "0..*" -- "1" CheckUp : need >
 Vehicle "0..*" -- "1" VehicleType : cataloged as >
-GenerateTeam "1" -- "2..*" Collaborator : has >
-Task "1" -- "1..*" Skill : need >
-Organization "1" -- "0..*" Task : has >
-Task "1..*" -- "1" GenerateTeam : assigned to >
+Team "1" -- "2..*" Collaborator : has >
+GreenSpaceManager "1" -- "1..*" GreenSpace : register >
+GreenSpaceManager "1" -- "1..*" GreenSpace : manages >
+GreenSpace "0..*" -- "1" GreenSpaceType : cataloged as >
+Task "0..*" -- "1" GreenSpace : associated >
+ToDoList "1" --- "0..*" Task : has >
+Agenda "1" -- "0..*" Entry : has >
+Entry "0..*" -- "1" AgendaStatus : cataloged as >
+Task "1" -- "1" Entry : assigned to >
+GreenSpaceManager "1" -- "1..*" Task : adds >
+GreenSpaceManager "1" -- "1" Task : selects >
+Task "0..*" -- "1" EmergencyDegree : cataloged as >
+Task "0..*" -- "1" TaskType : cataloged as >
+Task "0..*" -- "1" TaskStatus : cataloged as >
+GreenSpaceManager "1" -- "1..*" Entry : postpone >
+GreenSpaceManager "1" -- "1..*" Entry : cancels >
+GreenSpaceManager "1" -- "1..*" Email : sends >
+Email "1" -- "1" Team : sent to >
+Team "1" -- "1..*" Entry : assigned to >
+Vehicle "1..*" --- "1" Entry : assigned to >
+Collaborator "1..*" ---- "0..*" Entry : consult >
+Collaborator "1..*" --- "0..*" Entry : record completion >
 
 @enduml
 

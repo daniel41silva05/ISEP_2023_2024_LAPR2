@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US025 - Cancel an Entry 
 
 ## 2. Analysis
 
