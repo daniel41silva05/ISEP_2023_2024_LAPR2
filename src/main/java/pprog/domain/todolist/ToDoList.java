@@ -1,8 +1,6 @@
 package pprog.domain.todolist;
 
-import pprog.domain.agenda.Entry;
 import pprog.domain.greenspace.GreenSpace;
-import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -56,5 +54,10 @@ public class ToDoList implements Serializable {
 
     public List<Task> getTasksList() {
         return tasksList;
+    }
+
+    @Override
+    public String toString() {
+        return tasksList.toString();
     }
 }

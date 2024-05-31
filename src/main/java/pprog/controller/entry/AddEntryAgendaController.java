@@ -1,8 +1,8 @@
 package pprog.controller.entry;
 
 import pprog.domain.agenda.Agenda;
+import pprog.domain.agenda.Entry;
 import pprog.domain.todolist.Task;
-import pprog.domain.users.GreenSpacesManager;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
 import pprog.domain.todolist.ToDoList;
@@ -88,13 +88,12 @@ public class AddEntryAgendaController {
      * @param index        The index of the task to add to the agenda.
      * @return True if the entry was successfully added to the agenda, false otherwise.
      */
-    public boolean addEntryAgenda(Date startingDate, int index) {
+    public String addEntryAgenda(Date startingDate, int index) {
         try {
             getAgenda().addEntryAgenda(startingDate, getTaskByIndex(index), getGSMFromSession());
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -125,6 +124,11 @@ public class AddEntryAgendaController {
     private String getGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
+    }
+
+    public Entry getEntryAdded() {
+        List<Entry> entries = getAgenda().getEntriesList();
+        return entries.get(entries.size() - 1);
     }
 
 }

@@ -1,10 +1,14 @@
 package pprog.controller;
 
+import pprog.domain.greenspace.GreenSpace;
+import pprog.domain.todolist.Task;
 import pprog.domain.users.GreenSpacesManager;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;
 import pt.isep.lei.esoft.auth.domain.model.Email;
+
+import java.util.List;
 
 public class RegisterGreenSpaceController {
 
@@ -49,6 +53,11 @@ public class RegisterGreenSpaceController {
     private GreenSpacesManager getGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new GreenSpacesManager(email.getEmail());
+    }
+
+    public GreenSpace getGreenSpaceRegistered() {
+        List<GreenSpace> greenSpaces = getGreenSpaceRepository().getGreenSpacesList();
+        return greenSpaces.get(greenSpaces.size() - 1);
     }
 
 }

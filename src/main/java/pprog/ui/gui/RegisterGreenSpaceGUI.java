@@ -10,11 +10,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pprog.controller.RegisterGreenSpaceController;
-import pprog.domain.greenspace.GreenSpace;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class RegisterGreenSpaceGUI implements Initializable {
@@ -83,9 +81,7 @@ public class RegisterGreenSpaceGUI implements Initializable {
 
         String result = controller.registerGreenSpace(name, address, type, area);
         if (result == null) {
-            List<GreenSpace> greenSpaces = controller.getGreenSpaceRepository().getGreenSpacesList();
-            GreenSpace lastGreenSpace = greenSpaces.get(greenSpaces.size() - 1);
-            showSuccess("Green Space successfully registered!\n\n" + lastGreenSpace);
+            showSuccess("Green Space successfully registered!\n\n" + controller.getGreenSpaceRegistered());
             changeScene((Stage) nameField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
         } else {
             showAlert(result + "\n\nGreen Space not registered!");

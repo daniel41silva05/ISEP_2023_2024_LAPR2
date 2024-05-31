@@ -1,9 +1,6 @@
 package pprog.ui.menu;
 
-import pprog.ui.classesUI.AddEntryAgendaUI;
-import pprog.ui.classesUI.AssignTeamUI;
-import pprog.ui.classesUI.ListGreenSpacesByGSMUI;
-import pprog.ui.classesUI.RegisterGreenSpaceUI;
+import pprog.ui.classesUI.*;
 import pprog.ui.utils.Utils;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ public class GreenSpacesManagerUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
             options.add(new MenuItem("Register a Green Space", new RegisterGreenSpaceUI()));
-            // options.add(new MenuItem("Add Entry To Do List", new AddEntryToDoListUI()));
+            options.add(new MenuItem("Add Entry To Do List", new AddTaskToDoListUI()));
             options.add(new MenuItem("Add Entry Agenda", new AddEntryAgendaUI()));
             options.add(new MenuItem("Assign Team Entry Agenda", new AssignTeamUI()));
             options.add(new MenuItem("List Green Spaces managed by GSM", new ListGreenSpacesByGSMUI()));

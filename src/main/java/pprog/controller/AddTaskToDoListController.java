@@ -1,7 +1,7 @@
 package pprog.controller;
 
 import pprog.domain.greenspace.GreenSpace;
-import pprog.domain.users.GreenSpacesManager;
+import pprog.domain.todolist.Task;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;
@@ -52,13 +52,12 @@ public class AddTaskToDoListController {
         return authenticationRepository;
     }
 
-    public boolean addTaskToDoList(String title, String descritpion, int degreeOfUrgency, int expectedDurantionTime, int taskType, String greenSpace) {
+    public String addTaskToDoList(String title, String descritpion, int degreeOfUrgency, int expectedDurantionTime, int taskType, String greenSpace) {
         try {
             getToDoList().addTaskToDoList(title, descritpion, degreeOfUrgency, expectedDurantionTime, taskType, getGreenSpaceByName(greenSpace), getGSMFromSession());
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -73,6 +72,11 @@ public class AddTaskToDoListController {
 
     public List<GreenSpace> getGreenSpacesList() {
         return getGreenSpacesRepository().getGreenSpacesList();
+    }
+
+    public Task getTaskAdded() {
+        List<Task> tasksList = getToDoList().getTasksList();
+        return tasksList.get(tasksList.size() - 1);
     }
 
 }

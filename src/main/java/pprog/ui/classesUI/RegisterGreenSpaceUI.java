@@ -1,9 +1,7 @@
 package pprog.ui.classesUI;
 
 import pprog.controller.RegisterGreenSpaceController;
-import pprog.domain.greenspace.GreenSpace;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class RegisterGreenSpaceUI implements Runnable {
@@ -23,7 +21,7 @@ public class RegisterGreenSpaceUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("\n\n--- Register a Collaborator ------------------------");
+        System.out.println("\n\n--- Register a Green Space ------------------------");
 
         requestData();
         submitData();
@@ -33,9 +31,7 @@ public class RegisterGreenSpaceUI implements Runnable {
         String result = getController().registerGreenSpace(name, address, type, area);
         if (result == null) {
             System.out.println("\nGreen Space successfully registered!");
-            List<GreenSpace> greenSpaces = getController().getGreenSpaceRepository().getGreenSpacesList();
-            GreenSpace lastGreenSpace = greenSpaces.get(greenSpaces.size() - 1);
-            System.out.println(lastGreenSpace);
+            System.out.println(controller.getGreenSpaceRegistered());
         } else {
             System.out.println("Green Space not registered!\n" + result);
         }

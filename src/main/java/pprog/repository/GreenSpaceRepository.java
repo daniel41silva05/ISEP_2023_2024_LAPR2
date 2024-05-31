@@ -77,11 +77,7 @@ public class GreenSpaceRepository implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (GreenSpace greenSpace : greenSpacesList) {
-            stringBuilder.append(greenSpace).append("\n\n");
-        }
-        return stringBuilder.toString();
+        return greenSpacesList.toString();
     }
 }
 

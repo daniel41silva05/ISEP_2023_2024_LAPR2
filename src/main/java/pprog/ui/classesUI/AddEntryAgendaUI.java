@@ -1,15 +1,12 @@
 package pprog.ui.classesUI;
 
 import pprog.controller.entry.AddEntryAgendaController;
-import pprog.domain.todolist.Task;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
-// ESTA CLASSE NAO ESTÁ CORRETA, FOI A PRESSA PARA TESTAR
 public class AddEntryAgendaUI implements Runnable {
     private final AddEntryAgendaController controller;
 
@@ -25,7 +22,7 @@ public class AddEntryAgendaUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("\n\n--- Add a Task ------------------------");
+        System.out.println("\n\n--- Add a Entry in the Agenda ------------------------");
 
         listAllTasks();
         requestData();
@@ -33,39 +30,63 @@ public class AddEntryAgendaUI implements Runnable {
     }
 
     private void submitData() {
-        if (getController().addEntryAgenda(date, index)) {
-            System.out.println("\nTask successfully completed!");
+        String result = getController().addEntryAgenda(date, index);
+        if (result == null) {
+            System.out.println("\nTask successfully added!");
+            System.out.println(controller.getEntryAdded());
         } else {
-            System.out.println("Task not completed!");
+            System.out.println("Task not added!\n" + result);
         }
     }
 
     private void requestData() {
-        index = request1();
-        date = request2();
+        index = requestTask();
+        date = requestDate();
     }
 
-    private int request1() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Task: ");
-        return sc.nextInt();
-    }
-
-    private Date request2() {
+    private int requestTask() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Date (format: dd/MM/yyyy): ");
+        while (true) {
+            try {
+                System.out.println("Task: ");
+                if (input.hasNextInt()) {
+                    int type = input.nextInt();
+                    if (type > 0 && type <= controller.getTasksList().size()) {
+                        return type;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
+            }
+        }
+    }
+
+    private Date requestDate() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Starting Date (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateStr);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
             System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
-            return request2();
+            return requestDate();
         }
     }
 
     private void listAllTasks() {
-        List<Task> tasksList = controller.getTasksList();
-        System.out.println(tasksList);
+        if (controller.getTasksList().isEmpty()) {
+            System.out.println("To-Do List is empty!");
+        } else {
+            System.out.println(controller.getTasksList());
+        }
     }
+
 }

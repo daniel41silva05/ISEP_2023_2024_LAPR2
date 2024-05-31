@@ -27,6 +27,19 @@ public class Task implements Serializable {
         this.greenSpacesManager = greenSpace.getGreenSpacesManager();
     }
 
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return false;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+
+        Task outraTask = (Task) outroObjeto;
+        return title.equalsIgnoreCase(outraTask.title) && greenSpace.equals(outraTask.greenSpace);
+    }
+
     public String getTitle() {
         return title;
     }
@@ -91,30 +104,8 @@ public class Task implements Serializable {
         this.greenSpacesManager = greenSpacesManager;
     }
 
-    public Task clone() {
-        return new Task(this.title, this.description, this.degreeOfUrgency.ordinal(), this.expectedDuration, this.type.ordinal(), this.greenSpace);
-    }
-
     @Override
     public String toString() {
-        return String.format("Title: %s\nDescription: %s\nDegree of Urgency: %s\nExpected Duration: %d\nType: %s\nGreen Space: %s", title, description, degreeOfUrgency, expectedDuration, type, greenSpace);
-    }
-
-    @Override
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
-            return false;
-        }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
-            return false;
-        }
-
-        Task outraTask = (Task) outroObjeto;
-        return title.equalsIgnoreCase(outraTask.title) &&
-                description.equalsIgnoreCase(outraTask.description) &&
-                degreeOfUrgency.equals(outraTask.degreeOfUrgency) &&
-                expectedDuration == outraTask.expectedDuration &&
-                type.equals(outraTask.type) &&
-                greenSpace.equals(outraTask.greenSpace);
+        return String.format("Title: %s\nDescription: %s\nDegree of Urgency: %s\nExpected Duration: %d\nType: %s\nGreen Space: %s\nManaged by: %s\n", title, description, degreeOfUrgency, expectedDuration, type, greenSpace.getName(), greenSpacesManager);
     }
 }

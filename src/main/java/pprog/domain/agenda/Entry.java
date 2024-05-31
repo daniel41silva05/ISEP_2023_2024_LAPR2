@@ -28,6 +28,18 @@ public class Entry implements Serializable {
         this.vehiclesAssign = new ArrayList<>();
     }
 
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Entry outroEntry = (Entry) outroObjeto;
+        return task.equals(outroEntry.task);
+    }
+
     public Date getStartingDate() {
         return startingDate;
     }
@@ -74,5 +86,24 @@ public class Entry implements Serializable {
 
     public void assignVehicles(List<Vehicle> vehiclesAssign) {
         this.vehiclesAssign = vehiclesAssign;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Starting Date: %s\n%sStatus: %s", startingDate, task, status));
+
+        if (teamAssign != null) {
+            sb.append(String.format("\nTeam Assigned: %s", teamAssign));
+        }
+
+        if (vehiclesAssign != null && !vehiclesAssign.isEmpty()) {
+            sb.append("\nVehicles Assigned:\n");
+            for (Vehicle vehicle : vehiclesAssign) {
+                sb.append(String.format("%s\n", vehicle));
+            }
+        }
+
+        return sb.toString();
     }
 }

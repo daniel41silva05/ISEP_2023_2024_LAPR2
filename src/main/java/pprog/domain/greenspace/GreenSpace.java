@@ -79,7 +79,7 @@ public class GreenSpace implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s", name, address, type, area, greenSpacesManager);
+        return String.format("Name: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s\n", name, address, type, area, greenSpacesManager);
     }
 }
 

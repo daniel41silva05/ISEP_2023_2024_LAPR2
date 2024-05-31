@@ -156,6 +156,14 @@ public class Agenda implements Serializable {
         return tasks;
     }
 
+    public boolean verifyCollaborator(Entry entry, String collaboratorFromSession) {
+        for (Collaborator c : entry.getTeamAssign().getTeam()) {
+            if (collaboratorFromSession.equalsIgnoreCase(c.getEmail())) {
+                return true;
+            }
+        }
+        throw new IllegalArgumentException("You don´t have permission to complete a entry.");
+    }
 
     /**
      * Retrieves the list of entries in the agenda.
@@ -166,12 +174,10 @@ public class Agenda implements Serializable {
         return entriesList;
     }
 
-    public boolean verifyCollaborator(Entry entry, String collaboratorFromSession) {
-        for (Collaborator c : entry.getTeamAssign().getTeam()) {
-            if (collaboratorFromSession.equalsIgnoreCase(c.getEmail())) {
-                return true;
-            }
-        }
-        throw new IllegalArgumentException("You don´t have permission to complete a entry.");
+    @Override
+    public String toString() {
+        return entriesList.toString();
     }
+
+
 }
