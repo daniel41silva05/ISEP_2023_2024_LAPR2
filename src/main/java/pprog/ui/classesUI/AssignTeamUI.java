@@ -2,7 +2,6 @@ package pprog.ui.classesUI;
 
 import pprog.controller.team.AssignTeamController;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class AssignTeamUI implements Runnable {
@@ -32,7 +31,7 @@ public class AssignTeamUI implements Runnable {
         String result = getController().assignTeamToEntry(entry, team);
         if (result == null) {
             System.out.println("\nSuccessfully assigned team!");
-            System.out.println(controller.getEntryWithTeam(entry));
+            System.out.println(getController().getEntryWithTeam(entry));
         } else {
             System.out.println("Unassigned team!\n" + result);
         }

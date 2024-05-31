@@ -14,7 +14,7 @@ public class Algoritmo1 implements SortingAlgorithm {
     }
 
     private void sortList(List<GreenSpace> managedGreenSpacesList) {
-        // Comparator to compare GreenSpace objects by their area in descending order
+
         Comparator<GreenSpace> comparator = new Comparator<GreenSpace>() {
             @Override
             public int compare(GreenSpace gs1, GreenSpace gs2) {
@@ -22,7 +22,6 @@ public class Algoritmo1 implements SortingAlgorithm {
             }
         };
 
-        // Sort the list using the comparator
         Collections.sort(managedGreenSpacesList, comparator);
     }
 }

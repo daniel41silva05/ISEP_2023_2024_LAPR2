@@ -35,7 +35,7 @@ public class AddTaskToDoListUI implements Runnable {
         String result = getController().addTaskToDoList(title, description, degreeOfUrgency, expectedDuration, type, greenSpace);
         if (result == null) {
             System.out.println("\nTask successfully added!");
-            System.out.println(controller.getTaskAdded());
+            System.out.println(getController().getTaskAdded());
         } else {
             System.out.println("Task not added!\n" + result);
         }

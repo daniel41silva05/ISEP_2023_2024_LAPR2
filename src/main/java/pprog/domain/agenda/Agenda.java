@@ -3,6 +3,7 @@ package pprog.domain.agenda;
 import pprog.domain.collaborator.Collaborator;
 import pprog.domain.todolist.Task;
 import pprog.domain.todolist.TaskStatus;
+import pprog.domain.vehicle.Vehicle;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -104,6 +105,10 @@ public class Agenda implements Serializable {
     public void completeEntry(Entry entry, String collaboratorFromSession) {
         if (verifyCollaborator(entry, collaboratorFromSession)) {
             entry.changeStatus(AgendaStatus.DONE);
+            List<Vehicle> vehicles = entry.getVehiclesAssign();
+            for (Vehicle vehicle : vehicles) {
+                vehicle.setOccupiedVehicle(false);
+            }
         }
     }
 
@@ -146,9 +151,12 @@ public class Agenda implements Serializable {
 
         for (Entry entry : entriesList) {
             if (entry.getStartingDate().after(startDate) && entry.getStartingDate().before(endDate)) {
-                for (Collaborator c : entry.getTeamAssign().getTeam()) {
-                    if (c.getEmail().equalsIgnoreCase(collaboratorEmail)){
-                        tasks.add(entry);
+                if (entry.getTeamAssign() != null) {
+                    for (Collaborator c : entry.getTeamAssign().getTeam()) {
+                        if (c.getEmail().equalsIgnoreCase(collaboratorEmail)){
+                            tasks.add(entry);
+                            break;
+                        }
                     }
                 }
             }
@@ -156,14 +164,18 @@ public class Agenda implements Serializable {
         return tasks;
     }
 
+
     public boolean verifyCollaborator(Entry entry, String collaboratorFromSession) {
-        for (Collaborator c : entry.getTeamAssign().getTeam()) {
-            if (collaboratorFromSession.equalsIgnoreCase(c.getEmail())) {
-                return true;
+        if (entry.getTeamAssign() != null) {
+            for (Collaborator c : entry.getTeamAssign().getTeam()) {
+                if (collaboratorFromSession.equalsIgnoreCase(c.getEmail())) {
+                    return true;
+                }
             }
         }
-        throw new IllegalArgumentException("You don´t have permission to complete a entry.");
+        throw new IllegalArgumentException("You don't have permission to complete an entry.");
     }
+
 
     /**
      * Retrieves the list of entries in the agenda.

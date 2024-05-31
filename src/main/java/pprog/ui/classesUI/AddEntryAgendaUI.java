@@ -33,7 +33,7 @@ public class AddEntryAgendaUI implements Runnable {
         String result = getController().addEntryAgenda(date, index);
         if (result == null) {
             System.out.println("\nTask successfully added!");
-            System.out.println(controller.getEntryAdded());
+            System.out.println(getController().getEntryAdded());
         } else {
             System.out.println("Task not added!\n" + result);
         }

@@ -3,6 +3,7 @@ package pprog.ui.classesUI;
 import pprog.controller.entry.ConsultTasksController;
 import pprog.domain.agenda.Entry;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -11,53 +12,84 @@ import java.util.Scanner;
 /**
  * This class represents the user interface for consulting tasks.
  */
-public class ConsultTasksUI {
+public class ConsultTasksUI implements Runnable{
 
-    private ConsultTasksController controller;
-    private Scanner scanner;
+    private final ConsultTasksController controller;
+
+    private Date startDate;
+    private Date endDate;
 
     /**
      * Constructs a new ConsultTasksUI object.
      */
     public ConsultTasksUI() {
-        this.controller = new ConsultTasksController();
-        this.scanner = new Scanner(System.in);
+        controller = new ConsultTasksController();
     }
 
-    /**
-     * Starts the user interface for consulting tasks.
-     */
-    public void start() {
+    private ConsultTasksController getController() {
+        return controller;
+    }
+
+
+    public void run() {
         System.out.println("\n\n--- Consult a Task ------------------------");
 
-        System.out.print("Enter the start date (dd/MM/yyyy): ");
-        Date startDate = readDateFromUser();
+        requestData();
+        submitData();
+    }
 
-        System.out.print("Enter the end date (dd/MM/yyyy): ");
-        Date endDate = readDateFromUser();
+    private void submitData() {
 
-        List<Entry> tasks = controller.getTasksForCollaboratorBetweenDates(startDate, endDate);
+        List<Entry> tasks = getController().getTasksForCollaboratorBetweenDates(startDate, endDate);
 
-        // Display found tasks
-        System.out.println("\nFound tasks:");
-        for (Entry task : tasks) {
-            System.out.println(task.getTask().getTitle() + " - " + task.getStartingDate());
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks were assigned to you during this period.");
+        } else {
+            for (Entry entry : tasks) {
+                System.out.println(entry.getTask().getTitle() + " - " + entry.getStartingDate());
+            }
         }
     }
 
-    /**
-     * Reads a date input from the user.
-     *
-     * @return The parsed date.
-     */
-    private Date readDateFromUser() {
+    private void requestData() {
+        startDate = requestStartDate();
+        endDate = requestEndDate(startDate);
+    }
+
+    private Date requestStartDate() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the start date (format: dd/MM/yyyy): ");
+        String dateStr = input.nextLine();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String input = scanner.nextLine();
-            return dateFormat.parse(input);
-        } catch (Exception e) {
-            System.out.println("Invalid date. Please try again.");
-            return readDateFromUser();
+            Date date = dateFormat.parse(dateStr);
+            return date;
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
+            return requestStartDate();
+        }
+    }
+
+    private Date requestEndDate(Date startDate) {
+        Scanner input = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+
+        while (true) {
+            try {
+                System.out.print("Enter the end date (format: dd/MM/yyyy): ");
+                String dateStr = input.nextLine();
+                Date endDate = dateFormat.parse(dateStr);
+                if (endDate.before(startDate)) {
+                    throw new IllegalArgumentException("End date cannot be before the start date.");
+                }
+                return endDate;
+            } catch (ParseException e) {
+                System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

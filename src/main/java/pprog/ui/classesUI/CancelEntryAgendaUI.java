@@ -49,7 +49,7 @@ public class CancelEntryAgendaUI implements Runnable{
         String result = getController().cancelEntry(taskIndex);
         if (result == null) {
             System.out.println("\nTask successfully canceled!");
-            System.out.println(controller.getEntryCancel(taskIndex));
+            System.out.println(getController().getEntryCancel(taskIndex));
         } else {
             System.out.println("Task not canceled!\n" + result);
         }

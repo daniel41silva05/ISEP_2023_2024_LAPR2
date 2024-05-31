@@ -44,7 +44,7 @@ public class PostponeEntryAgendaUI implements Runnable {
         String result = getController().postponeEntry(index, date);
         if (result == null) {
             System.out.println("\nEntry postponed successfully!");
-            System.out.println(controller.getEntryPostpone(index));
+            System.out.println(getController().getEntryPostpone(index));
         } else {
             System.out.println("Failed to postpone the entry!\n" + result);
         }

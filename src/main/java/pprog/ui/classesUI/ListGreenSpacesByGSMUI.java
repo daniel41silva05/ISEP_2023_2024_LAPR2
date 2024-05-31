@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ListGreenSpacesByGSMUI implements Runnable{
 
-    private ListGreenSpacesByGSMController controller;
+    private final ListGreenSpacesByGSMController controller;
 
     public ListGreenSpacesByGSMUI() {
         controller = new ListGreenSpacesByGSMController();
@@ -18,7 +18,7 @@ public class ListGreenSpacesByGSMUI implements Runnable{
     }
 
     public void run() {
-        System.out.println("\n\n--- List of Green Spcaes Managed by GSM ------------------------");
+        System.out.println("\n\n--- List of Green Spaces Managed by GSM ------------------------");
 
         List<GreenSpace> sortedGreenSpaces = getController().sortListByAlgorithm();
 
@@ -27,7 +27,6 @@ public class ListGreenSpacesByGSMUI implements Runnable{
         } else {
             for (GreenSpace gs : sortedGreenSpaces) {
                 System.out.println(gs);
-                System.out.println();
             }
         }
     }

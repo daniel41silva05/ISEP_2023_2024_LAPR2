@@ -84,8 +84,23 @@ public class Entry implements Serializable {
         return vehiclesAssign;
     }
 
-    public void assignVehicles(List<Vehicle> vehiclesAssign) {
-        this.vehiclesAssign = vehiclesAssign;
+    public void assignVehicles(List<Vehicle> vehiclesToAdd) {
+        boolean allVehiclesAvailable = true;
+        for (Vehicle vehicle : vehiclesToAdd) {
+            if (this.vehiclesAssign.contains(vehicle)) {
+                throw new IllegalArgumentException("The vehicle you are trying to assign was already assigned!");
+            }
+            if (vehicle.isOccupiedVehicle()) {
+                allVehiclesAvailable = false;
+                break;
+            }
+        }
+
+        if (allVehiclesAvailable) {
+            this.vehiclesAssign.addAll(vehiclesToAdd);
+        } else {
+            throw new IllegalArgumentException("Vehicle you are trying to assign is busy!");
+        }
     }
 
     @Override

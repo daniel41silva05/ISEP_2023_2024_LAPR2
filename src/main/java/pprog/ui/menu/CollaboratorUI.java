@@ -1,5 +1,7 @@
 package pprog.ui.menu;
 
+import pprog.ui.classesUI.CompleteEntryAgendaUI;
+import pprog.ui.classesUI.ConsultTasksUI;
 import pprog.ui.utils.Utils;
 
 import java.util.ArrayList;
@@ -11,9 +13,8 @@ public class CollaboratorUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-//        options.add(new MenuItem("Register a Vehicle", new RegisterVehicleUI()));
-//        options.add(new MenuItem("Register a vehicle’s maintenance", new RegisterCheckUpUI()));
-//        options.add(new MenuItem("Produce a list of vehicles needing maintenance", new VehicleNeedingMaintenanceUI()));
+            options.add(new MenuItem("Consult the Tasks assigned to me", new ConsultTasksUI()));
+            options.add(new MenuItem("Record the Completion of a Task", new CompleteEntryAgendaUI()));
 
         int option = 0;
         do {

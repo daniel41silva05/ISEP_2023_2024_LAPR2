@@ -17,7 +17,6 @@ public class ConsultTasksController {
     private Agenda agenda;
     private AuthenticationRepository authenticationRepository;
 
-
     public ConsultTasksController() {
         getAgenda();
         getAuthenticationRepository();
@@ -26,15 +25,14 @@ public class ConsultTasksController {
      * Constructs a new ConsultTasksController object.
      */
     public ConsultTasksController(Agenda agenda, AuthenticationRepository authenticationRepository) {
-        this.agenda = new Agenda();
-        this.authenticationRepository = new AuthenticationRepository();
+        this.agenda = agenda;
+        this.authenticationRepository = authenticationRepository;
     }
 
     private String getEmailCollaboratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
     }
-
 
     /**
      * Retrieves the agenda instance.
@@ -70,6 +68,6 @@ public class ConsultTasksController {
      * @return A list of tasks matching the criteria.
      */
     public List<Entry> getTasksForCollaboratorBetweenDates(Date startDate, Date endDate) {
-        return agenda.getTasksForCollaboratorBetweenDates(getEmailCollaboratorFromSession(), startDate, endDate);
+        return getAgenda().getTasksForCollaboratorBetweenDates(getEmailCollaboratorFromSession(), startDate, endDate);
     }
 }

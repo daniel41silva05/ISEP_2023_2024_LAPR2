@@ -13,12 +13,13 @@ public class GreenSpacesManagerUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
             options.add(new MenuItem("Register a Green Space", new RegisterGreenSpaceUI()));
-            options.add(new MenuItem("Add Entry To Do List", new AddTaskToDoListUI()));
-            options.add(new MenuItem("Add Entry Agenda", new AddEntryAgendaUI()));
-            options.add(new MenuItem("Assign Team Entry Agenda", new AssignTeamUI()));
-            options.add(new MenuItem("Postpone Entry Agenda", new PostponeEntryAgendaUI()));
-            options.add(new MenuItem("Cancel Entry Agenda", new CancelEntryAgendaUI()));
-            options.add(new MenuItem("List Green Spaces managed by GSM", new ListGreenSpacesByGSMUI()));
+            options.add(new MenuItem("Add Task to To-Do List", new AddTaskToDoListUI()));
+            options.add(new MenuItem("Add a Entry in the Agenda", new AddEntryAgendaUI()));
+            options.add(new MenuItem("Assign a Team to a Task", new AssignTeamUI()));
+            options.add(new MenuItem("Postpone an Entry in the Agenda", new PostponeEntryAgendaUI()));
+            options.add(new MenuItem("Cancel an Entry in the Agenda", new CancelEntryAgendaUI()));
+            options.add(new MenuItem("Assign vehicles to a task", new AssignVehiclesUI()));
+            options.add(new MenuItem("List of Green Spaces Managed by me", new ListGreenSpacesByGSMUI()));
 
         int option = 0;
         do {

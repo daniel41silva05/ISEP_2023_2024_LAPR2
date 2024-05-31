@@ -68,13 +68,12 @@ public class CompleteEntryAgendaController {
      * @param entryIndex The index of the entry to be marked as completed.
      * @return True if the entry was successfully marked as completed, false otherwise.
      */
-    public boolean completeEntry(int entryIndex) {
+    public String completeEntry(int entryIndex) {
         try {
             getAgenda().completeEntry(getEntryByIndex(entryIndex), getEmailCollaboratorFromSession());
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -105,5 +104,9 @@ public class CompleteEntryAgendaController {
     private String getEmailCollaboratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
+    }
+
+    public Entry getEntryComplete(int index) {
+        return getEntryByIndex(index);
     }
 }

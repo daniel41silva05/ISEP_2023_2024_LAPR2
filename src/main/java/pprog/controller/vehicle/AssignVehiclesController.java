@@ -40,17 +40,19 @@ public class AssignVehiclesController {
         return vehicleRepository;
     }
 
-    public boolean assignVehiclesToEntry(int agendaIndex, List<String> vehiclesPlateNumber) {
+    public String assignVehiclesToEntry(int agendaIndex, List<String> vehiclesPlateNumber) {
         List<Vehicle> vehiclesToAssign = new ArrayList<>();
         try {
             for (String vehicle : vehiclesPlateNumber) {
                 vehiclesToAssign.add(getVehicleByPlateNumber(vehicle.trim()));
             }
             getEntryByIndex(agendaIndex).assignVehicles(vehiclesToAssign);
-            return true;
+            for (Vehicle vehicle : vehiclesToAssign) {
+                vehicle.setOccupiedVehicle(true);
+            }
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -68,6 +70,10 @@ public class AssignVehiclesController {
 
     public List<Vehicle> getVehiclesList() {
         return getVehicleRepository().getVehiclesList();
+    }
+
+    public Entry getEntryWithVehicles(int index) {
+        return getEntryByIndex(index);
     }
 
 }
