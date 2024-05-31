@@ -17,7 +17,7 @@ public class GreenSpaceRepository implements Serializable {
         greenSpacesList = new ArrayList<>();
     }
 
-    public GreenSpace registerGreenSpace (String name, String address, int type, double area, GreenSpacesManager greenSpacesManager) {
+    public GreenSpace registerGreenSpace (String name, String[] address, int type, double area, GreenSpacesManager greenSpacesManager) {
         GreenSpace newGreenSpace = null;
         GreenSpace greenSpace = new GreenSpace (name, address, type, area, greenSpacesManager);
         if (addGreenSpace(greenSpace)) {
@@ -52,11 +52,6 @@ public class GreenSpaceRepository implements Serializable {
         throw new IllegalArgumentException("Green space with the name '" + name + "' doesn't exist.");
     }
 
-    @Override
-    public String toString() {
-        return "Green space=" + greenSpacesList + '}';
-    }
-
     public List<GreenSpace> getGreenSpaceListByGSM(GreenSpacesManager gsmFromSession) {
         List<GreenSpace> greenSpacesListByGSM = new ArrayList<>();
 
@@ -78,6 +73,15 @@ public class GreenSpaceRepository implements Serializable {
         List<GreenSpace> sortedgreenSpacesListByGSM = getGreenSpaceListByGSM(gsmFromSession);
         algorithm.sort(sortedgreenSpacesListByGSM);
         return sortedgreenSpacesListByGSM;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (GreenSpace greenSpace : greenSpacesList) {
+            stringBuilder.append(greenSpace).append("\n\n");
+        }
+        return stringBuilder.toString();
     }
 }
 

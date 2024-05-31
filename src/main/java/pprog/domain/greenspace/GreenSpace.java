@@ -1,6 +1,6 @@
 package pprog.domain.greenspace;
 
-import pprog.domain.Job;
+import pprog.domain.Address;
 import pprog.domain.users.GreenSpacesManager;
 
 import java.io.Serializable;
@@ -9,7 +9,7 @@ public class GreenSpace implements Serializable {
 
     private String name;
 
-    private String address;
+    private Address address;
 
     private GreenSpaceType type;
 
@@ -17,9 +17,9 @@ public class GreenSpace implements Serializable {
 
     private GreenSpacesManager greenSpacesManager;
 
-    public GreenSpace(String name, String address, int type, double area, GreenSpacesManager gsm) {
+    public GreenSpace(String name, String[] address, int type, double area, GreenSpacesManager gsm) {
         this.name = name;
-        this.address = address;
+        this.address = new Address(address);
         this.type = GreenSpaceType.fromInt(type);
         this.area = area;
         this.greenSpacesManager = gsm;
@@ -45,11 +45,11 @@ public class GreenSpace implements Serializable {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -79,7 +79,7 @@ public class GreenSpace implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Green Space\nName: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s", name, address, type, area, greenSpacesManager);
+        return String.format("Name: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s", name, address, type, area, greenSpacesManager);
     }
 }
 

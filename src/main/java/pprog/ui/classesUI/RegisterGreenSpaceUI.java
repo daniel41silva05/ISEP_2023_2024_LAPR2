@@ -6,12 +6,11 @@ import pprog.domain.greenspace.GreenSpace;
 import java.util.List;
 import java.util.Scanner;
 
-// ESTA CLASSE NAO ESTÁ CORRETA, FOI A PRESSA PARA TESTAR
 public class RegisterGreenSpaceUI implements Runnable {
 
     private final RegisterGreenSpaceController controller;
     private String name;
-    private String address;
+    private String[] address;
     private int type;
     private double area;
 
@@ -45,53 +44,124 @@ public class RegisterGreenSpaceUI implements Runnable {
     private void requestData() {
 
         name = requestName();
-        address = request2();
-        type = request3();
-        area = request4();
+        address = requestAddress();
+        type = requestType();
+        area = requestArea();
 
     }
 
     private String requestName() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the name of the green space: ");
-        return input.nextLine();
-    }
-
-    private String request2() {
-        Scanner input = new Scanner(System.in);
-        String address;
-        do {
-            System.out.print("Address (street, zipcode, city): ");
-            address = input.nextLine().trim();
-            String[] parts = address.split(",");
-            if (parts.length != 3) {
-                System.out.println("Invalid address format. Please enter the address including street, zipcode, and city.");
-                continue;
+        while (true) {
+            try {
+                Scanner input = new Scanner(System.in);
+                System.out.print("Name: ");
+                String name = input.nextLine().trim();;
+                if (name.matches("[a-zA-Z0-9\\s]+")) {
+                    return name;
+                } else {
+                    throw new IllegalArgumentException("Invalid name. Please enter a valid name.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            String zipcode = parts[1].trim();
-            if (!zipcode.matches("\\d{4}-\\d{3}")) {
-                System.out.println("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
-                continue;
-            }
-            return address;
-        } while (true);
-    }
-    private int request3() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the type of the green space (1: Park, 2: Garden, etc.): ");
-        int type = input.nextInt();
-
-        if (type < 1 || type > 3) {
-            System.out.println("Invalid input. Please choose a valid option (1, 2 or 3).");
-            return request3();
-        } else {
-            return type;
         }
     }
 
-    private Double request4() {
+    private String[] requestAddress() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter the area of the green space in square meters: ");
-        return input.nextDouble();
+        System.out.println("Address:");
+        String[] address = new String[3];
+
+        while (true) {
+            try {
+                System.out.println("Street: ");
+                String street = input.nextLine().trim();
+                if (street.matches("[a-zA-Z0-9\\s]+")) {
+                    address[0] = street;
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid street. Please enter a valid street.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.println("Zipcode: ");
+                String zipcode = input.nextLine().trim();
+                if (zipcode.matches("\\d{4}-\\d{3}")) {
+                    address[1] = zipcode;
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.println("City: ");
+                String city = input.nextLine().trim();
+                if (city.matches("[a-zA-Z0-9\\s]+")) {
+                    address[2] = city;
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid city. Please enter a valid city.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return address;
+    }
+
+    private int requestType() {
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println("Enter the type of the green space (1: Garden, 2: Medium Sized Park, 3: Large Sized Park): ");
+                if (input.hasNextInt()) {
+                    int type = input.nextInt();
+                    if (type > 0 && type < 4) {
+                        return type;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option (1, 2 or 3).");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option (1, 2 or 3).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
+            }
+        }
+    }
+
+
+    private Double requestArea() {
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println("Enter the area of the green space in square meters: ");
+                if (input.hasNextDouble()) {
+                    double area = input.nextDouble();
+                    if (area > 0) {
+                        return area;
+                    } else {
+                        throw new IllegalArgumentException("Invalid area. Please introduce a positive area.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid area. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
+            }
+        }
     }
 }

@@ -23,7 +23,13 @@ public class RegisterGreenSpaceGUI implements Initializable {
     private TextField nameField;
 
     @FXML
-    private TextField addressField;
+    private TextField streetField;
+
+    @FXML
+    private TextField zipCodeField;
+
+    @FXML
+    private TextField cityField;
 
     @FXML
     private ComboBox<String> typeField;
@@ -43,21 +49,37 @@ public class RegisterGreenSpaceGUI implements Initializable {
 
     @FXML
     private void handleSubmitButtonAction() {
-        String name = nameField.getText();
-        String address = addressField.getText();
-        int type = typeField.getSelectionModel().getSelectedIndex() + 1;
+
+        String name = nameField.getText().trim();
+        String street = streetField.getText().trim();
+        String zipCode = zipCodeField.getText().trim();
+        String city = cityField.getText().trim();
+        String areaText = areaField.getText().trim();
+        int typeIndex = typeField.getSelectionModel().getSelectedIndex();
+
+        if (name.isEmpty() || street.isEmpty() || zipCode.isEmpty() || city.isEmpty() || areaText.isEmpty() || typeIndex == -1) {
+            showAlert("Please fill in all fields.");
+            return;
+        }
+
+        int type = typeIndex + 1;
         double area;
 
         try {
-            area = Double.parseDouble(areaField.getText());
+            area = Double.parseDouble(areaText);
         } catch (NumberFormatException e) {
-            showAlert("Invalid input. Please enter valid numbers for type and area.");
+            showAlert("Invalid input. Please enter valid numbers for area.");
             return;
         }
 
-        if (!isValidType(type) || !isValidAddress(address)) {
+        if (!isValidName(name) || !isValidStreet(street) || !isValidZipcode(zipCode) || !isValidCity(city) || !isValidType(type) || !isValidArea(area)) {
             return;
         }
+
+        String[] address = new String[3];
+        address[0] = street;
+        address[1] = zipCode;
+        address[2] = city;
 
         String result = controller.registerGreenSpace(name, address, type, area);
         if (result == null) {
@@ -75,6 +97,38 @@ public class RegisterGreenSpaceGUI implements Initializable {
         changeScene((Stage) nameField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    private boolean isValidName(String name) {
+        if (!name.matches("[a-zA-Z0-9\\s]+")) {
+            showAlert("Invalid name. Please enter a valid name.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidStreet(String street) {
+        if (!street.matches("[a-zA-Z0-9\\s]+")) {
+            showAlert("Invalid street. Please enter a valid street.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidZipcode(String zipcode) {
+        if (!zipcode.matches("\\d{4}-\\d{3}")) {
+            showAlert("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidCity(String city) {
+        if (!city.matches("[a-zA-Z0-9\\s]+")) {
+            showAlert("Invalid city. Please enter a valid city.");
+            return false;
+        }
+        return true;
+    }
+
     private boolean isValidType(int type) {
         if (type < 1 || type > 3) {
             showAlert("Invalid input. Please choose a valid option (1, 2, or 3) for type.");
@@ -83,15 +137,9 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
-    private boolean isValidAddress(String address) {
-        String[] parts = address.split(",");
-        if (parts.length != 3) {
-            showAlert("Invalid address format. Please enter the address including street, zipcode, and city.");
-            return false;
-        }
-        String zipcode = parts[1].trim();
-        if (!zipcode.matches("\\d{4}-\\d{3}")) {
-            showAlert("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
+    private boolean isValidArea(double area) {
+        if (area < 0) {
+            showAlert("Invalid area. Please introduce a positive area.");
             return false;
         }
         return true;

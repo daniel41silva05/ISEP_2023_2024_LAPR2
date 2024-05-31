@@ -29,19 +29,6 @@ public class GreenSpacesManager implements Serializable {
         return email;
     }
 
-    /**
-     * Clone method.
-     *
-     * @return A clone of the current instance.
-     */
-    public GreenSpacesManager clone() {
-        return new GreenSpacesManager(this.email);
-    }
-
-    /**
-     * Returns a string representation of the fleet manager.
-     * @return A string representation containing the name of the fleet manager.
-     */
     @Override
     public String toString() {
         return String.format(email);

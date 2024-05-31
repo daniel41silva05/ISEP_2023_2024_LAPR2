@@ -19,7 +19,9 @@
         <VBox spacing="10" alignment="center" style="-fx-padding: 0 50;">
             <Label text="Register a Green Space" style="-fx-font-size: 20px;" />
             <TextField fx:id="nameField" promptText="Enter the name of the green space" />
-            <TextField fx:id="addressField" promptText="Enter the address of the green space (street, zipcode, city)" />
+            <TextField fx:id="streetField" promptText="Enter green space street" />
+            <TextField fx:id="zipCodeField" promptText="Enter green space zipcode" />
+            <TextField fx:id="cityField" promptText="Enter green space city" />
             <ComboBox fx:id="typeField" promptText="Select the type of the green space">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
