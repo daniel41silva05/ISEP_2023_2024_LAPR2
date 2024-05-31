@@ -88,7 +88,7 @@ public class GreenSpaceManagerGUI implements Initializable {
 
     public void listManagedGreenSpaces(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
-        changeScene(stage,"/fxml/ListManagedGreenSpaces.fxml",true);
+        changeScene(stage,"/fxml/ListGreenSpacesByGSM.fxml",true);
     }
 
     public void changeScene(Stage stage, String resourceName,Boolean rezizeble){

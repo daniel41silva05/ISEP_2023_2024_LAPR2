@@ -7,6 +7,7 @@ module pprog.ui.gui {
     requires org.apache.commons.lang3;
 
     opens pprog.ui.gui to javafx.fxml;
+    opens pprog.domain.greenspace to javafx.base;
     exports pprog.ui.gui to javafx.graphics;
 
 }
