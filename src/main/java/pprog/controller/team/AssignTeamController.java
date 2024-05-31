@@ -54,7 +54,7 @@ public class AssignTeamController {
         return authenticationRepository;
     }
 
-    public boolean assignTeamToEntry(int agendaIndex, int teamIndex) {
+    public String assignTeamToEntry(int agendaIndex, int teamIndex) {
         try {
             Entry entry = getEntryByIndex(agendaIndex);
             Team team = getTeamByIndex(teamIndex);
@@ -62,10 +62,9 @@ public class AssignTeamController {
             for (Collaborator c : team.getTeam()) {
                 sendTheEmailToTeam(getEmailGSMFromSession(), c.getEmail(), c.getName(), entry.toString());
             }
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -92,6 +91,10 @@ public class AssignTeamController {
     private String getEmailGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
+    }
+
+    public Entry getEntryWithTeam(int index) {
+        return getEntryByIndex(index);
     }
 
 }

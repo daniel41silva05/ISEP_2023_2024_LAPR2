@@ -16,6 +16,8 @@ public class GreenSpacesManagerUI implements Runnable {
             options.add(new MenuItem("Add Entry To Do List", new AddTaskToDoListUI()));
             options.add(new MenuItem("Add Entry Agenda", new AddEntryAgendaUI()));
             options.add(new MenuItem("Assign Team Entry Agenda", new AssignTeamUI()));
+            options.add(new MenuItem("Postpone Entry Agenda", new PostponeEntryAgendaUI()));
+            options.add(new MenuItem("Cancel Entry Agenda", new CancelEntryAgendaUI()));
             options.add(new MenuItem("List Green Spaces managed by GSM", new ListGreenSpacesByGSMUI()));
 
         int option = 0;

@@ -50,9 +50,9 @@ public class AddEntryAgendaUI implements Runnable {
             try {
                 System.out.println("Task: ");
                 if (input.hasNextInt()) {
-                    int type = input.nextInt();
-                    if (type > 0 && type <= controller.getTasksList().size()) {
-                        return type;
+                    int task = input.nextInt();
+                    if (task > 0 && task <= controller.getTasksList().size()) {
+                        return task;
                     } else {
                         throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
                     }

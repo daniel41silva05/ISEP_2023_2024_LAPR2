@@ -94,7 +94,7 @@ public class Entry implements Serializable {
         sb.append(String.format("Starting Date: %s\n%sStatus: %s", startingDate, task, status));
 
         if (teamAssign != null) {
-            sb.append(String.format("\nTeam Assigned: %s", teamAssign));
+            sb.append(String.format("\nTeam Assigned: %s\n", teamAssign));
         }
 
         if (vehiclesAssign != null && !vehiclesAssign.isEmpty()) {

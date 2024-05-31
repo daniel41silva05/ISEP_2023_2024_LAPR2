@@ -48,13 +48,12 @@ public class CancelEntryAgendaController {
      * @param entryIndex the index of the entry to be canceled
      * @return true if the entry was successfully canceled, false otherwise
      */
-    public boolean cancelEntry(int entryIndex) {
+    public String cancelEntry(int entryIndex) {
         try {
             getAgenda().cancelEntry(getEntryByIndex(entryIndex));
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -69,5 +68,9 @@ public class CancelEntryAgendaController {
      */
     public List<Entry> getEntriesList() {
         return getAgenda().getEntriesList();
+    }
+
+    public Entry getEntryCancel(int index) {
+        return getEntryByIndex(index);
     }
 }

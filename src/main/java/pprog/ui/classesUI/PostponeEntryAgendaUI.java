@@ -12,17 +12,22 @@ import java.util.Scanner;
 /**
  * UI class for postponing an entry in the agenda.
  */
-public class PostponeEntryAgendaUI {
+public class PostponeEntryAgendaUI implements Runnable {
 
-    private PostponeEntryAgendaController controller;
-    private Scanner scanner;
+    private final PostponeEntryAgendaController controller;
+
+    private int index;
+    private Date date;
 
     /**
      * Constructs a PostponeEntryAgendaUI object.
      */
     public PostponeEntryAgendaUI() {
         controller = new PostponeEntryAgendaController();
-        scanner = new Scanner(System.in);
+    }
+
+    public PostponeEntryAgendaController getController() {
+        return controller;
     }
 
     /**
@@ -30,29 +35,24 @@ public class PostponeEntryAgendaUI {
      */
     public void run() {
         System.out.println("\n\n--- Postpone an Entry ------------------------");
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("1. List all entries");
-            System.out.println("2. Postpone an entry");
-            System.out.println("0. Exit");
-            System.out.print("Choose an option: ");
-            int option = scanner.nextInt();
-            scanner.nextLine(); // Clear the scanner buffer
+        listAllEntries();
+        requestData();
+        submitData();
+    }
 
-            switch (option) {
-                case 1:
-                    listAllEntries();
-                    break;
-                case 2:
-                    postponeEntry();
-                    break;
-                case 0:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-            }
+    private void submitData() {
+        String result = getController().postponeEntry(index, date);
+        if (result == null) {
+            System.out.println("\nEntry postponed successfully!");
+            System.out.println(controller.getEntryPostpone(index));
+        } else {
+            System.out.println("Failed to postpone the entry!\n" + result);
         }
+    }
+
+    private void requestData() {
+        index = requestTask();
+        date = requestDate();
     }
 
     /**
@@ -70,39 +70,40 @@ public class PostponeEntryAgendaUI {
         }
     }
 
-    /**
-     * Postpones an entry in the agenda.
-     */
-    private void postponeEntry() {
-        System.out.print("Enter the index of the entry you want to postpone: ");
-        int index = scanner.nextInt();
-        scanner.nextLine(); // Clear the scanner buffer
-
-        System.out.print("Enter the new start date (Format: dd/MM/yyyy HH:mm:ss): ");
-        String dateString = scanner.nextLine();
-        Date newStartingDate = parseDateString(dateString);
-
-        boolean success = controller.postponeEntry(index, newStartingDate);
-        if (success) {
-            System.out.println("Entry postponed successfully.");
-        } else {
-            System.out.println("Failed to postpone the entry. Please check the index and date and try again.");
+    private int requestTask() {
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println("Task: ");
+                if (input.hasNextInt()) {
+                    int type = input.nextInt();
+                    if (type > 0 && type <= controller.getEntriesList().size()) {
+                        return type;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
+            }
         }
     }
 
-    /**
-     * Parses a string to a Date object.
-     *
-     * @param dateString the string representation of the date
-     * @return the Date object parsed from the string
-     */
-    private Date parseDateString(String dateString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private Date requestDate() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("New Start Date (format: dd/MM/yyyy): ");
+        String dateStr = input.nextLine();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateString);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter the date in the format dd/MM/yyyy HH:mm:ss.");
-            return null;
+            System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
+            return requestDate();
         }
     }
 }

@@ -14,3 +14,43 @@ Olá Bruno.
 You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
 Below is the task information:
 pprog.domain.agenda.Entry@57536d79
+Email Service: Dei Service
+From: gsm1@this.app
+To: ad@dad.ad
+Subject: Assignment to a task
+Hello um.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Fri May 26 00:00:00 WEST 2006
+Title: ad
+Description: a
+Degree of Urgency: High
+Expected Duration: 1
+Type: Occasional
+Green Space: green1
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: um, Email: ad@dad.ad
+Name: dois, Email: sa@dgdf.gdf
+
+
+Email Service: Dei Service
+From: gsm1@this.app
+To: sa@dgdf.gdf
+Subject: Assignment to a task
+Hello dois.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Fri May 26 00:00:00 WEST 2006
+Title: ad
+Description: a
+Degree of Urgency: High
+Expected Duration: 1
+Type: Occasional
+Green Space: green1
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: um, Email: ad@dad.ad
+Name: dois, Email: sa@dgdf.gdf
+
+

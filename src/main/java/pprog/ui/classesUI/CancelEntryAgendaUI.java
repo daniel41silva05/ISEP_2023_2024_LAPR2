@@ -9,9 +9,9 @@ import java.util.Scanner;
 /**
  * User interface for canceling an entry in the agenda.
  */
-public class CancelEntryAgendaUI {
+public class CancelEntryAgendaUI implements Runnable{
 
-    private CancelEntryAgendaController controller;
+    private final CancelEntryAgendaController controller;
 
     private int taskIndex;
 
@@ -43,6 +43,48 @@ public class CancelEntryAgendaUI {
     }
 
     /**
+     * Submits data to cancel the selected task.
+     */
+    private void submitData() {
+        String result = getController().cancelEntry(taskIndex);
+        if (result == null) {
+            System.out.println("\nTask successfully canceled!");
+            System.out.println(controller.getEntryCancel(taskIndex));
+        } else {
+            System.out.println("Task not canceled!\n" + result);
+        }
+    }
+
+    /**
+     * Requests data from the user to select the task to cancel.
+     */
+    private void requestData() {
+        taskIndex = requestTask();
+    }
+
+    private int requestTask() {
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println("Task: ");
+                if (input.hasNextInt()) {
+                    int type = input.nextInt();
+                    if (type > 0 && type <= controller.getEntriesList().size()) {
+                        return type;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
+            }
+        }
+    }
+
+    /**
      * Lists all entries in the agenda.
      */
     private void listAllEntries() {
@@ -55,35 +97,6 @@ public class CancelEntryAgendaUI {
                 System.out.println((i + 1) + ". " + entry.getTask().getTitle() + " - " + entry.getStartingDate() + " - " + entry.getStatus());
             }
         }
-    }
-
-    /**
-     * Submits data to cancel the selected task.
-     */
-    private void submitData() {
-        if (getController().cancelEntry(taskIndex)) {
-            System.out.println("\nTask successfully canceled!");
-        } else {
-            System.out.println("Task not canceled!");
-        }
-    }
-
-    /**
-     * Requests data from the user to select the task to cancel.
-     */
-    private void requestData() {
-        taskIndex = requestTask();
-    }
-
-    /**
-     * Requests the task index from the user.
-     *
-     * @return The index of the task to cancel.
-     */
-    private int requestTask() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Task: ");
-        return sc.nextInt();
     }
 
 }

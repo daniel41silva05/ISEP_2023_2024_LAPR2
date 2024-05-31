@@ -2,7 +2,6 @@ package pprog.controller.entry;
 
 import pprog.domain.agenda.Entry;
 import pprog.domain.agenda.Agenda;
-import pprog.domain.todolist.Task;
 import pprog.repository.Repositories;
 
 import java.util.Date;
@@ -51,13 +50,12 @@ public class PostponeEntryAgendaController {
      * @param newStartingDate the new starting date for the entry
      * @return true if the entry was successfully postponed, false otherwise
      */
-    public boolean postponeEntry(int entryIndex, Date newStartingDate) {
+    public String postponeEntry(int entryIndex, Date newStartingDate) {
         try {
             getAgenda().postponeEntry(getEntryByIndex(entryIndex), newStartingDate);
-            return true;
+            return null;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n" + e.getMessage());
-            return false;
+            return e.getMessage();
         }
     }
 
@@ -67,5 +65,9 @@ public class PostponeEntryAgendaController {
 
     public List<Entry> getEntriesList() {
         return getAgenda().getEntriesList();
+    }
+
+    public Entry getEntryPostpone(int index) {
+        return getEntryByIndex(index);
     }
 }
