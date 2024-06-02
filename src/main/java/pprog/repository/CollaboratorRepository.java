@@ -39,7 +39,7 @@ public class CollaboratorRepository implements Serializable {
      * @param job           The job of the collaborator.
      * @return The newly registered collaborator, or null if registration fails.
      */
-    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocType, int idNumber, Job job) {
+    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String[] address, int phoneNumber, String email, int idDocType, int idNumber, Job job) {
         Collaborator newCollaborator = null;
         Collaborator collaborator = new Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
 
@@ -76,7 +76,7 @@ public class CollaboratorRepository implements Serializable {
         if (!collaborator.validateBirthdayIsOver18()) {
             throw new IllegalArgumentException("Collaborator must be at least 18 years old.");
         } else if (validateCollaborator(collaborator)) {
-            collaboratorsList.add(collaborator.clone());
+            collaboratorsList.add(collaborator);
             return true;
         } else {
             throw new IllegalArgumentException("Collaborator already exists in the repository.");

@@ -1,7 +1,9 @@
 package pprog.domain.collaborator;
 
+import pprog.domain.Address;
 import pprog.domain.Job;
 import pprog.domain.Skill;
+import pprog.domain.vehicle.Vehicle;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class Collaborator implements Serializable {
     private Date admissionDate;
 
     /** The address of the collaborator. */
-    private String address;
+    private Address address;
 
     /** The phone number of the collaborator. */
     private int phoneNumber;
@@ -56,11 +58,11 @@ public class Collaborator implements Serializable {
      * @param idNumber      The identification number of the collaborator.
      * @param job           The job of the collaborator.
      */
-    public Collaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocTypeInt, int idNumber, Job job) {
+    public Collaborator(String name, Date birthday, Date admissionDate, String[] address, int phoneNumber, String email, int idDocTypeInt, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
-        this.address = address;
+        this.address = new Address(address);
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.idDocType = IdDocType.fromInt(idDocTypeInt);
@@ -75,8 +77,7 @@ public class Collaborator implements Serializable {
      * @return true if the collaborator is over 18 years old, false otherwise.
      */
     public boolean validateBirthdayIsOver18() {
-        Date currentDate = new Date();
-        long diffMillis = currentDate.getTime() - this.birthday.getTime();
+        long diffMillis = this.admissionDate.getTime() - this.birthday.getTime();
         long ageInMillis = 18L * 365 * 24 * 60 * 60 * 1000;
         return diffMillis > ageInMillis;
     }
@@ -158,7 +159,7 @@ public class Collaborator implements Serializable {
      *
      * @return The address of the collaborator.
      */
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
@@ -167,10 +168,9 @@ public class Collaborator implements Serializable {
      *
      * @param address The new address of the collaborator.
      */
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
-
     /**
      * Gets the phone number of the collaborator.
      *
@@ -273,19 +273,15 @@ public class Collaborator implements Serializable {
     /**
      * Sets the list of skills assigned to the collaborator.
      *
-     * @param skillAssign The new job of the collaborator.
+     * @param skillToAdd The new job of the collaborator.
      */
-    public void assignSkills(List<Skill> skillAssign) {
-        this.skillAssign = skillAssign;
-    }
-
-    /**
-     * Creates and returns a copy of this collaborator.
-     *
-     * @return A new Collaborator object with the same attributes.
-     */
-    public Collaborator clone() {
-        return new Collaborator(this.name, this.birthday, this.admissionDate, this.address, this.phoneNumber, this.email, this.idDocType.ordinal(), this.idNumber, this.job);
+    public void assignSkills(List<Skill> skillToAdd) {
+        for (Skill skill : skillToAdd) {
+            if (this.skillAssign.contains(skill)) {
+                throw new IllegalArgumentException("The skill you are trying to assign was already assigned!");
+            }
+        }
+        this.skillAssign.addAll(skillToAdd);
     }
 
     /**

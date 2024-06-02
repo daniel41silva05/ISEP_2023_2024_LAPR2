@@ -32,6 +32,7 @@ public class VehicleNeedingMaintenanceRepository implements Serializable {
      * @return the list of vehicles needing maintenance
      */
     public List<String> getVehiclesNeedingMaintenanceList(List<Vehicle> allVehicles, List<CheckUp> allCheckUps) {
+        vehiclesNeedingMaintenanceList.clear();
 
         for (Vehicle vehicle : allVehicles) {
             if (needsCheckUp(vehicle, allCheckUps)) {

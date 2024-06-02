@@ -2,6 +2,7 @@ package pprog.ui.classesUI;
 
 import pprog.controller.skill.AssignSkillController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -91,11 +92,35 @@ public class AssignSkillUI implements Runnable {
      * @return the list of skills to assign
      */
     private List<String> requestSkillsToAssign() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter skill names (comma-separated) to assign to the collaborator: ");
-        String skillNamesInput = input.nextLine();
-        String[] skillNames = skillNamesInput.split(",");
-        return List.of(skillNames);
+        ArrayList<String> skillNames = new ArrayList<>();
+
+        while (true) {
+            try {
+                System.out.print("Enter skill name to assign to the collaborator: ");
+                Scanner input = new Scanner(System.in);
+                String skill = input.nextLine();
+
+                if (skill.matches("^[a-zA-Z ]+$")) {
+                    skillNames.add(skill);
+                } else {
+                    throw new IllegalArgumentException("Please enter a valid skill name.");
+                }
+
+                System.out.print("Do you want to assign another skill? (yes/no): ");
+                String choice = input.nextLine();
+                if (!choice.equalsIgnoreCase("yes")) {
+                    if (!choice.equalsIgnoreCase("no")) {
+                        throw new IllegalArgumentException("Please enter 'yes' to assign another skill or 'no' to finish.");
+                    }
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String[] skillsToAssign = skillNames.toArray(new String[0]);
+
+        return List.of(skillsToAssign);
     }
 
     /**

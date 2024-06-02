@@ -35,7 +35,7 @@ public class RegisterCollaboratorUI implements Runnable {
     /**
      * The address of the collaborator.
      */
-    private String address;
+    private String[] address;
 
     /**
      * The phone number of the collaborator.
@@ -150,8 +150,10 @@ public class RegisterCollaboratorUI implements Runnable {
         System.out.print("Birthday (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateStr);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
             System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
             return requestBirthday();
@@ -165,11 +167,13 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private Date requestAdmissionDate() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Admission Date (format: dd/MM/yyyy): ");
+        System.out.print("Birthday (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateStr);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
             System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
             return requestAdmissionDate();
@@ -181,24 +185,57 @@ public class RegisterCollaboratorUI implements Runnable {
      *
      * @return the address entered by the user
      */
-    private String requestAddress() {
+    private String[] requestAddress() {
         Scanner input = new Scanner(System.in);
-        String address;
-        do {
-            System.out.print("Address (street, zipcode, city): ");
-            address = input.nextLine().trim();
-            String[] parts = address.split(",");
-            if (parts.length != 3) {
-                System.out.println("Invalid address format. Please enter the address including street, zipcode, and city.");
-                continue;
+        System.out.println("Address:");
+        String[] address = new String[3];
+
+        while (true) {
+            try {
+                System.out.println("Street: ");
+                String street = input.nextLine().trim();
+                if (street.matches("[a-zA-Z0-9\\s]+")) {
+                    address[0] = street;
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid street. Please enter a valid street.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            String zipcode = parts[1].trim();
-            if (!zipcode.matches("\\d{4}-\\d{3}")) {
-                System.out.println("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
-                continue;
+        }
+
+        while (true) {
+            try {
+                System.out.println("Zipcode: ");
+                String zipcode = input.nextLine().trim();
+                if (zipcode.matches("\\d{4}-\\d{3}")) {
+                    address[1] = zipcode;
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            return address;
-        } while (true);
+        }
+
+        while (true) {
+            try {
+                System.out.println("City: ");
+                String city = input.nextLine().trim();
+                if (city.matches("[a-zA-Z0-9\\s]+")) {
+                    address[2] = city;
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid city. Please enter a valid city.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return address;
     }
 
     /**
@@ -208,15 +245,24 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private int requestPhoneNumber() {
         Scanner input = new Scanner(System.in);
-        int phoneNumber;
-        do {
-            System.out.print("Phone Number: ");
-            phoneNumber = input.nextInt();
-            if (!String.valueOf(phoneNumber).matches("\\d{9}")) {
-                System.out.println("Invalid phone number. Please enter a 9-digit number.");
+        while (true) {
+            try {
+                System.out.println("Phone Number: ");
+                if (input.hasNextInt()) {
+                    int phoneNumber = input.nextInt();
+                    if (String.valueOf(phoneNumber).matches("\\d{9}")) {
+                        return phoneNumber;
+                    } else {
+                        throw new IllegalArgumentException("Invalid phone number. Please enter a 9-digit number.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid phone number. Please enter a 9-digit number.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (!String.valueOf(phoneNumber).matches("\\d{9}"));
-        return phoneNumber;
+        }
     }
 
     /**
@@ -244,17 +290,26 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private int requestIdDocType() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Id Document Type: ");
-        System.out.println("1 - Taxpayer Number");
-        System.out.println("2 - Citizen Card");
-        System.out.println("3 - Passport");
-        int idDocTypeInput = input.nextInt();
-
-        if (idDocTypeInput < 1 || idDocTypeInput > 3) {
-            System.out.println("Invalid input. Please choose a valid option (1, 2, 3, or 4).");
-            return requestIdDocType();
-        } else {
-            return idDocTypeInput;
+        while (true) {
+            try {
+                System.out.println("Id Document Type: ");
+                System.out.println("1 - Taxpayer Number");
+                System.out.println("2 - Citizen Card");
+                System.out.println("3 - Passport");
+                if (input.hasNextInt()) {
+                    int idDocTypeInput = input.nextInt();
+                    if (idDocTypeInput > 0 && idDocTypeInput < 4) {
+                        return idDocTypeInput;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option (1, 2 or 3).");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option (1, 2 or 3).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
+            }
         }
     }
 
@@ -266,32 +321,39 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private int requestIdNumber(int idDocType) {
         Scanner input = new Scanner(System.in);
-        int idNumber;
-        do {
-            System.out.print("ID Number: ");
-            idNumber = input.nextInt();
-            switch (idDocType) {
-                case 1:
-                    if (String.valueOf(idNumber).length() != 9) {
-                        System.out.println("Invalid taxpayer number. Please enter a 9-digit number.");
-                        idNumber = -1;
+        while (true) {
+            try {
+                System.out.println("ID Number: ");
+                if (input.hasNextInt()) {
+                    int idNumber = input.nextInt();
+                    switch (idDocType) {
+                        case 1:
+                            if (String.valueOf(idNumber).length() == 9) {
+                                return idNumber;
+                            } else {
+                                throw new IllegalArgumentException("Invalid taxpayer number. Please enter a 9-digit number.");
+                            }
+                        case 2:
+                            if (String.valueOf(idNumber).length() == 8) {
+                                return idNumber;
+                            } else {
+                                throw new IllegalArgumentException("Invalid citizen card number. Please enter an 8-digit number.");
+                            }
+                        case 3:
+                            if (!String.valueOf(idNumber).matches("[a-zA-Z]\\d{6}")) {
+                                return idNumber;
+                            } else {
+                                throw new IllegalArgumentException("Invalid passport number. Please enter a letter followed by 6 digits.");
+                            }
                     }
-                    break;
-                case 2:
-                    if (String.valueOf(idNumber).length() != 8) {
-                        System.out.println("Invalid citizen card number. Please enter an 8-digit number.");
-                        idNumber = -1;
-                    }
-                    break;
-                case 3:
-                    if (!String.valueOf(idNumber).matches("[a-zA-Z]\\d{6}")) {
-                        System.out.println("Invalid passport number. Please enter a letter followed by 6 digits.");
-                        idNumber = -1;
-                    }
-                    break;
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (idNumber == -1);
-        return idNumber;
+        }
     }
 
     /**

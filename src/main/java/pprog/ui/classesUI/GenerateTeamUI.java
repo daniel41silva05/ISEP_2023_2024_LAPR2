@@ -1,6 +1,8 @@
 package pprog.ui.classesUI;
 
 import pprog.controller.team.GenerateTeamController;
+import pprog.domain.Team;
+import pprog.domain.agenda.Entry;
 
 import java.util.List;
 import java.util.Scanner;
@@ -62,8 +64,13 @@ public class GenerateTeamUI implements Runnable {
      * Submits the entered data for team generation.
      */
     private void submitData() {
+
         if (getController().team(minSize, maxSize, requiredSkills)) {
+
             System.out.println("\nTeam generated successfully!");
+            List<Team> teams = getController().getTeamsList();
+            System.out.println(teams.get(teams.size() - 1));
+
         } else {
             System.out.println("Team generation failed!");
         }
@@ -84,15 +91,24 @@ public class GenerateTeamUI implements Runnable {
      */
     private int requestMinSize() {
         Scanner input = new Scanner(System.in);
-        int minSize = 0;
-        do {
-            System.out.print("Minimum Size: ");
-            minSize = input.nextInt();
-            if (minSize < 1) {
-                System.out.println("Please enter a number greater than 1.");
+        while (true) {
+            try {
+                System.out.print("Minimum Size: ");
+                if (input.hasNextInt()) {
+                    int minSize = input.nextInt();
+                    if (minSize > 0) {
+                        return minSize;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a number greater than 1.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (minSize < 1);
-        return minSize;
+        }
     }
 
     /**
@@ -102,15 +118,24 @@ public class GenerateTeamUI implements Runnable {
      */
     private int requestMaxSize() {
         Scanner input = new Scanner(System.in);
-        int maxSize = 0;
-        do {
-            System.out.print("Maximum Size: ");
-            maxSize = input.nextInt();
-            if (maxSize < 1) {
-                System.out.println("Please enter a number greater than 1.");
+        while (true) {
+            try {
+                System.out.print("Maximum Size: ");
+                if (input.hasNextInt()) {
+                    int maxSize = input.nextInt();
+                    if (maxSize > 0) {
+                        return maxSize;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a number greater than 1.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (maxSize < 1);
-        return maxSize;
+        }
     }
 
     /**
