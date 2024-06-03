@@ -74,7 +74,7 @@ public class AddTaskToDoListGUI implements Initializable {
         String result = controller.addTaskToDoList(title, description, degreeOfUrgency, expectedDuration, taskType, greenSpace);
         if (result == null) {
             showSuccess("Task successfully added!\n\n" + controller.getTaskAdded());
-            changeScene((Stage) titleField.getScene().getWindow(), "/fxml/AddEntryToDoList.fxml");
+            changeScene((Stage) titleField.getScene().getWindow(), "/fxml/AddTaskToDoList.fxml");
         } else {
             showAlert(result + "\n\nTask not added!");
         }

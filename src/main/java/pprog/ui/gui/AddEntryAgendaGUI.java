@@ -71,10 +71,10 @@ public class AddEntryAgendaGUI implements Initializable {
 
         String result = controller.addEntryAgenda(date, taskIndex);
         if (result == null) {
-            showSuccess("Task successfully added!\n\n" + controller.getEntryAdded());
+            showSuccess("Entry successfully added!\n\n" + controller.getEntryAdded());
             changeScene((Stage) dateField.getScene().getWindow(), "/fxml/AddEntryAgenda.fxml");
         } else {
-            showAlert(result + "\n\nTask not added!");
+            showAlert(result + "\n\nEntry not added!");
         }
     }
 

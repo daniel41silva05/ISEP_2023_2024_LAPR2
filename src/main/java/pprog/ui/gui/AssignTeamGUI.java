@@ -83,7 +83,7 @@ public class AssignTeamGUI implements Initializable {
             entryIndex = Integer.parseInt(taskText);
             teamIndex = Integer.parseInt(teamText);
         } catch (NumberFormatException e) {
-            showAlert("Please enter valid numbers for task and team.");
+            showAlert("Please enter valid numbers for entry and team.");
             return;
         }
 

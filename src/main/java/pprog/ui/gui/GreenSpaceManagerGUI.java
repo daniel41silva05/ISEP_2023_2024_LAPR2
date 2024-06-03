@@ -58,7 +58,7 @@ public class GreenSpaceManagerGUI implements Initializable {
 
     public void addEntryToDoList(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
-        changeScene(stage,"/fxml/AddEntryToDoList.fxml",true);
+        changeScene(stage, "/fxml/AddTaskToDoList.fxml",true);
     }
 
     public void addEntryAgenda(ActionEvent actionEvent) {
