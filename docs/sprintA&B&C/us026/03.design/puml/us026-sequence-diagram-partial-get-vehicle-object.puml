@@ -15,58 +15,32 @@ participant "repositories\n:Repositories" as PLAT
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
 participant "organization\n:Organization" as ORG
 
-autonumber 14
--> CTRL : getEmployeeFromSession()
-autonumber 14.1
+autonumber 15
+-> CTRL : getVehicleByPlateNumber(vehiclePlateNumber)
+autonumber 15.1
 activate CTRL
 
-    group Get Employee
-        CTRL -> _APP: getInstance()
-        activate _APP
-            _APP -> CTRL: appSession
-        deactivate _APP
+    group Get Vehicle Object
+            CTRL -> REP: getInstance()
+            activate REP
 
-        CTRL -> APP: getCurrentSession()
-        activate APP
+            REP --> CTRL: repositories
+            deactivate REP
 
-            APP --> CTRL: currentSession
-        deactivate APP
+            CTRL -> REPS: getVehicleRepository()
+            activate REPS
 
-        CTRL -> SESSAO: email = getUserEmail()
-        activate SESSAO
+            REPS --> CTRL: vehicleRepository
+            deactivate REPS
 
-            SESSAO --> CTRL: email
-        deactivate SESSAO
+            CTRL -> vehicleRepository: getVehicleByPlateNumber(vehiclePlateNumber)
+            activate vehicleRepository
 
-        CTRL -> PLAT: getOrganizationRepository()
-        activate PLAT
-
-            PLAT --> CTRL: organizationRepository
-        deactivate PLAT
-
-        CTRL -> OrganizationRepository: getOrganizationByUserEmail(email)
-        activate OrganizationRepository
-
-            loop [for each organization
-                OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                activate ORG
-
-                     ORG --> OrganizationRepository : true/false
-                deactivate ORG
-            end
-
-            OrganizationRepository --> CTRL : organization
-
-        deactivate OrganizationRepository
-
-        CTRL -> ORG: getEmployeeByEmail(email)
-        activate ORG
-
-            ORG --> CTRL : employee
-        deactivate ORG
+            vehicleRepository --> CTRL: vehicle
+            deactivate vehicleRepository
     end
-    autonumber 15
-    <-- CTRL : employee
+    autonumber 16
+    <-- CTRL : vehicle
 deactivate CTRL
 
 @enduml

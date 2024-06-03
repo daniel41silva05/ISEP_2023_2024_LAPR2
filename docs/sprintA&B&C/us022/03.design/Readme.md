@@ -56,21 +56,21 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - split](svg/us022-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Get Task Dto List**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us022-sequence-diagram-partial-get-tasks-dto-list.svg)
+![Sequence Diagram - Partial - Get Task Dto List](svg/us022-sequence-diagram-partial-get-tasks-dto-list.svg)
 
-**Get Task Category Object**
+**Get Task Object**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us022-sequence-diagram-partial-get-task-object.svg)
+![Sequence Diagram - Partial - Get Task Object](svg/us022-sequence-diagram-partial-get-task-object.svg)
 
-**Get Employee**
+**Get GSM Email**
 
-![Sequence Diagram - Partial - Get Employee](svg/us022-sequence-diagram-partial-get-gsm-email.svg)
+![Sequence Diagram - Partial - Get GSM Email](svg/us022-sequence-diagram-partial-get-gsm-email.svg)
 
-**Create Task**
+**Create Entry**
 
-![Sequence Diagram - Partial - Create Task](svg/us022-sequence-diagram-partial-create-entry.svg)
+![Sequence Diagram - Partial - Create Entry](svg/us022-sequence-diagram-partial-create-entry.svg)
 
 ## 3.3. Class Diagram (CD)
 

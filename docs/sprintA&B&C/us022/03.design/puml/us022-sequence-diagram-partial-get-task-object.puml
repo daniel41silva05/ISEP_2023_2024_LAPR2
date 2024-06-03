@@ -3,42 +3,43 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+autonumber
+
+'hide footbox
+
+participant ":AddEntryAgendaControlller" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "toDoList:\nToDoList" as toDoList
 
 autonumber 12
--> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
 
+ -> CTRL : getTaskByIndex(index)
 autonumber 12.1
-
 activate CTRL
-    group Get Task Category
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
+    group Get Task Object
 
-            RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
+            CTRL -> REP: getInstance()
+            activate REP
 
-        CTRL -> PLAT : getTaskCategoryRepository()
-        activate PLAT
+            REP --> CTRL: repositories
+            deactivate REP
 
-            PLAT -> CTRL : taskCategoryRepository
-        deactivate PLAT
+            CTRL -> REPS: getToDoList()
+            activate REPS
 
-        CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-        activate TaskCategoryRepository
+            REPS --> CTRL: toDoList
+            deactivate REPS
 
-            TaskCategoryRepository --> CTRL : taskCategory
-        deactivate TaskCategoryRepository
+            CTRL -> toDoList: getTaskByIndex(index)
+            activate toDoList
 
-    end group
+            toDoList --> CTRL: task
+            deactivate toDoList
 
+    end
     autonumber 13
-    <-- CTRL : taskCategory
-
+    <-- CTRL  : task
 deactivate CTRL
-
 
 @enduml

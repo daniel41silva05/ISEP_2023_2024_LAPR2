@@ -7,42 +7,66 @@ autonumber
 
 'hide footbox
 
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant ":AssignTeamController" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "agenda:\nAgenda" as agenda
+participant ":EntryMapper" as entryMAPPER
+participant "entryDto\n:EntryDto" as entryDTO
+participant "entriesListDto\n:List<EntryDto>" as entriesListDTO
 
 autonumber 3
 
- -> CTRL : getTaskCategories()
+ -> CTRL : getEntriesListDTO()
 autonumber 3.1
 activate CTRL
-    group Get Task Category List
+    group Get Entry Dto List
 
+            CTRL -> REP : getInstance()
+            activate REP
 
-            CTRL -> RepositorySingleton : getInstance()
-            activate RepositorySingleton
+            REP --> CTRL: repositories
+            deactivate REP
 
-                RepositorySingleton --> CTRL: repositories
-            deactivate RepositorySingleton
+            CTRL -> REPS : getAgenda()
+            activate REPS
 
-            CTRL -> PLAT : getTaskCategoryRepository()
-            activate PLAT
+            REPS --> CTRL: agenda
+            deactivate REPS
 
-                PLAT --> CTRL: taskCategoryRepository
-            deactivate PLAT
+            CTRL -> agenda: getEntriesList()
+            activate agenda
 
-            CTRL -> TaskCategoryRepository : getTaskCategories()
-            activate TaskCategoryRepository
+            agenda --> CTRL : entriesList
+            deactivate agenda
 
-                TaskCategoryRepository --> CTRL : taskCategoryList
-            deactivate TaskCategoryRepository
+            CTRL -> entryMAPPER: toDTOList(entriesList)
+            activate entryMAPPER
 
+                entryMAPPER -> entriesListDTO** : create()
+
+                loop For each entry in entriesList
+
+                entryMAPPER -> entryDTO: entryToDTO(entry)
+                activate entryDTO
+
+                entryDTO --> entryMAPPER: entryDto
+                deactivate entryDTO
+
+                entryMAPPER -> entriesListDTO: add(entryDto)
+                activate entriesListDTO
+
+                end
+
+                entriesListDTO --> entryMAPPER: entriesListDto
+                deactivate entriesListDTO
+
+            entryMAPPER --> CTRL : entriesListDto
+            deactivate entryMAPPER
 
     end
     autonumber 4
-    <-- CTRL  : taskCategoryList
+    <-- CTRL  : entriesListDTO
 deactivate CTRL
-
 
 @enduml

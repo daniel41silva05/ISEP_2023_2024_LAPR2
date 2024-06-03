@@ -7,42 +7,66 @@ autonumber
 
 'hide footbox
 
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant ":AssignTeamController" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "teamRepository:\nTeamRepository" as teamRepository
+participant ":TeamMapper" as teamMAPPER
+participant "teamDto\n:TeamDto" as teamDTO
+participant "teamListDto\n:List<TeamDto>" as teamListDTO
 
-autonumber 3
+autonumber 7
 
- -> CTRL : getTaskCategories()
-autonumber 3.1
+ -> CTRL : getTeamsListDTO()
+autonumber 7.1
 activate CTRL
-    group Get Task Category List
+    group Get Team Dto List
 
+            CTRL -> REP : getInstance()
+            activate REP
 
-            CTRL -> RepositorySingleton : getInstance()
-            activate RepositorySingleton
+            REP --> CTRL: repositories
+            deactivate REP
 
-                RepositorySingleton --> CTRL: repositories
-            deactivate RepositorySingleton
+            CTRL -> REPS : getTeamRepository()
+            activate REPS
 
-            CTRL -> PLAT : getTaskCategoryRepository()
-            activate PLAT
+            REPS --> CTRL: teamRepository
+            deactivate REPS
 
-                PLAT --> CTRL: taskCategoryRepository
-            deactivate PLAT
+            CTRL -> teamRepository: getTeamList()
+            activate teamRepository
 
-            CTRL -> TaskCategoryRepository : getTaskCategories()
-            activate TaskCategoryRepository
+            teamRepository --> CTRL : teamList
+            deactivate teamRepository
 
-                TaskCategoryRepository --> CTRL : taskCategoryList
-            deactivate TaskCategoryRepository
+            CTRL -> teamMAPPER: toDTOList(teamList)
+            activate teamMAPPER
 
+                teamMAPPER -> teamListDTO** : create()
+
+                loop For each team in teamList
+
+                teamMAPPER -> teamDTO: teamToDTO(team)
+                activate teamDTO
+
+                teamDTO --> teamMAPPER: teamDto
+                deactivate teamDTO
+
+                teamMAPPER -> teamListDTO: add(teamDto)
+                activate teamListDTO
+
+                end
+
+                teamListDTO --> teamMAPPER: teamListDto
+                deactivate teamListDTO
+
+            teamMAPPER --> CTRL : teamListDto
+            deactivate teamMAPPER
 
     end
-    autonumber 4
-    <-- CTRL  : taskCategoryList
+    autonumber 8
+    <-- CTRL  : teamListDto
 deactivate CTRL
-
 
 @enduml

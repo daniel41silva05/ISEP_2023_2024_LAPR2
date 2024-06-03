@@ -7,17 +7,17 @@ autonumber
 
 'hide footbox
 
-participant ":AssignVehiclesController" as CTRL
+participant ":AssignTeamController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "agenda:\nAgenda" as agenda
 
-autonumber 19
+autonumber 14
 
  -> CTRL : getEntryByIndex(index)
-autonumber 19.1
+autonumber 14.1
 activate CTRL
-    group Get Entry Dto List
+    group Get Entry Object
 
             CTRL -> REP: getInstance()
             activate REP
@@ -38,7 +38,7 @@ activate CTRL
             deactivate agenda
 
     end
-    autonumber 20
+    autonumber 15
     <-- CTRL  : entry
 deactivate CTRL
 

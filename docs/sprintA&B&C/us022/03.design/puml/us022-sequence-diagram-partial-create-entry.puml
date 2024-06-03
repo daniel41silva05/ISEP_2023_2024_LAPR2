@@ -3,32 +3,66 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "agenda:\nAgenda" as agenda
+participant "entry\n:Entry" as ENTRY
+participant "greenSpacesManager:\nGreen Spaces Manager" as USER
+participant "task\n:Task" as TASK
 
-autonumber 16
--> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
+autonumber 20
+-> agenda : addEntryAgenda(startingDate, task, email)
 
-autonumber 16.1
-activate ORG
-    group Create Task
+autonumber 20.1
 
-        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-        ORG -> ORG: addTask (task)
+activate agenda
+    group Create Entry
+                agenda -> ENTRY** : create(startingDate, task)
 
-        activate ORG
-            ORG -> ORG: validateTask(task)
-            activate ORG
-                ORG --> ORG
-            deactivate ORG
+                agenda -> agenda: addEntry (email, entry)
+                activate agenda
 
-            ORG --> ORG
-        deactivate ORG
-    end
+                agenda -> agenda: validateEntry (entry)
+                activate agenda
 
-    autonumber 17
-    <-- ORG : task
-deactivate ORG
+                agenda --> agenda
+                deactivate agenda
+
+                agenda -> agenda: validateUser (email, entry)
+                activate agenda
+
+                    agenda -> ENTRY: getGreenSpacesManager()
+                    activate ENTRY
+
+                    ENTRY --> agenda: greenSpacesManager
+                    deactivate ENTRY
+
+                    agenda -> USER: getEmail()
+                    activate USER
+
+                    USER --> agenda: email
+                    deactivate USER
+
+                agenda --> agenda
+                deactivate agenda
+
+                agenda -> ENTRY: getTask()
+                activate ENTRY
+
+                ENTRY --> agenda: task
+                deactivate ENTRY
+
+                agenda -> TASK: changeStatus(TaskStatus.PROCESSED)
+                activate TASK
+
+                TASK --> agenda
+                deactivate TASK
+
+                agenda --> agenda
+                deactivate agenda
+    end group
+
+    autonumber 21
+    <-- agenda : entry
+deactivate agenda
 
 
 @enduml

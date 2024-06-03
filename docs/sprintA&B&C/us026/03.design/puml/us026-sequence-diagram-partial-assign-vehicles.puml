@@ -3,32 +3,43 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "entry\n:Entry" as ENTRY
+participant "vehicle\n:Vehicle" as VEHICLE
 
-autonumber 16
--> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
+autonumber 21
+-> ENTRY: assignVehicles(vehiclesToAdd)
 
-autonumber 16.1
-activate ORG
-    group Create Task
+autonumber 21.1
+activate ENTRY
+    group Assign Vehicles to Entry Object
 
-        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-        ORG -> ORG: addTask (task)
+            loop For each vehicle in vehicleToAdd
 
-        activate ORG
-            ORG -> ORG: validateTask(task)
-            activate ORG
-                ORG --> ORG
-            deactivate ORG
+            ENTRY -> ENTRY: getVehiclesAssign()
+            activate ENTRY
 
-            ORG --> ORG
-        deactivate ORG
+            ENTRY -> ENTRY: add(vehicle)
+            activate ENTRY
+
+            ENTRY --> ENTRY
+            deactivate ENTRY
+
+            ENTRY --> ENTRY
+            deactivate ENTRY
+
+            ENTRY -> VEHICLE: setOccupiedVehicle(true)
+            activate VEHICLE
+
+            VEHICLE --> ENTRY
+            deactivate VEHICLE
+
+            end
+
     end
 
-    autonumber 17
-    <-- ORG : task
-deactivate ORG
+    autonumber 22
+    <-- ENTRY : entry
+deactivate ENTRY
 
 
 @enduml

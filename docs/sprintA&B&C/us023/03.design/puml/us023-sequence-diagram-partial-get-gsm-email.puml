@@ -3,70 +3,57 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-
+autonumber
 
 'hide footbox
-participant ":CreateTaskController" as CTRL
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
 
-autonumber 14
--> CTRL : getEmployeeFromSession()
-autonumber 14.1
+participant ":AssignVehiclesControlller" as CTRL
+participant ":Repositories" as REP
+participant "repositories\n:Repositories" as REPS
+participant "authenticationRepository:\nAuthenticationRepository" as authentication
+participant "authenticationFacade:\nAuthFacade" as authFacade
+participant "user:\nUserSession" as user
+
+autonumber 20
+
+ -> CTRL : getEmailGSMFromSession()
+autonumber 20.1
 activate CTRL
+    group Get GSM Email
 
-    group Get Employee
-        CTRL -> _APP: getInstance()
-        activate _APP
-            _APP -> CTRL: appSession
-        deactivate _APP
+            CTRL -> REP: getInstance()
+            activate REP
 
-        CTRL -> APP: getCurrentSession()
-        activate APP
+            REP --> CTRL: repositories
+            deactivate REP
 
-            APP --> CTRL: currentSession
-        deactivate APP
+            CTRL -> REPS: getAuthenticationRepository()
+            activate REPS
 
-        CTRL -> SESSAO: email = getUserEmail()
-        activate SESSAO
+            REPS --> CTRL: authenticationRepository
+            deactivate REPS
 
-            SESSAO --> CTRL: email
-        deactivate SESSAO
+            CTRL -> authentication: getCurrentUserSession()
+            activate authentication
 
-        CTRL -> PLAT: getOrganizationRepository()
-        activate PLAT
+            authentication --> CTRL: authenticationFacade
+            deactivate authentication
 
-            PLAT --> CTRL: organizationRepository
-        deactivate PLAT
+            CTRL -> authFacade: getCurrentUserSession()
+            activate authFacade
 
-        CTRL -> OrganizationRepository: getOrganizationByUserEmail(email)
-        activate OrganizationRepository
+            authFacade --> CTRL: userSession
+            deactivate authFacade
 
-            loop [for each organization
-                OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                activate ORG
+            CTRL -> user: getUserId()
+            activate user
 
-                     ORG --> OrganizationRepository : true/false
-                deactivate ORG
-            end
+            user --> CTRL: email
+            deactivate user
 
-            OrganizationRepository --> CTRL : organization
-
-        deactivate OrganizationRepository
-
-        CTRL -> ORG: getEmployeeByEmail(email)
-        activate ORG
-
-            ORG --> CTRL : employee
-        deactivate ORG
     end
-    autonumber 15
-    <-- CTRL : employee
+    autonumber 21
+    <-- CTRL  : email
 deactivate CTRL
 
 @enduml
