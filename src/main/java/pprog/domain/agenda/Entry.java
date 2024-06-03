@@ -96,8 +96,12 @@ public class Entry implements Serializable {
             }
         }
 
+
         if (allVehiclesAvailable) {
-            this.vehiclesAssign.addAll(vehiclesToAdd);
+            for (Vehicle vehicle : vehiclesToAdd) {
+                this.vehiclesAssign.add(vehicle);
+                vehicle.setOccupiedVehicle(true);
+            }
         } else {
             throw new IllegalArgumentException("Vehicle you are trying to assign is busy!");
         }

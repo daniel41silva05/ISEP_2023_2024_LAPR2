@@ -40,16 +40,13 @@ public class AssignVehiclesController {
         return vehicleRepository;
     }
 
-    public String assignVehiclesToEntry(int agendaIndex, List<String> vehiclesPlateNumber) {
-        List<Vehicle> vehiclesToAssign = new ArrayList<>();
+    public String assignVehiclesToEntry(int agendaIndex, List<String> vehiclesPlateNumbers) {
+        List<Vehicle> vehiclesToAdd = new ArrayList<>();
         try {
-            for (String vehicle : vehiclesPlateNumber) {
-                vehiclesToAssign.add(getVehicleByPlateNumber(vehicle.trim()));
+            for (String vehiclePlateNumber : vehiclesPlateNumbers) {
+                vehiclesToAdd.add(getVehicleByPlateNumber(vehiclePlateNumber.trim()));
             }
-            getEntryByIndex(agendaIndex).assignVehicles(vehiclesToAssign);
-            for (Vehicle vehicle : vehiclesToAssign) {
-                vehicle.setOccupiedVehicle(true);
-            }
+            getEntryByIndex(agendaIndex).assignVehicles(vehiclesToAdd);
             return null;
         } catch (IllegalArgumentException e) {
             return e.getMessage();

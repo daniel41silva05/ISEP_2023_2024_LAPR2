@@ -17,7 +17,7 @@ class AddEntryAgendaController {
     +addEntryAgenda(startingDate, index)
     -getTaskByIndex(index)
     -getGSMFromSession()
-    +getTasksList()
+    +getTasksListDTO()
 }
 
 class Agenda {
@@ -29,6 +29,8 @@ class Agenda {
 
 class Entry {
     -Date startingDate
+    -Team teamAssign;
+    -List<Vehicle> vehiclesAssign;
     +Entry(startingDate, task)
 }
 
@@ -43,7 +45,7 @@ class Task {
     -int expectedDuration
     -TaskType type
     -GreenSpace greenSpace
-    +Task(reference, description, degreeOfUrgency, expectedDuration, type, greenSpace)
+    +Task(title, description, degreeOfUrgency, expectedDuration, type, greenSpace)
     +changeStatus(status)
 }
 
@@ -80,6 +82,23 @@ class GreenSpaceManager {
     +GreenSpaceManager(email)
 }
 
+class TaskDto {
+    -String title
+    -String description
+    -EmergencyDegree degreeOfUrgency
+    -int expectedDuration
+    -TaskType type
+    -GreenSpace greenSpace
+    -TaskStatus status;
+    -GreenSpacesManager greenSpacesManager;
+    +TaskDto(title, description, degreeOfUrgency, expectedDuration, type, greenSpace, status, greenSpacesManager)
+}
+
+class TaskMapper {
+    +toDTOList(tasksList)
+    +taskToDTO(task)
+}
+
 AddEntryAgendaUI ..> AddEntryAgendaController
 AddEntryAgendaController ..> Repositories: repositories
 AddEntryAgendaController ..> Agenda: agenda
@@ -97,5 +116,7 @@ Entry --> "1" AgendaStatus
 Task --> "1" TaskStatus
 Entry --> "1" GreenSpaceManager
 Task --> "1" GreenSpaceManager
+AddEntryAgendaController ..> TaskMapper
+TaskMapper ..> TaskDto
 
 @enduml

@@ -56,7 +56,7 @@ Later the GSM will be able to add the Team and vehicles (if required).
     * Starting Date
 	
 * Selected data:
-    * To-Do List
+    * Task
 
 **Output Data:**
 
