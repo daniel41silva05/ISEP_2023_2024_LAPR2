@@ -22,7 +22,9 @@
 | **HRM**                                      | Acronym for _Human Resources Manager_.                                                                                                                                                                                                             |
 | **Human Resources Manager**                  | Person who manages human resources and defines teams based on the needs of ongoing projects and the skills of the employees.                                                                                                                       |
 | **Job**                                      | An employee's main occupation.                                                                                                                                                                                                                     |
+| **Key performance indicator**                | Metric used to assess the effectiveness and progress of an organization, team, or process towards strategic goals. KPIs are specific, measurable, relevant, and time-bound, aiding in decision-making and identifying areas that need improvement. |
 | **Kms**                                      | Acronym for _Kilometers_.                                                                                                                                                                                                                          |
+| **KPI**                                      | Acronym for _Key performance indicator_.                                                                                                                                                                                                           |
 | **Large-sized park**                         | Multi-function space with diverse garden spaces, and woods, including varied equipment and services.                                                                                                                                               |
 | **Medium-sized park**                        | Green space with a few hundred or thousands of square meters with a wooded garden area, it includes some infrastructures such as toilets, drinking fountains, irrigation system, lighting, children’s playground.                                  |
 | **MS**                                       | Acronym for _MusgoSublime_.                                                                                                                                                                                                                        |
@@ -37,8 +39,6 @@
 | **User Portal**                              | Location where users of parks and gardens can post comments and report faults and malfunctions of equipment.                                                                                                                                       |
 | **Vehicle and Equipment Fleet Manager**      | Person who manages the fleet park, the machines, equipment and vehicles, ensuring their good condition and assigning them to the tasks to be carried out.                                                                                          |
 | **VFM**                                      | Acronym for _Vehicle and Equipment Fleet Manager_.                                                                                                                                                                                                 |
-  
-
 
 
 
