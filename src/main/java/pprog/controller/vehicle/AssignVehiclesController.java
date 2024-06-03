@@ -60,7 +60,7 @@ public class AssignVehiclesController {
         return getAgenda().getEntryByIndex(index);
     }
 
-    private Vehicle getVehicleByPlateNumber (String vehiclePlateNumber) {
+    public Vehicle getVehicleByPlateNumber (String vehiclePlateNumber) {
         return getVehicleRepository().getVehicleByPlateNumber(vehiclePlateNumber);
     }
 

@@ -7,24 +7,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pprog.controller.team.AssignTeamController;
-import pprog.domain.Team;
+import pprog.controller.vehicle.AssignVehiclesController;
 import pprog.domain.agenda.Entry;
+import pprog.domain.vehicle.Vehicle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AssignTeamGUI implements Initializable {
+public class AssignVehiclesGUI implements Initializable {
     @FXML
     private TextField entryField;
     @FXML
-    private TextField teamField;
-    private final AssignTeamController controller;
+    private TextField vehicleField;
+    private final AssignVehiclesController controller;
 
-    public AssignTeamGUI() {
-        controller = new AssignTeamController();
+    public AssignVehiclesGUI() {
+        controller = new AssignVehiclesController();
     }
 
     @Override
@@ -48,15 +49,15 @@ public class AssignTeamGUI implements Initializable {
     }
 
     @FXML
-    private void loadTeams() {
-        List<Team> teams = controller.getTeamsList();
-        if (teams.isEmpty()) {
-            showAlert("Teams list is empty!");
+    private void loadVehicles() {
+        List<Vehicle> vehicles = controller.getVehiclesList();
+        if (vehicles.isEmpty()) {
+            showAlert("Vehicles list is empty!");
         } else {
             StringBuilder sb = new StringBuilder("Teams list:\n\n");
             int counter = 1;
-            for (Team team : teams) {
-                sb.append(counter).append(":\n").append(team).append("\n");
+            for (Vehicle vehicle : vehicles) {
+                sb.append(counter).append(":\n").append(vehicle).append("\n");
                 counter++;
             }
             showList(sb.toString());
@@ -64,45 +65,44 @@ public class AssignTeamGUI implements Initializable {
     }
 
     @FXML
-    private void handleAssignTeam() {
+    private void handleAssignVehicles() {
         String taskText = entryField.getText().trim();
-        String teamText = teamField.getText().trim();
+        String vehicleText = vehicleField.getText().trim();
 
-        if (taskText.isEmpty() || teamText.isEmpty()) {
+        if (taskText.isEmpty() || vehicleText.isEmpty()) {
             showAlert("Please fill in all fields.");
             return;
         }
 
         int entryIndex;
-        int teamIndex;
         try {
             entryIndex = Integer.parseInt(taskText);
-            teamIndex = Integer.parseInt(teamText);
         } catch (NumberFormatException e) {
-            showAlert("Please enter valid numbers for task and team.");
+            showAlert("Please enter valid numbers for entry.");
             return;
         }
 
         List<Entry> entries = controller.getEntriesList();
-        List<Team> teams = controller.getTeamsList();
 
         if (entryIndex < 1 || entryIndex > entries.size()) {
             showAlert("Invalid entry number.");
             return;
         }
 
-
-        if (teamIndex < 1 || teamIndex > teams.size()) {
-            showAlert("Invalid team number.");
-            return;
+        List<String> vehicles = new ArrayList<>();
+        String[] vehiclePlateNumbers = vehicleText.split(",");
+        for (String plateNumber: vehiclePlateNumbers) {
+           vehicles.add(plateNumber);
+           return;
         }
 
-        String result = controller.assignTeamToEntry(entryIndex, teamIndex);
+
+        String result = controller.assignVehiclesToEntry(entryIndex, vehicles);
 
         if (result == null) {
-            showSuccess("Team assigned successfully!");
+            showSuccess("Vehicle(s) assigned successfully!");
         } else {
-            showAlert(result + "\n\nTeam not assigned!");
+            showAlert(result + "\n\nVehicle(s) not assigned!");
         }
     }
 
