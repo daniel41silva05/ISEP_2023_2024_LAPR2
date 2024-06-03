@@ -276,3 +276,45 @@ Package Weight: Light
 Transport: Open box
 
 
+Email Service: Dei Service
+From: gsm1@this.app
+To: aa@gmail.com
+Subject: Assignment to a task
+Hello Rui.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Wed Feb 02 00:00:00 WET 2000
+Title: aaa
+Description: aa
+Degree of Urgency: High
+Expected Duration: 11
+Type: Regular
+Green Space: Aaa
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: Rui, Email: aa@gmail.com
+Name: koi, Email: awdsa@gmail.com
+
+
+
+Email Service: Dei Service
+From: gsm1@this.app
+To: awdsa@gmail.com
+Subject: Assignment to a task
+Hello koi.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Wed Feb 02 00:00:00 WET 2000
+Title: aaa
+Description: aa
+Degree of Urgency: High
+Expected Duration: 11
+Type: Regular
+Green Space: Aaa
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: Rui, Email: aa@gmail.com
+Name: koi, Email: awdsa@gmail.com
+
+
+
