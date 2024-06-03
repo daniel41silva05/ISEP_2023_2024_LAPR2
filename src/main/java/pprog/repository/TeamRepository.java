@@ -45,8 +45,10 @@ public class TeamRepository implements Serializable {
         Team newTeam = null;
         Team team = new Team(Team.seeColaboratorsWithSkillsNeeded(collaboratorList, requiredSkills));
 
-        if (addTeam(team) && team.teamValidations(minSize, maxSize, requiredSkills, collaboratorList)) {
-            newTeam = team;
+        if (team.teamValidations(minSize, maxSize, requiredSkills, collaboratorList)) {
+            if (addTeam(team)) {
+                newTeam = team;
+            }
         }
         return newTeam;
     }
