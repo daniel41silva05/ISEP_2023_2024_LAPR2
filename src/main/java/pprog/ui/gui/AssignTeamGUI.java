@@ -95,6 +95,7 @@ public class AssignTeamGUI implements Initializable {
             return;
         }
 
+
         if (teamIndex < 1 || teamIndex > teams.size()) {
             showAlert("Invalid team number.");
             return;
