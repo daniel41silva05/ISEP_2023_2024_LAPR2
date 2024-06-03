@@ -89,8 +89,15 @@ public class RegisterCheckUpUI implements Runnable {
      */
     private String requestVehiclePlate() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Vehicle Plate Number: ");
-        return input.nextLine();
+        String plateNumber;
+        do {
+            System.out.print("Plate Number (format: XX XX XX): ");
+            plateNumber = input.nextLine();
+            if (!plateNumber.matches("[A-Z0-9]{2} [A-Z0-9]{2} [A-Z0-9]{2}")) {
+                System.out.println("Please enter a plate number in the format XX XX XX.");
+            }
+        } while (!plateNumber.matches("[A-Z0-9]{2} [A-Z0-9]{2} [A-Z0-9]{2}"));
+        return plateNumber;
     }
 
     /**
@@ -100,11 +107,13 @@ public class RegisterCheckUpUI implements Runnable {
      */
     private Date requestDate() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Date (format: dd/MM/yyyy): ");
+        System.out.print("New Start Date (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateStr);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
             System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
             return requestDate();
@@ -118,15 +127,24 @@ public class RegisterCheckUpUI implements Runnable {
      */
     private int requestKms() {
         Scanner input = new Scanner(System.in);
-        int kms;
-        do {
-            System.out.print("Kms: ");
-            kms = input.nextInt();
-            if (kms < 0) {
-                System.out.println("Please enter a non-negative number.");
+        while (true) {
+            try {
+                System.out.print("kms: ");
+                if (input.hasNextInt()) {
+                    int kms = input.nextInt();
+                    if (kms > 0) {
+                        return kms;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a non-negative number.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (kms < 0);
-        return kms;
+        }
     }
 
 }

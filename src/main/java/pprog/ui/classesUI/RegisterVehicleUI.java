@@ -152,15 +152,24 @@ public class RegisterVehicleUI implements Runnable {
      */
     private int requestTare() {
         Scanner input = new Scanner(System.in);
-        int tare;
-        do {
-            System.out.print("Tare: ");
-            tare = input.nextInt();
-            if (tare < 0) {
-                System.out.println("Please enter a non-negative number.");
+        while (true) {
+            try {
+                System.out.print("Tare: ");
+                if (input.hasNextInt()) {
+                    int tare = input.nextInt();
+                    if (tare > 0) {
+                        return tare;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a non-negative number.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (tare < 0);
-        return tare;
+        }
     }
 
     /**
@@ -170,15 +179,24 @@ public class RegisterVehicleUI implements Runnable {
      */
     private int requestGrossWeight() {
         Scanner input = new Scanner(System.in);
-        int grossWeight;
-        do {
-            System.out.print("Gross Weight: ");
-            grossWeight = input.nextInt();
-            if (grossWeight < 0) {
-                System.out.println("Please enter a non-negative number.");
+        while (true) {
+            try {
+                System.out.print("Gross Weight: ");
+                if (input.hasNextInt()) {
+                    int grossWeight = input.nextInt();
+                    if (grossWeight > 0) {
+                        return grossWeight;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a non-negative number.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (grossWeight < 0);
-        return grossWeight;
+        }
     }
 
     /**
@@ -188,15 +206,24 @@ public class RegisterVehicleUI implements Runnable {
      */
     private int requestCurrentKm() {
         Scanner input = new Scanner(System.in);
-        int currentKm;
-        do {
-            System.out.print("Current Km: ");
-            currentKm = input.nextInt();
-            if (currentKm < 0) {
-                System.out.println("Please enter a non-negative number.");
+        while (true) {
+            try {
+                System.out.print("Current Km: ");
+                if (input.hasNextInt()) {
+                    int currentKm = input.nextInt();
+                    if (currentKm > 0) {
+                        return currentKm;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a non-negative number.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (currentKm < 0);
-        return currentKm;
+        }
     }
 
     /**
@@ -209,8 +236,10 @@ public class RegisterVehicleUI implements Runnable {
         System.out.print("Register Date (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateStr);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
             System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
             return requestRegisterDate();
@@ -227,8 +256,10 @@ public class RegisterVehicleUI implements Runnable {
         System.out.print("Acquisition Date (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         try {
-            return dateFormat.parse(dateStr);
+            Date date = dateFormat.parse(dateStr);
+            return date;
         } catch (ParseException e) {
             System.out.println("Invalid date format. Please use dd/MM/yyyy format.");
             return requestAcquisitionDate();
@@ -242,15 +273,24 @@ public class RegisterVehicleUI implements Runnable {
      */
     private int requestMaintenanceCheckUpFrequency() {
         Scanner input = new Scanner(System.in);
-        int maintenanceCheckUpFrequency;
-        do {
-            System.out.print("Maintenance CheckUp Frequency: ");
-            maintenanceCheckUpFrequency = input.nextInt();
-            if (maintenanceCheckUpFrequency < 0) {
-                System.out.println("Please enter a non-negative number.");
+        while (true) {
+            try {
+                System.out.print("Maintenance CheckUp Frequency: ");
+                if (input.hasNextInt()) {
+                    int maintenanceCheckUpFrequency = input.nextInt();
+                    if (maintenanceCheckUpFrequency > 0) {
+                        return maintenanceCheckUpFrequency;
+                    } else {
+                        throw new IllegalArgumentException("Please enter a non-negative number.");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please enter numbers.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
-        } while (maintenanceCheckUpFrequency < 0);
-        return maintenanceCheckUpFrequency;
+        }
     }
 
     /**
@@ -278,51 +318,79 @@ public class RegisterVehicleUI implements Runnable {
      */
     private int requestVehicleType() {
         Scanner input = new Scanner(System.in);
-        int typeTransportInput;
-        int packageWeightInput;
-        int transportInput;
+        int typeTransportInput = 0;
+        int packageWeightInput = 0;
+        int transportInput = 0;
 
         while (true) {
-            System.out.println("Vehicle Type:");
-            System.out.println("- Type Transport");
-            System.out.println("1. Passengers");
-            System.out.println("2. Mixed");
-            System.out.print("Please enter a number (1 or 2): ");
-            typeTransportInput = input.nextInt();
-            if (typeTransportInput == 1 || typeTransportInput == 2) {
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter 1 or 2.");
+            try {
+                System.out.println("Vehicle Type:");
+                System.out.println("- Type Transport");
+                System.out.println("1. Passengers");
+                System.out.println("2. Mixed");
+                System.out.print("Please enter a number (1 or 2): ");
+                if (input.hasNextInt()) {
+                    typeTransportInput = input.nextInt();
+                    if (typeTransportInput >= 1 && typeTransportInput <= 2) {
+                        break;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option (1 or 2).");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option (1 or 2).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
         }
 
         while (true) {
-            System.out.println("- Package Weight");
-            System.out.println("1. Light");
-            System.out.println("2. Heavy");
-            System.out.print("Please enter a number (1 or 2): ");
-            packageWeightInput = input.nextInt();
-            if (packageWeightInput == 1 || packageWeightInput == 2) {
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter 1 or 2.");
+            try {
+                System.out.println("- Package Weight");
+                System.out.println("1. Light");
+                System.out.println("2. Heavy");
+                System.out.print("Please enter a number (1 or 2): ");
+                if (input.hasNextInt()) {
+                    packageWeightInput = input.nextInt();
+                    if (packageWeightInput >= 1 && packageWeightInput <= 2) {
+                        break;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option (1 or 2).");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option (1 or 2).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
         }
 
         while (true) {
-            System.out.println("- Transport");
-            System.out.println("1. Open Box");
-            System.out.println("2. Closed Vans");
-            System.out.println("3. Trucks");
-            System.out.print("Please enter a number (1, 2, or 3): ");
-            transportInput = input.nextInt();
-            if (transportInput >= 1 && transportInput <= 3) {
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter 1, 2, or 3.");
+            try {
+                System.out.println("- Transport");
+                System.out.println("1. Open Box");
+                System.out.println("2. Closed Vans");
+                System.out.println("3. Trucks");
+                System.out.print("Please enter a number (1, 2, or 3): ");
+                if (input.hasNextInt()) {
+                    transportInput = input.nextInt();
+                    if (transportInput >= 1 && transportInput <= 3) {
+                        break;
+                    } else {
+                        throw new IllegalArgumentException("Invalid input. Please choose a valid option (1, 2, or 3).");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid input. Please choose a valid option (1, 2, or 3).");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                input.nextLine();
             }
         }
 
         return typeTransportInput * 100 + packageWeightInput * 10 + transportInput;
     }
+
 }

@@ -2,7 +2,9 @@ package pprog.controller.entry;
 
 import pprog.domain.agenda.Entry;
 import pprog.domain.agenda.Agenda;
+import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
+import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
 
@@ -12,12 +14,14 @@ import java.util.List;
 public class CancelEntryAgendaController {
 
     private Agenda agenda;
+    private AuthenticationRepository authenticationRepository;
 
     /**
      * Constructs a CancelEntryAgendaController and initializes the agenda.
      */
     public CancelEntryAgendaController() {
         getAgenda();
+        getAuthenticationRepository();
     }
 
     /**
@@ -25,8 +29,9 @@ public class CancelEntryAgendaController {
      *
      * @param agenda the agenda to be used by this controller
      */
-    public CancelEntryAgendaController(Agenda agenda) {
+    public CancelEntryAgendaController(Agenda agenda, AuthenticationRepository authenticationRepository) {
         this.agenda = agenda;
+        this.authenticationRepository = authenticationRepository;
     }
 
     /**
@@ -43,6 +48,19 @@ public class CancelEntryAgendaController {
     }
 
     /**
+     * Retrieves the authentication repository instance.
+     *
+     * @return The authentication repository instance.
+     */
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
+
+    /**
      * Cancels an entry in the agenda.
      *
      * @param entryIndex the index of the entry to be canceled
@@ -50,7 +68,7 @@ public class CancelEntryAgendaController {
      */
     public String cancelEntry(int entryIndex) {
         try {
-            getAgenda().cancelEntry(getEntryByIndex(entryIndex));
+            getAgenda().cancelEntry(getEntryByIndex(entryIndex), getGSMFromSession());
             return null;
         } catch (IllegalArgumentException e) {
             return e.getMessage();
@@ -68,6 +86,11 @@ public class CancelEntryAgendaController {
      */
     public List<Entry> getEntriesList() {
         return getAgenda().getEntriesList();
+    }
+
+    private String getGSMFromSession() {
+        Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
+        return email.getEmail();
     }
 
     public Entry getEntryCancel(int index) {

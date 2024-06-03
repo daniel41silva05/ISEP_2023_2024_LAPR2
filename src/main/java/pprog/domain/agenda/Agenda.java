@@ -83,9 +83,15 @@ public class Agenda implements Serializable {
      * @param entry           The entry to be postponed.
      * @param newStartingDate The new starting date for the entry.
      */
-    public void postponeEntry(Entry entry, Date newStartingDate) {
-        entry.setStartingDate(newStartingDate);
-        entry.changeStatus(AgendaStatus.POSTPONED);
+    public void postponeEntry(Entry entry, Date newStartingDate, String gsmFromSession) {
+        if (validateUser(gsmFromSession, entry)) {
+            if (entry.getStartingDate().after(newStartingDate)) {
+                throw new IllegalArgumentException("The new date must be later than the date initially assigned to the task.");
+            } else {
+                entry.setStartingDate(newStartingDate);
+                entry.changeStatus(AgendaStatus.POSTPONED);
+            }
+        }
     }
 
     /**
@@ -93,8 +99,10 @@ public class Agenda implements Serializable {
      *
      * @param entry  The entry to be canceled.
      */
-    public void cancelEntry(Entry entry) {
-        entry.changeStatus(AgendaStatus.CANCELED);
+    public void cancelEntry(Entry entry, String gsmFromSession) {
+        if (validateUser(gsmFromSession, entry)) {
+            entry.changeStatus(AgendaStatus.CANCELED);
+        }
     }
 
     /**
