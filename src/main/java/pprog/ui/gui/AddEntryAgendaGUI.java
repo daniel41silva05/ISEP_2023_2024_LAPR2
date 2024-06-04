@@ -95,7 +95,7 @@ public class AddEntryAgendaGUI implements Initializable {
             StringBuilder sb = new StringBuilder("To-Do List:\n\n");
             int counter = 1;
             for (Task task : tasks) {
-                sb.append(counter).append(":\n").append(task).append("\n");
+                sb.append(counter).append(":\n").append(task).append("\n\n");
                 counter++;
             }
             showList(sb.toString());

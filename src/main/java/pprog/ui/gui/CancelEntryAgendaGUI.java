@@ -45,7 +45,7 @@ public class CancelEntryAgendaGUI implements Initializable {
             StringBuilder sb = new StringBuilder("Entries list:\n\n");
             int counter = 1;
             for (Entry entry : entries) {
-                sb.append(counter).append(":\n").append(entry).append("\n");
+                sb.append(counter).append(":\n").append(entry).append("\n\n");
                 counter++;
             }
             showList(sb.toString());
@@ -78,7 +78,7 @@ public class CancelEntryAgendaGUI implements Initializable {
 
         String result = controller.cancelEntry(entryIndex);
         if (result == null) {
-            showSuccess("Entry canceled successfully!");
+            showSuccess("Entry canceled successfully!\n\n" + controller.getEntryCancel(entryIndex));
         } else {
             showAlert(result + "\n\nEntry not canceled!");
         }

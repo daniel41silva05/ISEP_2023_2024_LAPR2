@@ -41,7 +41,7 @@ public class AssignVehiclesGUI implements Initializable {
             StringBuilder sb = new StringBuilder("Entries list:\n\n");
             int counter = 1;
             for (Entry entry : entries) {
-                sb.append(counter).append(":\n").append(entry).append("\n");
+                sb.append(counter).append(":\n").append(entry).append("\n\n");
                 counter++;
             }
             showList(sb.toString());
@@ -54,7 +54,7 @@ public class AssignVehiclesGUI implements Initializable {
         if (vehicles.isEmpty()) {
             showAlert("Vehicles list is empty!");
         } else {
-            StringBuilder sb = new StringBuilder("Teams list:\n\n");
+            StringBuilder sb = new StringBuilder("Vehicles list:\n\n");
             int counter = 1;
             for (Vehicle vehicle : vehicles) {
                 sb.append(counter).append(":\n").append(vehicle).append("\n");
@@ -100,7 +100,7 @@ public class AssignVehiclesGUI implements Initializable {
         String result = controller.assignVehiclesToEntry(entryIndex, vehicles);
 
         if (result == null) {
-            showSuccess("Vehicle(s) assigned successfully!");
+            showSuccess("Vehicle(s) assigned successfully!\n\n" + controller.getEntryWithVehicles(entryIndex));
         } else {
             showAlert(result + "\n\nVehicle(s) not assigned!");
         }

@@ -49,7 +49,7 @@ public class CompleteEntryAgendaGUI implements Initializable {
             StringBuilder sb = new StringBuilder("Entries list:\n\n");
             int counter = 1;
             for (Entry entry : entries) {
-                sb.append(counter).append(":\n").append(entry).append("\n");
+                sb.append(counter).append(":\n").append(entry).append("\n\n");
                 counter++;
             }
             showList(sb.toString());
@@ -82,9 +82,9 @@ public class CompleteEntryAgendaGUI implements Initializable {
 
         String result = controller.completeEntry(entryIndex);
         if (result == null) {
-            showSuccess("Entry canceled successfully!");
+            showSuccess("Entry completed successfully!\n\n" + controller.getEntryComplete(entryIndex));
         } else {
-            showAlert(result + "\n\nEntry not canceled!");
+            showAlert(result + "\n\nEntry not completed!");
         }
     }
 

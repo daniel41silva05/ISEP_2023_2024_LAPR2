@@ -44,6 +44,18 @@ public class ConsultAssignedTaskGUI implements Initializable {
     }
 
     @FXML
+    private StringBuilder loadEntries(List<Entry> entries) {
+            StringBuilder sb = new StringBuilder("Entries list:\n\n");
+            int counter = 1;
+            for (Entry entry : entries) {
+                sb.append(counter).append(":\n").append(entry).append("\n\n");
+                counter++;
+            }
+            sb.toString();
+        return sb;
+    }
+
+    @FXML
     private void handleSubmit() {
         String startDateText = startDateField.getText().trim();
         String endDateText = endDateField.getText().trim();
@@ -73,10 +85,10 @@ public class ConsultAssignedTaskGUI implements Initializable {
         }
 
         List<Entry> result = controller.getTasksForCollaboratorBetweenDates(startDate, endDate);
-        if (result == null) {
-            showSuccess("Entry postponed successfully!");
+        if (result != null) {
+            showSuccess("\n" + loadEntries(result));
         } else {
-            showAlert(result + "\n\nEntry not postponed!");
+            showAlert("No tasks were assigned to you during this period.");
         }
     }
 

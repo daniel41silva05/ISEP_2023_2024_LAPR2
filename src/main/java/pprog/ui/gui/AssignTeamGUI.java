@@ -40,7 +40,7 @@ public class AssignTeamGUI implements Initializable {
             StringBuilder sb = new StringBuilder("Entries list:\n\n");
             int counter = 1;
             for (Entry entry : entries) {
-                sb.append(counter).append(":\n").append(entry).append("\n");
+                sb.append(counter).append(":\n").append(entry).append("\n\n");
                 counter++;
             }
             showList(sb.toString());
@@ -56,7 +56,7 @@ public class AssignTeamGUI implements Initializable {
             StringBuilder sb = new StringBuilder("Teams list:\n\n");
             int counter = 1;
             for (Team team : teams) {
-                sb.append(counter).append(":\n").append(team).append("\n");
+                sb.append(counter).append(":\n").append(team).append("\n\n");
                 counter++;
             }
             showList(sb.toString());
@@ -100,7 +100,7 @@ public class AssignTeamGUI implements Initializable {
         String result = controller.assignTeamToEntry(entryIndex, teamIndex);
 
         if (result == null) {
-            showSuccess("Team assigned successfully!");
+            showSuccess("Team assigned successfully!\n\n" + controller.getEntryWithTeam(entryIndex));
         } else {
             showAlert(result + "\n\nTeam not assigned!");
         }

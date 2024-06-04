@@ -96,7 +96,7 @@ public class PostponeEntryAgendaGUI implements Initializable {
 
         String result = controller.postponeEntry(entryIndex, date);
         if (result == null) {
-            showSuccess("Entry postponed successfully!");
+            showSuccess("Entry postponed successfully!\n\n" + controller.getEntryPostpone(entryIndex));
         } else {
             showAlert(result + "\n\nEntry not postponed!");
         }
