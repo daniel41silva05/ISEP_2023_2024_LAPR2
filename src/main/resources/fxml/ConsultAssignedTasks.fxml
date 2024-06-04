@@ -6,9 +6,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.ConsultAssignedTasks"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="pprog.ui.gui.ConsultAssignedTaskGUI"
+            prefHeight="200" prefWidth="400">
 
-</AnchorPane>
+    <center>
+        <VBox spacing="10" alignment="center" style="-fx-padding: 0 50;">
+            <Label text="Consult tasks between two dates" style="-fx-font-size: 20px;" />
+            <TextField fx:id="startDateField" promptText="Enter the start date"/>
+            <TextField fx:id="endDateField" promptText="Enter the end date"/>
+            <HBox spacing="10" alignment="center">
+                <Button fx:id="returnBtn" text="Return" onAction="#handleReturnButtonAction"/>
+                <Button fx:id="submitBtn" text="Submit" onAction="#handleSubmit"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

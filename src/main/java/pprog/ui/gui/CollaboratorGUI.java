@@ -46,7 +46,7 @@ public class CollaboratorGUI implements Initializable {
 
     public void completionTask(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
-        changeScene(stage,"/fxml/CompletionTask.fxml",true);
+        changeScene(stage, "/fxml/CompleteEntry.fxml",true);
     }
 
     public void changeScene(Stage stage, String resourceName,Boolean rezizeble){

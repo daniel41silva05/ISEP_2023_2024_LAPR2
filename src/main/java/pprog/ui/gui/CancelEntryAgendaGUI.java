@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 public class CancelEntryAgendaGUI implements Initializable {
 
     @FXML
-    private TextField dateField;
-    @FXML
     TextField entryField;
     @FXML
     Button returnBtn;
@@ -55,17 +53,17 @@ public class CancelEntryAgendaGUI implements Initializable {
     }
 
     @FXML
-    private void handleAssignTeam() {
-        String taskText = entryField.getText().trim();
+    private void handleCancelEntry() {
+        String entryText = entryField.getText().trim();
 
-        if (taskText.isEmpty()) {
+        if (entryText.isEmpty()) {
             showAlert("Please fill in all fields.");
             return;
         }
 
         int entryIndex;
         try {
-            entryIndex = Integer.parseInt(taskText);
+            entryIndex = Integer.parseInt(entryText);
         } catch (NumberFormatException e) {
             showAlert("Please enter valid numbers for entry.");
             return;
