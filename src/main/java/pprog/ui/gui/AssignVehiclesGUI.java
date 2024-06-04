@@ -96,6 +96,7 @@ public class AssignVehiclesGUI implements Initializable {
         }
 
 
+
         String result = controller.assignVehiclesToEntry(entryIndex, vehicles);
 
         if (result == null) {
