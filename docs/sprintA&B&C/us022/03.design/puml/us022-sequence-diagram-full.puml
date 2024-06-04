@@ -12,6 +12,9 @@ participant ":AddEntryAgendaControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "toDoList:\nToDoList" as toDoList
+participant ":TaskMapper" as taskMAPPER
+participant "taskDto\n:TaskDto" as taskDTO
+participant "tasksListDto\n:List<TaskDto>" as taskListDTO
 participant "authenticationRepository:\nAuthenticationRepository" as authentication
 participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
@@ -27,7 +30,7 @@ activate GSM
 
         UI -> CTRL** : create
 
-        UI -> CTRL : getTasksList()
+        UI -> CTRL : getTaskListDTO()
         activate CTRL
 
             CTRL -> REP : getInstance()
@@ -48,8 +51,32 @@ activate GSM
             toDoList --> CTRL : tasksList
             deactivate toDoList
 
-            CTRL --> UI : tasksList
-            deactivate CTRL
+            CTRL -> taskMAPPER: toDTOList(tasksList)
+            activate taskMAPPER
+
+                taskMAPPER -> taskListDTO** : create()
+
+                loop For each task in tasksList
+
+                taskMAPPER -> taskDTO: taskToDTO(task)
+                activate taskDTO
+
+                taskDTO --> taskMAPPER: taskDto
+                deactivate taskDTO
+
+                taskMAPPER -> taskListDTO: add(taskDto)
+                activate taskListDTO
+
+                end
+
+                taskListDTO --> taskMAPPER: tasksListDto
+                deactivate taskListDTO
+
+            taskMAPPER --> CTRL : tasksListDto
+            deactivate taskMAPPER
+
+        CTRL --> UI : tasksListDto
+        deactivate CTRL
 
     UI --> GSM : shows to-do list and asks to select one
     deactivate UI

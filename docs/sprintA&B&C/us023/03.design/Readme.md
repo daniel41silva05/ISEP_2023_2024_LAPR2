@@ -62,21 +62,29 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - split](svg/us023-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Get Entry Dto List**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us023-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial - Get Entry Dto List](svg/us023-sequence-diagram-partial-get-entry-dto-list.svg)
 
-**Get Task Category Object**
+**Get Team Dto List**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us023-sequence-diagram-partial-get-task-category.svg)
+![Sequence Diagram - Partial - Get Team Dto List](svg/us023-sequence-diagram-partial-get-team-dto-list.svg)
 
-**Get Employee**
+**Get Entry Object**
 
-![Sequence Diagram - Partial - Get Employee](svg/us023-sequence-diagram-partial-get-employee.svg)
+![Sequence Diagram - Partial - Get Entry Object](svg/us023-sequence-diagram-partial-get-entry-object.svg)
 
-**Create Task**
+**Get Team Object**
 
-![Sequence Diagram - Partial - Create Task](svg/us023-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Get Team Object](svg/us023-sequence-diagram-partial-get-team-object.svg)
+
+**Get GSM Email**
+
+![Sequence Diagram - Partial - Get GSM Email](svg/us023-sequence-diagram-partial-get-gsm-email.svg)
+
+**Send Email to Collaborator**
+
+![Sequence Diagram - Partial - Send Email to Collaborator](svg/us023-sequence-diagram-partial-send-email-collaborator.svg)
 
 ## 3.3. Class Diagram (CD)
 

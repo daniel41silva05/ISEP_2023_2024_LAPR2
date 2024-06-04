@@ -17,8 +17,8 @@ class AssignVehiclesController {
     +assignVehiclesToEntry(agendaIndex, vehiclesPlateNumber)
     -getEntryByIndex(index)
     -getVehicleByPlateNumber(vehiclePlateNumber)
-    +getEntriesList()
-    +getVehiclesList()
+    +getEntriesListDTO()
+    +getVehiclesListDTO()
 }
 
 class Agenda {
@@ -29,6 +29,8 @@ class Entry {
     -Date startingDate
     -AgendaStatus status
     -Task task
+    -Team teamAssign;
+    -GreenSpacesManager greenSpacesManager;
     -List<Vehicle> vehiclesAssign
     +Entry(startingDate, task)
     +assignVehicles(vehiclesAssign)
@@ -39,8 +41,20 @@ class VehicleRepository {
 }
 
 class Vehicle {
+    -String brand
+    -String model
+    -int tare
+    -int grossWeight
+    -int currentKm
+    -Date registerDate
+    -Date acquisitionDate
+    -int maintenanceCheckUpFrequency
     -String plateNumber
+    -VehicleType type
+    -boolean occupiedVehicle
+    +Vehicle(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type)
     +getPlateNumber()
+    +setOccupiedVehicle(occupiedVehicle)
 }
 
 class Repositories {
@@ -48,6 +62,40 @@ class Repositories {
     + getInstance() : Repositories
     + getAgenda()
     + getVehicleRepository()
+}
+
+class EntryDto {
+    -Date startingDate
+    -AgendaStatus status
+    -Task task
+    -Team teamAssign;
+    -GreenSpacesManager greenSpacesManager;
+    -List<Vehicle> vehiclesAssign;
+    +EntryDto(startingDate, status, task, teamAssign, greenSpacesManager, vehiclesAssign)
+}
+
+class EntryMapper {
+    +toDTOList(entriesList)
+    +entryToDTO(entry)
+}
+
+class VehicleDto {
+    -String brand
+    -String model
+    -int tare
+    -int grossWeight
+    -int currentKm
+    -Date registerDate
+    -Date acquisitionDate
+    -int maintenanceCheckUpFrequency
+    -String plateNumber
+    -VehicleType type
+    +VehicleDto(brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type)
+}
+
+class VehicleMapper {
+    +toDTOList(vehiclesList)
+    +vehicleToDTO(vehicle)
 }
 
 AssignVehiclesUI ..> AssignVehiclesController
@@ -60,5 +108,9 @@ Repositories --> "1" VehicleRepository
 Agenda --> "*" Entry
 VehicleRepository --> "*" Vehicle
 Entry --> "*" Vehicle
+AssignVehiclesController ..> VehicleMapper
+VehicleMapper ..> VehicleDto
+AssignVehiclesController ..> EntryMapper
+EntryMapper ..> EntryDto
 
 @enduml

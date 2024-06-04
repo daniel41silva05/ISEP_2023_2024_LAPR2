@@ -17,8 +17,8 @@ class AssignTeamController {
     +assignTeamToEntry(agendaIndex, teamIndex)
     -getEntryByIndex(agendaIndex)
     -getTeamByIndex(teamIndex)
-    +getEntriesList()
-    +getTeamsList()
+    +getEntriesListDTO()
+    +getTeamsListDTO()
     -sendTheEmailToTeam(from, to, nameCollaborator, entry)
     -getGSMFromSession()
 }
@@ -31,6 +31,8 @@ class Entry {
     -Date startingDate
     -AgendaStatus status
     -Task task
+    -GreenSpacesManager greenSpacesManager;
+    -List<Vehicle> vehiclesAssign;
     +Entry(startingDate, task)
     +assignTeam(teamAssign)
 }
@@ -83,6 +85,31 @@ class GmailService {
     -writeToFile(file, from, to, subject, body)
 }
 
+class EntryDto {
+    -Date startingDate
+    -AgendaStatus status
+    -Task task
+    -Team teamAssign;
+    -GreenSpacesManager greenSpacesManager;
+    -List<Vehicle> vehiclesAssign;
+    +EntryDto(startingDate, status, task, teamAssign, greenSpacesManager, vehiclesAssign)
+}
+
+class EntryMapper {
+    +toDTOList(entriesList)
+    +entryToDTO(entry)
+}
+
+class TeamDto {
+    -List<Collaborator> collaborators
+    TeamDto(collaborators)
+}
+
+class TeamMapper {
+    +toDTOList(teamsList)
+    +teamToDTO(team)
+}
+
 
 AssignTeamUI ..> AssignTeamController
 AssignTeamController ..> Repositories: repositories
@@ -102,5 +129,9 @@ EmailService ..> ApplicationSession
 ApplicationSession --> Email: instance
 DeiService ..> Email
 GmailService ..> Email
+AssignTeamController ..> TeamMapper
+TeamMapper ..> TeamDto
+AssignTeamController ..> EntryMapper
+EntryMapper ..> EntryDto
 
 @enduml

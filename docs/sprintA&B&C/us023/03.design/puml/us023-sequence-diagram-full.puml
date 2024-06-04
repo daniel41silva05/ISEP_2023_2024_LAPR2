@@ -12,17 +12,23 @@ participant ":AssignTeamController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "agenda:\nAgenda" as agenda
+participant ":EntryMapper" as entryMAPPER
+participant "entryDto\n:EntryDto" as entryDTO
+participant "entriesListDto\n:List<EntryDto>" as entriesListDTO
 participant "teamRepository:\nTeamRepository" as teamRepository
+participant ":TeamMapper" as teamMAPPER
+participant "teamDto\n:TeamDto" as teamDTO
+participant "teamListDto\n:List<TeamDto>" as teamListDTO
+participant "entry\n:Entry" as ENTRY
 participant "authenticationRepository:\nAuthenticationRepository" as authentication
 participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
+participant "collaborator\n:Collaborator" as Collaborator
 participant ":EmailService" as emailService
 participant ":ApplicationSession" as ApplicationSession
 participant ":Email" as email
 participant ":DeiService" as deiService
 participant "prop:\nProperties" as Properties
-participant "entry\n:Entry" as ENTRY
-participant "collaborator\n:Collaborator" as Collaborator
 
 activate GSM
 
@@ -31,7 +37,7 @@ activate GSM
 
         UI -> CTRL** : create
 
-        UI -> CTRL : getEntriesList()
+        UI -> CTRL : getEntriesListDTO()
         activate CTRL
 
             CTRL -> REP : getInstance()
@@ -52,7 +58,31 @@ activate GSM
             agenda --> CTRL : entriesList
             deactivate agenda
 
-        CTRL --> UI : entriesList
+            CTRL -> entryMAPPER: toDTOList(entriesList)
+            activate entryMAPPER
+
+                entryMAPPER -> entriesListDTO** : create()
+
+                loop For each entry in entriesList
+
+                entryMAPPER -> entryDTO: entryToDTO(entry)
+                activate entryDTO
+
+                entryDTO --> entryMAPPER: entryDto
+                deactivate entryDTO
+
+                entryMAPPER -> entriesListDTO: add(entryDto)
+                activate entriesListDTO
+
+                end
+
+                entriesListDTO --> entryMAPPER: entriesListDto
+                deactivate entriesListDTO
+
+            entryMAPPER --> CTRL : entriesListDto
+            deactivate entryMAPPER
+
+        CTRL --> UI : entriesListDto
         deactivate CTRL
 
     UI --> GSM : shows agenda and asks to select an entry
@@ -61,7 +91,7 @@ activate GSM
     GSM -> UI : selects an entry in the agenda
     activate UI
 
-        UI -> CTRL : getTeamsList()
+        UI -> CTRL : getTeamsListDTO()
         activate CTRL
 
             CTRL -> REP : getInstance()
@@ -82,7 +112,31 @@ activate GSM
             teamRepository --> CTRL : teamList
             deactivate teamRepository
 
-        CTRL --> UI : teamList
+            CTRL -> teamMAPPER: toDTOList(teamList)
+            activate teamMAPPER
+
+                teamMAPPER -> teamListDTO** : create()
+
+                loop For each team in teamList
+
+                teamMAPPER -> teamDTO: teamToDTO(team)
+                activate teamDTO
+
+                teamDTO --> teamMAPPER: teamDto
+                deactivate teamDTO
+
+                teamMAPPER -> teamListDTO: add(teamDto)
+                activate teamListDTO
+
+                end
+
+                teamListDTO --> teamMAPPER: teamListDto
+                deactivate teamListDTO
+
+            teamMAPPER --> CTRL : teamListDto
+            deactivate teamMAPPER
+
+        CTRL --> UI : teamListDto
         deactivate CTRL
 
     UI --> GSM : shows teams list and asks to select one

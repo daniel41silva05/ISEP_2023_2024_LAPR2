@@ -28,12 +28,16 @@ In a real context we also need to manage (un)availability of vehicles due to ove
 >
 > **Answer:** There is no specification concerning the number of vehicles, is upt to GSM decide what vehicles the task needs.
 
+> **Question:** How will the Green Spaces Manager choose the vehicle to assign? By its plate?
+>
+> **Answer:** Assuming you mean assingning to a Task/Agenda Entry, the data related with vehicle should be provided in order to ease the selection.
+
 ### 1.3. Acceptance Criteria
 
-* **ACX:** The vehicles available to assign must not be assigned to a task in the same period.
-* **ACX:** GSM will select one or more vehicles from the list of vehicles registered in US06.
-* **ACX:** GSM will select an entry from those contained in the Agenda.
-* **ACX:** System must ensure that only GSM assigns one or more vehicles to an Agenda entry.
+* **AC1:** The vehicles available to assign must not be assigned to a task in the same period.
+* **AC2:** GSM will select one or more vehicles from the list of vehicles registered in US06.
+* **AC3:** GSM will select an entry from those contained in the Agenda.
+* **AC4:** System must ensure that only GSM assigns one or more vehicles to an Agenda entry.
 
 ### 1.4. Found out Dependencies
 

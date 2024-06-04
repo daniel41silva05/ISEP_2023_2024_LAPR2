@@ -52,21 +52,25 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - split](svg/us026-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Get Entries Dto List**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial - Get Entries Dto List](svg/us026-sequence-diagram-partial-get-entries-dto-list.svg)
 
-**Get Task Category Object**
+**Get Vehicles Dto List**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
+![Sequence Diagram - Partial - Get Vehicles Dto List](svg/us026-sequence-diagram-partial-get-vehicle-dto-list.svg)
 
-**Get Employee**
+**Get Entry Object**
 
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
+![Sequence Diagram - Partial - Get Entry Object](svg/us026-sequence-diagram-partial-get-entry-object.svg)
 
-**Create Task**
+**Get Vehicle Object**
 
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Get Vehicle Object](svg/us026-sequence-diagram-partial-get-vehicle-object.svg)
+
+**Assign Vehicles to Entry Object**
+
+![Sequence Diagram - Partial - Assign Vehicles to Entry Object](svg/us026-sequence-diagram-partial-assign-vehicles.svg)
 
 ## 3.3. Class Diagram (CD)
 
