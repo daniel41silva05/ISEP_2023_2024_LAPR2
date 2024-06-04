@@ -93,7 +93,6 @@ public class AssignVehiclesGUI implements Initializable {
         String[] vehiclePlateNumbers = vehicleText.split(",");
         for (String plateNumber: vehiclePlateNumbers) {
            vehicles.add(plateNumber);
-           return;
         }
 
 
