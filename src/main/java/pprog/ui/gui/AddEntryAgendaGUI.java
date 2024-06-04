@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pprog.controller.entry.AddEntryAgendaController;
-import pprog.domain.todolist.Task;
+import pprog.controller.AddEntryAgendaController;
+import pprog.domain.Task;
 
 import java.io.IOException;
 import java.net.URL;

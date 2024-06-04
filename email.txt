@@ -5,7 +5,7 @@ Subject: Assignment to a task
 Olá Ana.
 You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
 Below is the task information:
-pprog.domain.agenda.Entry@57536d79
+pprog.domain.Entry@57536d79
 Email Service: Dei Service
 From: gsm1@this.app
 To: bruno@this.app
@@ -13,7 +13,7 @@ Subject: Assignment to a task
 Olá Bruno.
 You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
 Below is the task information:
-pprog.domain.agenda.Entry@57536d79
+pprog.domain.Entry@57536d79
 Email Service: Dei Service
 From: gsm1@this.app
 To: ad@dad.ad
@@ -354,5 +354,24 @@ Green Space: green
 Managed by: gsm1@this.app
 Status: Postponed
 Team Assigned: Name: daniel, Email: daniel@a.aa
+
+
+Email Service: Dei Service
+From: gsm1@this.app
+To: colaborador@this.app
+Subject: Assignment to a task
+Hello colaborador.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Sat Nov 11 00:00:00 WET 2000
+Title: task
+Description: a
+Degree of Urgency: Medium
+Expected Duration: 1
+Type: Regular
+Green Space: green
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: colaborador, Email: colaborador@this.app
 
 

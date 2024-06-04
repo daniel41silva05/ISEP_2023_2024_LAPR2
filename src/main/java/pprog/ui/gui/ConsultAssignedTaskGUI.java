@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pprog.controller.entry.ConsultTasksController;
-import pprog.domain.agenda.Entry;
+import pprog.controller.ConsultTasksController;
+import pprog.domain.Entry;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,7 +48,7 @@ public class ConsultAssignedTaskGUI implements Initializable {
             StringBuilder sb = new StringBuilder("Entries list:\n\n");
             int counter = 1;
             for (Entry entry : entries) {
-                sb.append(counter).append(":\n").append(entry).append("\n\n");
+                sb.append(counter).append(":\n").append(entry.getTask().getTitle()).append(" - ").append(entry.getStartingDate()).append("\n\n");
                 counter++;
             }
             sb.toString();

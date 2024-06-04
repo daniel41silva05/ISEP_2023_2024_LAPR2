@@ -1,7 +1,7 @@
 package pprog.repository;
 
 import org.junit.jupiter.api.Test;
-import pprog.domain.collaborator.Collaborator;
+import pprog.domain.Collaborator;
 import pprog.domain.Skill;
 import pprog.domain.Team;
 

@@ -1,8 +1,6 @@
 package pprog.ui.gui;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pprog.controller.ListGreenSpacesByGSMController;
-import pprog.domain.greenspace.GreenSpace;
+import pprog.domain.GreenSpace;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,7 +1,6 @@
 package pprog.domain;
 
 import org.junit.jupiter.api.Test;
-import pprog.domain.vehicle.Vehicle;
 
 import java.util.Date;
 

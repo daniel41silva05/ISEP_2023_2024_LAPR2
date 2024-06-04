@@ -16,8 +16,8 @@
     <center>
         <VBox spacing="10" alignment="center" style="-fx-padding: 0 50;">
             <Label text="Assign Team To Entry in Agenda" style="-fx-font-size: 20px;" />
-            <TextField fx:id="entryField" promptText="Enter the name of the Entry"/>
-            <TextField fx:id="teamField" promptText="Enter the name of the Team"/>
+            <TextField fx:id="entryField" promptText="Enter the number of the Entry"/>
+            <TextField fx:id="teamField" promptText="Enter the number of the Team"/>
             <HBox spacing="10" alignment="center">
                 <Button text="Return" onAction="#handleReturnButtonAction"/>
                 <Button text="List of Entries" onAction="#loadEntries"/>

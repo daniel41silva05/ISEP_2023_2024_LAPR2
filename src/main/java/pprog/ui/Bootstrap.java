@@ -1,7 +1,7 @@
 package pprog.ui;
 
 import pprog.controller.authorization.AuthenticationController;
-import pprog.domain.collaborator.Collaborator;
+import pprog.domain.Collaborator;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.CollaboratorRepository;
 import pprog.repository.Repositories;

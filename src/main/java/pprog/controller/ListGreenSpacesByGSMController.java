@@ -1,7 +1,7 @@
 package pprog.controller;
 
-import pprog.domain.greenspace.GreenSpace;
-import pprog.domain.users.GreenSpacesManager;
+import pprog.domain.GreenSpace;
+import pprog.domain.GreenSpacesManager;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;

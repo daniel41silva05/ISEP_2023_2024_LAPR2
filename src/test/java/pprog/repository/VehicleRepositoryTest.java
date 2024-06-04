@@ -1,6 +1,6 @@
 package pprog.repository;
 
-import pprog.domain.vehicle.Vehicle;
+import pprog.domain.Vehicle;
 import org.junit.jupiter.api.Test;
 import java.util.Date;
 import java.util.List;

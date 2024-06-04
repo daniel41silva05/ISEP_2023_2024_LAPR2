@@ -1,7 +1,7 @@
 package pprog.repository;
 
-import pprog.domain.agenda.Agenda;
-import pprog.domain.todolist.ToDoList;
+import pprog.domain.Agenda;
+import pprog.domain.ToDoList;
 
 import java.io.*;
 

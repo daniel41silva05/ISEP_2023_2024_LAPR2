@@ -7,9 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pprog.controller.vehicle.AssignVehiclesController;
-import pprog.domain.agenda.Entry;
-import pprog.domain.vehicle.Vehicle;
+import pprog.controller.AssignVehiclesController;
+import pprog.domain.Entry;
+import pprog.domain.Vehicle;
 
 import java.io.IOException;
 import java.net.URL;

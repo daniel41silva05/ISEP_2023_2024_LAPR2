@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pprog.controller.entry.CancelEntryAgendaController;
-import pprog.domain.agenda.Entry;
+import pprog.controller.CancelEntryAgendaController;
+import pprog.domain.Entry;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,7 +1,7 @@
 package pprog.ui;
 
 import pprog.repository.Repositories;
-import pprog.ui.menu.MainMenuUI;
+import pprog.ui.console.menu.MainMenuUI;
 
 import java.io.File;
 

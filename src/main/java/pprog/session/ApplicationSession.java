@@ -1,7 +1,7 @@
 package pprog.session;
 
-import pprog.domain.algoritmos.SortingAlgorithm;
-import pprog.domain.email.Email;
+import pprog.interfaces.SortingAlgorithm;
+import pprog.interfaces.Email;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
 

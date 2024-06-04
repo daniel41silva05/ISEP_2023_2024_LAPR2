@@ -1,7 +1,6 @@
 package pprog.domain;
 
 import org.junit.jupiter.api.Test;
-import pprog.domain.collaborator.Collaborator;
 
 import java.util.ArrayList;
 import java.util.List;

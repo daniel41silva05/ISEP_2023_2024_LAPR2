@@ -29,7 +29,7 @@
                     </FXCollections>
                 </items>
             </ComboBox>
-            <TextField fx:id="expectedDurationField" promptText="Expected Duration" />
+            <TextField fx:id="expectedDurationField" promptText="Expected Duration (in days)" />
             <ComboBox fx:id="taskTypeComboBox" promptText="Type">
                 <items>
                     <FXCollections fx:factory="observableArrayList">

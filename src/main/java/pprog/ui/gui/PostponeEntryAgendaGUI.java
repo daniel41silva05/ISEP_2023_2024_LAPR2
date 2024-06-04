@@ -7,10 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pprog.controller.entry.PostponeEntryAgendaController;
-import pprog.controller.team.AssignTeamController;
-import pprog.domain.Team;
-import pprog.domain.agenda.Entry;
+import pprog.controller.PostponeEntryAgendaController;
+import pprog.domain.Entry;
 
 import java.io.IOException;
 import java.net.URL;

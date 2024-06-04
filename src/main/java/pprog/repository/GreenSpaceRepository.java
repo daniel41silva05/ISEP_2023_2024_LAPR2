@@ -1,8 +1,8 @@
 package pprog.repository;
 
-import pprog.domain.algoritmos.SortingAlgorithm;
-import pprog.domain.greenspace.GreenSpace;
-import pprog.domain.users.GreenSpacesManager;
+import pprog.interfaces.SortingAlgorithm;
+import pprog.domain.GreenSpace;
+import pprog.domain.GreenSpacesManager;
 import pprog.session.ApplicationSession;
 
 import java.io.Serializable;

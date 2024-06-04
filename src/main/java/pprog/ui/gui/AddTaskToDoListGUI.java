@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pprog.controller.AddTaskToDoListController;
-import pprog.domain.greenspace.GreenSpace;
+import pprog.domain.GreenSpace;
 
 import java.io.IOException;
 import java.net.URL;

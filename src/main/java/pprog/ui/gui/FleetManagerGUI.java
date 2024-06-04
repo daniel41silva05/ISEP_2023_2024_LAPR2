@@ -12,7 +12,9 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.Repositories;
-import pprog.ui.classesUI.*;
+import pprog.ui.console.RegisterCheckUpUI;
+import pprog.ui.console.RegisterVehicleUI;
+import pprog.ui.console.VehicleNeedingMaintenanceUI;
 
 import java.io.IOException;
 import java.net.URL;

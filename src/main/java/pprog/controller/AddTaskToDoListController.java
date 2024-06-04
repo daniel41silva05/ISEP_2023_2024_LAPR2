@@ -1,11 +1,11 @@
 package pprog.controller;
 
-import pprog.domain.greenspace.GreenSpace;
-import pprog.domain.todolist.Task;
+import pprog.domain.GreenSpace;
+import pprog.domain.Task;
 import pprog.repository.AuthenticationRepository;
 import pprog.repository.GreenSpaceRepository;
 import pprog.repository.Repositories;
-import pprog.domain.todolist.ToDoList;
+import pprog.domain.ToDoList;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
