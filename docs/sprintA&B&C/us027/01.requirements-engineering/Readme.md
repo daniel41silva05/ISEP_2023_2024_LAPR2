@@ -16,13 +16,17 @@ As a GSM, I need to list all green spaces managed by me.
 
 **From the client clarifications:**
 
-> **Question:** ...?
+> **Question:** Which info about Green Spaces do you want the GSM see when listing? Only the name?
 >
-> **Answer:** ...
+> **Answer:** Each de team can decide about the aspects related to UX/UI.
 
-> **Question:** ...?
+> **Question:** The GSM should be register in the app previously? Which attributes should it have?
 >
-> **Answer:** ...
+> **Answer:** Yes, the app can have multiple GSM registered (for instance that can be done during usgin the boostrap). A collaborator is a person (an employee) that have a name, birthdate, a salary, etc.
+
+> **Question:** A  GSM is a collaborator?
+>
+> **Answer:** A GSM is a role played by a collaborator. Depending in the size of the company, you can have a collaborator playing multiple roles like GSM, VFM or HRM or different persons playing the same role like GSM.
 
 ### 1.3. Acceptance Criteria
 
@@ -36,23 +40,10 @@ As a GSM, I need to list all green spaces managed by me.
 
 ### 1.5 Input and Output Data
 
-**Input Data:**
-
-* Typed data:
-    * ...
-    * ...
-    * ...
-    * ...
-    * ...
-    * ...
-	
-* Selected data:
-    * ...
-
 **Output Data:**
 
-* ...
-* ...
+* All data of the new List of Green Spaces managed by me
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
