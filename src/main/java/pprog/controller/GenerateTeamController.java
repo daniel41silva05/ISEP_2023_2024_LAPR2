@@ -133,6 +133,11 @@ public class GenerateTeamController {
         return getCollaboratorRepository().getCollaboratorsList();
     }
 
+    /**
+     * Retrieves a list of all teams.
+     *
+     * @return A list of all teams.
+     */
     public List<Team> getTeamsList() {
         return getTeamRepository().getTeamList();
     }

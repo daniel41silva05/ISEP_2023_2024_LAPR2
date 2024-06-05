@@ -12,12 +12,23 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Controller class for adding entries to the agenda.
+ * Controller class for managing entries in the agenda.
  */
 public class AddEntryAgendaController {
 
+    /**
+     * The agenda instance.
+     */
     private Agenda agenda;
+
+    /**
+     * The to-do list instance.
+     */
     private ToDoList toDoList;
+
+    /**
+     * The authentication repository instance.
+     */
     private AuthenticationRepository authenticationRepository;
 
     /**
@@ -86,7 +97,7 @@ public class AddEntryAgendaController {
      *
      * @param startingDate The starting date of the entry.
      * @param index        The index of the task to add to the agenda.
-     * @return True if the entry was successfully added to the agenda, false otherwise.
+     * @return A message indicating the result of adding the entry to the agenda.
      */
     public String addEntryAgenda(Date startingDate, int index) {
         try {
@@ -117,15 +128,20 @@ public class AddEntryAgendaController {
     }
 
     /**
-     * Retrieves the GreenSpacesManager instance from the current session.
+     * Retrieves the Green Spaces Manager (GSM) email from the current session.
      *
-     * @return The GreenSpacesManager instance from the current session.
+     * @return The email of the Green Spaces Manager from the current session.
      */
     private String getGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
     }
 
+    /**
+     * Retrieves the most recently added entry from the agenda.
+     *
+     * @return The most recently added entry.
+     */
     public Entry getEntryAdded() {
         List<Entry> entries = getAgenda().getEntriesList();
         return entries.get(entries.size() - 1);

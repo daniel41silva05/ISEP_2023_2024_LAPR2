@@ -25,11 +25,6 @@ public class PostponeEntryAgendaController {
         getAuthenticationRepository();
     }
 
-    /**
-     * Constructs a PostponeEntryAgendaController with a given agenda.
-     *
-     * @param agenda the agenda to be used by this controller
-     */
     public PostponeEntryAgendaController(Agenda agenda, AuthenticationRepository authenticationRepository) {
         this.agenda = agenda;
         this.authenticationRepository = authenticationRepository;
@@ -61,13 +56,6 @@ public class PostponeEntryAgendaController {
         return authenticationRepository;
     }
 
-    /**
-     * Postpones an entry in the agenda to a new starting date.
-     *
-     * @param entryIndex the index of the entry to be postponed
-     * @param newStartingDate the new starting date for the entry
-     * @return true if the entry was successfully postponed, false otherwise
-     */
     public String postponeEntry(int entryIndex, Date newStartingDate) {
         try {
             getAgenda().postponeEntry(getEntryByIndex(entryIndex), newStartingDate, getGSMFromSession());

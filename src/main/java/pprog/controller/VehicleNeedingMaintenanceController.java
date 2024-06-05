@@ -12,10 +12,22 @@ import java.util.List;
  */
 public class VehicleNeedingMaintenanceController {
 
+
+    /**
+     * The vehicle needing maintenance repository instance.
+     */
     private VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
 
+
+    /**
+     * The check-up repository instance.
+     */
     private CheckUpRepository checkUpRepository;
 
+
+    /**
+     * The vehicle repository instance.
+     */
     private VehicleRepository vehicleRepository;
 
     /**

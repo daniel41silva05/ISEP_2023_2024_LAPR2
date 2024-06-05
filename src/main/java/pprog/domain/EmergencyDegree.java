@@ -6,8 +6,14 @@ import java.io.Serializable;
  * Enum representing the degree of emergency.
  */
 public enum EmergencyDegree implements Serializable {
+
+    /** High. */
     HIGH,
+
+    /** Medium. */
     MEDIUM,
+
+    /** Low. */
     LOW;
 
     /**

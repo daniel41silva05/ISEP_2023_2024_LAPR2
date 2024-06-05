@@ -7,6 +7,9 @@ import java.io.Serializable;
  */
 public class FleetManager implements Serializable {
 
+    /**
+     * The email address of the fleet manager.
+     */
     private final String email;
 
     /**

@@ -21,10 +21,19 @@ public class AuthenticationController {
      */
     public static final String ROLE_VFM = "Vehicle and Equipment Fleet Manager";
 
+    /**
+     * Constant representing the role of Green Spaces Manager.
+     */
     public static final String ROLE_GSM = "Green Spaces Manager";
 
+    /**
+     * Constant representing the role of Collaborator.
+     */
     public static final String ROLE_COLLABORATOR = "Collaborator";
 
+    /**
+     * The repository responsible for handling authentication operations.
+     */
     private final AuthenticationRepository authenticationRepository;
 
     /**

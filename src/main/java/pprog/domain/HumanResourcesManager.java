@@ -7,12 +7,26 @@ import java.io.Serializable;
  */
 public class HumanResourcesManager implements Serializable {
 
+    /**
+     * The email address of the human resources manager.
+     */
     private final String email;
 
+    /**
+     * Constructs a HumanResourcesManager object with the specified email address.
+     *
+     * @param email The email address of the human resources manager.
+     */
     public HumanResourcesManager(String email) {
         this.email = email;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param o The reference object with which to compare.
+     * @return True if this object is the same as the obj argument; false otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -25,12 +39,17 @@ public class HumanResourcesManager implements Serializable {
         return email.equals(hrm.email);
     }
 
+    /**
+     * Retrieves the email address of the human resources manager.
+     *
+     * @return The email address of the human resources manager.
+     */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Clone method.
+     * Creates and returns a copy of this object.
      *
      * @return A clone of the current instance.
      */

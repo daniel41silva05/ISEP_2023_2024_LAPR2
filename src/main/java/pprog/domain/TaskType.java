@@ -6,7 +6,11 @@ import java.io.Serializable;
  * Represents the type of a task.
  */
 public enum TaskType implements Serializable {
+
+    /** Regular. */
     REGULAR,
+
+    /** Occasional. */
     OCCASIONAL;
 
     /**

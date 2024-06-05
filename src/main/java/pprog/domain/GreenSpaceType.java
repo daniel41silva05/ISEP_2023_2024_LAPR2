@@ -6,8 +6,14 @@ import java.io.Serializable;
  * Represents the type of a green space.
  */
 public enum GreenSpaceType implements Serializable {
+
+    /** Garden. */
     GARDEN,
+
+    /** Medium Sized Park. */
     MEDIUM_SIZED_PARK,
+
+    /** Large Sized Park. */
     LARGE_SIZED_PARK;
 
     /**

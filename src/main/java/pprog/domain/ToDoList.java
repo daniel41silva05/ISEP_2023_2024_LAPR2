@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class ToDoList implements Serializable {
 
+    /**
+     * The list of tasks.
+     */
     private final List<Task> tasksList;
 
     /**

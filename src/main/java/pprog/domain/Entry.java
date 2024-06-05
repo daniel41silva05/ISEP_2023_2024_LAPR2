@@ -10,12 +10,36 @@ import java.util.List;
  */
 public class Entry implements Serializable {
 
+    /**
+     * The starting date of the agenda entry.
+     */
     private Date startingDate;
+
+    /**
+     * The status of the agenda entry.
+     */
     private AgendaStatus status;
+
+    /**
+     * The task associated with the agenda entry.
+     */
     private Task task;
+
+    /**
+     * The team assigned to the agenda entry.
+     */
     private Team teamAssign;
+
+    /**
+     * The Green Spaces Manager associated with the agenda entry.
+     */
     private GreenSpacesManager greenSpacesManager;
+
+    /**
+     * The list of vehicles assigned to the agenda entry.
+     */
     private List<Vehicle> vehiclesAssign;
+
 
     /**
      * Constructs an Entry with the specified starting date and task.

@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class Agenda implements Serializable {
 
+    /**
+     * The list of entries.
+     */
     private final List<Entry> entriesList;
 
     /**
@@ -189,6 +192,11 @@ public class Agenda implements Serializable {
         return entriesList;
     }
 
+    /**
+     * Returns a string representation of the list of entries.
+     *
+     * @return A string representation of the list of entries.
+     */
     @Override
     public String toString() {
         return entriesList.toString();
