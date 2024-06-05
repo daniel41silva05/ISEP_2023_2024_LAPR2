@@ -2,59 +2,55 @@
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check if the team is being assigned correctly.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
-	
+    @Test
+    void assignTeam() {
+        Collaborator collaborator1 = new Collaborator("John Doe", new Date(), new Date(), new String[]{"123 Green St", "City", "Country"}, 123456789, "john@example.com", 1, 12345, new Job("Job Title", "a"));
+        Collaborator collaborator2 = new Collaborator("Jane Doe", new Date(), new Date(), new String[]{"123 Green St", "City", "Country"}, 987654321, "jane@example.com", 1, 67890, new Job("Job Title", "a"));
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+        List<Collaborator> members = new ArrayList<>();
+        members.add(collaborator1);
+        members.add(collaborator2);
+        Team team = new Team(members);
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+        Task task = new Task("Task", "Description", 1, 2, 1, new GreenSpace("Park", new String[]{"123 Green St", "City", "Country"}, 1, 1000.0, new GreenSpacesManager("email@this.app")));
+        Entry entry = new Entry(new Date(), task);
+
+        entry.assignTeam(team);
+
+        assertEquals(team, entry.getTeamAssign());
+    }
 
 _It is also recommended to organize this content by subsections._ 
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class AssignTeamController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public String assignTeamToEntry(int agendaIndex, int teamIndex) {
+    try {
+        Entry entry = getEntryByIndex(agendaIndex);
+        Team team = getTeamByIndex(teamIndex);
+        entry.assignTeam(team);
+        for (Collaborator c : team.getTeam()) {
+            sendTheEmailToTeam(getEmailGSMFromSession(), c.getEmail(), c.getName(), entry.toString());
+        }
+        return null;
+    } catch (IllegalArgumentException e) {
+        return e.getMessage();
+    }
 }
+
 ```
 
-### Class Organization
+### Class Entry
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
-
-    addTask(task);
-        
-    return task;
+    public void assignTeam(Team teamAssign) {
+        this.teamAssign = teamAssign;
 }
 ```
 

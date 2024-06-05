@@ -63,17 +63,17 @@ _It is also recommended to organize this content by subsections._
 }
 ```
 
-### Class CollaboratorRepository
+### Class Agenda
 
 ```java
-    public Collaborator registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, IdDocType idDocType, int idNumber, Job job) {
-    Collaborator newCollaborator = null;
-    Collaborator collaborator = new Collaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, job);
+    public Entry addEntryAgenda(Date startingDate, Task task, String gsmFromSession) {
+    Entry newEntry = null;
+    Entry entry = new Entry(startingDate, task);
 
-    if (addCollaborator(collaborator)) {
-        newCollaborator = collaborator;
+    if (addEntry(gsmFromSession, entry)) {
+        newEntry = entry;
     }
-    return newCollaborator;
+    return newEntry;
 }
 ```
 

@@ -29,6 +29,7 @@ class AgendaTest {
         assertEquals(entries.get(entries.size() - 1), newEntry);
     }
 
+    @Test
     void getTaskByIndex() {
         ToDoList toDoList = new ToDoList();
         GreenSpacesManager gsm = new GreenSpacesManager("test@example.com");

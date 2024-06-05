@@ -2,43 +2,61 @@
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check if the entry is being registered correctly, being stored in the agenda and if it is not possible to register an entry already registered - AC05/AC06.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
+    @Test
+    void addEntryAgenda() {
+        Agenda agenda = new Agenda();
+        GreenSpacesManager gsm = new GreenSpacesManager("gsm@example.com");
+        String[] address = {"123 Green St", "City", "Country"};
+        GreenSpace greenSpace = new GreenSpace("Central Park", address, 1, 500.0, gsm);
+        Task task = new Task("Title", "Description", 1, 60, 1, greenSpace);
+        String gsmEmail = gsm.getEmail();
+
+        Entry entry = new Entry(new Date(), task);
+        entry.setGreenSpacesManager(gsm);
+
+        Entry newEntry = agenda.addEntryAgenda(entry.getStartingDate(), task, gsmEmail);
+
+        assertNotNull(newEntry);
+        List<Entry> entries = agenda.getEntriesList();
+        assertEquals(entries.get(entries.size() - 1), newEntry);
+    }
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check whether the chosen task list option is being searched correctly - AC02.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+    @Test
+    void getTaskByIndex() {
+        ToDoList toDoList = new ToDoList();
+        GreenSpacesManager gsm = new GreenSpacesManager("test@example.com");
+        String[] address = {"123 Green St", "City", "Country"};
+        GreenSpace greenSpace = new GreenSpace("Central Park", address, 1, 500.0, gsm);
+
+        Task task1 = toDoList.addTaskToDoList("Task 1", "Description 1", 1, 60, 1, greenSpace, "test@example.com");
+        Task task2 = toDoList.addTaskToDoList("Task 2", "Description 2", 2, 30, 2, greenSpace, "test@example.com");
+
+        Task retrievedTask1 = toDoList.getTaskByIndex(1);
+
+        assertNotNull(retrievedTask1);
+        assertEquals(task1, retrievedTask1);
+    }
 
 _It is also recommended to organize this content by subsections._ 
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class AddEntryAgendaController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public String addEntryAgenda(Date startingDate, int index) {
+    try {
+        getAgenda().addEntryAgenda(startingDate, getTaskByIndex(index), getGSMFromSession());
+        return null;
+    } catch (IllegalArgumentException e) {
+        return e.getMessage();
+    }
 }
 ```
 

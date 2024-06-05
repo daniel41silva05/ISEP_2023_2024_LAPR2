@@ -2,59 +2,71 @@
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check if the vehicles is being assigned correctly.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
-	
+    @Test
+    void assignVehicles() {
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+        Vehicle vehicle1 = new Vehicle("Brand", "Model", 1000, 2000, 50000, new Date(), new Date(), 5000, "PlateNumber1", 1);
+        Vehicle vehicle2 = new Vehicle("Brand", "Model", 1000, 2000, 50000, new Date(), new Date(), 5000, "PlateNumber2", 1);
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+        Task task = new Task("Task", "Description", 1, 2, 1, new GreenSpace("Park", new String[]{"123 Green St", "City", "Country"}, 1, 1000.0, new GreenSpacesManager("email@this.app")));
+        Entry entry = new Entry(new Date(), task);
+
+        List<Vehicle> vehicles = new ArrayList<>();
+        vehicles.add(vehicle1);
+        vehicles.add(vehicle2);
+
+        entry.assignVehicles(vehicles);
+
+        assertEquals(vehicles, entry.getVehiclesAssign());
+    }
 
 _It is also recommended to organize this content by subsections._ 
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class AssignVehiclesController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public String assignVehiclesToEntry(int agendaIndex, List<String> vehiclesPlateNumbers) {
+    List<Vehicle> vehiclesToAdd = new ArrayList<>();
+    try {
+        for (String vehiclePlateNumber : vehiclesPlateNumbers) {
+            vehiclesToAdd.add(getVehicleByPlateNumber(vehiclePlateNumber.trim()));
+        }
+        getEntryByIndex(agendaIndex).assignVehicles(vehiclesToAdd);
+        return null;
+    } catch (IllegalArgumentException e) {
+        return e.getMessage();
+    }
 }
 ```
 
-### Class Organization
+### Class Entry
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
+    public void assignVehicles(List<Vehicle> vehiclesToAdd) throws IllegalArgumentException {
+    boolean allVehiclesAvailable = true;
+    for (Vehicle vehicle : vehiclesToAdd) {
+        if (this.vehiclesAssign.contains(vehicle)) {
+            throw new IllegalArgumentException("The vehicle you are trying to assign was already assigned!");
+        }
+        if (vehicle.isOccupiedVehicle()) {
+            allVehiclesAvailable = false;
+            break;
+        }
+    }
 
-    addTask(task);
-        
-    return task;
+    if (allVehiclesAvailable) {
+        for (Vehicle vehicle : vehiclesToAdd) {
+            this.vehiclesAssign.add(vehicle);
+            vehicle.setOccupiedVehicle(true);
+        }
+    } else {
+        throw new IllegalArgumentException("Vehicle you are trying to assign is busy!");
+    }
 }
 ```
 
