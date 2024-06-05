@@ -1,67 +1,201 @@
-# US006 - Create a Task 
+# US025 - Cancel an entry in the Agenda 
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Ensure that an entry can be successfully canceled
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
+[//]: # (	@Test&#40;expected = IllegalArgumentException.class&#41;)
+
+[//]: # (		public void ensureNullIsNotAllowed&#40;&#41; {)
+
+[//]: # (		Task instance = new Task&#40;null, null, null, null, null, null, null&#41;;)
+
+[//]: # (	})
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Ensure that the entry status changes to 'CANCELED'
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+[//]: # ()
+[//]: # (	@Test&#40;expected = IllegalArgumentException.class&#41;)
 
-_It is also recommended to organize this content by subsections._ 
+[//]: # (		public void ensureReferenceMeetsAC2&#40;&#41; {)
+
+[//]: # (		Category cat = new Category&#40;10, "Category 10"&#41;;)
+
+[//]: # (		)
+[//]: # (		Task instance = new Task&#40;"Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat&#41;;)
+
+[//]: # (	})
+
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class CancelEntryAgendaController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
+package pprog.controller;
 
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
+import pprog.domain.Entry;
+import pprog.domain.Agenda;
+import pprog.repository.AuthenticationRepository;
+import pprog.repository.Repositories;
+import pt.isep.lei.esoft.auth.domain.model.Email;
 
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
+import java.util.List;
 
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+/**
+ * Controller for canceling an entry in the agenda.
+ */
+public class CancelEntryAgendaController {
+
+    /**
+     * The agenda instance.
+     */
+    private Agenda agenda;
+
+    /**
+     * The authentication repository instance.
+     */
+    private AuthenticationRepository authenticationRepository;
+
+    /**
+     * Constructs a CancelEntryAgendaController and initializes the agenda.
+     */
+    public CancelEntryAgendaController() {
+        getAgenda();
+        getAuthenticationRepository();
+    }
+
+    /**
+     * Constructs a CancelEntryAgendaController with a given agenda.
+     *
+     * @param agenda the agenda to be used by this controller
+     * @param authenticationRepository the authentication repository to be used by this controller
+     */
+    public CancelEntryAgendaController(Agenda agenda, AuthenticationRepository authenticationRepository) {
+        this.agenda = agenda;
+        this.authenticationRepository = authenticationRepository;
+    }
+
+    /**
+     * Retrieves the agenda from the repositories if it is not already initialized.
+     *
+     * @return the agenda instance
+     */
+    private Agenda getAgenda() {
+        if (agenda == null) {
+            Repositories repositories = Repositories.getInstance();
+            agenda = repositories.getAgenda();
+        }
+        return agenda;
+    }
+
+    /**
+     * Retrieves the authentication repository instance.
+     *
+     * @return The authentication repository instance.
+     */
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
+
+    /**
+     * Cancels an entry in the agenda at the specified index.
+     *
+     * @param entryIndex the index of the entry to be canceled.
+     * @return null if the cancellation is successful, or the error message if an IllegalArgumentException occurs.
+     */
+    public String cancelEntry(int entryIndex) {
+        try {
+            getAgenda().cancelEntry(getEntryByIndex(entryIndex), getGSMFromSession());
+            return null;
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Retrieves an entry from the agenda by its index.
+     *
+     * @param index the position of the entry in the agenda.
+     * @return the entry at the specified index.
+     */
+    private Entry getEntryByIndex(int index) {
+        return getAgenda().getEntryByIndex(index);
+    }
+
+    /**
+     * Gets the list of entries in the agenda.
+     *
+     * @return the list of entries
+     */
+    public List<Entry> getEntriesList() {
+        return getAgenda().getEntriesList();
+    }
+
+    /**
+     * Retrieves the email address of the currently authenticated user from the session.
+     *
+     * @return the email address of the current user session.
+     */
+    private String getGSMFromSession() {
+        Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
+        return email.getEmail();
+    }
+
+    /**
+     * Retrieves an entry from the collection by its index.
+     *
+     * @param index the position of the entry in the collection.
+     * @return the entry at the specified index.
+     */
+    public Entry getEntryCancel(int index) {
+        return getEntryByIndex(index);
+    }
 }
+
 ```
 
-### Class Organization
+### Class Agenda
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
+package pprog.domain;
 
-    addTask(task);
-        
-    return task;
+import java.util.List;
+
+public class Agenda {
+
+    private List<Entry> entriesList;
+
+    public List<Entry> getEntriesList() {
+        return entriesList;
+    }
+
+    public Entry getEntryByIndex(int index) {
+        if (index < 0 || index >= entriesList.size()) {
+            throw new IllegalArgumentException("Entry not found in Agenda.");
+        }
+        return entriesList.get(index);
+    }
+
+    public void cancelEntry(Entry entry, String gsmEmail) {
+        if (!entry.getGreenSpacesManager().getEmail().equals(gsmEmail)) {
+            throw new IllegalArgumentException("You don't have permission to cancel this entry.");
+        }
+        entry.setStatus(AgendaStatus.CANCELED);
+    }
 }
+
 ```
 
 
 ## 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
 
 * For demo purposes some tasks are bootstrapped while system starts.
 
