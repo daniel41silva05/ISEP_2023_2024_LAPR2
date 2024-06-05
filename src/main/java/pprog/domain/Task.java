@@ -25,15 +25,15 @@ public class Task implements Serializable {
     }
 
     @Override
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) {
             return true;
         }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+        if (otherObject == null || getClass() != otherObject.getClass()) {
             return false;
         }
 
-        Task outraTask = (Task) outroObjeto;
+        Task outraTask = (Task) otherObject;
         return title.equalsIgnoreCase(outraTask.title) && greenSpace.equals(outraTask.greenSpace);
     }
 
