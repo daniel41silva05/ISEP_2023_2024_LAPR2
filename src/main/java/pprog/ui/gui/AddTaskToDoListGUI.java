@@ -274,9 +274,7 @@ public class AddTaskToDoListGUI implements Initializable {
                 sb.append("Name:").append(greenSpace.getName()).append("\nManaged By: ").append(greenSpace.getGreenSpacesManager()).append("\n\n");
                 counter++;
             }
-            showList
-
-                    (sb.toString());
+            showList(sb.toString());
         }
     }
 

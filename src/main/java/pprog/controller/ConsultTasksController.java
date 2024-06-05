@@ -14,7 +14,14 @@ import java.util.List;
  */
 public class ConsultTasksController {
 
+    /**
+     * The agenda instance.
+     */
     private Agenda agenda;
+
+    /**
+     * The authentication repository instance.
+     */
     private AuthenticationRepository authenticationRepository;
 
     public ConsultTasksController() {
@@ -29,6 +36,11 @@ public class ConsultTasksController {
         this.authenticationRepository = authenticationRepository;
     }
 
+    /**
+     * Retrieves the email address of the currently authenticated collaborator from the session.
+     *
+     * @return the email address of the current collaborator session.
+     */
     private String getEmailCollaboratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();

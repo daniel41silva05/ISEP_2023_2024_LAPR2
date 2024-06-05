@@ -13,7 +13,14 @@ import java.util.List;
  */
 public class CancelEntryAgendaController {
 
+    /**
+     * The agenda instance.
+     */
     private Agenda agenda;
+
+    /**
+     * The authentication repository instance.
+     */
     private AuthenticationRepository authenticationRepository;
 
     /**
@@ -61,10 +68,10 @@ public class CancelEntryAgendaController {
     }
 
     /**
-     * Cancels an entry in the agenda.
+     * Cancels an entry in the agenda at the specified index.
      *
-     * @param entryIndex the index of the entry to be canceled
-     * @return true if the entry was successfully canceled, false otherwise
+     * @param entryIndex the index of the entry to be canceled.
+     * @return null if the cancellation is successful, or the error message if an IllegalArgumentException occurs.
      */
     public String cancelEntry(int entryIndex) {
         try {
@@ -75,6 +82,12 @@ public class CancelEntryAgendaController {
         }
     }
 
+    /**
+     * Retrieves an entry from the agenda by its index.
+     *
+     * @param index the position of the entry in the agenda.
+     * @return the entry at the specified index.
+     */
     private Entry getEntryByIndex(int index) {
         return getAgenda().getEntryByIndex(index);
     }
@@ -88,11 +101,22 @@ public class CancelEntryAgendaController {
         return getAgenda().getEntriesList();
     }
 
+    /**
+     * Retrieves the email address of the currently authenticated user from the session.
+     *
+     * @return the email address of the current user session.
+     */
     private String getGSMFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return email.getEmail();
     }
 
+    /**
+     * Retrieves an entry from the collection by its index.
+     *
+     * @param index the position of the entry in the collection.
+     * @return the entry at the specified index.
+     */
     public Entry getEntryCancel(int index) {
         return getEntryByIndex(index);
     }

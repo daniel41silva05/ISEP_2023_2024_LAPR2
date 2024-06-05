@@ -13,7 +13,14 @@ import java.util.List;
  */
 public class CompleteEntryAgendaController {
 
+    /**
+     * The agenda instance.
+     */
     private Agenda agenda;
+
+    /**
+     * The authentication repository instance.
+     */
     private AuthenticationRepository authenticationRepository;
 
     /**
@@ -105,6 +112,12 @@ public class CompleteEntryAgendaController {
         return email.getEmail();
     }
 
+    /**
+     * Retrieves a complete entry from the collection by its index.
+     *
+     * @param index the position of the entry in the collection.
+     * @return the complete entry at the specified index.
+     */
     public Entry getEntryComplete(int index) {
         return getEntryByIndex(index);
     }
