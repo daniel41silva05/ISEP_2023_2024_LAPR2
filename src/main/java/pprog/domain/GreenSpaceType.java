@@ -2,11 +2,20 @@ package pprog.domain;
 
 import java.io.Serializable;
 
+/**
+ * Represents the type of a green space.
+ */
 public enum GreenSpaceType implements Serializable {
     GARDEN,
     MEDIUM_SIZED_PARK,
     LARGE_SIZED_PARK;
 
+    /**
+     * Converts an integer value to a GreenSpaceType enum.
+     *
+     * @param value the integer value representing the green space type
+     * @return the corresponding GreenSpaceType enum
+     */
     public static GreenSpaceType fromInt(int value) {
         switch (value) {
             case 1:
@@ -19,6 +28,11 @@ public enum GreenSpaceType implements Serializable {
         return null;
     }
 
+    /**
+     * Returns a string representation of the GreenSpaceType.
+     *
+     * @return a string representation of the GreenSpaceType
+     */
     @Override
     public String toString() {
         return name().charAt(0) + name().substring(1).toLowerCase().replace('_', ' ');

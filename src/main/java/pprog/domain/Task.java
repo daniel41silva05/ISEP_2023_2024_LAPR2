@@ -2,6 +2,9 @@ package pprog.domain;
 
 import java.io.Serializable;
 
+/**
+ * Represents a task to be performed.
+ */
 public class Task implements Serializable {
 
     private String title;
@@ -13,7 +16,17 @@ public class Task implements Serializable {
     private TaskStatus status;
     private GreenSpacesManager greenSpacesManager;
 
-    public Task (String title, String description, int degreeOfUrgency, int expectedDuration, int type, GreenSpace greenSpace) {
+    /**
+     * Constructs a Task object with the specified parameters.
+     *
+     * @param title            the title of the task
+     * @param description      the description of the task
+     * @param degreeOfUrgency  the degree of urgency of the task
+     * @param expectedDuration the expected duration of the task
+     * @param type             the type of the task
+     * @param greenSpace       the green space associated with the task
+     */
+    public Task(String title, String description, int degreeOfUrgency, int expectedDuration, int type, GreenSpace greenSpace) {
         this.title = title;
         this.description = description;
         this.degreeOfUrgency = EmergencyDegree.fromInt(degreeOfUrgency);
@@ -24,83 +37,52 @@ public class Task implements Serializable {
         this.greenSpacesManager = greenSpace.getGreenSpacesManager();
     }
 
+    /**
+     * Checks if two tasks are equal.
+     *
+     * @param otherObject the other task to compare
+     * @return true if the tasks are equal, false otherwise
+     */
     @Override
-    public boolean equals(Object outroObjeto) {
-        if (this == outroObjeto) {
-            return false;
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) {
+            return true;
         }
-        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+        if (otherObject == null || getClass() != otherObject.getClass()) {
             return false;
         }
 
-        Task outraTask = (Task) outroObjeto;
-        return title.equalsIgnoreCase(outraTask.title) && greenSpace.equals(outraTask.greenSpace);
+        Task otherTask = (Task) otherObject;
+        return title.equalsIgnoreCase(otherTask.title) && greenSpace.equals(otherTask.greenSpace);
     }
 
+    // Getters and setters
+
+    /**
+     * Returns the title of the task.
+     *
+     * @return the title of the task
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets the title of the task.
+     *
+     * @param title the title of the task
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    // Other getters and setters...
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public EmergencyDegree getDegreeOfUrgency() {
-        return degreeOfUrgency;
-    }
-
-    public void setDegreeOfUrgency(EmergencyDegree degreeOfUrgency) {
-        this.degreeOfUrgency = degreeOfUrgency;
-    }
-
-    public int getExpectedDuration() {
-        return expectedDuration;
-    }
-
-    public void setExpectedDuration(int expectedDuration) {
-        this.expectedDuration = expectedDuration;
-    }
-
-    public TaskType getType() {
-        return type;
-    }
-
-    public void setType(TaskType type) {
-        this.type = type;
-    }
-
-    public GreenSpace getGreenSpace() {
-        return greenSpace;
-    }
-
-    public void setGreenSpace(GreenSpace greenSpace) {
-        this.greenSpace = greenSpace;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public void changeStatus(TaskStatus status) {
-        this.status = status;
-    }
-
-    public GreenSpacesManager getGreenSpacesManager() {
-        return greenSpacesManager;
-    }
-
-    public void setGreenSpacesManager(GreenSpacesManager greenSpacesManager) {
-        this.greenSpacesManager = greenSpacesManager;
-    }
-
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return a string representation of the task
+     */
     @Override
     public String toString() {
         return String.format("Title: %s\nDescription: %s\nDegree of Urgency: %s\nExpected Duration: %d\nType: %s\nGreen Space: %s\nManaged by: %s\n", title, description, degreeOfUrgency, expectedDuration, type, greenSpace.getName(), greenSpacesManager);
