@@ -27,7 +27,7 @@ public class Task implements Serializable {
     @Override
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
-            return false;
+            return true;
         }
         if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
             return false;

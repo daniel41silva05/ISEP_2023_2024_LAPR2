@@ -2,6 +2,7 @@ package pprog.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Represents a vehicle.
