@@ -7,28 +7,45 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for adding an entry to the agenda.
+ */
 public class AddEntryAgendaUI implements Runnable {
     private final AddEntryAgendaController controller;
 
     private int index;
     private Date date;
 
+    /**
+     * Constructs an AddEntryAgendaUI object.
+     */
     public AddEntryAgendaUI() {
         controller = new AddEntryAgendaController();
     }
 
+    /**
+     * Gets the controller associated with this UI.
+     *
+     * @return the AddEntryAgendaController instance
+     */
     public AddEntryAgendaController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI, allowing the user to add an entry to the agenda.
+     */
     public void run() {
-        System.out.println("\n\n--- Add a Entry in the Agenda ------------------------");
+        System.out.println("\n\n--- Add an Entry in the Agenda ------------------------");
 
         listAllTasks();
         requestData();
         submitData();
     }
 
+    /**
+     * Submits the data to the controller to add the entry.
+     */
     private void submitData() {
         String result = getController().addEntryAgenda(date, index);
         if (result == null) {
@@ -39,11 +56,19 @@ public class AddEntryAgendaUI implements Runnable {
         }
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
         index = requestTask();
         date = requestDate();
     }
 
+    /**
+     * Requests the task index from the user.
+     *
+     * @return the index of the selected task
+     */
     private int requestTask() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -66,6 +91,11 @@ public class AddEntryAgendaUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the starting date from the user.
+     *
+     * @return the starting date
+     */
     private Date requestDate() {
         Scanner input = new Scanner(System.in);
         System.out.print("Starting Date (format: dd/MM/yyyy): ");
@@ -81,6 +111,9 @@ public class AddEntryAgendaUI implements Runnable {
         }
     }
 
+    /**
+     * Lists all tasks available for selection.
+     */
     private void listAllTasks() {
         if (controller.getTasksList().isEmpty()) {
             System.out.println("To-Do List is empty!");
@@ -88,5 +121,4 @@ public class AddEntryAgendaUI implements Runnable {
             System.out.println(controller.getTasksList());
         }
     }
-
 }

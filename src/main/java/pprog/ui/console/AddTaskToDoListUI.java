@@ -1,10 +1,12 @@
 package pprog.ui.console;
 
 import pprog.controller.AddTaskToDoListController;
-import pprog.controller.RegisterGreenSpaceController;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for adding a task to the to-do list.
+ */
 public class AddTaskToDoListUI implements Runnable {
 
     private final AddTaskToDoListController controller;
@@ -15,14 +17,25 @@ public class AddTaskToDoListUI implements Runnable {
     private int type;
     private String greenSpace;
 
+    /**
+     * Constructs an AddTaskToDoListUI object.
+     */
     public AddTaskToDoListUI() {
         controller = new AddTaskToDoListController();
     }
 
+    /**
+     * Gets the controller associated with this UI.
+     *
+     * @return the AddTaskToDoListController instance
+     */
     private AddTaskToDoListController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI, allowing the user to add a task to the to-do list.
+     */
     public void run() {
         System.out.println("\n\n--- Add Task to To-Do List ------------------------");
 
@@ -31,6 +44,9 @@ public class AddTaskToDoListUI implements Runnable {
         submitData();
     }
 
+    /**
+     * Submits the data to the controller to add the task.
+     */
     private void submitData() {
         String result = getController().addTaskToDoList(title, description, degreeOfUrgency, expectedDuration, type, greenSpace);
         if (result == null) {
@@ -41,6 +57,9 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
         title = requestTitle();
         description = requestDescription();
@@ -50,12 +69,17 @@ public class AddTaskToDoListUI implements Runnable {
         greenSpace = requestGreenSpace();
     }
 
+    /**
+     * Requests the task title from the user.
+     *
+     * @return the task title
+     */
     private String requestTitle() {
         while (true) {
             try {
                 Scanner input = new Scanner(System.in);
                 System.out.print("Title: ");
-                String name = input.nextLine().trim();;
+                String name = input.nextLine().trim();
                 if (name.matches("[a-zA-Z0-9\\s]+")) {
                     return name;
                 } else {
@@ -67,12 +91,17 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the task description from the user.
+     *
+     * @return the task description
+     */
     private String requestDescription() {
         while (true) {
             try {
                 Scanner input = new Scanner(System.in);
                 System.out.print("Description: ");
-                String description = input.nextLine().trim();;
+                String description = input.nextLine().trim();
                 if (description.matches("[a-zA-Z0-9\\s]+")) {
                     return description;
                 } else {
@@ -84,6 +113,11 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the degree of urgency from the user.
+     *
+     * @return the degree of urgency
+     */
     private int requestDegreeOfUrgency() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -109,6 +143,11 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the expected duration from the user.
+     *
+     * @return the expected duration
+     */
     private int requestExpectedDuration() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -131,6 +170,11 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the task type from the user.
+     *
+     * @return the task type
+     */
     private int requestType() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -155,12 +199,17 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the green space name from the user.
+     *
+     * @return the green space name
+     */
     private String requestGreenSpace() {
         while (true) {
             try {
                 Scanner input = new Scanner(System.in);
                 System.out.print("Green Space: ");
-                String greenSpace = input.nextLine().trim();;
+                String greenSpace = input.nextLine().trim();
                 if (greenSpace.matches("[a-zA-Z0-9\\s]+")) {
                     return greenSpace;
                 } else {
@@ -172,6 +221,9 @@ public class AddTaskToDoListUI implements Runnable {
         }
     }
 
+    /**
+     * Lists all green spaces available for selection.
+     */
     private void listAllGreenSpaces() {
         if (controller.getGreenSpacesList().isEmpty()) {
             System.out.println("No Green Spaces found!");
@@ -181,4 +233,3 @@ public class AddTaskToDoListUI implements Runnable {
     }
 
 }
-

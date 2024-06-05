@@ -4,20 +4,34 @@ import pprog.controller.AssignTeamController;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for assigning a team to a task.
+ */
 public class AssignTeamUI implements Runnable {
     private final AssignTeamController controller;
 
     private int entry;
     private int team;
 
+    /**
+     * Constructs an AssignTeamUI object.
+     */
     public AssignTeamUI() {
         controller = new AssignTeamController();
     }
 
+    /**
+     * Gets the controller associated with this UI.
+     *
+     * @return the AssignTeamController instance
+     */
     public AssignTeamController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI, allowing the user to assign a team to a task.
+     */
     public void run() {
         System.out.println("\n\n--- Assign a Team to a Task------------------------");
 
@@ -27,6 +41,9 @@ public class AssignTeamUI implements Runnable {
         submitData();
     }
 
+    /**
+     * Submits the data to the controller to assign the team.
+     */
     private void submitData() {
         String result = getController().assignTeamToEntry(entry, team);
         if (result == null) {
@@ -37,11 +54,19 @@ public class AssignTeamUI implements Runnable {
         }
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
         entry = requestTask();
         team = requestTeam();
     }
 
+    /**
+     * Requests the task entry from the user.
+     *
+     * @return the task entry index
+     */
     private int requestTask() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -64,6 +89,11 @@ public class AssignTeamUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the team from the user.
+     *
+     * @return the team index
+     */
     private int requestTeam() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -86,6 +116,9 @@ public class AssignTeamUI implements Runnable {
         }
     }
 
+    /**
+     * Lists all teams available for selection.
+     */
     private void listAllTeams() {
         if (controller.getTeamsList().isEmpty()) {
             System.out.println("Team List is empty!");
@@ -94,6 +127,9 @@ public class AssignTeamUI implements Runnable {
         }
     }
 
+    /**
+     * Lists all task entries available for selection.
+     */
     private void listAllEntries() {
         if (controller.getEntriesList().isEmpty()) {
             System.out.println("Agenda is empty!");
