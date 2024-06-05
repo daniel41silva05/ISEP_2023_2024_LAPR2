@@ -1,11 +1,10 @@
-# US027 - ...
-
+# US027 - List of Green Spaces managed by me
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
- ...
+As a GSM, I need to list all green spaces managed by me.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -59,14 +58,8 @@
 
 **_Other alternatives might exist._**
 
-#### Alternative One
-
 ![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us027-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

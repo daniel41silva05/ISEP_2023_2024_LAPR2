@@ -51,7 +51,7 @@ rectangle "Use Cases" as usecases{
     GSM --> UC25
     usecase "UC26 - Assign Vehicles to an entry in the Agenda" as UC26
     GSM --> UC26
-    usecase "UC27 - List of green spaces managed by me" as UC27
+    usecase "UC27 - List of Green Spaces managed by me" as UC27
     GSM --> UC27
     usecase "UC28 - Consult the Task Between Two Dates" as UC28
     Collaborator --> UC28

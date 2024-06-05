@@ -2,6 +2,9 @@ package pprog.domain;
 
 import java.io.Serializable;
 
+/**
+ * Represents a green space.
+ */
 public class GreenSpace implements Serializable {
 
     private String name;
@@ -14,12 +17,21 @@ public class GreenSpace implements Serializable {
 
     private GreenSpacesManager greenSpacesManager;
 
-    public GreenSpace(String name, String[] address, int type, double area, GreenSpacesManager gsm) {
+    /**
+     * Constructs a GreenSpace object.
+     *
+     * @param name              the name of the green space
+     * @param address           the address of the green space
+     * @param type              the type of the green space
+     * @param area              the area of the green space
+     * @param greenSpacesManager the manager of the green space
+     */
+    public GreenSpace(String name, String[] address, int type, double area, GreenSpacesManager greenSpacesManager) {
         this.name = name;
         this.address = new Address(address);
         this.type = GreenSpaceType.fromInt(type);
         this.area = area;
-        this.greenSpacesManager = gsm;
+        this.greenSpacesManager = greenSpacesManager;
     }
 
     @Override
@@ -79,5 +91,3 @@ public class GreenSpace implements Serializable {
         return String.format("Name: %s\nAddress: %s\nType: %s\nArea: %.2f\nManaged by: %s\n", name, address, type, area, greenSpacesManager);
     }
 }
-
-
