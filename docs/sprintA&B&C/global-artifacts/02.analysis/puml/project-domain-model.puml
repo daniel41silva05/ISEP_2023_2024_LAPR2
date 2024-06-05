@@ -147,7 +147,7 @@ Vehicle "0..*" -- "1" CheckUp : need >
 Vehicle "0..*" -- "1" VehicleType : cataloged as >
 Team "1" -- "2..*" Collaborator : has >
 GreenSpaceManager "1" -- "1..*" GreenSpace : register >
-GreenSpaceManager "1" -- "1..*" GreenSpace : manages >
+GreenSpaceManager "1" -- "1..*" GreenSpace : consult >
 GreenSpace "0..*" -- "1" GreenSpaceType : cataloged as >
 Task "0..*" -- "1" GreenSpace : associated >
 ToDoList "1" --- "0..*" Task : has >
