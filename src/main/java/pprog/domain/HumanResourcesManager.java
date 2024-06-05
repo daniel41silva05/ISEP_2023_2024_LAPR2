@@ -18,7 +18,7 @@ public class HumanResourcesManager implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof HumanResourcesManager)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         HumanResourcesManager hrm = (HumanResourcesManager) o;

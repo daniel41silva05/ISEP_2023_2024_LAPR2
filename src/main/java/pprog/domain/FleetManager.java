@@ -29,7 +29,7 @@ public class FleetManager implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof HumanResourcesManager)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         FleetManager fm = (FleetManager) o;
