@@ -1,67 +1,102 @@
-# US006 - Create a Task 
+# US024 - Postpone a Date
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to postpone an entry with an invalid date.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
-	
+	@Test
+        public void postponeEntry_InvalidDate() {
+        // Arrange
+        Agenda agenda = new Agenda();
+        // Crie uma entrada com uma data de início válida
+        Entry entry = new Entry(new Date(), new Task("Title", "Description", 1, 60, 1, new GreenSpace("Park", new String[]{"Address"}, 1, 100.0, new GreenSpacesManager("gsm@example.com"))));
+        agenda.getEntriesList().add(entry);
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+        // Act
+        Date newStartingDate = new Date(System.currentTimeMillis() - 100000);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            agenda.postponeEntry(entry, newStartingDate, "gsm@example.com");
+        });
+    
+        // Assert
+        assertEquals("The new date must be later than the date initially assigned to the task.", exception.getMessage());
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
 
-_It is also recommended to organize this content by subsections._ 
+
+**Test 2:** Check that it is possible to postpone an entry with a valid date.
+
+	@Test
+        public void postponeEntry_ValidDate() {
+        // Arrange
+        Agenda agenda = new Agenda();
+        // Crie uma entrada com uma data de início válida
+        Entry entry = new Entry(new Date(), new Task("Title", "Description", 1, 60, 1, new GreenSpace("Park", new String[]{"Address"}, 1, 100.0, new GreenSpacesManager("gsm@example.com"))));
+        agenda.getEntriesList().add(entry);
+        
+        // Act
+        Date newStartingDate = new Date(System.currentTimeMillis() + 100000);
+        agenda.postponeEntry(entry, newStartingDate, "gsm@example.com");
+    
+        // Assert
+        assertEquals(newStartingDate, entry.getStartingDate());
+        assertEquals(AgendaStatus.POSTPONED, entry.getStatus());
+    }
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class PostponeEntryAgendaController
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
+public class PostponeEntryAgendaController {
 
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
+    private Agenda agenda;
+    private AuthenticationRepository authenticationRepository;
 
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
+    public PostponeEntryAgendaController() {
+        getAgenda();
+        getAuthenticationRepository();
+    }
 
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    // Methods getAgenda and getAuthenticationRepository here...
+
+    public void postponeEntry(Entry entry, Date newStartingDate, String gsmFromSession) {
+        if (!validateUser(gsmFromSession, entry)) {
+            throw new IllegalArgumentException("The logged in Green Space Manager does not manage the green space associated with this entry.");
+        }
+        if (entry.getStartingDate().after(newStartingDate)) {
+            throw new IllegalArgumentException("The new date must be later than the date initially assigned to the task.");
+        }
+        entry.setStartingDate(newStartingDate);
+        entry.changeStatus(AgendaStatus.POSTPONED);
+    }
+
+    private boolean validateUser(String gsmFromSession, Entry entry) {
+        return entry.getGreenSpacesManager().getEmail().equals(gsmFromSession);
+    }
 }
+
 ```
 
-### Class Organization
+### Class Agenda
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
-
-    addTask(task);
-        
-    return task;
+public void postponeEntry(Entry entry, Date newStartingDate, String gsmFromSession) {
+    if (validateUser(gsmFromSession, entry)) {
+        if (entry.getStartingDate().after(newStartingDate)) {
+            throw new IllegalArgumentException("The new date must be later than the date initially assigned to the task.");
+        } else {
+            entry.setStartingDate(newStartingDate);
+            entry.changeStatus(AgendaStatus.POSTPONED);
+        }
+    }
 }
+
 ```
 
 
 ## 6. Integration and Demo 
-
-* A new option on the Employee menu options was added.
 
 * For demo purposes some tasks are bootstrapped while system starts.
 
