@@ -18,15 +18,16 @@ class TeamRepositoryTest {
         // Create skills
         Skill programmingSkill = new Skill("Programming");
         Skill designSkill = new Skill("Design");
+        String[] address = new String[]{"123 Street", "12345", "City"};
 
         // Create collaborators with skills
-        Collaborator john = new Collaborator("John", new Date(), new Date(), "Address 1", 123456789, "john@example.com", 1, 123456789, null);
+        Collaborator john = new Collaborator("John", new Date(), new Date(), address, 123456789, "john@example.com", 1, 123456789, null);
         john.getSkillAssign().add(programmingSkill);
 
-        Collaborator alice = new Collaborator("Alice", new Date(), new Date(), "Address 2", 987654321, "alice@example.com", 2, 987654321, null);
+        Collaborator alice = new Collaborator("Alice", new Date(), new Date(), address, 987654321, "alice@example.com", 2, 987654321, null);
         alice.getSkillAssign().add(designSkill);
 
-        Collaborator bob = new Collaborator("Bob", new Date(), new Date(), "Address 3", 555555555, "bob@example.com", 3, 555555555, null);
+        Collaborator bob = new Collaborator("Bob", new Date(), new Date(), address, 555555555, "bob@example.com", 3, 555555555, null);
         bob.getSkillAssign().add(programmingSkill);
         bob.getSkillAssign().add(designSkill);
 

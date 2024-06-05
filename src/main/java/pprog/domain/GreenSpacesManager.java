@@ -18,7 +18,7 @@ public class GreenSpacesManager implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof GreenSpacesManager)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         GreenSpacesManager gsm = (GreenSpacesManager) o;
