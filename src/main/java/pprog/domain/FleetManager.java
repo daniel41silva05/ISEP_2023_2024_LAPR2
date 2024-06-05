@@ -9,10 +9,21 @@ public class FleetManager implements Serializable {
 
     private final String email;
 
+    /**
+     * Constructs a FleetManager with the specified email.
+     *
+     * @param email the email of the fleet manager
+     */
     public FleetManager(String email) {
         this.email = email;
     }
 
+    /**
+     * Checks if this FleetManager is equal to another object.
+     *
+     * @param o the object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -25,6 +36,11 @@ public class FleetManager implements Serializable {
         return email.equals(fm.email);
     }
 
+    /**
+     * Gets the email of the fleet manager.
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
@@ -40,6 +56,7 @@ public class FleetManager implements Serializable {
 
     /**
      * Returns a string representation of the fleet manager.
+     *
      * @return A string representation containing the name of the fleet manager.
      */
     @Override
