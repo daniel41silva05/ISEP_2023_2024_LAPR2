@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the Add Entry Agenda GUI.
+ */
 public class AddEntryAgendaGUI implements Initializable {
 
     @FXML
@@ -27,18 +30,30 @@ public class AddEntryAgendaGUI implements Initializable {
 
     private final AddEntryAgendaController controller;
 
+    /**
+     * Constructs an AddEntryAgendaGUI object and initializes the controller.
+     */
     public AddEntryAgendaGUI() {
         controller = new AddEntryAgendaController();
     }
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // No initialization required
     }
 
+    /**
+     * Handles the action when the submit button is clicked.
+     * Validates the input, parses the date and task index, and adds the entry to the agenda.
+     */
     @FXML
     private void handleSubmitButtonAction() {
-
         String dateText = dateField.getText().trim();
         String taskText = taskField.getText();
 
@@ -78,6 +93,12 @@ public class AddEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Checks if the given task index is valid.
+     *
+     * @param index The index of the task to be validated.
+     * @return True if the task index is valid, false otherwise.
+     */
     private boolean isValidTask(int index) {
         if (index < 1 || index > controller.getTasksList().size()) {
             showAlert("Invalid input. Please choose a valid option.");
@@ -86,6 +107,10 @@ public class AddEntryAgendaGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Handles the action when the consult green spaces button is clicked.
+     * Displays a list of tasks in a new alert dialog.
+     */
     @FXML
     private void handleConsultGreenSpacesButtonAction() {
         List<Task> tasks = controller.getTasksList();
@@ -102,11 +127,20 @@ public class AddEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the return button is clicked.
+     * Changes the scene back to the Green Spaces Manager.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) dateField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    /**
+     * Displays an alert dialog with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -115,6 +149,11 @@ public class AddEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a success dialog with the given message.
+     *
+     * @param message The message to be displayed in the success dialog.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -123,6 +162,11 @@ public class AddEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a list dialog with the given message.
+     *
+     * @param message The message to be displayed in the list dialog.
+     */
     private void showList(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("To-Do List");
@@ -143,7 +187,12 @@ public class AddEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
-
+    /**
+     * Changes the scene to the specified FXML resource.
+     *
+     * @param stage        The current stage.
+     * @param resourceName The FXML resource name to load.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));
@@ -155,5 +204,4 @@ public class AddEntryAgendaGUI implements Initializable {
             e.printStackTrace();
         }
     }
-
 }

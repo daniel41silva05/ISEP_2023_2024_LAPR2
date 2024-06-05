@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for assigning vehicles to a task.
+ */
 public class AssignVehiclesUI implements Runnable {
 
     private final AssignVehiclesController controller;
@@ -13,14 +16,25 @@ public class AssignVehiclesUI implements Runnable {
     private int entry;
     private List<String> vehiclesPlateNumber;
 
+    /**
+     * Constructs an AssignVehiclesUI object.
+     */
     public AssignVehiclesUI() {
         controller = new AssignVehiclesController();
     }
 
+    /**
+     * Gets the controller associated with this UI.
+     *
+     * @return the AssignVehiclesController instance
+     */
     public AssignVehiclesController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI, allowing the user to assign vehicles to a task.
+     */
     public void run() {
         System.out.println("\n\n--- Assign vehicles to a task------------------------");
 
@@ -30,6 +44,9 @@ public class AssignVehiclesUI implements Runnable {
         submitData();
     }
 
+    /**
+     * Submits the data to the controller to assign the vehicles.
+     */
     private void submitData() {
         String result = getController().assignVehiclesToEntry(entry, vehiclesPlateNumber);
         if (result == null) {
@@ -40,11 +57,19 @@ public class AssignVehiclesUI implements Runnable {
         }
     }
 
+    /**
+     * Requests data from the user.
+     */
     private void requestData() {
         entry = requestTask();
         vehiclesPlateNumber = requestVehicles();
     }
 
+    /**
+     * Requests the task entry from the user.
+     *
+     * @return the task entry index
+     */
     private int requestTask() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -67,6 +92,11 @@ public class AssignVehiclesUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the vehicle plate numbers from the user.
+     *
+     * @return a list of vehicle plate numbers
+     */
     private List<String> requestVehicles() {
         ArrayList<String> vehiclesList = new ArrayList<>();
 
@@ -99,6 +129,9 @@ public class AssignVehiclesUI implements Runnable {
         return List.of(vehiclesToAssign);
     }
 
+    /**
+     * Lists all vehicles available for selection.
+     */
     private void listAllVehicles() {
         if (controller.getVehiclesList().isEmpty()) {
             System.out.println("Vehicles List is empty!");
@@ -107,6 +140,9 @@ public class AssignVehiclesUI implements Runnable {
         }
     }
 
+    /**
+     * Lists all task entries available for selection.
+     */
     private void listAllEntries() {
         if (controller.getEntriesList().isEmpty()) {
             System.out.println("Agenda is empty!");

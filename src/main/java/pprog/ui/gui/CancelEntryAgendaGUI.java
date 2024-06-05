@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for CancelEntryAgenda GUI.
+ */
 public class CancelEntryAgendaGUI implements Initializable {
 
     @FXML
@@ -27,15 +30,27 @@ public class CancelEntryAgendaGUI implements Initializable {
     Button listEntriesBtn;
     private final CancelEntryAgendaController controller;
 
+    /**
+     * Default constructor.
+     */
     public CancelEntryAgendaGUI() {
         controller = new CancelEntryAgendaController();
     }
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // No initialization required
     }
 
+    /**
+     * Loads the entries.
+     */
     @FXML
     private void loadEntries() {
         List<Entry> entries = controller.getEntriesList();
@@ -52,6 +67,9 @@ public class CancelEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the cancel entry button is clicked.
+     */
     @FXML
     private void handleCancelEntry() {
         String entryText = entryField.getText().trim();
@@ -84,11 +102,19 @@ public class CancelEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the return button is clicked.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) entryField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    /**
+     * Shows a warning alert.
+     *
+     * @param message The message to be displayed.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -97,6 +123,11 @@ public class CancelEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Shows a success alert.
+     *
+     * @param message The message to be displayed.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -105,6 +136,11 @@ public class CancelEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Shows a list alert.
+     *
+     * @param message The message to be displayed.
+     */
     private void showList(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("List");
@@ -125,6 +161,12 @@ public class CancelEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Changes the scene.
+     *
+     * @param stage The stage to which the scene will be set.
+     * @param resourceName The resource name of the FXML file.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));

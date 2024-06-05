@@ -5,7 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pprog.controller.CompleteEntryAgendaController;
 import pprog.domain.Entry;
@@ -15,31 +19,46 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for CompleteEntryAgenda GUI.
+ */
 public class CompleteEntryAgendaGUI implements Initializable {
 
     @FXML
-    TextField entryField;
+    private TextField entryField;
 
     @FXML
-    Button returnBtn;
+    private Button returnBtn;
 
     @FXML
-    Button submitBtn;
+    private Button submitBtn;
 
     @FXML
-    Button listEntriesBtn;
+    private Button listEntriesBtn;
 
-    CompleteEntryAgendaController controller;
+    private CompleteEntryAgendaController controller;
 
+    /**
+     * Initializes the CompleteEntryAgenda GUI.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
+    /**
+     * Constructor for CompleteEntryAgendaGUI.
+     */
     public CompleteEntryAgendaGUI() {
         controller = new CompleteEntryAgendaController();
     }
 
+    /**
+     * Loads the entries from the controller and displays them.
+     */
     @FXML
     private void loadEntries() {
         List<Entry> entries = controller.getEntriesList();
@@ -56,6 +75,9 @@ public class CompleteEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the completion of an entry.
+     */
     @FXML
     private void handleCompleteEntry() {
         String entryText = entryField.getText().trim();
@@ -88,11 +110,19 @@ public class CompleteEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the return button action.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) entryField.getScene().getWindow(), "/fxml/Collaborator.fxml");
     }
 
+    /**
+     * Displays a warning alert with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -101,6 +131,11 @@ public class CompleteEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a success alert with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -109,6 +144,11 @@ public class CompleteEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a list alert with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showList(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("List");
@@ -129,6 +169,12 @@ public class CompleteEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Changes the scene to the specified resource.
+     *
+     * @param stage       The Stage to which the scene will be set.
+     * @param resourceName The resource name of the FXML file.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));

@@ -4,6 +4,9 @@ import pprog.controller.RegisterGreenSpaceController;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface for registering a green space.
+ */
 public class RegisterGreenSpaceUI implements Runnable {
 
     private final RegisterGreenSpaceController controller;
@@ -12,14 +15,25 @@ public class RegisterGreenSpaceUI implements Runnable {
     private int type;
     private double area;
 
+    /**
+     * Constructs a RegisterGreenSpaceUI object.
+     */
     public RegisterGreenSpaceUI() {
         controller = new RegisterGreenSpaceController();
     }
 
+    /**
+     * Gets the controller associated with this UI.
+     *
+     * @return the RegisterGreenSpaceController instance
+     */
     private RegisterGreenSpaceController getController() {
         return controller;
     }
 
+    /**
+     * Runs the UI, allowing the user to input and register a green space.
+     */
     public void run() {
         System.out.println("\n\n--- Register a Green Space ------------------------");
 
@@ -27,6 +41,9 @@ public class RegisterGreenSpaceUI implements Runnable {
         submitData();
     }
 
+    /**
+     * Submits the collected data to the controller to register the green space.
+     */
     private void submitData() {
         String result = getController().registerGreenSpace(name, address, type, area);
         if (result == null) {
@@ -37,21 +54,27 @@ public class RegisterGreenSpaceUI implements Runnable {
         }
     }
 
+    /**
+     * Requests data from the user for the green space registration.
+     */
     private void requestData() {
-
         name = requestName();
         address = requestAddress();
         type = requestType();
         area = requestArea();
-
     }
 
+    /**
+     * Requests the name of the green space from the user.
+     *
+     * @return the name of the green space
+     */
     private String requestName() {
         while (true) {
             try {
                 Scanner input = new Scanner(System.in);
                 System.out.print("Name: ");
-                String name = input.nextLine().trim();;
+                String name = input.nextLine().trim();
                 if (name.matches("[a-zA-Z0-9\\s]+")) {
                     return name;
                 } else {
@@ -63,6 +86,11 @@ public class RegisterGreenSpaceUI implements Runnable {
         }
     }
 
+    /**
+     * Requests the address of the green space from the user.
+     *
+     * @return the address of the green space
+     */
     private String[] requestAddress() {
         Scanner input = new Scanner(System.in);
         System.out.println("Address:");
@@ -116,6 +144,11 @@ public class RegisterGreenSpaceUI implements Runnable {
         return address;
     }
 
+    /**
+     * Requests the type of the green space from the user.
+     *
+     * @return the type of the green space
+     */
     private int requestType() {
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -138,7 +171,11 @@ public class RegisterGreenSpaceUI implements Runnable {
         }
     }
 
-
+    /**
+     * Requests the area of the green space from the user.
+     *
+     * @return the area of the green space in square meters
+     */
     private Double requestArea() {
         Scanner input = new Scanner(System.in);
         while (true) {

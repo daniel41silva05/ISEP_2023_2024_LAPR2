@@ -13,21 +13,37 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for DevTeam GUI.
+ */
 public class DevTeamGUI implements Initializable {
 
+    /**
+     * Initializes the DevTeam GUI.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
+    /**
+     * Changes the scene to the specified resource.
+     *
+     * @param stage      The Stage to which the scene will be set.
+     * @param resourceName The resource name of the FXML file.
+     * @param resizable  A boolean value indicating whether the stage is resizable or not.
+     */
     @FXML
-    private void changeScene(Stage stage, String resourceName,Boolean rezizeble) {
+    private void changeScene(Stage stage, String resourceName,Boolean resizable) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));
             Parent root = loader.load();
 
             stage.setScene(new Scene(root));
-            stage.setResizable(rezizeble);
+            stage.setResizable(resizable);
             stage.show();
 
         } catch (IOException e) {
@@ -35,6 +51,11 @@ public class DevTeamGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action to return to the main menu.
+     *
+     * @param actionEvent The ActionEvent triggered when the return button is clicked.
+     */
     public void doReturnToMenuAction(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
         changeScene(stage,"/fxml/MainMenuScene.fxml",true);

@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the Assign Vehicles GUI.
+ */
 public class AssignVehiclesGUI implements Initializable {
     @FXML
     private TextField entryField;
@@ -24,14 +27,27 @@ public class AssignVehiclesGUI implements Initializable {
     private TextField vehicleField;
     private final AssignVehiclesController controller;
 
+    /**
+     * Constructs an AssignVehiclesGUI object and initializes the controller.
+     */
     public AssignVehiclesGUI() {
         controller = new AssignVehiclesController();
     }
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // No initialization required
     }
 
+    /**
+     * Loads the list of entries and displays them.
+     */
     @FXML
     private void loadEntries() {
         List<Entry> entries = controller.getEntriesList();
@@ -48,6 +64,9 @@ public class AssignVehiclesGUI implements Initializable {
         }
     }
 
+    /**
+     * Loads the list of vehicles and displays them.
+     */
     @FXML
     private void loadVehicles() {
         List<Vehicle> vehicles = controller.getVehiclesList();
@@ -64,6 +83,10 @@ public class AssignVehiclesGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the assign vehicles button is clicked.
+     * Assigns vehicles to an entry based on the user input.
+     */
     @FXML
     private void handleAssignVehicles() {
         String taskText = entryField.getText().trim();
@@ -92,10 +115,8 @@ public class AssignVehiclesGUI implements Initializable {
         List<String> vehicles = new ArrayList<>();
         String[] vehiclePlateNumbers = vehicleText.split(",");
         for (String plateNumber: vehiclePlateNumbers) {
-           vehicles.add(plateNumber);
+            vehicles.add(plateNumber);
         }
-
-
 
         String result = controller.assignVehiclesToEntry(entryIndex, vehicles);
 
@@ -106,11 +127,20 @@ public class AssignVehiclesGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the return button is clicked.
+     * Changes the scene back to the Green Spaces Manager.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) entryField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    /**
+     * Displays an alert dialog with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -119,6 +149,11 @@ public class AssignVehiclesGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a success dialog with the given message.
+     *
+     * @param message The message to be displayed in the success dialog.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -127,6 +162,11 @@ public class AssignVehiclesGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a list dialog with the given message.
+     *
+     * @param message The message to be displayed in the list dialog.
+     */
     private void showList(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("List");
@@ -144,6 +184,12 @@ public class AssignVehiclesGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Changes the scene to the specified FXML resource.
+     *
+     * @param stage        The current stage.
+     * @param resourceName The resource name of the FXML file.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));

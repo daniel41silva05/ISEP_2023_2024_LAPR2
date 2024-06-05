@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the Assign Team GUI.
+ */
 public class AssignTeamGUI implements Initializable {
     @FXML
     private TextField entryField;
@@ -23,14 +26,27 @@ public class AssignTeamGUI implements Initializable {
     private TextField teamField;
     private final AssignTeamController controller;
 
+    /**
+     * Constructs an AssignTeamGUI object and initializes the controller.
+     */
     public AssignTeamGUI() {
         controller = new AssignTeamController();
     }
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // No initialization required
     }
 
+    /**
+     * Loads the list of entries and displays them.
+     */
     @FXML
     private void loadEntries() {
         List<Entry> entries = controller.getEntriesList();
@@ -47,6 +63,9 @@ public class AssignTeamGUI implements Initializable {
         }
     }
 
+    /**
+     * Loads the list of teams and displays them.
+     */
     @FXML
     private void loadTeams() {
         List<Team> teams = controller.getTeamsList();
@@ -63,6 +82,10 @@ public class AssignTeamGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the assign team button is clicked.
+     * Assigns a team to an entry based on the user input.
+     */
     @FXML
     private void handleAssignTeam() {
         String taskText = entryField.getText().trim();
@@ -106,11 +129,20 @@ public class AssignTeamGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the return button is clicked.
+     * Changes the scene back to the Green Spaces Manager.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) entryField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    /**
+     * Displays an alert dialog with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -119,6 +151,11 @@ public class AssignTeamGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a success dialog with the given message.
+     *
+     * @param message The message to be displayed in the success dialog.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -127,6 +164,11 @@ public class AssignTeamGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Displays a list dialog with the given message.
+     *
+     * @param message The message to be displayed in the list dialog.
+     */
     private void showList(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("List");
@@ -144,6 +186,12 @@ public class AssignTeamGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Changes the scene to the specified FXML resource.
+     *
+     * @param stage        The current stage.
+     * @param resourceName The resource name of the FXML file.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));

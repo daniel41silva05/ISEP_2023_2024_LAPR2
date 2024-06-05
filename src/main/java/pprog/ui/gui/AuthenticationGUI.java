@@ -15,11 +15,13 @@ import pprog.controller.authorization.AuthenticationController;
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Controller class for the Authentication GUI.
+ */
 public class AuthenticationGUI implements Initializable {
     @FXML
     private CheckBox checkButton;
@@ -38,11 +40,22 @@ public class AuthenticationGUI implements Initializable {
     private final AuthenticationController controller = new AuthenticationController();
 
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // No initialization required
     }
 
+    /**
+     * Handles the action when the login button is clicked.
+     *
+     * @param actionEvent The event representing the action.
+     */
     public void doLoginActionButton(ActionEvent actionEvent) {
         boolean success = doLogin();
 
@@ -93,6 +106,13 @@ public class AuthenticationGUI implements Initializable {
         }
         //this.logout();
     }
+
+    /**
+     * Handles the action when the enter key is pressed.
+     *
+     * @param keyEvent The event representing the key press.
+     * @throws IOException If an I/O error occurs.
+     */
     public void doLoginActionKey(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             boolean success = doLogin();
@@ -145,11 +165,21 @@ public class AuthenticationGUI implements Initializable {
         }
     }
 
+    /**
+     * Closes the login stage.
+     *
+     * @param event The event representing the action.
+     */
     private void closeLoginStage(Event event) {
         Stage stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
         changeScene(stage,"/fxml/MainMenuScene.fxml",true);
     }
 
+    /**
+     * Performs the login operation.
+     *
+     * @return true if login is successful, otherwise false.
+     */
     private boolean doLogin() {
 
         boolean success = false;
@@ -171,13 +201,23 @@ public class AuthenticationGUI implements Initializable {
         return success;
     }
 
-//    private void logout() {
-//        controller.doLogout();
-//    }
 
+    /**
+     * Handles the action when the return to menu button is clicked.
+     *
+     * @param actionEvent The event representing the action.
+     */
     public void doReturnToMenuAction(ActionEvent actionEvent) {
         closeLoginStage(actionEvent);
     }
+
+    /**
+     * Changes the scene.
+     *
+     * @param stage       The stage to which the scene will be set.
+     * @param resourceName The resource name of the FXML file.
+     * @param rezizeble   Whether the stage is resizable or not.
+     */
     public void changeScene(Stage stage, String resourceName,Boolean rezizeble){
 
         try {
@@ -194,6 +234,11 @@ public class AuthenticationGUI implements Initializable {
     }
 
 
+    /**
+     * Handles the action when the Enter key is pressed during login.
+     *
+     * @param keyEvent The KeyEvent associated with the key press event.
+     */
     public void darEnterLoginAction(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             try {
@@ -204,16 +249,23 @@ public class AuthenticationGUI implements Initializable {
         }
     }
 
+    /**
+     * Unhides the password field when the checkButton is selected.
+     * Binds the textProperty of txtShowPwd to the textProperty of txtPwd.
+     * If the checkButton is not selected, hides the password field.
+     *
+     * @param actionEvent The ActionEvent associated with the action.
+     */
     public void unHidePwdField(ActionEvent actionEvent) {
         if (checkButton.isSelected()){
             txtShowPwd.setVisible(true);
             txtPwd.setManaged(false);
             txtShowPwd.textProperty().bindBidirectional(txtPwd.textProperty());
-        }else {
+        } else {
             txtShowPwd.setVisible(false);
             txtPwd.setManaged(true);
             txtShowPwd.textProperty().bindBidirectional(txtPwd.textProperty());
         }
-
     }
+
 }
