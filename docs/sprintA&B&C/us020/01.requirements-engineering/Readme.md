@@ -17,13 +17,30 @@ As a Green Space Manager (GSM), I want to register a green space (garden, medium
 
 **From the client clarifications:**
 
-> **Question:** ...?
+> **Question:** In the registration of a green space, should a green space's name be allowed to contain digits and special characters, or just letters and whitespaces?
 >
-> **Answer:** ...
+> **Answer:** Same rules for other names in the business, letters, spaces and dashes.
 
-> **Question:** ...?
+> **Question:** Good evening, in view of the description of GreenSpaces does it make sense to ask for optional mind for the different types this data?
 >
-> **Answer:** ...
+> **Answer:**
+In the current version, it is sufficient to define a park using name, size classification, area (hectare) and address.
+
+> **Question:** Can two different green spaces have the same address?
+>
+> **Answer:** No.
+
+> **Question:** I would like to know between what ranges of hectares a green space is classified as garden, medium or large, or if it is possible to register 2 green spaces with the same area but in different typology, depending on the GSM it registers.
+>
+> **Answer:** The classification is not automatic, it's up to GSM decide about it.
+
+> **Question:** Can two green spaces have the same name?
+>
+> **Answer:** No.
+
+> **Question:**  In which unit should the area be measured in?
+>
+> **Answer:**  Usually, areas are measured in hectares.
 
 ### 1.3. Acceptance Criteria
 
