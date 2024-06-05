@@ -58,6 +58,7 @@ public class DevTeamGUI implements Initializable {
      */
     public void doReturnToMenuAction(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
+        stage.setTitle("Main Menu");
         changeScene(stage,"/fxml/MainMenuScene.fxml",true);
     }
 

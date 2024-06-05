@@ -53,6 +53,7 @@ public class GreenSpaceManagerGUI implements Initializable {
     public void logOutAction(ActionEvent actionEvent) {
         authenticationRepository.doLogout();
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
+        stage.setTitle("Login");
         changeScene(stage,"/fxml/MainMenuScene.fxml",true);
     }
 

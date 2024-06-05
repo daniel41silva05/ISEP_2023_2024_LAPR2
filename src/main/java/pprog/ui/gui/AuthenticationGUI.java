@@ -70,15 +70,19 @@ public class AuthenticationGUI implements Initializable {
                     Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
                     switch (role.getDescription()) {
                         case AuthenticationController.ROLE_HRM:
+                            stage.setTitle("Human Resources Manager Menu");
                             changeScene(stage, "/fxml/HumanResourcesManager.fxml", false);
                             break;
                         case AuthenticationController.ROLE_VFM:
+                            stage.setTitle("Fleet Manager Menu");
                             changeScene(stage, "/fxml/FleetManager.fxml", false);
                             break;
                         case AuthenticationController.ROLE_GSM:
+                            stage.setTitle("Green Space Manager Menu");
                             changeScene(stage, "/fxml/GreenSpacesManager.fxml", false);
                             break;
                         case AuthenticationController.ROLE_COLLABORATOR:
+                            stage.setTitle("Collaborator Menu");
                             changeScene(stage, "/fxml/Collaborator.fxml", false);
                             break;
                     }
@@ -172,6 +176,7 @@ public class AuthenticationGUI implements Initializable {
      */
     private void closeLoginStage(Event event) {
         Stage stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
+        stage.setTitle("Main Menu");
         changeScene(stage,"/fxml/MainMenuScene.fxml",true);
     }
 
