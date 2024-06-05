@@ -54,6 +54,9 @@ public class ListGreenSpacesByGSMGUI {
         areaColumn.setCellValueFactory(new PropertyValueFactory<>("area"));
     }
 
+    /**
+     * Loads the green spaces.
+     */
     @FXML
     private void loadGreenSpaces() {
         List<GreenSpace> sortedGreenSpaces = controller.sortListByAlgorithm();
@@ -66,23 +69,40 @@ public class ListGreenSpacesByGSMGUI {
         }
     }
 
+    /**
+     * Closes the login stage.
+     *
+     * @param event The ActionEvent triggered when the return button is clicked.
+     */
     private void closeLoginStage(Event event) {
         Stage stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
         changeScene(stage, "/fxml/GreenSpacesManager.fxml", true);
     }
 
+    /**
+     * Handles the return to menu action.
+     *
+     * @param actionEvent The ActionEvent triggered when the return button is clicked.
+     */
     public void doReturnToMenuAction(ActionEvent actionEvent) {
         closeLoginStage(actionEvent);
     }
 
-    public void changeScene(Stage stage, String resourceName, Boolean rezizeble) {
+    /**
+     * Changes the scene of the stage.
+     *
+     * @param stage      The stage to which the scene will be set.
+     * @param resourceName The resource name of the FXML file.
+     * @param resizable  A boolean value indicating whether the stage is resizable or not.
+     */
+    public void changeScene(Stage stage, String resourceName, Boolean resizable) {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));
             Parent root = loader.load();
 
             stage.setScene(new Scene(root));
-            stage.setResizable(rezizeble);
+            stage.setResizable(resizable);
             stage.show();
 
         } catch (IOException e) {
@@ -90,6 +110,11 @@ public class ListGreenSpacesByGSMGUI {
         }
     }
 
+    /**
+     * Displays an alert with the given message.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");

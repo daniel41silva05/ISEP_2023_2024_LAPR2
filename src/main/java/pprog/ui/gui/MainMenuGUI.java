@@ -23,6 +23,11 @@ public class MainMenuGUI implements Initializable {
 
     }
 
+    /**
+     * Changes the scene to the login scene.
+     *
+     * @param actionEvent The ActionEvent triggered when the login button is clicked.
+     */
     public void changeToLoginScene(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
 
@@ -37,6 +42,11 @@ public class MainMenuGUI implements Initializable {
         }
     }
 
+    /**
+     * Changes the scene to the development team scene.
+     *
+     * @param actionEvent The ActionEvent triggered when the development team button is clicked.
+     */
     public void knowTheTeamAction(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
 
@@ -51,7 +61,7 @@ public class MainMenuGUI implements Initializable {
         }
     }
 
-//    public void completedAlert() {
+    //    public void completedAlert() {
 //        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //        alert.setTitle("Operation Success");
 //        alert.setHeaderText(null);

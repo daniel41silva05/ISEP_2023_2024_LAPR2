@@ -41,6 +41,9 @@ public class PostponeEntryAgendaGUI implements Initializable {
 
     }
 
+    /**
+     * Loads the list of entries.
+     */
     @FXML
     private void loadEntries() {
         List<Entry> entries = controller.getEntriesList();
@@ -57,6 +60,9 @@ public class PostponeEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action of assigning a team to an entry.
+     */
     @FXML
     private void handleAssignTeam() {
         String taskText = entryField.getText().trim();
@@ -100,11 +106,19 @@ public class PostponeEntryAgendaGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action of returning to the previous scene.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) entryField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    /**
+     * Shows a warning alert.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -113,6 +127,11 @@ public class PostponeEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Shows a success alert.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -121,6 +140,11 @@ public class PostponeEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Shows a list of entries in a dialog.
+     *
+     * @param message The message to be displayed in the dialog.
+     */
     private void showList(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("List");
@@ -141,6 +165,12 @@ public class PostponeEntryAgendaGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Changes the scene to the specified resource.
+     *
+     * @param stage        The current stage.
+     * @param resourceName The resource name of the FXML file for the new scene.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));

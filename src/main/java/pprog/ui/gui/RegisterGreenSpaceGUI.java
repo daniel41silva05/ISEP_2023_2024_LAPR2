@@ -41,10 +41,19 @@ public class RegisterGreenSpaceGUI implements Initializable {
         controller = new RegisterGreenSpaceController();
     }
 
+    /**
+     * Initializes the controller.
+     *
+     * @param url            The location used to resolve relative paths for the root object.
+     * @param resourceBundle The resources used to localize the root object.
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
+    /**
+     * Handles the action when the submit button is clicked.
+     */
     @FXML
     private void handleSubmitButtonAction() {
 
@@ -88,11 +97,20 @@ public class RegisterGreenSpaceGUI implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the return button is clicked.
+     */
     @FXML
     private void handleReturnButtonAction() {
         changeScene((Stage) nameField.getScene().getWindow(), "/fxml/GreenSpacesManager.fxml");
     }
 
+    /**
+     * Checks if the entered name is valid.
+     *
+     * @param name The name to be validated.
+     * @return True if the name is valid, false otherwise.
+     */
     private boolean isValidName(String name) {
         if (!name.matches("[a-zA-Z0-9\\s]+")) {
             showAlert("Invalid name. Please enter a valid name.");
@@ -101,6 +119,12 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Checks if the entered street is valid.
+     *
+     * @param street The name to be validated.
+     * @return True if the street is valid, false otherwise.
+     */
     private boolean isValidStreet(String street) {
         if (!street.matches("[a-zA-Z0-9\\s]+")) {
             showAlert("Invalid street. Please enter a valid street.");
@@ -109,6 +133,12 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Checks if the entered zipcode is valid.
+     *
+     * @param zipcode The name to be validated.
+     * @return True if the zipcode is valid, false otherwise.
+     */
     private boolean isValidZipcode(String zipcode) {
         if (!zipcode.matches("\\d{4}-\\d{3}")) {
             showAlert("Invalid zipcode format. Please enter a valid zipcode (format: xxxx-xxx).");
@@ -117,6 +147,12 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Checks if the entered city is valid.
+     *
+     * @param city The name to be validated.
+     * @return True if the city is valid, false otherwise.
+     */
     private boolean isValidCity(String city) {
         if (!city.matches("[a-zA-Z0-9\\s]+")) {
             showAlert("Invalid city. Please enter a valid city.");
@@ -125,6 +161,12 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Checks if the entered type is valid.
+     *
+     * @param type The name to be validated.
+     * @return True if the type is valid, false otherwise.
+     */
     private boolean isValidType(int type) {
         if (type < 1 || type > 3) {
             showAlert("Invalid input. Please choose a valid option (1, 2, or 3) for type.");
@@ -133,6 +175,12 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Checks if the entered area is valid.
+     *
+     * @param area The name to be validated.
+     * @return True if the area is valid, false otherwise.
+     */
     private boolean isValidArea(double area) {
         if (area < 0) {
             showAlert("Invalid area. Please introduce a positive area.");
@@ -141,6 +189,11 @@ public class RegisterGreenSpaceGUI implements Initializable {
         return true;
     }
 
+    /**
+     * Shows a warning alert.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -149,6 +202,11 @@ public class RegisterGreenSpaceGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Shows a success alert.
+     *
+     * @param message The message to be displayed in the alert.
+     */
     private void showSuccess(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -157,6 +215,12 @@ public class RegisterGreenSpaceGUI implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Changes the scene to the specified resource.
+     *
+     * @param stage        The current stage.
+     * @param resourceName The resource name of the FXML file for the new scene.
+     */
     private void changeScene(Stage stage, String resourceName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceName));

@@ -41,12 +41,24 @@ public class HumanResourcesManagerGUI implements Initializable {
 
     }
 
+    /**
+     * Performs the logout action.
+     *
+     * @param actionEvent The ActionEvent triggered when the logout button is clicked.
+     */
     public void logOutAction(ActionEvent actionEvent) {
         authenticationRepository.doLogout();
         Stage stage = (Stage) ((Node) actionEvent.getTarget()).getScene().getWindow();
         changeScene(stage,"/fxml/MainMenuScene.fxml",true);
     }
 
+    /**
+     * Changes the scene of the stage.
+     *
+     * @param stage      The stage to which the scene will be set.
+     * @param resourceName The resource name of the FXML file.
+     * @param resizable  A boolean value indicating whether the stage is resizable or not.
+     */
     public void changeScene(Stage stage, String resourceName,Boolean rezizeble){
 
         try {
@@ -63,6 +75,11 @@ public class HumanResourcesManagerGUI implements Initializable {
     }
 
 
+    /**
+     * Registers a new skill.
+     *
+     * @param actionEvent The ActionEvent triggered when the register skill button is clicked.
+     */
     public void registerSkill(ActionEvent actionEvent) {
         startingAlert();
         RegisterSkillUI u = new RegisterSkillUI();
@@ -74,6 +91,11 @@ public class HumanResourcesManagerGUI implements Initializable {
 
     }
 
+    /**
+     * Registers a new job.
+     *
+     * @param actionEvent The ActionEvent triggered when the register job button is clicked.
+     */
     public void registerJob(ActionEvent actionEvent) {
         startingAlert();
         RegisterJobUI u = new RegisterJobUI();
@@ -84,6 +106,11 @@ public class HumanResourcesManagerGUI implements Initializable {
         completedAlert();
     }
 
+    /**
+     * Registers a new collaborator.
+     *
+     * @param actionEvent The ActionEvent triggered when the register collaborator button is clicked.
+     */
     public void registerCollaborator(ActionEvent actionEvent) {
         startingAlert();
         RegisterCollaboratorUI u = new RegisterCollaboratorUI();
@@ -94,6 +121,11 @@ public class HumanResourcesManagerGUI implements Initializable {
         completedAlert();
     }
 
+    /**
+     * Assigns skills to collaborators.
+     *
+     * @param actionEvent The ActionEvent triggered when the assign skills button is clicked.
+     */
     public void assignSkills(ActionEvent actionEvent) {
         startingAlert();
         AssignSkillUI u = new AssignSkillUI();
@@ -104,6 +136,11 @@ public class HumanResourcesManagerGUI implements Initializable {
         completedAlert();
     }
 
+    /**
+     * Generates teams.
+     *
+     * @param actionEvent The ActionEvent triggered when the generate team button is clicked.
+     */
     public void generateTeam(ActionEvent actionEvent) {
         startingAlert();
         GenerateTeamUI u = new GenerateTeamUI();
@@ -114,6 +151,9 @@ public class HumanResourcesManagerGUI implements Initializable {
         completedAlert();
     }
 
+    /**
+     * Displays a completion alert.
+     */
     public void completedAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Operation Sucess");
@@ -122,6 +162,10 @@ public class HumanResourcesManagerGUI implements Initializable {
         alert.showAndWait();
 
     }
+
+    /**
+     * Displays a starting alert.
+     */
     public void startingAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Console Operation");
