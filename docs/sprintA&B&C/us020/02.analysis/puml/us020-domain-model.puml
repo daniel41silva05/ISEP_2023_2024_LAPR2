@@ -10,52 +10,28 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
-
 class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
+}
+
+class GreenSpaceManager {
     email
 }
 
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
-}
-
-class Category {
-    description
-}
-
-class Employee {
+class GreenSpace {
     name
-    email
-    position
-    phone
+    address
+    area
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
+class GreenSpaceType {
+    garden
+    mediumSizedPark
+    largeSizedPark
+}
 
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
+
+Organization "1" - "1..*" GreenSpaceManager : has >
+GreenSpaceManager "1" - "1" GreenSpace: register >
+GreenSpace "0..*" -- "1" GreenSpaceType : cataloged as >
+
 @enduml
