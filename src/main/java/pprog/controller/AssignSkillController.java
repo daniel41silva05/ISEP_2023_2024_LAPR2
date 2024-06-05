@@ -14,7 +14,14 @@ import java.util.List;
  */
 public class AssignSkillController {
 
+    /**
+     * The skill repository instance.
+     */
     private SkillRepository skillRepository;
+
+    /**
+     * The collaborator repository instance.
+     */
     private CollaboratorRepository collaboratorRepository;
 
     /**

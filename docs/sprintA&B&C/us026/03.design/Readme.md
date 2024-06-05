@@ -6,29 +6,27 @@
 
 _**Note that SSD - Alternative One is adopted.**_
 
-| Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
-|:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID | Question: Which class is responsible for...    | Answer                   | Justification (with patterns)                                                                                 |
+|:---------------|:-----------------------------------------------|:-------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1  		     | 	... interacting with the actor?               | AssignVehiclesUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+| 			  		        | 	... coordinating the US?                      | AssignVehiclesController | Controller                                                                                                    |
+| Step 2 		      | 	... knowing the agenda to show?               | Agenda                   | Information Expert: owns all entries                                                                          |
+| Step 3 		      | 	... saving the selected entry?                | Entry                    | Information Expert: object created has its own data                                                           |
+| Step 4 		      | 	... knowing the vehicles to show?             | VehicleRepository        | Information Expert: owns all vehicles                                                                         |
+| Step 5 		      | 	... saving the selected vehicles?             | Vehicle                  | Information Expert: object created has its own data                                                           |
+| Step 6 		      | 	                                              |                          |                                                                                                               |
+| Step 7 		      | 	... validating all data (global validation)?  | VehicleRepository        | Information Expert: knows all vehicles                                                                        |
+| 		             | 	... validating all data (global validation)?  | Agenda                   | Information Expert: knows all entries                                                                         |
+| 		             | 	... assign vehicles to an entry?                | AssignVehiclesController     | Information Expert: knows what entry it needs to add the vehicles to.                                           |
+| Step 8 		      | 	... informing operation success?              | AssignTeamUI             | Information Expert: is responsible for user interactions.                                                     |
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
 * Entry
+* Vehicle
+* Agenda
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
@@ -54,21 +52,25 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - split](svg/us026-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Get Entries Dto List**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial - Get Entries Dto List](svg/us026-sequence-diagram-partial-get-entries-dto-list.svg)
 
-**Get Task Category Object**
+**Get Vehicles Dto List**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
+![Sequence Diagram - Partial - Get Vehicles Dto List](svg/us026-sequence-diagram-partial-get-vehicle-dto-list.svg)
 
-**Get Employee**
+**Get Entry Object**
 
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
+![Sequence Diagram - Partial - Get Entry Object](svg/us026-sequence-diagram-partial-get-entry-object.svg)
 
-**Create Task**
+**Get Vehicle Object**
 
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Get Vehicle Object](svg/us026-sequence-diagram-partial-get-vehicle-object.svg)
+
+**Assign Vehicles to Entry Object**
+
+![Sequence Diagram - Partial - Assign Vehicles to Entry Object](svg/us026-sequence-diagram-partial-assign-vehicles.svg)
 
 ## 3.3. Class Diagram (CD)
 

@@ -8,5 +8,9 @@ module pprog.ui.gui {
 
     opens pprog.ui.gui to javafx.fxml;
     exports pprog.ui.gui to javafx.graphics;
+    opens pprog.domain to javafx.base;
+    opens pprog.interfaces to javafx.base;
+    exports pprog.ui to javafx.graphics;
+    opens pprog.ui to javafx.fxml;
 
 }

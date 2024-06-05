@@ -1,72 +1,58 @@
-# US006 - Create a Task 
+# US025 - Cancel an entry in the Agenda
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a GSM, I want to Cancel an entry in the Agenda
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	A task can only be canceled if it is in one of the following states: Planned, Postponed.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	A task in the "Done" state cannot be cancelled.
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** When a task is cancelled, is it possible to put it back on the agenda again later?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** Yes.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** When we cancel a task, do we move it again to the To-Do List?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** No.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
+* **AC1:** A canceled task should not be deleted, but rather change its status to "Cancelled".
+* **AC2:** Maintaining the history of task state changes for control and tracking.
 * **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US022 - Add a new entry in the Agenda".
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-	
 * Selected data:
-    * a task category 
+    * an existent entry. 
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* list of existing entries in the system.
+* new Agenda status
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**_Other alternatives might exist._**
-
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us025-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

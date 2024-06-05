@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US024 - Postpone an Entry
 
 ## 3. Design - User Story Realization 
 
@@ -8,33 +8,29 @@ _**Note that SSD - Alternative One is adopted.**_
 
 | Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
 |:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
+| Step 1  		 |	... interacting with the actor? | PostponeEntryAgendaUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+| 			  		 |	... coordinating the US? | PostponeEntryAgendaController | Controller                                                                                                    |
 | 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Step 2  		 |	... postpone an entry						 | Collaborator                     |                                                                                                               |
+| Step 3  		 |	...saving the inputted data? | Agenda                 | IE: object created in step 1 has its own data.                                                                |
+| Step 5  		 |	... saving the selected entry? | Entry                 | IE: object created in step 1 is classified in one Category.                                                   |
+| Step 6  		 |		showing all available entries				 |   Agenda                   |  IE: knows all its entries.                                                                                                               |              
+| Step 7  		 |	... validating all data (local validation)? | Entry                | IE: owns its data.                                                                                            | 
+| 			  		 |	... validating all data (global validation)? | Agenda         | IE: knows all its entries.                                                                                      | 
+| 			  		 |	... saving the posponed entry? | Agenda         | IE: owns all its entries.                                                                                       | 
+| Step 8  		 |	... informing operation success?| PostponeEntryAgendaUI         | IE: is responsible for user interactions.                                                                     | 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* Organization
-* Task
+* Agenda
+* Entry
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateTaskUI  
-* CreateTaskController
+* PostponeEntryAgendaUI  
+* PostponeEntryAgendaController
 
 
 ## 3.2. Sequence Diagram (SD)

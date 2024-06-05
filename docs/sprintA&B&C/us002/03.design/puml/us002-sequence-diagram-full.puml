@@ -11,95 +11,73 @@ autonumber
 actor "HRM" as HRM
 participant ":RegisterJobUI" as UI
 participant ":RegisterJobController" as CTRL
-participant ":JobRepository" as JOBS
 participant ":Repositories" as REP
-participant "repositories\n:Repositories" as PLAT
+participant "repositories\n:Repositories" as REPS
+participant ":JobRepository" as jobRepository
 participant "job\n:Job" as JOB
 
 
 activate HRM
 
-        HRM -> UI : asks to create a new job
+    HRM -> UI : asks to register a new job
+    activate UI
 
-        activate UI
+        UI -> CTRL** : create
 
-            create CTRL
-            UI -> CTRL** : create
+    UI --> HRM : requests data
+    deactivate UI
 
-            activate JOBS
-            CTRL -> JOBS : getJobRepository
+    HRM -> UI : types/selects requested data
+    activate UI
 
-            activate CTRL
-            JOBS -> CTRL : jobRepository
+    UI --> HRM : shows all data and requests confirmation
+    deactivate UI
 
-            deactivate JOBS
+    HRM -> UI : confirms data
+    activate UI
 
-            UI --> HRM : shows all jobs category existing to date or asks to create one
+        UI -> CTRL: registerJob(name, description)
+        activate CTRL
 
-            HRM --> UI : selects an option
+            CTRL -> REP: getInstance()
+            activate REP
 
-            UI --> HRM : requests data (name, description)
+            REP --> CTRL: repositories
+            deactivate REP
 
+            CTRL -> REPS: getJobRepository()
+            activate REPS
 
+            REPS --> CTRL: jobRepository
+            deactivate REPS
 
-    HRM -> UI : types requested data (name, description)
+            CTRL -> jobRepository: registerJob(name, description)
+            activate jobRepository
 
+                jobRepository -> JOB** : register(name, description)
 
-    HRM -> UI : submits data
+                jobRepository -> jobRepository: addJob (job)
+                activate jobRepository
 
-        UI -> CTRL : registerJob(name,description)
+                jobRepository -> jobRepository: validateJob (job)
+                activate jobRepository
 
-            deactivate UI
-                CTRL -> REP : getInstance()
-                activate REP
+                jobRepository --> jobRepository
+                deactivate jobRepository
 
-                    REP --> CTRL: repositories
-                deactivate REP
+                jobRepository --> jobRepository
+                deactivate jobRepository
 
-                CTRL -> PLAT: getJobRepository()
+            jobRepository --> CTRL: job
+            deactivate jobRepository
 
-                activate PLAT
+        CTRL --> UI: job
+        deactivate CTRL
 
-                PLAT --> CTRL: jobRepository
-                deactivate PLAT
-
-
-            |||
-            CTRL -> JOBS: registerJob(name, description)
-            activate JOBS
-
-            |||
-
-            activate JOB
-            JOBS -> JOB: registerJob(name,description)
-
-            |||
-
-            JOBS -> JOBS: addJob(job)
-            deactivate JOB
-            |||
-
-            JOBS -> JOBS: validateJob(job)
-            |||
-
-            JOBS -> JOBS
-            |||
-
-            JOBS -> JOBS
-            |||
-
-
-            JOBS --> CTRL: job
-
-            activate UI
-            CTRL --> UI: job
-
-            deactivate JOBS
-
-
-            UI --> HRM: displays operation success
+    UI --> HRM : displays operation success
     deactivate UI
 
 deactivate HRM
+
 
 @enduml

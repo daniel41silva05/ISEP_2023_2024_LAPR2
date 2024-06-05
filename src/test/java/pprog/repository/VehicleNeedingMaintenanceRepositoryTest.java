@@ -3,7 +3,6 @@ package pprog.repository;
 import org.junit.jupiter.api.Test;
 import pprog.domain.CheckUp;
 import pprog.domain.Vehicle;
-import pprog.domain.VehicleType;
 
 import java.util.ArrayList;
 import java.util.Date;

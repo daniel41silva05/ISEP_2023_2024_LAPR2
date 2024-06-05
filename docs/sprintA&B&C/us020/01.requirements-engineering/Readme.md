@@ -1,72 +1,80 @@
-# US006 - Create a Task 
+# US020 - Register a Green Space
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a Green Space Manager (GSM), I want to register a green space (garden, medium-sized park or large-sized park) and its respective area.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	...
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	...
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** In the registration of a green space, should a green space's name be allowed to contain digits and special characters, or just letters and whitespaces?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** Same rules for other names in the business, letters, spaces and dashes.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** Good evening, in view of the description of GreenSpaces does it make sense to ask for optional mind for the different types this data?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:**
+In the current version, it is sufficient to define a park using name, size classification, area (hectare) and address.
+
+> **Question:** Can two different green spaces have the same address?
+>
+> **Answer:** No.
+
+> **Question:** I would like to know between what ranges of hectares a green space is classified as garden, medium or large, or if it is possible to register 2 green spaces with the same area but in different typology, depending on the GSM it registers.
+>
+> **Answer:** The classification is not automatic, it's up to GSM decide about it.
+
+> **Question:** Can two green spaces have the same name?
+>
+> **Answer:** No.
+
+> **Question:**  In which unit should the area be measured in?
+>
+> **Answer:**  Usually, areas are measured in hectares.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** ...
+* **AC2:** ...
+* **AC3:** ...
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* n/a
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * name
+    * address
+    * area
 	
 * Selected data:
-    * a task category 
+    * type
 
 **Output Data:**
 
-* List of existing task categories
+* All data of the new Green Space
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
 **_Other alternatives might exist._**
 
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us020-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

@@ -82,7 +82,7 @@ public class RegisterCollaboratorController {
      * @param jobName       the job name of the collaborator
      * @return True if the collaborator was successfully registered, false otherwise
      */
-    public boolean registerCollaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocType, int idNumber, String jobName) {
+    public boolean registerCollaborator(String name, Date birthday, Date admissionDate, String[] address, int phoneNumber, String email, int idDocType, int idNumber, String jobName) {
         try {
             getCollaboratorRepository().registerCollaborator(name, birthday, admissionDate, address, phoneNumber, email, idDocType, idNumber, getJobByName(jobName));
             return true;

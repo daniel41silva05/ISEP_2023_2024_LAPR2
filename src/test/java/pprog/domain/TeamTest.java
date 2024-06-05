@@ -18,14 +18,14 @@ class TeamTest {
         Skill skill3 = new Skill("SQL");
 
         // Create some collaborators with different sets of skills
-        Collaborator collaborator1 = new Collaborator("John", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator1 = new Collaborator("John", null, null, new String[]{"123 Street", "12345", "City"}, 0, "john@this.app", 1, 0, null);
         collaborator1.getSkillAssign().add(skill1);
         collaborator1.getSkillAssign().add(skill2);
 
-        Collaborator collaborator2 = new Collaborator("Alice", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator2 = new Collaborator("Alice", null, null, new String[]{"123 Street", "12345", "City"}, 0, "alice@this.app", 1, 0, null);
         collaborator2.getSkillAssign().add(skill2);
 
-        Collaborator collaborator3 = new Collaborator("Bob", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator3 = new Collaborator("Bob", null, null, new String[]{"123 Street", "12345", "City"}, 0, "bob@this.app", 1, 0, null);
         collaborator3.getSkillAssign().add(skill1);
         collaborator3.getSkillAssign().add(skill3);
 
@@ -52,15 +52,15 @@ class TeamTest {
         Skill skill3 = new Skill("SQL");
 
         // Create some collaborators with different sets of skills
-        Collaborator collaborator1 = new Collaborator("John", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator1 = new Collaborator("John", null, null, new String[]{"123 Street", "12345", "City"}, 0, "john@this.app", 1, 0, null);
         collaborator1.getSkillAssign().add(skill1);
         collaborator1.getSkillAssign().add(skill2);
 
-        Collaborator collaborator2 = new Collaborator("Alice", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator2 = new Collaborator("Alice", null, null, new String[]{"123 Street", "12345", "City"}, 0, "alice@this.app", 1, 0, null);
         collaborator2.getSkillAssign().add(skill2);
         collaborator2.getSkillAssign().add(skill3);
 
-        Collaborator collaborator3 = new Collaborator("Bob", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator3 = new Collaborator("Bob", null, null, new String[]{"123 Street", "12345", "City"}, 0, "bob@this.app", 1, 0, null);
         collaborator3.getSkillAssign().add(skill1);
         collaborator3.getSkillAssign().add(skill3);
 
@@ -95,15 +95,15 @@ class TeamTest {
         Skill skill3 = new Skill("SQL");
 
         // Create some collaborators with different sets of skills
-        Collaborator collaborator1 = new Collaborator("John", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator1 = new Collaborator("John", null, null, new String[]{"123 Street", "12345", "City"}, 0, "john@this.app", 1, 0, null);
         collaborator1.getSkillAssign().add(skill1);
         collaborator1.getSkillAssign().add(skill2);
 
-        Collaborator collaborator2 = new Collaborator("Alice", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator2 = new Collaborator("Alice", null, null, new String[]{"123 Street", "12345", "City"}, 0, "alice@this.app", 1, 0, null);
         collaborator2.getSkillAssign().add(skill2);
         collaborator2.getSkillAssign().add(skill3);
 
-        Collaborator collaborator3 = new Collaborator("Bob", null, null, null, 0, null, 1, 0, null);
+        Collaborator collaborator3 = new Collaborator("Bob", null, null, new String[]{"123 Street", "12345", "City"}, 0, "bob@this.app", 1, 0, null);
         collaborator3.getSkillAssign().add(skill1);
         collaborator3.getSkillAssign().add(skill3);
 

@@ -36,18 +36,17 @@ Later the GSM will be able to add the Team and vehicles (if required).
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** The new entry must be associated with a green space man aged by the GSM.
+* **AC1:** The new entry must be associated with a green space managed by the GSM.
 * **AC2:** The new entry must exist in the To-Do list.
 * **AC3:** The new entry added must have the status of Planned.
-* **AC4:** The entry start date must correspond to the time GSM adds the entry to the Agenda.
-* **AC5:** Start Date can only contain numbers and follow the format xx/xx/xxxx.
-* **AC6:** Expected Duration can only contain numbers that are not negative and their respective unit of measurement.
-* **AC7:** System must ensure that only GSM adds a new entry in the Agenda.
+* **AC4:** Starting Date can only contain numbers and follow the format xx/xx/xxxx.
+* **AC5:** Entry must not already be contained in the Agenda.
+* **AC6:** System must ensure that only GSM adds a new entry in the Agenda.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US020 - ..." as there must be at least one green space to be associated with the new entry in the agenda.
-* There is a dependency on "US021 - ..." because the new entry in the Agenda must exist in the To-Do List.
+* There is a dependency on "US020 - Register a Green Space" as there must be at least one green space to be associated with the new entry in the agenda.
+* There is a dependency on "US021 - Add a new entry to the To-Do List" because the new entry in the Agenda must exist in the To-Do List.
 
 ### 1.5 Input and Output Data
 
@@ -57,8 +56,7 @@ Later the GSM will be able to add the Team and vehicles (if required).
     * Starting Date
 	
 * Selected data:
-    * To-Do List
-    * Status
+    * Task
 
 **Output Data:**
 

@@ -1,5 +1,6 @@
 package pprog.controller;
 
+import pprog.domain.Team;
 import pprog.domain.Collaborator;
 import pprog.domain.Skill;
 import pprog.repository.*;
@@ -130,5 +131,14 @@ public class GenerateTeamController {
      */
     public List<Collaborator> getCollaboratorList() {
         return getCollaboratorRepository().getCollaboratorsList();
+    }
+
+    /**
+     * Retrieves a list of all teams.
+     *
+     * @return A list of all teams.
+     */
+    public List<Team> getTeamsList() {
+        return getTeamRepository().getTeamList();
     }
 }

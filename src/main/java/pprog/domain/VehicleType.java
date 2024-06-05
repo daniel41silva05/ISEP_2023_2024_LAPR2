@@ -1,15 +1,22 @@
 package pprog.domain;
 
+import java.io.Serializable;
+
 /**
  * Represents the type of a vehicle.
  */
-public class VehicleType {
+public class VehicleType implements Serializable {
 
     /**
      * Enum representing types of transport.
      */
     public enum TypeTransport {
-        PASSENGERS, MIXED;
+
+        /** Passengers. */
+        PASSENGERS,
+
+        /** Mixed. */
+        MIXED;
 
         /**
          * Overrides the toString method to provide a formatted string representation.

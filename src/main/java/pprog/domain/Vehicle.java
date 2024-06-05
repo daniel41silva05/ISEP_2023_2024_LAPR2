@@ -1,11 +1,13 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Represents a vehicle.
  */
-public class Vehicle {
+public class Vehicle implements Serializable {
 
     /**
      * The brand of the vehicle.
@@ -57,6 +59,8 @@ public class Vehicle {
      */
     private VehicleType type;
 
+    private boolean occupiedVehicle;
+
     /**
      * Constructs a new Vehicle object.
      *
@@ -82,6 +86,7 @@ public class Vehicle {
         this.maintenanceCheckUpFrequency = maintenanceCheckUpFrequency;
         this.plateNumber = plateNumber;
         this.type = new VehicleType(vehicleTypeValue);
+        this.occupiedVehicle = false;
     }
 
     /**
@@ -263,13 +268,21 @@ public class Vehicle {
         this.type = type;
     }
 
+    public boolean isOccupiedVehicle() {
+        return occupiedVehicle;
+    }
+
+    public void setOccupiedVehicle(boolean occupiedVehicle) {
+        this.occupiedVehicle = occupiedVehicle;
+    }
+
     /**
      * Returns a string representation of the vehicle.
      * @return A string representation of the vehicle.
      */
     @Override
     public String toString() {
-        return String.format("Vehicle\nBrand: %s\nModel: %s\nTare: %d\nGross Weight: %d\nCurrent Km: %d\nRegister Date: %s\nAcquisition Date: %s\nMaintenance CheckUp Frequency: %d\nPlate Number: %s\n%s\n",
+        return String.format("Brand: %s\nModel: %s\nTare: %d\nGross Weight: %d\nCurrent Km: %d\nRegister Date: %s\nAcquisition Date: %s\nMaintenance CheckUp Frequency: %d\nPlate Number: %s\n%s",
                 brand, model, tare, grossWeight, currentKm, registerDate, acquisitionDate, maintenanceCheckUpFrequency, plateNumber, type);
     }
 }

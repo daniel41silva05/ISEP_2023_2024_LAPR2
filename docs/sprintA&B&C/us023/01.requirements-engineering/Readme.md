@@ -19,21 +19,22 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 
 **From the client clarifications:**
 
-> **Question:** ...
+> **Question:** Can a Team be assigned to multiple entrys?
 >
-> **Answer:** ...
+> **Answer:** yes.
 
-> **Question:** ...
+> **Question:** Can an Agenda entry have more than one team assigned to it?
 >
-> **Answer:** ...
+> **Answer:** No.
 
 ### 1.3. Acceptance Criteria
 
 * **AC1:** A message must be sent to all team members informing them about the assignment.
 * **AC2:** Different email services can send the message. These services must be defined through a configuration file to allow the use of different platforms (e.g. Gmail, DEI’s email service, etc.).
-* **ACX:** User will select a team from the list of teams generated in US05.
-* **ACX:** User will select an entry from those contained in the Agenda.
-* **ACX:** System must ensure that only GSM assigns a Team to an Agenda entry.
+* **AC3:** A agenda entry can only have one team assigned to it
+* **AC4:** GSM will select a team from the list of teams generated in US05.
+* **AC5:** GSM will select an entry from those contained in the Agenda.
+* **AC6:** System must ensure that only GSM assigns a Team to an agenda entry.
 
 ### 1.4. Found out Dependencies
 
@@ -43,9 +44,6 @@ As a GSM, I want to assign a Team to an entry in the Agenda.
 ### 1.5 Input and Output Data
 
 **Input Data:**
-
-* Typed data:
-    *
 	
 * Selected data:
     * Team

@@ -1,9 +1,11 @@
 package pprog.domain;
 
+import java.io.Serializable;
+
 /**
  * Enum representing different types of identification documents.
  */
-public enum IdDocType {
+public enum IdDocType implements Serializable {
     /** Taxpayer number. */
     TAXPAYER_NUMBER,
 

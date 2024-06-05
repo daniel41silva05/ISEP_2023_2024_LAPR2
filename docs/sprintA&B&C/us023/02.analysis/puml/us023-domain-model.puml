@@ -14,16 +14,15 @@ class Organization {
 }
 
 class GreenSpacesManager {
-    name
+    email
 }
 
 class Agenda {
-    entriesList
 }
 
 class Entry {
     startingDate
-    agendaStatus
+    status
     task
 }
 
@@ -31,10 +30,15 @@ class Team {
     collaborators
 }
 
+class Email {
+}
+
 Organization "1" -- "1..*" GreenSpacesManager : has >
 Organization "1" -- "1" Agenda : has >
 GreenSpacesManager "1" -- "1" Team : selects  >
 Agenda "1" -- "0..*" Entry : has >
-Team "1" -- "1" Entry : assigned to >
+Team "1" -- "1..*" Entry : assigned to >
+GreenSpacesManager "1" -- "1..*" Email : sends >
+Email "1" -- "1" Team : sent to >
 
 @enduml

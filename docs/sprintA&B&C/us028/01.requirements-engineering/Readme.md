@@ -1,59 +1,52 @@
-# US006 - Create a Task 
+# US028 - Consult the Task Between Two Dates
 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a Collaborator, I wish to consult the tasks assigned to me
+between two dates.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	The system must allow the collaborator to select a date range to query the tasks assigned to them.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
+>	The listed tasks must be displayed in ascending chronological order.
+   
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
->
-> **Answer:** Duration is estimated in days.
+> **Question:** Could a task belong to different teams and collaborators? I mean, if the status, degree of urgency and expect duration belong to an entry of the to do list and the task is something generic that can be reuse, or if the task could belong only to one collaborator, and for another you have to create another one.
 
-> **Question:** Monetary data is expressed in any particular currency?
->
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** No.
+Maybe a distintion should be made between type of task and a task.
+Task type is "Prunning trees", a specific task is "Prunning trees" in specific park in a specific date.
+
+> **Question:**  A collaborator could have assigned at the same time different tasks from different teams, isnt it?
+Apart, which atributes has a task ( maybe something like: name, frequency, creation_date, lenght, status)? Which id do you want (I think name is not a good idea)? Which status could a task have?
+
+> **Answer:** No, in a specific period (for instance during a week) a collaborator just belongs to team. But if you consider a wider period you may find different teams to which a collaborator belonged.
+In this project no distinction will be made between recorrent/occasional tasks; I suppose that the identification is a combination of Name, Date and Local, like Prunning Trees at 20/05/2024 in Parque da Cidade.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** The list of green spaces must be sorted by date
+* **AC2:** The Collaborator should be able to filter the results by the
+  status of the task.
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
-
+* There is a dependency on "US022 - Add a new entry in the Agenda" because in order to display the list of tasks, we must know which ones exist
 ### 1.5 Input and Output Data
-
-**Input Data:**
-
-* Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
 	
 * Selected data:
-    * a task category 
+    * Two date selection fields (start date and end date).
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+*  List displaying the tasks sorted by date with relevant information (task name, description, status, location).
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -61,12 +54,4 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
-
-### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+![System Sequence Diagram - Alternative One](svg/us028-system-sequence-diagram-alternative-one.svg)

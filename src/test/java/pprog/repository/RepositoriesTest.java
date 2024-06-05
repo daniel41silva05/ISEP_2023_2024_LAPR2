@@ -1,6 +1,8 @@
 package pprog.repository;
 
 import org.junit.jupiter.api.Test;
+import pprog.domain.Agenda;
+import pprog.domain.ToDoList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -95,5 +97,26 @@ class RepositoriesTest {
         AuthenticationRepository authenticationRepository = repositories.getAuthenticationRepository();
 
         assertNotNull(authenticationRepository);
+    }
+
+    @Test
+    void getAgenda() {
+        Repositories repositories = Repositories.getInstance();
+        Agenda agenda = repositories.getAgenda();
+        assertNotNull(agenda);
+    }
+
+    @Test
+    void getToDoList() {
+        Repositories repositories = Repositories.getInstance();
+        ToDoList toDoList = repositories.getToDoList();
+        assertNotNull(toDoList);
+    }
+
+    @Test
+    void getGreenSpaceRepository() {
+        Repositories repositories = Repositories.getInstance();
+        GreenSpaceRepository greenSpaceRepository = repositories.getGreenSpaceRepository();
+        assertNotNull(greenSpaceRepository);
     }
 }

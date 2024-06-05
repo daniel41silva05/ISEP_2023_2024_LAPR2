@@ -1,9 +1,11 @@
 package pprog.domain;
 
+import java.io.Serializable;
+
 /**
  * Represents a skill.
  */
-public class Skill {
+public class Skill implements Serializable {
 
     /**
      * The skill value.

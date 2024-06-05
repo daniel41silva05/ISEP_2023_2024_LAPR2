@@ -1,72 +1,56 @@
-# US006 - Create a Task 
-
+# US027 - List of Green Spaces managed by me
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an organization employee, I want to create a new task in order to be further published.
+As a GSM, I need to list all green spaces managed by me.
 
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	...
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	...
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Which info about Green Spaces do you want the GSM see when listing? Only the name?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** Each de team can decide about the aspects related to UX/UI.
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** The GSM should be register in the app previously? Which attributes should it have?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** Yes, the app can have multiple GSM registered (for instance that can be done during usgin the boostrap). A collaborator is a person (an employee) that have a name, birthdate, a salary, etc.
+
+> **Question:** A  GSM is a collaborator?
+>
+> **Answer:** A GSM is a role played by a collaborator. Depending in the size of the company, you can have a collaborator playing multiple roles like GSM, VFM or HRM or different persons playing the same role like GSM.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** ...
+* **AC2:** ...
+* **AC3:** ...
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* There is a dependency on "US020 - Register a Green Space", as there must be at least one green space to be able to consult. 
 
 ### 1.5 Input and Output Data
 
-**Input Data:**
-
-* Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
-	
-* Selected data:
-    * a task category 
-
 **Output Data:**
 
-* List of existing task categories
+* All data of the new List of Green Spaces managed by me
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
 **_Other alternatives might exist._**
 
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

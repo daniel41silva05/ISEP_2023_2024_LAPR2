@@ -1,39 +1,45 @@
 package pprog.repository;
 
+import pprog.domain.Agenda;
+import pprog.domain.ToDoList;
+
+import java.io.*;
+
 /**
  * This class manages singleton instances of repositories.
  */
-public class Repositories {
+public class Repositories implements Serializable {
 
     /** The singleton instance of Repositories. */
     private static Repositories instance;
 
     /** The repository for collaborators. */
-    private final CollaboratorRepository collaboratorRepository;
+    private CollaboratorRepository collaboratorRepository;
 
     /** The repository for jobs. */
-    private final JobRepository jobRepository;
+    private JobRepository jobRepository;
 
     /** The repository for vehicles. */
-    private final VehicleRepository vehicleRepository;
+    private VehicleRepository vehicleRepository;
 
     /** The repository for skills. */
-    private final SkillRepository skillRepository;
+    private SkillRepository skillRepository;
 
     /** The repository for check-ups. */
-    private final CheckUpRepository checkUpRepository;
+    private CheckUpRepository checkUpRepository;
 
     /** The repository for teams. */
-    private final TeamRepository teamRepository;
+    private TeamRepository teamRepository;
 
     /** The repository for vehicles needing maintenance. */
-    private final VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
+    private VehicleNeedingMaintenanceRepository vehicleNeedingMaintenanceRepository;
 
     /** The repository for authentication. */
-    private final AuthenticationRepository authenticationRepository;
+    private transient AuthenticationRepository authenticationRepository;
 
-    private final Agenda agenda;
-    private final ToDoList toDoList;
+    private Agenda agenda;
+    private ToDoList toDoList;
+    private GreenSpaceRepository greenSpaceRepository;
 
     /**
      * Constructs a new Repositories object, initializing all repositories.
@@ -49,6 +55,7 @@ public class Repositories {
         authenticationRepository = new AuthenticationRepository();
         agenda = new Agenda();
         toDoList = new ToDoList();
+        greenSpaceRepository = new GreenSpaceRepository();
     }
 
     /**
@@ -133,5 +140,63 @@ public class Repositories {
     public ToDoList getToDoList() {
         return toDoList;
     }
+
+    public GreenSpaceRepository getGreenSpaceRepository() {
+        return greenSpaceRepository;
+    }
+
+    public void saveSystemStateToBinary(File file){
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(instance);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void loadSystemStateFromBinary(File file){
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+            ObjectInputStream in = new ObjectInputStream(fileInputStream);
+            Repositories repObject = (Repositories) in.readObject();
+            collaboratorRepository = repObject.getCollaboratorRepository();
+            jobRepository = repObject.getJobRepository();
+            vehicleRepository = repObject.getVehicleRepository();
+            skillRepository = repObject.getSkillRepository();
+            checkUpRepository = repObject.getCheckUpRepository();
+            teamRepository = repObject.getTeamRepository();
+            vehicleNeedingMaintenanceRepository = repObject.getVehicleNeedingMaintenanceRepository();
+            greenSpaceRepository = repObject.getGreenSpaceRepository();
+            toDoList = repObject.getToDoList();
+            agenda = repObject.getAgenda();
+
+            in.close();
+            fileInputStream.close();
+        } catch (ClassNotFoundException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clearData() {
+        collaboratorRepository = new CollaboratorRepository();
+        jobRepository = new JobRepository();
+        vehicleRepository = new VehicleRepository();
+        skillRepository = new SkillRepository();
+        checkUpRepository = new CheckUpRepository();
+        teamRepository = new TeamRepository();
+        vehicleNeedingMaintenanceRepository = new VehicleNeedingMaintenanceRepository();
+        authenticationRepository = new AuthenticationRepository();
+        agenda = new Agenda();
+        toDoList = new ToDoList();
+        greenSpaceRepository = new GreenSpaceRepository();
+    }
+
+    @Override
+    public String toString() {
+        return "Repositories{" + skillRepository + collaboratorRepository + jobRepository + checkUpRepository + teamRepository + vehicleNeedingMaintenanceRepository + vehicleRepository + greenSpaceRepository + toDoList + agenda;
+    }
+
 }
 

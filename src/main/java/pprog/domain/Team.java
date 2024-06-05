@@ -1,12 +1,13 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Class representing the generation of a team based on specific criteria.
  */
-public class Team {
+public class Team implements Serializable {
 
     /**
      * List of collaborators needed for the team.

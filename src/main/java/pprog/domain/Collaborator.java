@@ -1,5 +1,6 @@
 package pprog.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Represents a collaborator.
  */
-public class Collaborator {
+public class Collaborator implements Serializable {
 
     /** The name of the collaborator. */
     private String name;
@@ -19,7 +20,7 @@ public class Collaborator {
     private Date admissionDate;
 
     /** The address of the collaborator. */
-    private String address;
+    private Address address;
 
     /** The phone number of the collaborator. */
     private int phoneNumber;
@@ -52,11 +53,11 @@ public class Collaborator {
      * @param idNumber      The identification number of the collaborator.
      * @param job           The job of the collaborator.
      */
-    public Collaborator(String name, Date birthday, Date admissionDate, String address, int phoneNumber, String email, int idDocTypeInt, int idNumber, Job job) {
+    public Collaborator(String name, Date birthday, Date admissionDate, String[] address, int phoneNumber, String email, int idDocTypeInt, int idNumber, Job job) {
         this.name = name;
         this.birthday = birthday;
         this.admissionDate = admissionDate;
-        this.address = address;
+        this.address = new Address(address);
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.idDocType = IdDocType.fromInt(idDocTypeInt);
@@ -71,8 +72,7 @@ public class Collaborator {
      * @return true if the collaborator is over 18 years old, false otherwise.
      */
     public boolean validateBirthdayIsOver18() {
-        Date currentDate = new Date();
-        long diffMillis = currentDate.getTime() - this.birthday.getTime();
+        long diffMillis = this.admissionDate.getTime() - this.birthday.getTime();
         long ageInMillis = 18L * 365 * 24 * 60 * 60 * 1000;
         return diffMillis > ageInMillis;
     }
@@ -92,7 +92,7 @@ public class Collaborator {
             return false;
         }
         Collaborator outroCollaborator = (Collaborator) outroObjeto;
-        return name.equalsIgnoreCase(outroCollaborator.name);
+        return email.equalsIgnoreCase(outroCollaborator.email);
     }
 
     /**
@@ -154,7 +154,7 @@ public class Collaborator {
      *
      * @return The address of the collaborator.
      */
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
@@ -163,10 +163,9 @@ public class Collaborator {
      *
      * @param address The new address of the collaborator.
      */
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
-
     /**
      * Gets the phone number of the collaborator.
      *
@@ -269,19 +268,15 @@ public class Collaborator {
     /**
      * Sets the list of skills assigned to the collaborator.
      *
-     * @param skillAssign The new job of the collaborator.
+     * @param skillToAdd The new job of the collaborator.
      */
-    public void assignSkills(List<Skill> skillAssign) {
-        this.skillAssign = skillAssign;
-    }
-
-    /**
-     * Creates and returns a copy of this collaborator.
-     *
-     * @return A new Collaborator object with the same attributes.
-     */
-    public Collaborator clone() {
-        return new Collaborator(this.name, this.birthday, this.admissionDate, this.address, this.phoneNumber, this.email, this.idDocType.ordinal(), this.idNumber, this.job);
+    public void assignSkills(List<Skill> skillToAdd) {
+        for (Skill skill : skillToAdd) {
+            if (this.skillAssign.contains(skill)) {
+                throw new IllegalArgumentException("The skill you are trying to assign was already assigned!");
+            }
+        }
+        this.skillAssign.addAll(skillToAdd);
     }
 
     /**
@@ -291,7 +286,7 @@ public class Collaborator {
      */
     @Override
     public String toString() {
-        return String.format(name);
+        return String.format("Name: %s, Email: %s", name, email);
     }
 
 }
