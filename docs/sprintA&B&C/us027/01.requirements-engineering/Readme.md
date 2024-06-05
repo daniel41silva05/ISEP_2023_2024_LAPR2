@@ -36,7 +36,7 @@ As a GSM, I need to list all green spaces managed by me.
 
 ### 1.4. Found out Dependencies
 
-* ...
+* There is a dependency on "US020 - Register a Green Space", as there must be at least one green space to be able to consult. 
 
 ### 1.5 Input and Output Data
 

@@ -50,7 +50,7 @@ In the current version, it is sufficient to define a park using name, size class
 
 ### 1.4. Found out Dependencies
 
-* ...
+* n/a
 
 ### 1.5 Input and Output Data
 
