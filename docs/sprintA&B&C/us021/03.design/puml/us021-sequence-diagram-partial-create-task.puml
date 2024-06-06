@@ -50,7 +50,7 @@ activate toDoList
 
     end
     autonumber 21
-    <-- toDoList  : email
+    <-- toDoList  : task
 deactivate toDoList
 
 @enduml

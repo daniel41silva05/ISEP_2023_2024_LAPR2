@@ -1,4 +1,4 @@
-# US006 - Create a Task 
+# US021 - Add a new entry to the To-Do List 
 
 ## 3. Design - User Story Realization 
 
@@ -55,21 +55,21 @@ It uses Interaction Occurrence (a.k.a. Interaction Use).
 
 ![Sequence Diagram - split](svg/us021-sequence-diagram-split.svg)
 
-**Get Task Category List Partial SD**
+**Get Green Spaces DTO List**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us021-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial - Get Green Spaces DTO List](svg/us021-sequence-diagram-partial-get-green-spaces-dto-list.svg)
 
-**Get Task Category Object**
+**Get Green Space By Name**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us021-sequence-diagram-partial-get-gsm-email.svg)
+![Sequence Diagram - Partial - Get Green Space By Name](svg/us021-sequence-diagram-partial-get-green-space-by-name.svg)
 
-**Get Employee**
+**Get GSM email**
 
-![Sequence Diagram - Partial - Get Employee](svg/us021-sequence-diagram-partial-get-green-space-by-name.svg)
+![Sequence Diagram - Partial - Get GSM Email](svg/us021-sequence-diagram-partial-get-gsm-email.svg)
 
 **Create Task**
 
-![Sequence Diagram - Partial - Create Task](svg/us021-sequence-diagram-partial-get-green-spaces-dto-list.svg)
+![Sequence Diagram - Partial - Create Task](svg/us021-sequence-diagram-partial-create-task.svg)
 
 ## 3.3. Class Diagram (CD)
 
