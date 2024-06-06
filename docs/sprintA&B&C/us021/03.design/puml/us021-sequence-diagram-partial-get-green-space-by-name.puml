@@ -17,7 +17,7 @@ autonumber 12
  -> CTRL : getGreenSpaceByName(name)
 autonumber 12.1
 activate CTRL
-    group Get Green Spaces DTO List
+    group Get Green Space By Name
 
             CTRL -> REP : getInstance()
             activate REP
