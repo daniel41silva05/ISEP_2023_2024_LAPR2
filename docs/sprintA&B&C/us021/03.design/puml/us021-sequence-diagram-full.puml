@@ -11,14 +11,14 @@ participant ":AddTaskToDoListUI" as UI
 participant ":AddTaskToDoListControlller" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant "toDoList:\nToDoList" as toDoList
+participant "greenSpaceRepository:\nGreenSpaceRepository" as greenSpaceREP
 participant ":GreenSpaceMapper" as greenSpaceMAPPER
 participant "GreenSpaceDto\n:GreenSpaceDto" as greenSpaceDTO
 participant "GreenSpacesListDto\n:List<TaskDto>" as greenSpacesListDTO
-participant "greenSpaceRepository:\nGreenSpaceRepository" as greenSpaceREP
 participant "authenticationRepository:\nAuthenticationRepository" as authentication
 participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
+participant "toDoList:\nToDoList" as toDoList
 participant "GreenSpace:\nGreenSpace" as greenSpace
 participant "greenSpacesManager:\nGreen Spaces Manager" as USER
 participant "task\n:Task" as TASK
@@ -45,7 +45,7 @@ activate GSM
             REPS --> CTRL: greenSpaceRepository
             deactivate REPS
 
-            CTRL -> greenSpaceREP: getGreenSpacesListList()
+            CTRL -> greenSpaceREP: getGreenSpacesList()
             activate greenSpaceREP
 
             greenSpaceREP --> CTRL : greenSpacesList
