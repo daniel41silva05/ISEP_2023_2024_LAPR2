@@ -75,22 +75,9 @@ class GreenSpaceManager {
     +GreenSpaceManager(email)
 }
 
-class Adress {
-    -String street
-    -String zipcode
-    -String city
-    +Adress(adressArray)
-}
-
 enum TaskType {
     REGULAR
     OCCASIONAL
-}
-
-enum GreenSpaceType {
-    GARDEN
-    MEDIUM_SIZED_PARK
-    LARGE_SIZED_PARK
 }
 
 enum EmergencyDegree {
@@ -129,9 +116,6 @@ Task --> "1" EmergencyDegree
 Task --> "1" TaskStatus
 Task --> "1" GreenSpaceManager
 Task --> "1" TaskType
-GreenSpace --> "1" GreenSpaceManager
-GreenSpace --> "1" Adress
-GreenSpace --> "1" GreenSpaceType
 AddTaskToDoListController ..> GreenSpaceMapper
 GreenSpaceMapper ..> GreenSpaceDTO
 
