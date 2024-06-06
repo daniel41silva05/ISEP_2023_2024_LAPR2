@@ -29,8 +29,8 @@ class Task {
     greenSpace
 }
 
-Organization "1" - "1..*" GreenSpaceManager : has >
-Organization "1" - "1" ToDoList : has >
+Organization "1" -- "1..*" GreenSpaceManager : has >
+Organization "1" -- "1" ToDoList : has >
 ToDoList "1" -- "1..*" Task : has >
-GreenSpaceManager "1" - "1" Task : selects >
+GreenSpaceManager "1" -- "1" Task : selects >
 @enduml
