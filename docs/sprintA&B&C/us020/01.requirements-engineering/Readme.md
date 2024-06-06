@@ -73,7 +73,7 @@ In the current version, it is sufficient to define a park using name, size class
 
 **_Other alternatives might exist._**
 
-![System Sequence Diagram - Alternative One](svg/us020-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us020-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 
