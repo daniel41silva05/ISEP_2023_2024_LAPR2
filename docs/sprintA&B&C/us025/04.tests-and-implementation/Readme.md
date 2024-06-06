@@ -1,32 +1,26 @@
 # US025 - Cancel an entry in the Agenda 
 
-## 4. Tests 
+## 4. Tests
 
-**Test 1:** Ensure that an entry can be successfully canceled
+**Test 1:** Ensure that the entry exist and the status changes to 'CANCELED' 
 
-[//]: # (	@Test&#40;expected = IllegalArgumentException.class&#41;)
+    @Test
+        public void ensureEntryStatusChangesToCanceled() {
+        Agenda agenda = new Agenda();
+        GreenSpacesManager gsm = new GreenSpacesManager("gsm@example.com");
+        String[] address = {"123 Green St", "City", "Country"};
+        GreenSpace greenSpace = new GreenSpace("Central Park", address, 1, 500.0, gsm);
+        Task task = new Task("Title", "Description", 1, 60, 1, greenSpace);
+        Entry entry = new Entry(new Date(), task);
+        entry.setGreenSpacesManager(gsm);
+        agenda.getEntriesList().add(entry);
+        
+        assertTrue(agenda.getEntriesList().contains(entry));
 
-[//]: # (		public void ensureNullIsNotAllowed&#40;&#41; {)
-
-[//]: # (		Task instance = new Task&#40;null, null, null, null, null, null, null&#41;;)
-
-[//]: # (	})
-	
-
-**Test 2:** Ensure that the entry status changes to 'CANCELED'
-
-[//]: # ()
-[//]: # (	@Test&#40;expected = IllegalArgumentException.class&#41;)
-
-[//]: # (		public void ensureReferenceMeetsAC2&#40;&#41; {)
-
-[//]: # (		Category cat = new Category&#40;10, "Category 10"&#41;;)
-
-[//]: # (		)
-[//]: # (		Task instance = new Task&#40;"Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat&#41;;)
-
-[//]: # (	})
-
+        agenda.cancelEntry(entry, gsm.getEmail());
+    
+        assertEquals(AgendaStatus.CANCELED, entry.getStatus());
+    }
 
 
 ## 5. Construction (Implementation)
