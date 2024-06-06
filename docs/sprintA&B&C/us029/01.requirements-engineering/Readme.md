@@ -11,48 +11,58 @@
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost, as well as a task category. 
+>	...
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	... 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Can a collaborator mark a task as "done" only if it is in the "planned" status?
 >
-> **Answer:** Duration is estimated in days.
+> **Answer:** It depends in the status set your team decide to have/use. But if you consider only status refered in the text and in the forum my answer would be, yes, just the "Planned" status can be changed to "Done".
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:**
+"As a Collaborator, I want to record the completion of a task."
+This "record" refers to the act of only changing the status of the task, or do we want to save a list of the completed tasks within each Collaborator?
 >
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POT (virtual currency internal to the platform).
+> **Answer:** It means to record that a task was completed (changing the status) with the finish time.
+
+> **Question:** The collaborator can see what type of entry's? Like what status can he filter ? Can he see canceled Entry's?
+>
+> **Answer:** The ones assigned to him. He can filter by the different values the status of the status, like planned, executed, canceled ...
+
+> **Question:** Can an employee record more than one completed task at a time?
+>
+> **Answer:** It's a matter of UX/UI, each dev team can decide about it.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** All required fields must be filled in.
-* **AC2:** The task reference must have at least 5 alphanumeric characters.
-* **AC3:** When creating a task with an existing reference, the system must reject such operation and the user must be able to modify the typed reference.
+* **AC1:** ...
+* **AC2:** ...
+* **AC3:** ...
 
 ### 1.4. Found out Dependencies
 
-* There is a dependency on "US003 - Create a task category" as there must be at least one task category to classify the task being created.
+* ...
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-    * a reference
-    * a designation 
-    * an informal description
-    * a technical description
-    * an estimated duration
-    * an estimated cost
+    * ...
+    * ...
+    * ...
+    * ...
+    * ...
+    * ...
 	
 * Selected data:
-    * a task category 
+    * ... 
 
 **Output Data:**
 
-* List of existing task categories
+* List of existing task categories 
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -61,12 +71,12 @@
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us029-system-sequence-diagram-alternative-one.svg)
 
 #### Alternative Two
 
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative Two](svg/us029-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* n/a

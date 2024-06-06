@@ -93,21 +93,23 @@ class AgendaTest {
         assertEquals("The new date must be later than the date initially assigned to the task.", exception.getMessage());
     }
 
-    @Test
-    void cancelEntry() {
-        Agenda agenda = new Agenda();
-        GreenSpacesManager gsm = new GreenSpacesManager("gsm@example.com");
-        String[] address = {"123 Green St", "City", "Country"};
-        GreenSpace greenSpace = new GreenSpace("Central Park", address, 1, 500.0, gsm);
-        Task task = new Task("Title", "Description", 1, 60, 1, greenSpace);
-        Entry entry = new Entry(new Date(), task);
-        entry.setGreenSpacesManager(gsm);
-        agenda.getEntriesList().add(entry);
+        @Test
+        void cancelEntry() {
+            Agenda agenda = new Agenda();
+            GreenSpacesManager gsm = new GreenSpacesManager("gsm@example.com");
+            String[] address = {"123 Green St", "City", "Country"};
+            GreenSpace greenSpace = new GreenSpace("Central Park", address, 1, 500.0, gsm);
+            Task task = new Task("Title", "Description", 1, 60, 1, greenSpace);
+            Entry entry = new Entry(new Date(), task);
+            entry.setGreenSpacesManager(gsm);
+            agenda.getEntriesList().add(entry);
 
-        agenda.cancelEntry(entry, gsm.getEmail());
+            assertTrue(agenda.getEntriesList().contains(entry));
 
-        assertEquals(AgendaStatus.CANCELED, entry.getStatus());
-    }
+            agenda.cancelEntry(entry, gsm.getEmail());
+
+            assertEquals(AgendaStatus.CANCELED, entry.getStatus());
+        }
 
     @Test
     void completeEntry() {

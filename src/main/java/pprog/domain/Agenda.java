@@ -98,7 +98,10 @@ public class Agenda implements Serializable {
      * @param entry  The entry to be canceled.
      */
     public void cancelEntry(Entry entry, String gsmFromSession) {
-        if (validateUser(gsmFromSession, entry)) {
+        if (!entriesList.contains(entry)) {
+            throw new IllegalArgumentException("Entry does not exist in the Agenda.");
+        }
+        else if (validateUser(gsmFromSession, entry)) {
             entry.changeStatus(AgendaStatus.CANCELED);
         }
     }

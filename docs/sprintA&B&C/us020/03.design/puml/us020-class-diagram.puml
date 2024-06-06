@@ -1,5 +1,4 @@
 @startuml
-'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
@@ -18,7 +17,9 @@ class RegisterGreenSpaceController {
 }
 
 class GreenSpaceRepository {
-    +getGreenSpaceByName(name)
+    +registerGreenSpace(name ,address, type, area, greenSpacesManager)
+    -addGreenSpace(greenSpace)
+    -validateGreenSpace(greenSpace)
 }
 
 class GreenSpace {
