@@ -13,10 +13,13 @@ class ListGreenSpacesByGSMUI {
 class ListGreenSpacesByGSMController {
     +ListGreenSpacesByGSMController(authenticationRepository, greenSpaceRepository)
     -getGSMFromSession()
+    +sortListByAlgorithm()
+    +getSortListDTO()
 }
 
 class GreenSpaceRepository {
-    +getGreenSpaceByName(name)
+    +getGreenSpaceListByGSM(gsmFromSession)
+    +sortListByAlgorithm(gsmFromSession)
 }
 
 class GreenSpace {
@@ -59,6 +62,39 @@ class UserSession {
     +getUserId()
 }
 
+class GreenSpaceDTO {
+    -String name
+    -Adress adress
+    -GreenSpaceType type
+    -double area
+    -GreenSpacesManager greenSpacesManager
+    +GreenSpaceDTO(name, adress, type, area, greenSpacesManager)
+}
+
+class GreenSpaceMapper {
+    +toDTOList(greenSpacesList)
+    +greenSpaceToDTO(greenSpace)
+}
+
+class ApplicationSession {
+    -getAlgorithm()
+    +getSortingAlgorithm()
+}
+
+interface SortingAlgorithm {
+    +sort(managedGreenSpacesList)
+}
+
+class Algoritmo1 {
+    +sort(managedGreenSpacesList)
+    -sortList(managedGreenSpacesList)
+}
+
+class Algoritmo2 {
+    +sort(managedGreenSpacesList)
+    -sortList(managedGreenSpacesList)
+}
+
 
 ListGreenSpacesByGSMUI ..> ListGreenSpacesByGSMController
 ListGreenSpacesByGSMController ..> Repositories: repositories
@@ -72,5 +108,11 @@ GreenSpaceRepository --> "*" GreenSpace
 GreenSpace --> "1" GreenSpaceManager
 GreenSpace --> "1" Address
 GreenSpace --> "1" GreenSpaceType
+GreenSpaceRepository ..> ApplicationSession
+ApplicationSession --> SortingAlgorithm: instance
+Algoritmo1 ..> SortingAlgorithm
+Algoritmo2 ..> SortingAlgorithm
+ListGreenSpacesByGSMController ..> GreenSpaceMapper
+GreenSpaceMapper ..> GreenSpaceDTO
 
 @enduml
