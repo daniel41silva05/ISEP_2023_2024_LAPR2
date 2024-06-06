@@ -17,7 +17,9 @@ class RegisterGreenSpaceController {
 }
 
 class GreenSpaceRepository {
-    +getGreenSpaceByName(name)
+    +registerGreenSpace(name ,address, type, area, greenSpacesManager)
+    -addGreenSpace(greenSpace)
+    -validateGreenSpace(greenSpace)
 }
 
 class GreenSpace {
