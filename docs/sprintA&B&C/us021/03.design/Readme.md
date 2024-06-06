@@ -53,7 +53,7 @@ The following diagram shows the same sequence of interactions between the classe
 
 It uses Interaction Occurrence (a.k.a. Interaction Use).
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+![Sequence Diagram - split](svg/us021-sequence-diagram-split.svg)
 
 **Get Task Category List Partial SD**
 

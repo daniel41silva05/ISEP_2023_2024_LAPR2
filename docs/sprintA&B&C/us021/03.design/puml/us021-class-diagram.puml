@@ -21,7 +21,8 @@ class AddTaskToDoListController {
 }
 
 class ToDoList {
-    +getTaskByIndex(index)
+    +addTaskToDoList(title, description, emergencyDegree, expectedDuration, taskType, greenSpace, gsmFromSession)
+    +addTask(gsmFromSession, task)
 }
 
 class GreenSpace {
