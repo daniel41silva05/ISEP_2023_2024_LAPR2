@@ -1,6 +1,7 @@
 package pprog.domain;
 
 import org.junit.jupiter.api.Test;
+import pprog.controller.ConsultTasksController;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -180,6 +181,7 @@ class AgendaTest {
         assertEquals(1, tasks.size());
         assertEquals(entry, tasks.get(0));
     }
+
 
     @Test
     void verifyCollaborator() {

@@ -1,67 +1,87 @@
-    # US028 - US028 - Consulte the Task Between Two Dates
+# US028  - Consulte the Task Between Two Dates
 
 ## 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Verify that it's possible to consult the tasks assigned to a collaborator between two dates.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
-	}
-	
+	@Test
+    public void getTasksForCollaboratorBetweenDates() {
+    Date startDate = new Date(); 
+    Date endDate = new Date(System.currentTimeMillis() + 86400000); // End date (24 hours after start date)
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+    List<Entry> tasks = consultTasksController.getTasksForCollaboratorBetweenDates(startDate, endDate);
+    
+    assertFalse(tasks.isEmpty());
+    
+    for (Entry task : tasks) {
+        assertTrue(task.getStartingDate().after(startDate) || task.getStartingDate().equals(startDate));
+        assertTrue(task.getStartingDate().before(endDate) || task.getStartingDate().equals(endDate));
+    }
+}
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+**Test 2:** Verify if the collaborator name is valid. 
 
-_It is also recommended to organize this content by subsections._ 
+    @Test
+    void verifyCollaborator_InvalidCollaborator() {
+    Agenda agenda = new Agenda();
+    GreenSpacesManager gsm = new GreenSpacesManager("gsm@example.com");
+    String[] address = {"123 Green St", "City", "Country"};
+    GreenSpace greenSpace = new GreenSpace("Central Park", address, 1, 500.0, gsm);
+    Task task = new Task("Title", "Description", 1, 60, 1, greenSpace);
+    Entry entry = new Entry(new Date(), task);
+    String[] collabAddress = {"456 Blue St", "City", "Country"};
+    Collaborator collaborator = new Collaborator("Collaborator Name", new Date(), new Date(), collabAddress, 123456789, "collaborator@example.com", 1, 12345, new Job("Emprego", "descricao"));
+    List<Collaborator> collaborators = new ArrayList<>();
+    collaborators.add(collaborator);
+    Team team = new Team(collaborators);
+    entry.assignTeam(team);
+
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+        agenda.verifyCollaborator(entry, "different@example.com");
+    });
+    assertEquals("You don't have permission to complete an entry.", exception.getMessage());
+    }
+
 
 
 ## 5. Construction (Implementation)
 
-### Class CreateTaskController 
+### Class ConsultTasksController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription, String technicalDescription,
-                       Integer duration, Double cost, String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, duration,
-                                      cost,taskCategory, employee);
-    
-	return newTask;
+    public ConsultTasksController(Agenda agenda, AuthenticationRepository authenticationRepository) {
+    this.agenda = agenda;
+    this.authenticationRepository = authenticationRepository;
 }
+
 ```
 
-### Class Organization
+### Class Agenda
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                 String technicalDescription, Integer duration, Double cost, TaskCategory taskCategory,
-                                 Employee employee) {
-    
-    Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                         taskCategory, employee);
+    public List<Entry> getTasksForCollaboratorBetweenDates(String collaboratorEmail, Date startDate, Date endDate) {
+    List<Entry> tasks = new ArrayList<>();
 
-    addTask(task);
-        
-    return task;
+    for (Entry entry : entriesList) {
+        if (entry.getStartingDate().after(startDate) && entry.getStartingDate().before(endDate)) {
+            if (entry.getTeamAssign() != null) {
+                for (Collaborator c : entry.getTeamAssign().getTeam()) {
+                    if (c.getEmail().equalsIgnoreCase(collaboratorEmail)){
+                        tasks.add(entry);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return tasks;
 }
+
 ```
 
 
 ## 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
 
 * For demo purposes some tasks are bootstrapped while system starts.
 
