@@ -1,4 +1,4 @@
-# US028 - Consulte the Task Between Two Dates
+# US028 - Consult the Task Between Two Dates
 
 ## 3. Design - User Story Realization 
 

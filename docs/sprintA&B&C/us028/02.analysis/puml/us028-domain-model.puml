@@ -27,13 +27,17 @@ class Collaborator {
 }
 
 class Task {
-    name
-    date
-    status
+    title
+    description
+    expectedDuration
+}
+
+class Entry {
+    startingDate
 }
 
 
-
-Collaborator "1" - "*" Task : consult >
+Collaborator "1" - "*" Entry : consult >
+Task "1" -- "1" Entry : assigned to >
 
 @enduml
