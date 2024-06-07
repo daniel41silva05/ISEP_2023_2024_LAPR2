@@ -13,7 +13,7 @@ _**Note that SSD - Alternative One is adopted.**_
 | 			  		        | ... knowing the user using the system?        | AuthenticationRepository  | IE: cf. A&A component documentation.                                                                          |
 | 			  		        | 							                                       | GreenSpaceManager         | IE: knows its own data (e.g. email)                                                                           |
 | Step 2  		     | 	...knowing the green list to show?           | GreenSpaceRepository      | Information Expert: owns all green spaces.                                                                    |
-| Step 3  		     | 	...saving the selected green space?          | Task                      | IE: Object created has a green space                                                                          |
+| Step 3  		     | 	...saving the selected green space?          | Task                      | IE: Object created has a green space.                                                                         |
 | Step 4  		     | 	... saving the inputted data?                | Task                      | IE: Object created has its own data.                                                                          |           
 | Step 7  		     | 	... validating all data (local validation)?  | Task                      | IE: owns its data.                                                                                            | 
 | 			  		        | 	... validating all data (global validation)? | ToDoList                  | IE: knows all tasks.                                                                                          | 

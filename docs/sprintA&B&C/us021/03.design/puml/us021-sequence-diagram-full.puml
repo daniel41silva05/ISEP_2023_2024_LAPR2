@@ -14,7 +14,7 @@ participant "repositories\n:Repositories" as REPS
 participant "greenSpaceRepository:\nGreenSpaceRepository" as greenSpaceREP
 participant ":GreenSpaceMapper" as greenSpaceMAPPER
 participant "GreenSpaceDto\n:GreenSpaceDto" as greenSpaceDTO
-participant "GreenSpacesListDto\n:List<TaskDto>" as greenSpacesListDTO
+participant "GreenSpacesListDto\n:List<greenSpaceDto>" as greenSpacesListDTO
 participant "authenticationRepository:\nAuthenticationRepository" as authentication
 participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
@@ -84,7 +84,7 @@ activate GSM
     GSM -> UI : selects a green space
     activate UI
 
-    UI --> GSM : requests data (Requests data (title, descritpion, degreeOfUrgency, expectedDurationTime, taskType, greenSpace))
+    UI --> GSM : requests data (title, descritpion, degreeOfUrgency, expectedDurationTime, taskType, greenSpace)
     deactivate UI
 
     GSM -> UI : types requested data
@@ -179,7 +179,7 @@ activate GSM
                 toDoList -> toDoList: addTask (email, task)
                 activate toDoList
 
-                toDoList -> toDoList: validateEntry (task)
+                toDoList -> toDoList: validateTask (task)
                 activate toDoList
 
                 toDoList --> toDoList

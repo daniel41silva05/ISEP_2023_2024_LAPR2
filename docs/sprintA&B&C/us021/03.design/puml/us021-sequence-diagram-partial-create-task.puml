@@ -14,7 +14,7 @@ participant "task\n:Task" as TASK
 
 autonumber 20
 
- -> toDoList : getGreenSpaceByName(name)
+ -> toDoList : create(title, description, degreeOfUrgency, expectedDurationTime, taskType, greenSpace)
 autonumber 20.1
 activate toDoList
     group Create Task
