@@ -49,7 +49,7 @@ As a GSM, I need to list all green spaces managed by me.
 
 **_Other alternatives might exist._**
 
-![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us027-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 
