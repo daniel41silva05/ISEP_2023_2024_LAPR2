@@ -36,7 +36,7 @@ activate GSM
     GSM -> UI : confirms data
     activate UI
 
-        UI -> CTRL: +registerGreenSpace(name, address, type, area)
+        UI -> CTRL: registerGreenSpace(name, address, type, area)
         activate CTRL
 
             CTRL -> CTRL: getGSMFromSession()
@@ -87,10 +87,10 @@ activate GSM
             REPS --> CTRL: greenSpaceRepository
             deactivate REPS
 
-            CTRL -> greenSpaceRepository: +registerGreenSpace(name ,address, type, area, greenSpacesManager)
+            CTRL -> greenSpaceRepository: registerGreenSpace(name ,address, type, area, greenSpacesManager)
             activate greenSpaceRepository
 
-                greenSpaceRepository -> GREENSPACE** : +register(name ,address, type, area, greenSpacesManager)
+                greenSpaceRepository -> GREENSPACE** : register(name ,address, type, area, greenSpacesManager)
 
                 greenSpaceRepository -> greenSpaceRepository: addGreenSpace (greenSpace)
                 activate greenSpaceRepository

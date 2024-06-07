@@ -13,8 +13,7 @@ class ListGreenSpacesByGSMUI {
 class ListGreenSpacesByGSMController {
     +ListGreenSpacesByGSMController(authenticationRepository, greenSpaceRepository)
     -getGSMFromSession()
-    +sortListByAlgorithm()
-    +getSortListDTO()
+    +sortListDTOByAlgorithm()
 }
 
 class GreenSpaceRepository {

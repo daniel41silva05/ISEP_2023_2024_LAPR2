@@ -186,6 +186,8 @@ public class Agenda implements Serializable {
     }
 
 
+
+
     /**
      * Retrieves the list of entries in the agenda.
      *
