@@ -24,13 +24,15 @@ _**Note that SSD - Alternative One is adopted.**_
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* Organization
+* ToDoList
 * Task
+* GreenSpaceRepository
+* GreenSpace
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
-* CreateTaskUI  
-* CreateTaskController
+* AddEntryToDoListUI  
+* AddEntryToDoListController
 
 
 ## 3.2. Sequence Diagram (SD)
