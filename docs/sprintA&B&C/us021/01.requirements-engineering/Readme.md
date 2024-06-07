@@ -50,6 +50,7 @@ As a Green Space Manager (GSM), I want to add a new entry to the To-Do List
     * Task description
     * Degree of urgency
     * Estimated duration
+    * Task Type
 
 	
 * Selected data:
