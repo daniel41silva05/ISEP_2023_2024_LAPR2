@@ -584,9 +584,6 @@ Optimization of resources and reduction of operational costs.
 ### Q9: How do I postpone a task?
 **A9:** Enable the GSM role, navigate to the Postpone Entries section, select the task, enter the new start date, and confirm.
 
-### Q10: Who do I contact for technical support?
-**A10:** You can contact our technical support team at [Your Contact Information] for assistance.
-
 ---
 
 
