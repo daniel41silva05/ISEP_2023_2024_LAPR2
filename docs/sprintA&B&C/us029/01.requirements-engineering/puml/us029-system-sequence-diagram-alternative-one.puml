@@ -7,33 +7,27 @@ title System Sequence Diagram (SSD) - Alternative One
 
 autonumber
 
-actor "Organization\nEmployee" as Employee
+actor "Collaborator" as COLLABORATOR
 participant ":System" as System
 
-activate Employee
+activate COLLABORATOR
 
-    Employee -> System : asks to create a new task
+    COLLABORATOR -> System : Asks to complete a entry in the Agenda
     activate System
 
-        System --> Employee : requests data (i.e. reference, designation, informal\ndescription, technical description, duration, cost)
+        System --> COLLABORATOR : Shows list of existing entries in the Agenda
     deactivate System
 
-    Employee -> System : types requested data
+    COLLABORATOR -> System : Selects a entry
     activate System
 
-        System --> Employee : shows task category list and asks to select one
+        System --> COLLABORATOR : Shows all data and requests confirmation
     deactivate System
 
-    Employee -> System : selects a task category
+    COLLABORATOR -> System : Confirms data
     activate System
 
-        System --> Employee : shows all data and requests confirmation
-    deactivate System
-
-    Employee -> System : confirms data
-    activate System
-
-        System --> Employee : displays operation success
+        System --> COLLABORATOR : Displays operation success
     deactivate System
 
 @enduml

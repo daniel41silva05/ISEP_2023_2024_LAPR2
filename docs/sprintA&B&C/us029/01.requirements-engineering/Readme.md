@@ -11,59 +11,37 @@
 
 **From the specifications document:**
 
->	...
-
->	... 
+> A task can only be recorded as "Done" if it is "Planned".
 
 **From the client clarifications:**
 
 > **Question:** Can a collaborator mark a task as "done" only if it is in the "planned" status?
 >
-> **Answer:** It depends in the status set your team decide to have/use. But if you consider only status refered in the text and in the forum my answer would be, yes, just the "Planned" status can be changed to "Done".
+> **Answer:** Yes, just the "Planned" status can be changed to "Done".
 
-> **Question:**
-"As a Collaborator, I want to record the completion of a task."
-This "record" refers to the act of only changing the status of the task, or do we want to save a list of the completed tasks within each Collaborator?
+> **Question:** The collaborator should be able to change the status of any task or only tasks assigned to him?
 >
-> **Answer:** It means to record that a task was completed (changing the status) with the finish time.
-
-> **Question:** The collaborator can see what type of entry's? Like what status can he filter ? Can he see canceled Entry's?
->
-> **Answer:** The ones assigned to him. He can filter by the different values the status of the status, like planned, executed, canceled ...
-
-> **Question:** Can an employee record more than one completed task at a time?
->
-> **Answer:** It's a matter of UX/UI, each dev team can decide about it.
+> **Answer:** Only the tasks assigned to him.
 
 ### 1.3. Acceptance Criteria
-
-* **AC1:** ...
-* **AC2:** ...
-* **AC3:** ...
+* **AC1:** Only "Planned" tasks can be changed to "Done".
+* **AC2:** A collaborator can only change the status of a task to "Done" if it is assigned to him.
 
 ### 1.4. Found out Dependencies
 
-* ...
+* There is a dependency on "US022 - Add a new entry in the Agenda".
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
-* Typed data:
-    * ...
-    * ...
-    * ...
-    * ...
-    * ...
-    * ...
-	
 * Selected data:
-    * ... 
+    * an existing entry
 
 **Output Data:**
 
-* List of existing task categories 
-* (In)Success of the operation
+* list of existing entries in the system. 
+* new Agenda status
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -72,10 +50,6 @@ This "record" refers to the act of only changing the status of the task, or do w
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us029-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us029-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
