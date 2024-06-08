@@ -112,6 +112,9 @@ public class Agenda implements Serializable {
      * @param entry  The entry to be completed.
      */
     public void completeEntry(Entry entry, String collaboratorFromSession) {
+        if (!entriesList.contains(entry)) {
+            throw new IllegalArgumentException("Entry does not exist in the Agenda.");
+        }
         if (verifyCollaborator(entry, collaboratorFromSession)) {
             entry.changeStatus(AgendaStatus.DONE);
             List<Vehicle> vehicles = entry.getVehiclesAssign();

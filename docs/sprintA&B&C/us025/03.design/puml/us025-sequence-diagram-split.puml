@@ -12,15 +12,6 @@ participant ":CancelEntryAgendaController" as CTRL
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "agenda:\nAgenda" as AGENDA
-participant ":EntryMapper" as entryMAPPER
-participant "entryDto\n:EntryDto" as entryDTO
-participant "entryListDto\n:List<entryDto>" as entryListDTO
-participant "authenticationRepository:\nAuthenticationRepository" as authentication
-participant "authenticationFacade:\nAuthFacade" as authFacade
-participant "user:\nUserSession" as user
-participant "entryList:\nEntryList" as entryList
-participant "entry:\nEntry" as ENTRY
-participant "greenSpacesManager:\nGreen Spaces Manager" as USER
 
 activate GSM
 
