@@ -3,37 +3,39 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "GSM\nGreen Spaces Manager" as GSM
+actor "GSM" as ADM
 participant ":System" as System
 
-activate GSM
+activate ADM
 
-    GSM -> System : asks to postpone an entry
+    ADM -> System : asks to postpone an entry
     activate System
 
-        System --> GSM : shows the entry list and asks to select one
+        System --> ADM : shows the entry list and asks to select one
     deactivate System
 
-    GSM -> System : selects an entry
+    ADM -> System : selects an entry
     activate System
 
-        System --> GSM : requests data(i.e. new date)
+        System --> ADM : requests data (i.e. new date)
     deactivate System
 
-    GSM -> System : types requested data
+    ADM -> System : types requested data
     activate System
 
-        System --> GSM : shows all data and requests confirmation
+        System --> ADM : shows all data and requests confirmation
     deactivate System
 
-    GSM -> System : confirms data
+    ADM -> System : confirms data
     activate System
 
-        System --> GSM : displays operation success
+        System --> ADM : displays operation success
     deactivate System
+
+deactivate ADM
 
 @enduml
