@@ -151,12 +151,51 @@ activate GSM
 
             CTRL --> CTRL: email
             deactivate CTRL
+CTRL -> REP: getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS: getAgenda()
+            activate REPS
+
+            REPS --> CTRL: agenda
+            deactivate REPS
 
             CTRL -> AGENDA: postponeEntry(i.e., new date)
             activate AGENDA
 
-                AGENDA -> ENTRY : setStartingDate(newStartingDate)
+
+
+                AGENDA -> ENTRY** : postponeEntry(i.e., new date)
                 AGENDA -> ENTRY : changeStatus(POSTPONED)
+                AGENDA -> AGENDA: validateEntry(entry)
+                                            activate AGENDA
+
+                                            AGENDA --> AGENDA
+                                            deactivate AGENDA
+
+                                            AGENDA -> AGENDA: validateUser(email, entry)
+                                            activate AGENDA
+
+                                                AGENDA -> ENTRY: getGreenSpacesManager()
+                                                activate ENTRY
+
+                                                ENTRY --> AGENDA: greenSpacesManager
+                                                deactivate ENTRY
+
+                                                AGENDA -> USER: getEmail()
+                                                activate USER
+
+                                                USER --> AGENDA: email
+                                                deactivate USER
+
+                                            AGENDA --> AGENDA
+                                            deactivate AGENDA
+
+                                            AGENDA --> CTRL: entry
+                                            deactivate CTRL
             deactivate AGENDA
 
         CTRL --> UI: entry
