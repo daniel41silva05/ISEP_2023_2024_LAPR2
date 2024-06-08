@@ -16,7 +16,7 @@
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="VEHICLE AND EQUIPMENT FLEET MENU" wrapText="true" alignment="CENTER">
+                <Label text="VEHICLE AND EQUIPMENT FLEET MANAGER MENU" wrapText="true" alignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font>

@@ -65,7 +65,7 @@ public class ConsultAssignedTaskGUI implements Initializable {
      */
     @FXML
     private StringBuilder loadEntries(List<Entry> entries) {
-        StringBuilder sb = new StringBuilder("Entries list:\n\n");
+        StringBuilder sb = new StringBuilder("Tasks list:\n\n");
         int counter = 1;
         for (Entry entry : entries) {
             sb.append(counter).append(":\n").append(entry.getTask().getTitle()).append(" - ").append(entry.getStartingDate()).append("\n\n");

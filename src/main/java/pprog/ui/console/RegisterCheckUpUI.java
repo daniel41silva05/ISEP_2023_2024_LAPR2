@@ -107,7 +107,7 @@ public class RegisterCheckUpUI implements Runnable {
      */
     private Date requestDate() {
         Scanner input = new Scanner(System.in);
-        System.out.print("New Start Date (format: dd/MM/yyyy): ");
+        System.out.print("Date (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);

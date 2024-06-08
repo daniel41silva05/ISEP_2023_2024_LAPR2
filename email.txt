@@ -1,0 +1,40 @@
+Email Service: Dei Service
+From: gsm1@this.app
+To: daniel@this.app
+Subject: Assignment to a task
+Hello Daniel.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Fri Apr 26 00:00:00 WEST 2024
+Title: Clean
+Description: Clean the park
+Degree of Urgency: High
+Expected Duration: 5
+Type: Regular
+Green Space: Parque da cidade
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: Daniel, Email: daniel@this.app
+Name: Diana, Email: diana@this.app
+
+
+Email Service: Dei Service
+From: gsm1@this.app
+To: diana@this.app
+Subject: Assignment to a task
+Hello Diana.
+You have been assigned a task that is in the Agenda, so you have become responsible for carrying it out.
+Below is the task information:
+Starting Date: Fri Apr 26 00:00:00 WEST 2024
+Title: Clean
+Description: Clean the park
+Degree of Urgency: High
+Expected Duration: 5
+Type: Regular
+Green Space: Parque da cidade
+Managed by: gsm1@this.app
+Status: Planned
+Team Assigned: Name: Daniel, Email: daniel@this.app
+Name: Diana, Email: diana@this.app
+
+

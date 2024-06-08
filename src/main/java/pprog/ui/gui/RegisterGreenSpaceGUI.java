@@ -126,7 +126,7 @@ public class RegisterGreenSpaceGUI implements Initializable {
      * @return True if the street is valid, false otherwise.
      */
     private boolean isValidStreet(String street) {
-        if (!street.matches("[a-zA-Z0-9\\s]+")) {
+        if (!street.matches("[a-zA-Z0-9\\sà-ÿÀ-Ÿ]+")) {
             showAlert("Invalid street. Please enter a valid street.");
             return false;
         }

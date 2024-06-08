@@ -167,7 +167,7 @@ public class RegisterCollaboratorUI implements Runnable {
      */
     private Date requestAdmissionDate() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Birthday (format: dd/MM/yyyy): ");
+        System.out.print("Admission Date (format: dd/MM/yyyy): ");
         String dateStr = input.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
@@ -194,7 +194,7 @@ public class RegisterCollaboratorUI implements Runnable {
             try {
                 System.out.println("Street: ");
                 String street = input.nextLine().trim();
-                if (street.matches("[a-zA-Z0-9\\s]+")) {
+                if (street.matches("[a-zA-Z0-9\\sà-ÿÀ-Ÿ]+")) {
                     address[0] = street;
                     break;
                 } else {
