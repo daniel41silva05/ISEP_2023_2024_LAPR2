@@ -1,90 +1,36 @@
-@startuml
-skinparam monochrome true
-skinparam packageStyle rectangle
-skinparam shadowing false
+    @startuml
+    skinparam monochrome true
+    skinparam packageStyle rectangle
+    skinparam shadowing false
 
-autonumber
+    autonumber
 
-'hide footbox
-actor "Organization Employee" as ADM
-participant ":PostponeEntryAgendaUI" as UI
-participant ":PostponeEntryAgendaController" as CTRL
-participant ":Agenda" as AgendaSingleton
-participant "agenda\n:Agenda" as AGENDA
-participant ":AuthenticationRepository" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "authenticationRepository:\nAuthenticationRepository" as AuthenticationRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "entry\n:Entry" as ENTRADA
+    'hide footbox
+    actor "Organization Employee" as ADM
+    participant ":PostponeEntryAgendaUI" as UI
+    participant ":PostponeEntryAgendaController" as CTRL
+    participant "agenda\n:Agenda" as AGENDA
+    participant ":AuthenticationRepository" as RepositorySingleton
+    participant "repositories\n:Repositories" as PLAT
+    participant "authenticationRepository:\nAuthenticationRepository" as AuthenticationRepository
+    participant "appSession\n:ApplicationSession" as APP
+    participant "currentSession\n:UserSession" as SESSAO
+    participant "entry\n:Entry" as ENTRADA
 
-activate ADM
+    activate ADM
 
-    ADM -> UI : asks to postpone an entry
+        ADM -> UI : asks to postpone an entry
 
-    activate UI
+        activate UI
 
-        UI -> CTRL** : create
-        activate CTRL
-
-            CTRL -> AGENDA : getAgenda()
-            activate AGENDA
-
-                AGENDA --> CTRL: agenda
-            deactivate AGENDA
-
-            CTRL -> RepositorySingleton : getInstance()
-            activate RepositorySingleton
-
-                RepositorySingleton --> CTRL: repositories
-            deactivate RepositorySingleton
-
-            CTRL -> PLAT : getAuthenticationRepository()
-            activate PLAT
-
-                PLAT --> CTRL: authenticationRepository
-            deactivate PLAT
-
-            CTRL -> AuthenticationRepository : getCurrentUserSession()
-            activate AuthenticationRepository
-
-                AuthenticationRepository --> CTRL: currentSession
-            deactivate AuthenticationRepository
-
-            CTRL --> UI : entriesList
-        deactivate CTRL
-
-        UI --> ADM : displays list of entries
-
-    deactivate UI
-
-    ADM -> UI : selects an entry to postpone
-    activate UI
-
-        UI --> ADM : requests data
-    deactivate UI
-
-    ADM -> UI : types requested data (entry index, new starting date)
-    activate UI
-
-        UI -> CTRL : postponeEntry(index, newStartingDate)
-        activate CTRL
-
-            CTRL -> CTRL : getEntryByIndex(index)
+            UI -> CTRL** : create
             activate CTRL
 
-                CTRL -> AGENDA : getEntryByIndex(index)
+                CTRL -> AGENDA : getAgenda()
                 activate AGENDA
 
-                    AGENDA --> CTRL: entry
+                    AGENDA --> CTRL: agenda
                 deactivate AGENDA
-
-                CTRL --> CTRL : entry
-            deactivate CTRL
-
-            CTRL -> CTRL : getGSMFromSession()
-            activate CTRL
 
                 CTRL -> RepositorySingleton : getInstance()
                 activate RepositorySingleton
@@ -104,24 +50,76 @@ activate ADM
                     AuthenticationRepository --> CTRL: currentSession
                 deactivate AuthenticationRepository
 
-                CTRL --> CTRL : email
+                CTRL --> UI : entriesList
             deactivate CTRL
 
-            CTRL -> AGENDA : postponeEntry(entry, newStartingDate, gsmFromSession)
-            activate AGENDA
+            UI --> ADM : displays list of entries
 
-                AGENDA -> ENTRADA : setStartingDate(newStartingDate)
-                AGENDA -> ENTRADA : changeStatus(POSTPONED)
-            deactivate AGENDA
+        deactivate UI
 
-        deactivate CTRL
+        ADM -> UI : selects an entry to postpone
+        activate UI
 
-        CTRL --> UI : null or error message
-        deactivate CTRL
+            UI --> ADM : requests data
+        deactivate UI
 
-        UI --> ADM : displays operation success or failure
-    deactivate UI
+        ADM -> UI : types requested data (entry index, new starting date)
+        activate UI
 
-deactivate ADM
+            UI -> CTRL : postponeEntry(index, newStartingDate)
+            activate CTRL
 
-@enduml
+                CTRL -> CTRL : getEntryByIndex(index)
+                activate CTRL
+
+                    CTRL -> AGENDA : getEntryByIndex(index)
+                    activate AGENDA
+
+                        AGENDA --> CTRL: entry
+                    deactivate AGENDA
+
+                    CTRL --> CTRL : entry
+                deactivate CTRL
+
+                CTRL -> CTRL : getGSMFromSession()
+                activate CTRL
+
+                    CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getAuthenticationRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL: authenticationRepository
+                    deactivate PLAT
+
+                    CTRL -> AuthenticationRepository : getCurrentUserSession()
+                    activate AuthenticationRepository
+
+                        AuthenticationRepository --> CTRL: currentSession
+                    deactivate AuthenticationRepository
+
+                    CTRL --> CTRL : email
+                deactivate CTRL
+
+                CTRL -> AGENDA : postponeEntry(entry, newStartingDate, gsmFromSession)
+                activate AGENDA
+
+                    AGENDA -> ENTRADA : setStartingDate(newStartingDate)
+                    AGENDA -> ENTRADA : changeStatus(POSTPONED)
+                deactivate AGENDA
+
+            deactivate CTRL
+
+            CTRL --> UI : null or error message
+            deactivate CTRL
+
+            UI --> ADM : displays operation success or failure
+        deactivate UI
+
+    deactivate ADM
+
+    @enduml
