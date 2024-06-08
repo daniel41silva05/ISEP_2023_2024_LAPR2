@@ -152,7 +152,7 @@ activate GSM
             CTRL --> CTRL: email
             deactivate CTRL
 
-            CTRL -> AGENDA: postponeEntry(entry, newStartingDate, email)
+            CTRL -> AGENDA: postponeEntry(i.e., new date)
             activate AGENDA
 
                 AGENDA -> ENTRY : setStartingDate(newStartingDate)
