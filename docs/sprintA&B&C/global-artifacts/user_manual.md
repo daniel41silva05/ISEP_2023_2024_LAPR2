@@ -1,6 +1,50 @@
-# User Manual 
+# EcoData - Green Space Management Application 
+## User Manual
 
-# Glossary
+* Version: 1.0
+* Release Date: June 2024
+* Developed by: Daniel Silva, Igor Coutinho, Rafael Barbosa e Samara Miranda
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [System Overview](#system-overview)
+    - [Product Description](#product-description)
+    - [Main Features](#main-features)
+        - [Main Functionalities](#main-functionalities)
+        - [Benefits](#benefits)
+3. [Features](#features)
+    - [Register Skills of a Collaborator](#1-register-skills-of-a-collaborator--human-resources-manager)
+    - [Register a Job](#2-register-a-job--human-resources-manager)
+    - [Register collaborator with job and fundamental characteristics](#3-register-collaborator-with-job-and-fundamental-characteristics--human-resources-manager)
+    - [Assign Skills](#4-assign-skills--human-resources-manager)
+    - [Generate a team proposal automatically](#5-generate-a-team-proposal-automatically--human-resources-manager)
+    - [Register a vehicle](#6-register-a-vehicle--vehicle-and-equipment-fleet-manager)
+    - [Register Vehicle's Check-up](#7-register-vehicles-check-up--vehicle-and-equipment-fleet-manager)
+    - [List the vehicles needing the check-up](#8-list-the-vehicles-needing-the-check-up--vehicle-and-equipment-fleet-manager)
+    - [Know the exact costs referring to water consumption](#9-know-the-exact-costs-referring-to-water-consumption--green-spaces-manager)
+    - [Know in a pie chart which pieces of equipment are used in each day](#10-know-in-a-pie-chart-which-pieces-of-equipment-are-used-in-each-day--green-spaces-manager)
+    - [Collect data from the user portal](#11-collect-data-from-the-user-portal--green-spaces-manager)
+    - [Import a .csv file containing routes for pipe installation](#12-import-a-csv-file-containing-routes-for-pipe-installation--green-spaces-manager)
+    - [Know the routes to be opened, with minimum cost](#13-know-the-routes-to-be-opened-with-minimum-cost--green-spaces-manager)
+    - [Tests to observe asymptotic runtime behavior](#14-tests-to-observe-asymptotic-runtime-behavior--software-quality-assessment-team-manager)
+    - [Forecast of water consumption costs in the park](#15-forecast-of-water-consumption-costs-in-the-park--green-spaces-manager)
+    - [The best line that fits the data](#16-the-best-line-that-fits-the-data--green-spaces-manager)
+    - [Faster routes from the signage to the Assembly Point](#17-faster-routes-from-the-signage-to-the-assembly-point--green-spaces-manager)
+    - [Fastest routes from signage to one of the Assembly Points](#18-fastest-routes-from-signage-to-one-of-the-assembly-points--green-spaces-manager)
+    - [Register a Green Space](#20-register-a-green-space--green-spaces-manager)
+    - [Add a new entry to the To-Do List](#21-add-a-new-entry-to-the-to-do-list--green-spaces-manager)
+    - [Add a entry in the Agenda](#22-add-a-entry-in-the-agenda--green-spaces-manager)
+    - [Assign a Team to an entry in the Agenda](#23-assign-a-team-to-an-entry-in-the-agenda--green-spaces-manager)
+    - [Postpone an entry in the Agenda](#24-postpone-an-entry-in-the-agenda--green-spaces-manager)
+    - [Cancel an entry in the Agenda](#25-cancel-an-entry-in-the-agenda--green-spaces-manager)
+    - [Assign Vehicles to an entry in the Agenda](#26-assign-vehicles-to-an-entry-in-the-agenda--green-spaces-manager)
+    - [List of green spaces managed by me](#27-list-of-green-spaces-managed-by-me--green-spaces-manager)
+    - [Consult the Task Between Two Dates](#28-consult-the-task-between-two-dates--collaborator)
+    - [Record the completion of a task](#29-record-the-completion-of-a-task--collaborator)
+4. [Troubleshooting](#troubleshooting)
+5. [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
+
+### Glossary
 
 **Terms, Expressions and Acronyms (TEA) must be organized alphabetically.**
 
@@ -458,6 +502,90 @@ Optimization of resources and reduction of operational costs.
 > - Select the Agenda entry.
 > - Check the selected entry.
 > - After confirmation, the system provides a success message.
+
+## Troubleshooting
+
+### Problem: Application Not Starting
+**Possible Causes:**
+- Missing dependencies
+- Incorrect installation
+
+**Solution:**
+- Verify that all required dependencies are installed.
+- Check the installation guide to ensure all steps were followed correctly.
+- Restart your computer and try to launch the application again.
+
+### Problem: Unable to Register a Collaborator
+**Possible Causes:**
+- Insufficient permissions
+- Missing required fields
+
+**Solution:**
+- Ensure you are logged in with the HRM role.
+- Verify that all required fields are filled out.
+- Check your internet connection if you are working on a networked environment.
+
+### Problem: Data Not Displaying in Graphs
+**Possible Causes:**
+- Incorrect file format
+- Data file not uploaded properly
+
+**Solution:**
+- Verify the file format is correct (.csv).
+- Ensure the data is structured as required.
+- Re-upload the data file and try again.
+
+### Problem: Vehicle Maintenance Data Not Saving
+**Possible Causes:**
+- Database connection issues
+- Incorrect input data
+
+**Solution:**
+- Check the database connection and ensure it is active.
+- Verify that all input data is correct and try saving again.
+
+### Problem: Inaccurate Statistical Analysis
+**Possible Causes:**
+- Outdated data
+- Incorrect parameters set
+
+**Solution:**
+- Update the data to the latest available.
+- Review the parameters set for the analysis and correct them as needed.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+### Q1: How do I reset my password?
+**A1:** Go to the login page, click on "Forgot Password," and follow the instructions to reset your password.
+
+### Q2: How can I add a new green space?
+**A2:** Ensure you have the GSM role enabled, then navigate to the "Register Green Spaces" section, fill in the necessary details, and confirm the registration.
+
+### Q3: Can I assign multiple tasks to a single collaborator?
+**A3:** Yes, you can assign multiple tasks to a collaborator through the task management section.
+
+### Q4: How do I generate a team proposal automatically?
+**A4:** Enable the HRM role, access the Team Proposal Generator tool, define the criteria, and click the button to generate a proposal.
+
+### Q5: What should I do if the system crashes?
+**A5:** Restart the application and check for any updates. If the problem persists, contact technical support.
+
+### Q6: How can I view the vehicles that need maintenance?
+**A6:** Enable the VFM role and navigate to the Check-Up Status page to view the list of vehicles requiring maintenance.
+
+### Q7: How do I collect data from the user portal?
+**A7:** Enable the GSM role, access the user portal page, upload the "Inquiry.csv" file, and view the analysis results.
+
+### Q8: How can I find the most efficient route for pipe installation?
+**A8:** Enable the GSM role, access the pipe installation routes page, upload the .csv file with route data, and let the system calculate the optimal routes.
+
+### Q9: How do I postpone a task?
+**A9:** Enable the GSM role, navigate to the Postpone Entries section, select the task, enter the new start date, and confirm.
+
+### Q10: Who do I contact for technical support?
+**A10:** You can contact our technical support team at [Your Contact Information] for assistance.
 
 ---
 
