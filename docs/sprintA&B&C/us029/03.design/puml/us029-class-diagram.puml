@@ -1,130 +1,83 @@
 @startuml
-'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
-'skinparam linetype orto
+
 
 skinparam classAttributeIconSize 0
 
-'left to right direction
+class CompleteEntryAgendaUI{}
 
-class ApplicationSession
-{
-    + static getInstance()
-    + getCurrentSession()
+class CompleteEntryAgendaController{
+    +CompleteEntryAgendaController(agenda, authenticationRepository)
+    +cancelEntry(entryIndex)
+    +getEntriesListDTO()
+    -getEntryByIndex(index)
+    -getEmailCollaboratorFromSession()
+
 }
 
-class UserSession
-{
-    + getUserEmail()
+class Repositories{
+    -Repositories()
+    +getInstance() : Repositories
+    +getAgenda()
+    +getAuthenticationRepository()
 }
 
-class Employee {
-    - name
-    - email
-    - position
-    - phone
+class AuthenticationRepository {
+    +getCurrentUserSession()
 }
 
-class Task {
-    - String reference
-    - String description
-    - String informalDescription
-    - String technicalDescription
-    - Integer duration
-    - Double cost
-
-    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+class UserSession {
+    +getUserId()
 }
 
-class TaskCategory {
-    - String description
-
-    + TaskCategory(description)
+class EntryMapper {
+    +toDTOList(entriesList)
+    +entryToDTO(entry)
 }
 
-class Organization {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
-
-    - addTask(task)
-    - validateTask(task)
-    + anyEmployeeHasEmail(email)
-    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-    - getEmployeeByEmail(email)
-
-'  +saveTask(task)
+class EntryDTO {
+    -Date startingDate
+    -Task task
+    -AgendaStatus status
+    +EntryDTO(startingDate, task)
 }
 
-class TaskCategoryRepository {
-    + getTaskCategoryByDescription(description)
+class Agenda{
+    -validateEntry(entry)
+    -verifyCollaborator(email, entry)
+    +getEntriesList()
+    +completeEntry(entry, email)
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
+class Entry{
+    -Date startingDate
+    -Task task
+    -AgendaStatus status
+    +changeStatus(status)
+    +Entry(startingDate, task)
 }
 
-class Repositories {
-    - Repositories()
-    + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+enum AgendaStatus {
+    PLANNED
+    POSTPONED
+    CANCELED
+    DONE
 }
 
-class CreateTaskController {
-    + CreateTaskController(organizationRepository, taskCategoryRepository)
-    + getTaskCategories()
-    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-    - getTaskCategoryByDescription(taskCategoryDescription)
-    - getEmployeeFromSession()
-}
+CompleteEntryAgendaUI ..> CompleteEntryAgendaController
+CompleteEntryAgendaController ..> Repositories : repositories
+CompleteEntryAgendaController ..> AuthenticationRepository : authenticationRepository
+CompleteEntryAgendaController ..> Agenda: agenda
+Repositories --> Repositories: instance
+Repositories --> "1" Agenda
+Repositories --> "1" AuthenticationRepository
+AuthenticationRepository ..> UserSession
+CompleteEntryAgendaController ..> EntryMapper
+EntryMapper ..> EntryDTO
+Agenda --> "*" Entry
+Entry --> "1" AgendaStatus
 
-note right of CreateTaskController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
-
-note bottom of TaskCategoryRepository
-    - used for displaying
-    the category list
-end note
-
-class CreateTaskUI {
-}
-
-Repositories -> Repositories : instance
-ApplicationSession -> ApplicationSession : instance
-
-CreateTaskUI .> CreateTaskController
-
-CreateTaskController .> Repositories : repositories
-
-Repositories -> "1" TaskCategoryRepository
-
-CreateTaskController ..> TaskCategory
-CreateTaskController ..> OrganizationRepository : organizationRepository
-CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
-
-Repositories --> "1" OrganizationRepository
-
-OrganizationRepository --> "*" Organization
-ApplicationSession --> "1" UserSession : userSession
-
-CreateTaskController ..> "1" Organization : organization
-CreateTaskController ..> ApplicationSession
-CreateTaskController ..> UserSession
-Task "*" --> "1" TaskCategory : taskCategory
-TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
-Organization "1" --> "*" Task : tasks
-Task --> Employee : createdBy
-
-Organization --> "*" Employee : employs
 
 @enduml

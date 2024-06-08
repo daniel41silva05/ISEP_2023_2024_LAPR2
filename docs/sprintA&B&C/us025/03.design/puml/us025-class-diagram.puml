@@ -49,14 +49,13 @@ class Agenda{
     -validateEntry(entry)
     -validateUser(email, entry)
     +getEntriesList()
-    +cancelEntry(entry)
+    +cancelEntry(entry, email)
 }
 
 class Entry{
     -Date startingDate
     -Task task
     -AgendaStatus status
-    +changeStatus(status)
     +Entry(startingDate, task)
 }
 

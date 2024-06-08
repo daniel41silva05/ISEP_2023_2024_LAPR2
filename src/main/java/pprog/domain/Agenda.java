@@ -173,7 +173,14 @@ public class Agenda implements Serializable {
         return tasks;
     }
 
-
+    /**
+     * Verifies if the collaborator from the session is part of the team assigned to the given entry.
+     *
+     * @param entry The entry which contains the team assignment.
+     * @param collaboratorFromSession The email of the collaborator from the session.
+     * @return true if the collaborator is part of the team assigned to the entry.
+     * @throws IllegalArgumentException if the collaborator is not part of the team assigned to the entry.
+     */
     public boolean verifyCollaborator(Entry entry, String collaboratorFromSession) {
         if (entry.getTeamAssign() != null) {
             for (Collaborator c : entry.getTeamAssign().getTeam()) {
