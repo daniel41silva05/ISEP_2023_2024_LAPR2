@@ -3,113 +3,116 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-actor "Green Spaces\nManager" as GSM
+autonumber
+
+'hide footbox
+actor "Collaborator" as COLLABORATOR
 participant ":ConsultTasksUI" as UI
 participant ":ConsultTasksController" as CTRL
-participant "authenticationRepository:\nAuthenticationRepository" as authentication
-participant "user:\nUserSession" as user
-participant ":Agenda" as agenda
 participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
-participant "toDoList:\nToDoList" as toDoList
-participant ":TaskMapper" as taskMAPPER
-participant "taskDto\n:TaskDto" as taskDTO
-participant "tasksListDto\n:List<TaskDto>" as taskListDTO
-participant "entry\n:Entry" as ENTRY
+participant "agenda:\nAgenda" as AGENDA
+participant ":EntryMapper" as entryMAPPER
+participant "entryDto\n:EntryDto" as entryDTO
+participant "entryListDto\n:List<entryDto>" as entryListDTO
+participant "authenticationRepository:\nAuthenticationRepository" as authentication
+participant "authenticationFacade:\nAuthFacade" as authFacade
+participant "user:\nUserSession" as user
+participant "entryList:\nEntryList" as entryList
+participant "entry:\nEntry" as ENTRY
+participant "Green Spaces\nManager" as GSM
 
-activate GSM
+activate COLLABORATOR
 
-    GSM -> UI : requests to consult tasks
-    activate UI
+COLLABORATOR -> UI : Requests to consult tasks
+activate UI
 
-        UI -> CTRL** : create
+    UI -> CTRL : create
+    activate CTRL
 
-        UI -> CTRL : requestData()
-        activate CTRL
-
-            CTRL -> UI : requestStartDate()
-            deactivate CTRL
-
-            UI -> UI : prompt user for start date
-            activate UI
-
-            UI -> UI : parse startDate
-            deactivate UI
-
-            UI -> UI : prompt user for end date
-            activate UI
-
-            UI -> UI : parse endDate
-            deactivate UI
-
-            CTRL --> UI : startDate, endDate
-            deactivate CTRL
-
-        CTRL -> authentication : getCurrentUserSession()
-        activate authentication
-
-            authentication --> CTRL : authenticationFacade
-            deactivate authentication
-
-            CTRL -> user : getUserId()
-            activate user
-
-                user --> CTRL : email
-                deactivate user
-
-            CTRL --> CTRL : email
-            deactivate CTRL
+    UI -> CTRL : getTasksForCollaboratorBetweenDates(startDate, endDate)
+    activate CTRL
 
         CTRL -> REP : getInstance()
         activate REP
 
-            REP --> CTRL : repositories
-            deactivate REP
+        REP --> CTRL: repositories
+        deactivate REP
 
-            CTRL -> REPS : getAgenda()
-            activate REPS
+        CTRL -> REPS : getAgenda()
+        activate REPS
 
-                REPS --> CTRL : agenda
-                deactivate REPS
+        REPS --> CTRL: agenda
+        deactivate REPS
 
-                CTRL -> agenda : getTasksForCollaboratorBetweenDates(email, startDate, endDate)
-                activate agenda
+        CTRL -> AGENDA : getTasksForCollaboratorBetweenDates(startDate, endDate)
+        activate AGENDA
 
-                    agenda -> ENTRY** : create()
+            AGENDA -> AGENDA : getTasksForCollaboratorBetweenDates(collaboratorEmail, startDate, endDate)
+            activate AGENDA
 
-                    loop For each entry in agenda
+                AGENDA -> ENTRY : getStartingDate()
+                activate ENTRY
 
-                        agenda -> ENTRY: entry
-                        activate ENTRY
+                ENTRY --> AGENDA : startingDate
+                deactivate ENTRY
 
-                        ENTRY --> agenda : entry
-                        deactivate ENTRY
+                AGENDA -> ENTRY : getTeamAssign()
+                activate ENTRY
 
-                        agenda -> taskDTO: entryToDTO(entry)
-                        activate taskDTO
+                ENTRY --> AGENDA : teamAssign
+                deactivate ENTRY
 
-                            taskDTO -> taskMAPPER: entryToDTO(entry)
-                            activate taskMAPPER
+                AGENDA -> USER : getEmail()
+                activate USER
 
-                                taskMAPPER -> taskDTO : create()
+                USER --> AGENDA : collaboratorEmail
+                deactivate USER
 
-                            taskMAPPER --> taskDTO : taskDTO
-                            deactivate taskMAPPER
+                AGENDA -> AGENDA : checkDateWithinRange(startingDate, startDate, endDate)
+                activate AGENDA
 
-                        taskDTO --> agenda : taskDTO
-                        deactivate taskDTO
+                AGENDA --> AGENDA
+                deactivate AGENDA
 
-                    end
+                AGENDA -> ENTRY : getTeamAssign()
+                activate ENTRY
 
-                agenda --> CTRL : entriesList
-                deactivate agenda
+                ENTRY --> AGENDA : teamAssign
+                deactivate ENTRY
 
-            CTRL --> UI : entriesList
-            deactivate CTRL
+                AGENDA -> USER : getEmail()
+                activate USER
 
-    UI --> GSM : displays tasks
+                USER --> AGENDA : collaboratorEmail
+                deactivate USER
+
+                AGENDA -> AGENDA : verifyCollaborator(entry, collaboratorEmail)
+                activate AGENDA
+
+                    AGENDA -> ENTRY : getTeamAssign()
+                    activate ENTRY
+
+                    ENTRY --> AGENDA : teamAssign
+                    deactivate ENTRY
+
+                    AGENDA -> USER : getEmail()
+                    activate USER
+
+                    USER --> AGENDA : collaboratorEmail
+                    deactivate USER
+
+                AGENDA --> AGENDA
+                deactivate AGENDA
+
+            AGENDA --> CTRL : tasks
+            deactivate AGENDA
+
+        CTRL --> UI : tasks
+        deactivate CTRL
+
+    UI --> COLLABORATOR : Shows list of tasks
     deactivate UI
 
-deactivate GSM
-
+deactivate COLLABORATOR
 @enduml
