@@ -36,7 +36,7 @@
 **Input Data:**
 
 * Selected data:
-    * an existing entry
+    * an existing entry 
 
 **Output Data:**
 
