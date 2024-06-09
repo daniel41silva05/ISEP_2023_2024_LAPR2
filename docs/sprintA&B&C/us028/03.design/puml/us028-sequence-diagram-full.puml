@@ -20,18 +20,52 @@ participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
 participant "entryList:\nEntryList" as entryList
 participant "entry:\nEntry" as ENTRY
-participant "Green Spaces\nManager" as GSM
 
 activate COLLABORATOR
 
 COLLABORATOR -> UI : Requests to consult tasks
-activate UI
+    activate UI
 
-    UI -> CTRL : create
-    activate CTRL
+    UI -> CTRL** : create
+        activate CTRL
 
     UI -> CTRL : getTasksForCollaboratorBetweenDates(startDate, endDate)
-    activate CTRL
+
+            CTRL -> CTRL: getEmailCollaboratorFromSession()
+
+            CTRL -> REP: getInstance()
+            activate REP
+
+            REP --> CTRL: repositories
+            deactivate REP
+
+            CTRL -> REPS: getAuthenticationRepository()
+            activate REPS
+
+            REPS --> CTRL: authenticationRepository
+            deactivate REPS
+
+            CTRL -> authentication: getCurrentUserSession()
+            activate authentication
+
+            authentication --> CTRL: authenticationFacade
+            deactivate authentication
+
+            CTRL -> authFacade: getCurrentUserSession()
+            activate authFacade
+
+            authFacade --> CTRL: userSession
+            deactivate authFacade
+
+            CTRL -> user: getUserId()
+            activate user
+
+            user --> CTRL: email
+            deactivate user
+
+            CTRL --> CTRL: email
+
+
 
         CTRL -> REP : getInstance()
         activate REP
@@ -45,29 +79,18 @@ activate UI
         REPS --> CTRL: agenda
         deactivate REPS
 
-        CTRL -> AGENDA : getTasksForCollaboratorBetweenDates(startDate, endDate)
+        CTRL -> AGENDA : getTasksForCollaboratorBetweenDates (collaboratorEmail, startDate, endDate)
         activate AGENDA
 
-            AGENDA -> AGENDA : getTasksForCollaboratorBetweenDates(collaboratorEmail, startDate, endDate)
-            activate AGENDA
+                AGENDA -> "tasksCollaborator\n:List<Entry>"** : create
+
+                loop For each entry in agenda
 
                 AGENDA -> ENTRY : getStartingDate()
                 activate ENTRY
 
                 ENTRY --> AGENDA : startingDate
                 deactivate ENTRY
-
-                AGENDA -> ENTRY : getTeamAssign()
-                activate ENTRY
-
-                ENTRY --> AGENDA : teamAssign
-                deactivate ENTRY
-
-                AGENDA -> user : getEmail()
-                activate user
-
-                user --> AGENDA : collaboratorEmail
-                deactivate user
 
                 AGENDA -> AGENDA : checkDateWithinRange(startingDate, startDate, endDate)
                 activate AGENDA
@@ -81,34 +104,32 @@ activate UI
                 ENTRY --> AGENDA : teamAssign
                 deactivate ENTRY
 
+                loop For each collaborator in teamAssign
+
                 AGENDA -> user : getEmail()
                 activate user
 
-                user --> AGENDA : collaboratorEmail
+                user --> AGENDA : email
                 deactivate user
 
-                AGENDA -> AGENDA : verifyCollaborator(entry, collaboratorEmail)
-                activate AGENDA
+                alt email == collaboratorEmail
 
-                    AGENDA -> ENTRY : getTeamAssign()
-                    activate ENTRY
+                AGENDA -> "tasksCollaborator\n:List<Entry>" : add(entry)
+                activate "tasksCollaborator\n:List<Entry>"
 
-                    ENTRY --> AGENDA : teamAssign
-                    deactivate ENTRY
+                "tasksCollaborator\n:List<Entry>" --> AGENDA
+                deactivate "tasksCollaborator\n:List<Entry>"
 
-                    AGENDA -> user : getEmail()
-                    activate user
+                end
+                end loop
+                end loop
 
-                    user --> AGENDA : collaboratorEmail
-                    deactivate user
 
-                AGENDA --> AGENDA
-                deactivate AGENDA
 
-            AGENDA --> CTRL : tasks
+            AGENDA --> CTRL : tasksCollaborator
             deactivate AGENDA
 
-        CTRL --> UI : tasks
+        CTRL --> UI : tasksCollaborator
         deactivate CTRL
 
     UI --> COLLABORATOR : Shows list of tasks
