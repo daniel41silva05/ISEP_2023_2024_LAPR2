@@ -11,9 +11,9 @@ As a Green Space Manager (GSM), I want to register a green space (garden, medium
 
 **From the specifications document:**
 
->	...
+>	The green space must be registered by the GSM.
 
->	...
+>   The green spaces must have a type and an area, besides the name and the description.
 
 **From the client clarifications:**
 
@@ -44,9 +44,8 @@ In the current version, it is sufficient to define a park using name, size class
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** ...
-* **AC2:** ...
-* **AC3:** ...
+* **AC1:** The green spaces must be a garden, medium-sized park or large-sized park type.
+* **AC2:** There cannot exist two green spaces with the same name.
 
 ### 1.4. Found out Dependencies
 
