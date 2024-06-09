@@ -63,11 +63,11 @@ activate UI
                 ENTRY --> AGENDA : teamAssign
                 deactivate ENTRY
 
-                AGENDA -> USER : getEmail()
-                activate USER
+                AGENDA -> user : getEmail()
+                activate user
 
-                USER --> AGENDA : collaboratorEmail
-                deactivate USER
+                user --> AGENDA : collaboratorEmail
+                deactivate user
 
                 AGENDA -> AGENDA : checkDateWithinRange(startingDate, startDate, endDate)
                 activate AGENDA
@@ -81,11 +81,11 @@ activate UI
                 ENTRY --> AGENDA : teamAssign
                 deactivate ENTRY
 
-                AGENDA -> USER : getEmail()
-                activate USER
+                AGENDA -> user : getEmail()
+                activate user
 
-                USER --> AGENDA : collaboratorEmail
-                deactivate USER
+                user --> AGENDA : collaboratorEmail
+                deactivate user
 
                 AGENDA -> AGENDA : verifyCollaborator(entry, collaboratorEmail)
                 activate AGENDA
@@ -96,11 +96,11 @@ activate UI
                     ENTRY --> AGENDA : teamAssign
                     deactivate ENTRY
 
-                    AGENDA -> USER : getEmail()
-                    activate USER
+                    AGENDA -> user : getEmail()
+                    activate user
 
-                    USER --> AGENDA : collaboratorEmail
-                    deactivate USER
+                    user --> AGENDA : collaboratorEmail
+                    deactivate user
 
                 AGENDA --> AGENDA
                 deactivate AGENDA
