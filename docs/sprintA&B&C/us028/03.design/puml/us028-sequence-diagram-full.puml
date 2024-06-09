@@ -23,7 +23,7 @@ participant "entry:\nEntry" as ENTRY
 
 activate COLLABORATOR
 
-COLLABORATOR -> UI : Requests to consult tasks
+COLLABORATOR -> UI : Requests to consult tasks between a date
     activate UI
 
     UI -> CTRL** : create
@@ -121,7 +121,9 @@ COLLABORATOR -> UI : Requests to consult tasks
                 deactivate "tasksCollaborator\n:List<Entry>"
 
                 end
+
                 end loop
+
                 end loop
 
 
