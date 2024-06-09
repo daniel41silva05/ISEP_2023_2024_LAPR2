@@ -167,35 +167,42 @@ CTRL -> REP: getInstance()
             activate AGENDA
 
 
+                            activate AGENDA
 
-                AGENDA -> ENTRY** : postponeEntry(i.e., new date)
-                AGENDA -> ENTRY : changeStatus(POSTPONED)
-                AGENDA -> AGENDA: validateEntry(entry)
-                                            activate AGENDA
+                                AGENDA -> AGENDA: validateUser(email, entry)
+                                activate AGENDA
 
-                                            AGENDA --> AGENDA
-                                            deactivate AGENDA
+                                AGENDA -> ENTRY: getGreenSpacesManager()
+                                activate ENTRY
 
-                                            AGENDA -> AGENDA: validateUser(email, entry)
-                                            activate AGENDA
+                                ENTRY --> AGENDA: greenSpacesManager
+                                deactivate ENTRY
 
-                                                AGENDA -> ENTRY: getGreenSpacesManager()
-                                                activate ENTRY
+                                AGENDA -> USER: getEmail()
+                                activate USER
 
-                                                ENTRY --> AGENDA: greenSpacesManager
-                                                deactivate ENTRY
+                                USER --> AGENDA: email
+                                deactivate USER
 
-                                                AGENDA -> USER: getEmail()
-                                                activate USER
+                                AGENDA --> AGENDA
+                                deactivate AGENDA
 
-                                                USER --> AGENDA: email
-                                                deactivate USER
+                                AGENDA -> ENTRY : setStartingDate(newStartingDate)
+                                activate ENTRY
 
-                                            AGENDA --> AGENDA
-                                            deactivate AGENDA
+                                ENTRY --> AGENDA
+                                deactivate ENTRY
 
-                                            AGENDA --> CTRL: entry
-                                            deactivate CTRL
+                                AGENDA -> ENTRY : changeStatus(POSTPONED)
+                                activate ENTRY
+
+                                ENTRY --> AGENDA
+                                deactivate ENTRY
+
+
+                                AGENDA --> CTRL: entry
+                                deactivate AGENDA
+
             deactivate AGENDA
 
         CTRL --> UI: entry

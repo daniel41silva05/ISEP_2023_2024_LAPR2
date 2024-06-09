@@ -18,31 +18,32 @@ autonumber 18.1
 activate AGENDA
     group Postpone Entry
 
-            AGENDA -> ENTRY** : postponeEntry(i.e., new date)
+            AGENDA -> AGENDA: validateUser(email, entry)
 
-            AGENDA -> ENTRY : changeStatus(POSTPONED)
+                AGENDA -> ENTRY: getGreenSpacesManager()
+                            activate ENTRY
 
-                            AGENDA -> AGENDA: validateEntry(entry)
-                            activate AGENDA
+                            ENTRY --> AGENDA: greenSpacesManager
+                            deactivate ENTRY
 
-                            AGENDA --> AGENDA
-                            deactivate AGENDA
+                            AGENDA -> USER: getEmail()
+                            activate USER
 
-                            AGENDA -> AGENDA: validateUser(email, entry)
-                            activate AGENDA
+                            USER --> AGENDA: email
+                            deactivate USER
 
-                                AGENDA -> ENTRY: getGreenSpacesManager()
+                                AGENDA --> AGENDA
+
+                                AGENDA -> ENTRY : setStartingDate(newStartingDate)
                                 activate ENTRY
 
-                                ENTRY --> AGENDA: greenSpacesManager
+                                ENTRY --> AGENDA
                                 deactivate ENTRY
 
-                                AGENDA -> USER: getEmail()
-                                activate USER
+                                AGENDA -> ENTRY : changeStatus(POSTPONED)
+                                activate ENTRY
 
-                                USER --> AGENDA: email
-                                deactivate USER
-
+                            deactivate ENTRY
                             AGENDA --> AGENDA
                             deactivate AGENDA
 
