@@ -10,9 +10,7 @@ As a GSM, I need to list all green spaces managed by me.
 
 **From the specifications document:**
 
->	...
-
->	...
+>	There must be two algorithms to sort the list of green spaces
 
 **From the client clarifications:**
 
@@ -30,9 +28,10 @@ As a GSM, I need to list all green spaces managed by me.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** ...
-* **AC2:** ...
-* **AC3:** ...
+* **AC1:** The list of green spaces must be sorted by size in descending
+  order (area in hectares should be used). The sorting algorithm to
+  be used by the application must be defined through a configuration
+  file. At least two sorting algorithms should be available.
 
 ### 1.4. Found out Dependencies
 
