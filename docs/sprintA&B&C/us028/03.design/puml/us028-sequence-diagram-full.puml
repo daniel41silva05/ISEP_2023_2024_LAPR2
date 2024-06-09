@@ -13,12 +13,10 @@ participant ":Repositories" as REP
 participant "repositories\n:Repositories" as REPS
 participant "agenda:\nAgenda" as AGENDA
 participant ":EntryMapper" as entryMAPPER
-participant "entryDto\n:EntryDto" as entryDTO
 participant "entryListDto\n:List<entryDto>" as entryListDTO
 participant "authenticationRepository:\nAuthenticationRepository" as authentication
 participant "authenticationFacade:\nAuthFacade" as authFacade
 participant "user:\nUserSession" as user
-participant "entryList:\nEntryList" as entryList
 participant "entry:\nEntry" as ENTRY
 
 activate COLLABORATOR
@@ -26,10 +24,9 @@ activate COLLABORATOR
 COLLABORATOR -> UI : Requests to consult tasks between a date
     activate UI
 
-    UI -> CTRL** : create
-        activate CTRL
 
     UI -> CTRL : getTasksForCollaboratorBetweenDates(startDate, endDate)
+        activate CTRL
 
             CTRL -> CTRL: getEmailCollaboratorFromSession()
 
@@ -86,23 +83,23 @@ COLLABORATOR -> UI : Requests to consult tasks between a date
 
                 loop For each entry in agenda
 
-                AGENDA -> ENTRY : getStartingDate()
-                activate ENTRY
+                    AGENDA -> ENTRY : getStartingDate()
+                    activate ENTRY
 
-                ENTRY --> AGENDA : startingDate
-                deactivate ENTRY
+                    ENTRY --> AGENDA : startingDate
+                    deactivate ENTRY
 
-                AGENDA -> AGENDA : checkDateWithinRange(startingDate, startDate, endDate)
-                activate AGENDA
+                    AGENDA -> AGENDA : checkDateWithinRange(startingDate, startDate, endDate)
+                    activate AGENDA
 
-                AGENDA --> AGENDA
-                deactivate AGENDA
+                    AGENDA --> AGENDA
+                    deactivate AGENDA
 
-                AGENDA -> ENTRY : getTeamAssign()
-                activate ENTRY
+                    AGENDA -> ENTRY : getTeamAssign()
+                    activate ENTRY
 
-                ENTRY --> AGENDA : teamAssign
-                deactivate ENTRY
+                    ENTRY --> AGENDA : teamAssign
+                    deactivate ENTRY
 
                 loop For each collaborator in teamAssign
 
@@ -131,11 +128,37 @@ COLLABORATOR -> UI : Requests to consult tasks between a date
             AGENDA --> CTRL : tasksCollaborator
             deactivate AGENDA
 
+            CTRL -> entryMAPPER: toDTOList(entryListDTO)
+            activate entryMAPPER
+
+            activate "tasksCollaborator\n:List<Entry>"
+            entryMAPPER -> "tasksCollaborator\n:List<Entry>" : create()
+
+            loop For each task space in entryListDTO
+
+                entryMAPPER -> entryListDTO: entryListToDTO(entry))
+                deactivate "tasksCollaborator\n:List<Entry>"
+                activate entryListDTO
+
+                entryListDTO --> entryMAPPER: entryListDTO
+                deactivate entryListDTO
+
+                entryMAPPER -> "tasksCollaborator\n:List<Entry>": add(task)
+                activate "tasksCollaborator\n:List<Entry>"
+            end
+
+                "tasksCollaborator\n:List<Entry>" --> entryMAPPER: tasksCollaborator
+                deactivate "tasksCollaborator\n:List<Entry>"
+
+            entryMAPPER --> CTRL : tasksCollaborator
+            deactivate entryMAPPER
+
         CTRL --> UI : tasksCollaborator
         deactivate CTRL
 
     UI --> COLLABORATOR : Shows list of tasks
     deactivate UI
+
 
 deactivate COLLABORATOR
 @enduml
