@@ -25,15 +25,15 @@
 
 ## 5. Construction (Implementation)
 
-### Class CancelEntryAgendaController 
+### Class CancelEntryAgendaController
 
 ```java
-package pprog.controller;
+package app.controller;
 
-import pprog.domain.Entry;
-import pprog.domain.Agenda;
-import pprog.repository.AuthenticationRepository;
-import pprog.repository.Repositories;
+import app.domain.model.Entry;
+import app.domain.model.Agenda;
+import app.repository.AuthenticationRepository;
+import app.repository.Repositories;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
@@ -158,7 +158,10 @@ public class CancelEntryAgendaController {
 ### Class Agenda
 
 ```java
-package pprog.domain;
+package app.domain;
+
+import app.domain.model.AgendaStatus;
+import app.domain.model.Entry;
 
 import java.util.List;
 

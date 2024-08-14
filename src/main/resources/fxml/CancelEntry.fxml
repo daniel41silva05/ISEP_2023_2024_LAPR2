@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pprog.ui.gui.CancelEntryAgendaGUI"
+            fx:controller="app.ui.gui.CancelEntryAgendaGUI"
             prefHeight="400" prefWidth="600">
 
     <center>

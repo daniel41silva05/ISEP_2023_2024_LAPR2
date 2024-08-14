@@ -6,11 +6,13 @@ module pprog.ui.gui {
     requires javafx.graphics;
     requires org.apache.commons.lang3;
 
-    opens pprog.ui.gui to javafx.fxml;
-    exports pprog.ui.gui to javafx.graphics;
-    opens pprog.domain to javafx.base;
-    opens pprog.interfaces to javafx.base;
-    exports pprog.ui to javafx.graphics;
-    opens pprog.ui to javafx.fxml;
+    opens app.ui.gui to javafx.fxml;
+    exports app.ui.gui to javafx.graphics;
+    opens app.domain to javafx.base;
+    opens app.interfaces to javafx.base;
+    exports app.ui to javafx.graphics;
+    opens app.ui to javafx.fxml;
+    opens app.domain.model to javafx.base;
+    opens app.domain.interfaces to javafx.base;
 
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pprog.ui.gui.ListGreenSpacesByGSMGUI">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.ListGreenSpacesByGSMGUI">
     <children>
         <Label style="-fx-font-size: 18px;" text="List of Green Spaces Managed by GSM" />
         <TableView fx:id="greenSpacesTable" prefWidth="600">
